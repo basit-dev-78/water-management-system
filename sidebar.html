@@ -1,0 +1,224 @@
+<aside id="sidebar"
+    class="hidden md:flex fixed left-0 md:left-4 top-4 bottom-4 w-[240px] rounded-2xl border border-white/40 glass-card flex-col p-container-margin z-50 shadow-xl overflow-hidden md:translate-x-0">
+    <div class="mb-6 flex items-center justify-between gap-stack-md">
+        <div class="flex items-center gap-stack-md">
+            <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary shadow-md shadow-primary/20">
+                <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+            </div>
+            <div>
+                <h1 class="text-[14px] font-bold text-primary leading-tight">AquaFlow Pro</h1>
+                <p class="text-[10px] text-on-surface-variant/70 leading-tight">Management Portal</p>
+            </div>
+        </div>
+        <button id="close-sidebar-btn" class="md:hidden w-8 h-8 flex items-center justify-center bg-surface-variant/30 rounded-full text-on-surface-variant hover:bg-surface-variant/50 transition-colors">
+            <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+    </div>
+    <button
+        class="mb-6 w-full bg-gradient-to-r from-[#0f5238] to-[#1a734e] text-white rounded-xl py-2.5 px-3 font-title-sm text-[13px] font-bold flex items-center justify-center gap-2 shadow-[0_4px_12px_rgba(15,82,56,0.3)] hover:shadow-[0_6px_16px_rgba(15,82,56,0.4)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300">
+        <span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+        <span>Ask AI Assistant</span>
+    </button>
+    <nav class="flex-1 flex flex-col gap-1 overflow-y-auto custom-scrollbar pr-1">
+
+        <!-- Dashboard -->
+        <a data-tab="panel-dashboard"
+            class="nav-link-primary flex items-center gap-stack-md bg-gradient-to-r from-[#c2edc4]/40 to-transparent text-[#0f5238] border-l-4 border-[#0f5238] font-bold rounded-r-lg px-3 py-2.5 transition-all duration-200 mt-1"
+            href="#">
+            <span class="material-symbols-outlined text-[18px]"
+                style="font-variation-settings: 'FILL' 1;">dashboard</span>
+            <span class="text-[12px]">Dashboard</span>
+        </a>
+
+        <!-- Customers -->
+        <div class="nav-group">
+            <a href="#"
+                class="nav-parent flex items-center justify-between text-on-surface-variant hover:bg-surface-variant/50 rounded-lg px-3 py-2 transition-all duration-200">
+                <div class="flex items-center gap-stack-md">
+                    <span class="material-symbols-outlined text-[18px]">group</span>
+                    <span class="text-[12px] font-bold">Customers</span>
+                </div>
+                <span
+                    class="material-symbols-outlined text-[16px] transition-transform duration-300 expand-icon">expand_more</span>
+            </a>
+            <div class="nav-children overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
+                <div
+                    class="flex flex-col gap-1 pl-8 pr-2 py-2 relative before:content-[''] before:absolute before:left-5 before:top-2 before:bottom-2 before:w-[2px] before:bg-outline-variant/20 before:rounded-full">
+                    <a data-tab="panel-customers"
+                        class="nav-link-sub relative text-[11px] font-medium text-on-surface-variant hover:text-primary hover:bg-primary/5 py-2 px-3 rounded-lg transition-all duration-200 flex items-center gap-2 group"
+                        href="#">
+                        <div
+                            class="sub-dot w-1.5 h-1.5 rounded-full bg-outline-variant/50 group-hover:bg-primary transition-colors">
+                        </div>
+                        <span>View Directory</span>
+                    </a>
+                    <a data-tab="panel-customer-add"
+                        class="nav-link-sub relative text-[11px] font-medium text-on-surface-variant hover:text-primary hover:bg-primary/5 py-2 px-3 rounded-lg transition-all duration-200 flex items-center gap-2 group"
+                        href="#">
+                        <div
+                            class="sub-dot w-1.5 h-1.5 rounded-full bg-outline-variant/50 group-hover:bg-primary transition-colors">
+                        </div>
+                        <span>Add Customer</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Suppliers -->
+        <div class="nav-group">
+            <a href="#"
+                class="nav-parent flex items-center justify-between text-on-surface-variant hover:bg-surface-variant/50 rounded-lg px-3 py-2 transition-all duration-200">
+                <div class="flex items-center gap-stack-md">
+                    <span class="material-symbols-outlined text-[18px]">inventory_2</span>
+                    <span class="text-[12px] font-bold">Suppliers</span>
+                </div>
+                <span
+                    class="material-symbols-outlined text-[16px] transition-transform duration-300 expand-icon">expand_more</span>
+            </a>
+            <div class="nav-children overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
+                <div
+                    class="flex flex-col gap-1 pl-8 pr-2 py-2 relative before:content-[''] before:absolute before:left-5 before:top-2 before:bottom-2 before:w-[2px] before:bg-outline-variant/20 before:rounded-full">
+                    <a data-tab="panel-suppliers"
+                        class="nav-link-sub relative text-[11px] font-medium text-on-surface-variant hover:text-primary hover:bg-primary/5 py-2 px-3 rounded-lg transition-all duration-200 flex items-center gap-2 group"
+                        href="#">
+                        <div
+                            class="sub-dot w-1.5 h-1.5 rounded-full bg-outline-variant/50 group-hover:bg-primary transition-colors">
+                        </div>
+                        <span>View Network</span>
+                    </a>
+                    <a data-tab="panel-supplier-add"
+                        class="nav-link-sub relative text-[11px] font-medium text-on-surface-variant hover:text-primary hover:bg-primary/5 py-2 px-3 rounded-lg transition-all duration-200 flex items-center gap-2 group"
+                        href="#">
+                        <div
+                            class="sub-dot w-1.5 h-1.5 rounded-full bg-outline-variant/50 group-hover:bg-primary transition-colors">
+                        </div>
+                        <span>Add Supplier</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inventory -->
+        <div class="nav-group">
+            <a href="#"
+                class="nav-parent flex items-center justify-between text-on-surface-variant hover:bg-surface-variant/50 rounded-lg px-3 py-2 transition-all duration-200">
+                <div class="flex items-center gap-stack-md">
+                    <span class="material-symbols-outlined text-[18px]">water_bottle</span>
+                    <span class="text-[12px] font-bold">Inventory</span>
+                </div>
+                <span
+                    class="material-symbols-outlined text-[16px] transition-transform duration-300 expand-icon">expand_more</span>
+            </a>
+            <div class="nav-children overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
+                <div
+                    class="flex flex-col gap-1 pl-8 pr-2 py-2 relative before:content-[''] before:absolute before:left-5 before:top-2 before:bottom-2 before:w-[2px] before:bg-outline-variant/20 before:rounded-full">
+                    <a data-tab="panel-inventory"
+                        class="nav-link-sub relative text-[11px] font-medium text-on-surface-variant hover:text-primary hover:bg-primary/5 py-2 px-3 rounded-lg transition-all duration-200 flex items-center gap-2 group"
+                        href="#">
+                        <div
+                            class="sub-dot w-1.5 h-1.5 rounded-full bg-outline-variant/50 group-hover:bg-primary transition-colors">
+                        </div>
+                        <span>Stock Directory</span>
+                    </a>
+                    <a data-tab="panel-inventory-add"
+                        class="nav-link-sub relative text-[11px] font-medium text-on-surface-variant hover:text-primary hover:bg-primary/5 py-2 px-3 rounded-lg transition-all duration-200 flex items-center gap-2 group"
+                        href="#">
+                        <div
+                            class="sub-dot w-1.5 h-1.5 rounded-full bg-outline-variant/50 group-hover:bg-primary transition-colors">
+                        </div>
+                        <span>Add Item</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders -->
+        <div class="nav-group">
+            <a href="#"
+                class="nav-parent flex items-center justify-between text-on-surface-variant hover:bg-surface-variant/50 rounded-lg px-3 py-2 transition-all duration-200">
+                <div class="flex items-center gap-stack-md">
+                    <span class="material-symbols-outlined text-[18px]">shopping_cart</span>
+                    <span class="text-[12px] font-bold">Orders</span>
+                </div>
+                <span
+                    class="material-symbols-outlined text-[16px] transition-transform duration-300 expand-icon">expand_more</span>
+            </a>
+            <div class="nav-children overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
+                <div
+                    class="flex flex-col gap-1 pl-8 pr-2 py-2 relative before:content-[''] before:absolute before:left-5 before:top-2 before:bottom-2 before:w-[2px] before:bg-outline-variant/20 before:rounded-full">
+                    <a data-tab="panel-orders"
+                        class="nav-link-sub relative text-[11px] font-medium text-on-surface-variant hover:text-primary hover:bg-primary/5 py-2 px-3 rounded-lg transition-all duration-200 flex items-center gap-2 group"
+                        href="#">
+                        <div
+                            class="sub-dot w-1.5 h-1.5 rounded-full bg-outline-variant/50 group-hover:bg-primary transition-colors">
+                        </div>
+                        <span>Order Pipeline</span>
+                    </a>
+                    <a data-tab="panel-order-add"
+                        class="nav-link-sub relative text-[11px] font-medium text-on-surface-variant hover:text-primary hover:bg-primary/5 py-2 px-3 rounded-lg transition-all duration-200 flex items-center gap-2 group"
+                        href="#">
+                        <div
+                            class="sub-dot w-1.5 h-1.5 rounded-full bg-outline-variant/50 group-hover:bg-primary transition-colors">
+                        </div>
+                        <span>New Order</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logistics (No subtabs needed) -->
+        <a data-tab="panel-logistics"
+            class="nav-link-primary flex items-center gap-stack-md text-on-surface-variant hover:bg-surface-variant/50 rounded-lg px-3 py-2 transition-all duration-200 mt-1"
+            href="#">
+            <span class="material-symbols-outlined text-[18px]">local_shipping</span>
+            <span class="text-[12px] font-bold">Logistics</span>
+        </a>
+
+        <!-- Reports (No subtabs needed) -->
+        <a data-tab="panel-reports"
+            class="nav-link-primary flex items-center gap-stack-md text-on-surface-variant hover:bg-surface-variant/50 rounded-lg px-3 py-2 transition-all duration-200 mt-1"
+            href="#">
+            <span class="material-symbols-outlined text-[18px]">analytics</span>
+            <span class="text-[12px] font-bold">Reports</span>
+        </a>
+
+        <!-- Sustainability (No subtabs needed) -->
+        <a data-tab="panel-sustainability"
+            class="nav-link-primary flex items-center gap-stack-md text-on-surface-variant hover:bg-surface-variant/50 rounded-lg px-3 py-2 transition-all duration-200 mt-1"
+            href="#">
+            <span class="material-symbols-outlined text-[18px]">eco</span>
+            <span class="text-[12px] font-bold">Sustainability</span>
+        </a>
+    </nav>
+    <div class="mt-auto flex flex-col gap-1 border-t border-outline-variant/20 pt-3">
+        <a class="flex items-center gap-stack-md text-on-surface-variant/70 hover:text-on-surface hover:bg-surface-variant/50 rounded-lg px-3 py-2 transition-all duration-200"
+            href="#">
+            <span class="material-symbols-outlined text-[18px]">help</span>
+            <span class="text-[12px]">Help &amp; Support</span>
+        </a>
+        <a class="flex items-center gap-stack-md text-on-surface-variant/70 hover:text-on-surface hover:bg-surface-variant/50 rounded-lg px-3 py-2 transition-all duration-200"
+            href="#">
+            <span class="material-symbols-outlined text-[18px]">settings</span>
+            <span class="text-[12px]">Settings</span>
+        </a>
+    </div>
+</aside>
+
+<!-- Mobile Bottom Navigation Bar -->
+<nav id="mobile-bottom-nav" class="md:hidden fixed bottom-0 left-0 right-0 h-[72px] bg-white/90 backdrop-blur-md border-t border-outline-variant/20 z-50 flex items-center justify-around px-2 shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
+    <a data-tab="panel-dashboard" class="flex flex-col items-center justify-center gap-1 text-on-surface-variant w-[60px]" href="#">
+        <span class="material-symbols-outlined text-[24px]">dashboard</span>
+    </a>
+    <a data-tab="panel-customers" class="flex flex-col items-center justify-center gap-1 text-on-surface-variant w-[60px]" href="#">
+        <span class="material-symbols-outlined text-[24px]">group</span>
+    </a>
+    <a data-tab="panel-suppliers" class="flex flex-col items-center justify-center gap-1 text-on-surface-variant w-[60px]" href="#">
+        <span class="material-symbols-outlined text-[24px]">inventory_2</span>
+    </a>
+    <a data-tab="panel-inventory" class="flex flex-col items-center justify-center gap-1 text-on-surface-variant w-[60px]" href="#">
+        <span class="material-symbols-outlined text-[24px]">water_bottle</span>
+    </a>
+    <a data-tab="panel-orders" class="flex flex-col items-center justify-center gap-1 text-on-surface-variant w-[60px]" href="#">
+        <span class="material-symbols-outlined text-[24px]">shopping_cart</span>
+    </a>
+</nav>
