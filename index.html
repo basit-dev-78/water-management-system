@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html class="light" lang="en">
+
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>AquaFlow Pro - Management Portal</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <!-- External config and styles -->
     <script src="./assets/js/config.js"></script>
-    <link href="./assets/css/style.css" rel="stylesheet"/>
+    <link href="./assets/css/style.css" rel="stylesheet" />
 </head>
-<body class="bg-[#f0f4f2] text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-hidden relative min-h-screen">
-    
+
+<body
+    class="bg-[#f0f4f2] text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-hidden relative min-h-screen">
+
     <!-- Animated Organic Background -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
         <div class="blob blob-1"></div>
@@ -22,7 +25,8 @@
     <div id="sidebar-container" class="relative z-50"></div>
 
     <!-- Main Content Area -->
-    <main class="mx-4 md:ml-[270px] md:mr-4 mt-4 mb-4 pb-[80px] md:pb-4 min-h-[calc(100vh-32px)] flex flex-col z-10 relative transition-all duration-300">
+    <main
+        class="mx-4 md:ml-[270px] md:mr-4 mt-4 mb-4 pb-[80px] md:pb-4 min-h-[calc(100vh-32px)] flex flex-col z-10 relative transition-all duration-300">
         <!-- Header Container -->
         <div id="header-container"></div>
         <!-- DASHBOARD PANEL -->
@@ -32,12 +36,15 @@
                 <!-- Card 1 -->
                 <div class="glass-card p-card-padding rounded-xl shadow-sm">
                     <div class="flex justify-between items-start mb-3">
-                        <div class="w-9 h-9 bg-secondary-container/30 text-primary rounded-lg flex items-center justify-center">
+                        <div
+                            class="w-9 h-9 bg-secondary-container/30 text-primary rounded-lg flex items-center justify-center">
                             <span class="material-symbols-outlined text-[18px]">group</span>
                         </div>
-                        <span class="text-primary font-bold text-[10px] bg-primary-container/20 px-2 py-0.5 rounded">+4.2%</span>
+                        <span
+                            class="text-primary font-bold text-[10px] bg-primary-container/20 px-2 py-0.5 rounded">+4.2%</span>
                     </div>
-                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Total Customers</p>
+                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Total
+                        Customers</p>
                     <h3 class="text-[24px] font-bold text-primary leading-tight">1,240</h3>
                     <div class="mt-3 w-full h-1 bg-surface-variant rounded-full overflow-hidden">
                         <div class="h-full bg-primary w-[75%] rounded-full"></div>
@@ -46,12 +53,16 @@
                 <!-- Card 2 -->
                 <div class="glass-card p-card-padding rounded-xl shadow-sm">
                     <div class="flex justify-between items-start mb-3">
-                        <div class="w-9 h-9 bg-primary-container/10 text-primary rounded-lg flex items-center justify-center">
+                        <div
+                            class="w-9 h-9 bg-primary-container/10 text-primary rounded-lg flex items-center justify-center">
                             <span class="material-symbols-outlined text-[18px]">local_shipping</span>
                         </div>
-                        <span class="text-secondary font-bold text-[10px] bg-secondary-container/30 px-2 py-0.5 rounded uppercase">On Track</span>
+                        <span
+                            class="text-secondary font-bold text-[10px] bg-secondary-container/30 px-2 py-0.5 rounded uppercase">On
+                            Track</span>
                     </div>
-                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Today's Deliveries</p>
+                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Today's
+                        Deliveries</p>
                     <div class="flex items-baseline gap-1.5">
                         <h3 class="text-[24px] font-bold text-primary leading-tight">84</h3>
                         <span class="text-[12px] text-on-surface-variant">/ 120</span>
@@ -66,24 +77,31 @@
                 <!-- Card 3 -->
                 <div class="glass-card p-card-padding rounded-xl shadow-sm">
                     <div class="flex justify-between items-start mb-3">
-                        <div class="w-9 h-9 bg-tertiary-container/10 text-tertiary rounded-lg flex items-center justify-center">
+                        <div
+                            class="w-9 h-9 bg-tertiary-container/10 text-tertiary rounded-lg flex items-center justify-center">
                             <span class="material-symbols-outlined text-[18px]">recycling</span>
                         </div>
-                        <span class="text-error font-bold text-[10px] bg-error-container/40 px-2 py-0.5 rounded uppercase">High</span>
+                        <span
+                            class="text-error font-bold text-[10px] bg-error-container/40 px-2 py-0.5 rounded uppercase">High</span>
                     </div>
-                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Pending Empties</p>
+                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Pending
+                        Empties</p>
                     <h3 class="text-[24px] font-bold text-primary leading-tight">342</h3>
-                    <p class="mt-3 text-[10px] text-on-surface-variant/60 italic leading-tight">Collection expected by 6:00 PM</p>
+                    <p class="mt-3 text-[10px] text-on-surface-variant/60 italic leading-tight">Collection expected by
+                        6:00 PM</p>
                 </div>
                 <!-- Card 4 -->
                 <div class="glass-card p-card-padding rounded-xl shadow-sm">
                     <div class="flex justify-between items-start mb-3">
-                        <div class="w-9 h-9 bg-secondary-container/30 text-secondary rounded-lg flex items-center justify-center">
+                        <div
+                            class="w-9 h-9 bg-secondary-container/30 text-secondary rounded-lg flex items-center justify-center">
                             <span class="material-symbols-outlined text-[18px]">payments</span>
                         </div>
-                        <span class="text-primary font-bold text-[10px] bg-primary-container/20 px-2 py-0.5 rounded">+12%</span>
+                        <span
+                            class="text-primary font-bold text-[10px] bg-primary-container/20 px-2 py-0.5 rounded">+12%</span>
                     </div>
-                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Monthly Revenue</p>
+                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Monthly
+                        Revenue</p>
                     <h3 class="text-[24px] font-bold text-primary leading-tight">$12,450</h3>
                     <div class="mt-3 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-primary text-[14px]">trending_up</span>
@@ -91,7 +109,7 @@
                     </div>
                 </div>
             </section>
-            
+
             <!-- Main Content Bento Grid -->
             <div class="grid grid-cols-12 gap-gutter-md">
                 <!-- Revenue Performance Chart -->
@@ -99,104 +117,137 @@
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <h4 class="text-[15px] font-bold text-on-surface leading-tight">Revenue Performance</h4>
-                            <p class="text-[11px] text-on-surface-variant mt-0.5">Real-time revenue tracking across all regions</p>
+                            <p class="text-[11px] text-on-surface-variant mt-0.5">Real-time revenue tracking across all
+                                regions</p>
                         </div>
                         <div class="flex gap-1.5">
-                            <select class="bg-surface-variant/30 border border-outline-variant/20 rounded-lg text-[11px] py-1 px-2 focus:ring-primary/20 outline-none">
+                            <select
+                                class="bg-surface-variant/30 border border-outline-variant/20 rounded-lg text-[11px] py-1 px-2 focus:ring-primary/20 outline-none">
                                 <option>Last 7 Days</option>
                                 <option>Last 30 Days</option>
                             </select>
-                            <button class="w-7 h-7 flex items-center justify-center hover:bg-surface-variant/50 rounded-lg transition-colors border border-outline-variant/20">
+                            <button
+                                class="w-7 h-7 flex items-center justify-center hover:bg-surface-variant/50 rounded-lg transition-colors border border-outline-variant/20">
                                 <span class="material-symbols-outlined text-[16px]">download</span>
                             </button>
                         </div>
                     </div>
                     <div class="flex-1 flex items-end justify-between gap-3 h-[240px] mb-2 px-2">
                         <div class="flex-1 flex flex-col items-center group">
-                            <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80" style="height: 45%;"></div>
+                            <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80"
+                                style="height: 45%;"></div>
                             <span class="text-[9px] mt-2 font-bold text-on-surface-variant/50 uppercase">Mon</span>
                         </div>
                         <div class="flex-1 flex flex-col items-center group">
-                            <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80" style="height: 60%;"></div>
+                            <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80"
+                                style="height: 60%;"></div>
                             <span class="text-[9px] mt-2 font-bold text-on-surface-variant/50 uppercase">Tue</span>
                         </div>
                         <div class="flex-1 flex flex-col items-center group">
-                            <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80" style="height: 55%;"></div>
+                            <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80"
+                                style="height: 55%;"></div>
                             <span class="text-[9px] mt-2 font-bold text-on-surface-variant/50 uppercase">Wed</span>
                         </div>
                         <div class="flex-1 flex flex-col items-center group">
-                            <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80" style="height: 85%;"></div>
+                            <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80"
+                                style="height: 85%;"></div>
                             <span class="text-[9px] mt-2 font-bold text-on-surface-variant/50 uppercase">Thu</span>
                         </div>
                         <div class="flex-1 flex flex-col items-center group">
-                            <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80" style="height: 70%;"></div>
+                            <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80"
+                                style="height: 70%;"></div>
                             <span class="text-[9px] mt-2 font-bold text-on-surface-variant/50 uppercase">Fri</span>
                         </div>
                         <div class="flex-1 flex flex-col items-center group">
-                            <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80" style="height: 30%;"></div>
+                            <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80"
+                                style="height: 30%;"></div>
                             <span class="text-[9px] mt-2 font-bold text-on-surface-variant/50 uppercase">Sat</span>
                         </div>
                         <div class="flex-1 flex flex-col items-center group">
-                            <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80" style="height: 40%;"></div>
+                            <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80"
+                                style="height: 40%;"></div>
                             <span class="text-[9px] mt-2 font-bold text-on-surface-variant/50 uppercase">Sun</span>
                         </div>
                     </div>
                 </div>
                 <!-- Critical Alerts Section -->
-                <div class="col-span-12 lg:col-span-4 glass-card p-card-padding rounded-xl shadow-sm flex flex-col overflow-hidden border border-outline-variant/10">
+                <div
+                    class="col-span-12 lg:col-span-4 glass-card p-card-padding rounded-xl shadow-sm flex flex-col overflow-hidden border border-outline-variant/10">
                     <div class="flex justify-between items-center mb-4">
                         <h4 class="text-[15px] font-bold text-on-surface">Critical Alerts</h4>
-                        <span class="bg-error text-on-error px-1.5 py-0.5 rounded-full text-[9px] font-bold">3 NEW</span>
+                        <span class="bg-error text-on-error px-1.5 py-0.5 rounded-full text-[9px] font-bold">3
+                            NEW</span>
                     </div>
                     <div class="flex-1 space-y-3 overflow-y-auto pr-1 custom-scrollbar">
                         <div class="p-3 bg-error-container/10 rounded-lg border border-error/10 flex gap-3">
                             <div class="text-error">
-                                <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">warning</span>
+                                <span class="material-symbols-outlined text-[18px]"
+                                    style="font-variation-settings: 'FILL' 1;">warning</span>
                             </div>
                             <div>
-                                <h5 class="text-[12px] font-bold text-on-surface leading-tight">Supply Delay: West Coast</h5>
-                                <p class="text-[11px] text-on-surface-variant/80 mt-0.5 leading-tight">Shipment #AQ-908 delayed by 4 hours.</p>
-                                <span class="text-[9px] text-error font-bold mt-1.5 inline-block uppercase">12 min ago</span>
+                                <h5 class="text-[12px] font-bold text-on-surface leading-tight">Supply Delay: West Coast
+                                </h5>
+                                <p class="text-[11px] text-on-surface-variant/80 mt-0.5 leading-tight">Shipment #AQ-908
+                                    delayed by 4 hours.</p>
+                                <span class="text-[9px] text-error font-bold mt-1.5 inline-block uppercase">12 min
+                                    ago</span>
                             </div>
                         </div>
                         <div class="p-3 bg-tertiary-container/5 rounded-lg border border-outline-variant/20 flex gap-3">
                             <div class="text-tertiary">
-                                <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+                                <span class="material-symbols-outlined text-[18px]"
+                                    style="font-variation-settings: 'FILL' 1;">inventory_2</span>
                             </div>
                             <div>
-                                <h5 class="text-[12px] font-bold text-on-surface leading-tight">Low Inventory: Filters</h5>
-                                <p class="text-[11px] text-on-surface-variant/80 mt-0.5 leading-tight">Central Hub reporting &lt; 15% stock.</p>
-                                <span class="text-[9px] text-on-surface-variant/60 mt-1.5 inline-block uppercase">1 hour ago</span>
+                                <h5 class="text-[12px] font-bold text-on-surface leading-tight">Low Inventory: Filters
+                                </h5>
+                                <p class="text-[11px] text-on-surface-variant/80 mt-0.5 leading-tight">Central Hub
+                                    reporting &lt; 15% stock.</p>
+                                <span class="text-[9px] text-on-surface-variant/60 mt-1.5 inline-block uppercase">1 hour
+                                    ago</span>
                             </div>
                         </div>
                         <div class="p-3 bg-primary-container/5 rounded-lg border border-primary/10 flex gap-3">
                             <div class="text-primary">
-                                <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">cloud_done</span>
+                                <span class="material-symbols-outlined text-[18px]"
+                                    style="font-variation-settings: 'FILL' 1;">cloud_done</span>
                             </div>
                             <div>
                                 <h5 class="text-[12px] font-bold text-on-surface leading-tight">Sensor Sync</h5>
-                                <p class="text-[11px] text-on-surface-variant/80 mt-0.5 leading-tight">32 new sensors mapped to northern grid.</p>
-                                <span class="text-[9px] text-primary font-bold mt-1.5 inline-block uppercase">3 hours ago</span>
+                                <p class="text-[11px] text-on-surface-variant/80 mt-0.5 leading-tight">32 new sensors
+                                    mapped to northern grid.</p>
+                                <span class="text-[9px] text-primary font-bold mt-1.5 inline-block uppercase">3 hours
+                                    ago</span>
                             </div>
                         </div>
                     </div>
-                    <button class="mt-4 w-full py-2 rounded-lg border border-outline-variant/30 text-[11px] font-bold hover:bg-surface-variant/30 transition-colors">
+                    <button
+                        class="mt-4 w-full py-2 rounded-lg border border-outline-variant/30 text-[11px] font-bold hover:bg-surface-variant/30 transition-colors">
                         View All Activity Log
                     </button>
                 </div>
                 <!-- Newest Feature Promotion -->
-                <div class="col-span-12 glass-card rounded-xl overflow-hidden shadow-sm flex flex-col md:flex-row min-h-[140px] border border-outline-variant/10">
+                <div
+                    class="col-span-12 glass-card rounded-xl overflow-hidden shadow-sm flex flex-col md:flex-row min-h-[140px] border border-outline-variant/10">
                     <div class="flex-1 p-card-padding flex flex-col justify-center">
                         <h4 class="text-[20px] font-bold text-primary mb-1">Advanced Hydro-Analytics 2.0</h4>
-                        <p class="text-[12px] text-on-surface-variant/80 max-w-xl mb-4 leading-relaxed">Our new predictive leakage model is now live. Reduce water waste by up to 24% with AI-driven maintenance scheduling.</p>
+                        <p class="text-[12px] text-on-surface-variant/80 max-w-xl mb-4 leading-relaxed">Our new
+                            predictive leakage model is now live. Reduce water waste by up to 24% with AI-driven
+                            maintenance scheduling.</p>
                         <div class="flex gap-3">
-                            <button class="bg-primary text-on-primary px-4 py-1.5 rounded-lg text-[11px] font-bold hover:shadow-md transition-all">Explore Feature</button>
-                            <button class="text-primary font-bold px-4 py-1.5 rounded-lg text-[11px] hover:bg-primary-container/10 transition-colors">Read Documentation</button>
+                            <button
+                                class="bg-primary text-on-primary px-4 py-1.5 rounded-lg text-[11px] font-bold hover:shadow-md transition-all">Explore
+                                Feature</button>
+                            <button
+                                class="text-primary font-bold px-4 py-1.5 rounded-lg text-[11px] hover:bg-primary-container/10 transition-colors">Read
+                                Documentation</button>
                         </div>
                     </div>
                     <div class="w-full md:w-1/4 relative h-32 md:h-auto overflow-hidden bg-surface-container">
-                        <img alt="AquaFlow Analytics" class="w-full h-full object-cover grayscale-[10%] opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPgIClVpxdARfO55Gp6xZwn8HNGDYngzfDjW9DwMpDYuh4m77MCjnkfIFwwgmsCbTxuIetBYADLSCYzYqUeZYnilrcADB-sZ3Q9eb2AxOViy_l2MlAh1YQNKvy7fPP6caKc_5t4LlJrDSG9q_e8iiz23JAAyF12Z5_QIkSvSN65iR_7xJVB7U7ae2Js0JkKW7aKqSsXX0LaGo-vHgLVmsRxhG5QTa0m2pEK9IWZ7UWEq4SHZrqzWSySv2xojQXNlXYGhlEtEYd85g"/>
-                        <div class="absolute inset-0 bg-gradient-to-r from-surface/90 to-transparent md:block hidden"></div>
+                        <img alt="AquaFlow Analytics" class="w-full h-full object-cover grayscale-[10%] opacity-90"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPgIClVpxdARfO55Gp6xZwn8HNGDYngzfDjW9DwMpDYuh4m77MCjnkfIFwwgmsCbTxuIetBYADLSCYzYqUeZYnilrcADB-sZ3Q9eb2AxOViy_l2MlAh1YQNKvy7fPP6caKc_5t4LlJrDSG9q_e8iiz23JAAyF12Z5_QIkSvSN65iR_7xJVB7U7ae2Js0JkKW7aKqSsXX0LaGo-vHgLVmsRxhG5QTa0m2pEK9IWZ7UWEq4SHZrqzWSySv2xojQXNlXYGhlEtEYd85g" />
+                        <div class="absolute inset-0 bg-gradient-to-r from-surface/90 to-transparent md:block hidden">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -211,16 +262,23 @@
                     <h1 class="font-display-lg text-[24px] text-gradient tracking-tight">Customer Directory</h1>
                 </div>
                 <div class="flex gap-2">
-                    <button class="flex items-center gap-1.5 bg-white border border-outline-variant px-3 py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors text-[11px] font-medium shadow-sm">
-                    <button class="w-9 h-9 rounded-full bg-white/50 border border-white flex items-center justify-center hover:bg-white transition-all shadow-sm">
-                        <span class="material-symbols-outlined text-on-surface-variant text-[20px]">notifications</span>
-                    </button>
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary p-0.5 shadow-md cursor-pointer hover:scale-105 transition-transform">
-                        <img alt="User profile" class="w-full h-full rounded-full object-cover border-2 border-white" src="https://i.pravatar.cc/150?u=a042581f4e29026704d"/>
-                    </div>
+                    <button
+                        class="flex items-center gap-1.5 bg-white border border-outline-variant px-3 py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors text-[11px] font-medium shadow-sm">
+                        <button
+                            class="w-9 h-9 rounded-full bg-white/50 border border-white flex items-center justify-center hover:bg-white transition-all shadow-sm">
+                            <span
+                                class="material-symbols-outlined text-on-surface-variant text-[20px]">notifications</span>
+                        </button>
+                        <div
+                            class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary p-0.5 shadow-md cursor-pointer hover:scale-105 transition-transform">
+                            <img alt="User profile"
+                                class="w-full h-full rounded-full object-cover border-2 border-white"
+                                src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />
+                        </div>
                         Filter
                     </button>
-                    <button class="flex items-center gap-1.5 bg-primary text-on-primary px-4 py-1.5 rounded-lg hover:shadow-md transition-all text-[11px] font-bold shadow-sm">
+                    <button
+                        class="flex items-center gap-1.5 bg-primary text-on-primary px-4 py-1.5 rounded-lg hover:shadow-md transition-all text-[11px] font-bold shadow-sm">
                         <span class="material-symbols-outlined text-[16px]">add</span>
                         New Customer
                     </button>
@@ -229,36 +287,45 @@
 
             <!-- Compact Bento Metrics -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter-md mb-gutter-md">
-                <div class="bg-surface-container-lowest border border-outline-variant/10 rounded-xl p-card-padding shadow-sm">
+                <div
+                    class="bg-surface-container-lowest border border-outline-variant/10 rounded-xl p-card-padding shadow-sm">
                     <div class="flex justify-between items-start mb-2">
                         <div class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
                             <span class="material-symbols-outlined text-[18px]">group</span>
                         </div>
                         <span class="text-primary bg-primary/10 px-1.5 py-0.5 rounded text-[9px] font-bold">+12%</span>
                     </div>
-                    <p class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider mb-0.5">Active Customers</p>
+                    <p class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider mb-0.5">Active
+                        Customers</p>
                     <h3 class="text-[18px] font-bold text-on-surface">1,248</h3>
                 </div>
-                <div class="bg-surface-container-lowest border border-outline-variant/10 rounded-xl p-card-padding shadow-sm">
+                <div
+                    class="bg-surface-container-lowest border border-outline-variant/10 rounded-xl p-card-padding shadow-sm">
                     <div class="flex justify-between items-start mb-2">
                         <div class="w-8 h-8 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center">
                             <span class="material-symbols-outlined text-[18px]">water_drop</span>
                         </div>
-                        <span class="text-secondary bg-secondary/10 px-1.5 py-0.5 rounded text-[9px] font-bold">84% cap</span>
+                        <span class="text-secondary bg-secondary/10 px-1.5 py-0.5 rounded text-[9px] font-bold">84%
+                            cap</span>
                     </div>
-                    <p class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider mb-0.5">Pending Delivery</p>
-                    <h3 class="text-[18px] font-bold text-on-surface">312 <span class="text-[11px] font-normal text-on-surface-variant">units</span></h3>
+                    <p class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider mb-0.5">Pending
+                        Delivery</p>
+                    <h3 class="text-[18px] font-bold text-on-surface">312 <span
+                            class="text-[11px] font-normal text-on-surface-variant">units</span></h3>
                 </div>
-                <div class="bg-surface-container-lowest border border-outline-variant/10 rounded-xl p-card-padding shadow-sm">
+                <div
+                    class="bg-surface-container-lowest border border-outline-variant/10 rounded-xl p-card-padding shadow-sm">
                     <div class="flex items-center gap-2 mb-2">
                         <div class="w-8 h-8 rounded-lg bg-tertiary/10 text-tertiary flex items-center justify-center">
                             <span class="material-symbols-outlined text-[18px]">map</span>
                         </div>
                     </div>
-                    <p class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider mb-0.5">Coverage Areas</p>
+                    <p class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider mb-0.5">Coverage
+                        Areas</p>
                     <h3 class="text-[18px] font-bold text-on-surface">18 Districts</h3>
                 </div>
-                <div class="bg-gradient-to-br from-primary to-primary-container rounded-xl p-card-padding shadow-md text-on-primary relative overflow-hidden">
+                <div
+                    class="bg-gradient-to-br from-primary to-primary-container rounded-xl p-card-padding shadow-md text-on-primary relative overflow-hidden">
                     <div class="relative z-10">
                         <p class="text-[9px] font-bold uppercase tracking-wider opacity-70 mb-0.5">System Status</p>
                         <h3 class="text-[18px] font-bold">Operational</h3>
@@ -271,14 +338,19 @@
             </div>
 
             <!-- High-Density Table Section -->
-            <div class="bg-surface-container-lowest border border-outline-variant/10 rounded-xl shadow-sm overflow-hidden">
-                <div class="px-container-margin py-3 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low/30 backdrop-blur-sm">
+            <div
+                class="bg-surface-container-lowest border border-outline-variant/10 rounded-xl shadow-sm overflow-hidden">
+                <div
+                    class="px-container-margin py-3 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low/30 backdrop-blur-sm">
                     <h3 class="text-[13px] font-bold text-on-surface">Directory List</h3>
                     <div class="flex items-center gap-3">
                         <span class="text-[11px] text-on-surface-variant font-medium">Showing 1-10 of 1,248</span>
                         <div class="flex border border-outline-variant rounded-md overflow-hidden">
-                            <button class="p-1 hover:bg-surface-container-low text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">chevron_left</span></button>
-                            <button class="p-1 hover:bg-surface-container-low text-on-surface-variant border-l border-outline-variant"><span class="material-symbols-outlined text-[16px]">chevron_right</span></button>
+                            <button class="p-1 hover:bg-surface-container-low text-on-surface-variant"><span
+                                    class="material-symbols-outlined text-[16px]">chevron_left</span></button>
+                            <button
+                                class="p-1 hover:bg-surface-container-low text-on-surface-variant border-l border-outline-variant"><span
+                                    class="material-symbols-outlined text-[16px]">chevron_right</span></button>
                         </div>
                     </div>
                 </div>
@@ -286,14 +358,30 @@
                     <table class="w-full text-left">
                         <thead>
                             <tr class="bg-surface-container-low/50 border-b border-outline-variant/10">
-                                <th class="px-container-margin py-2.5 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Customer</th>
-                                <th class="px-4 py-2.5 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Contact</th>
-                                <th class="px-4 py-2.5 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Area</th>
-                                <th class="px-4 py-2.5 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Unit Price</th>
-                                <th class="px-4 py-2.5 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Pending</th>
-                                <th class="px-4 py-2.5 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Last Delivery</th>
-                                <th class="px-4 py-2.5 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Status</th>
-                                <th class="px-container-margin py-2.5 text-right text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Action</th>
+                                <th
+                                    class="px-container-margin py-2.5 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">
+                                    Customer</th>
+                                <th
+                                    class="px-4 py-2.5 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">
+                                    Contact</th>
+                                <th
+                                    class="px-4 py-2.5 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">
+                                    Area</th>
+                                <th
+                                    class="px-4 py-2.5 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">
+                                    Unit Price</th>
+                                <th
+                                    class="px-4 py-2.5 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">
+                                    Pending</th>
+                                <th
+                                    class="px-4 py-2.5 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">
+                                    Last Delivery</th>
+                                <th
+                                    class="px-4 py-2.5 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">
+                                    Status</th>
+                                <th
+                                    class="px-container-margin py-2.5 text-right text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">
+                                    Action</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-outline-variant/5">
@@ -301,9 +389,12 @@
                             <tr class="hover:bg-surface-container-low/30 transition-colors group">
                                 <td class="px-container-margin py-2">
                                     <div class="flex items-center gap-2.5">
-                                        <div class="w-8 h-8 rounded-lg bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-[10px]">JH</div>
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-[10px]">
+                                            JH</div>
                                         <div>
-                                            <p class="text-[12px] font-bold text-on-surface leading-tight">Julianne Hayes</p>
+                                            <p class="text-[12px] font-bold text-on-surface leading-tight">Julianne
+                                                Hayes</p>
                                             <p class="text-[9px] text-on-surface-variant">AQ-10024</p>
                                         </div>
                                     </div>
@@ -313,7 +404,9 @@
                                     <p class="text-[10px] text-on-surface-variant/70">j.hayes@example.com</p>
                                 </td>
                                 <td class="px-4 py-2">
-                                    <span class="bg-surface-variant/50 px-2 py-0.5 rounded text-[10px] text-on-surface-variant font-medium">Oakwood Estates</span>
+                                    <span
+                                        class="bg-surface-variant/50 px-2 py-0.5 rounded text-[10px] text-on-surface-variant font-medium">Oakwood
+                                        Estates</span>
                                 </td>
                                 <td class="px-4 py-2 text-[11px] font-semibold">$4.50</td>
                                 <td class="px-4 py-2">
@@ -324,21 +417,26 @@
                                 </td>
                                 <td class="px-4 py-2 text-[10px] text-on-surface-variant font-medium">Oct 24, 2023</td>
                                 <td class="px-4 py-2">
-                                    <span class="bg-primary/10 text-primary px-2 py-0.5 rounded-full text-[9px] font-bold inline-flex items-center gap-1">
+                                    <span
+                                        class="bg-primary/10 text-primary px-2 py-0.5 rounded-full text-[9px] font-bold inline-flex items-center gap-1">
                                         <span class="w-1 h-1 rounded-full bg-primary"></span> Active
                                     </span>
                                 </td>
                                 <td class="px-container-margin py-2 text-right">
-                                    <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors p-1">more_vert</button>
+                                    <button
+                                        class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors p-1">more_vert</button>
                                 </td>
                             </tr>
                             <!-- Row 2 -->
                             <tr class="hover:bg-surface-container-low/30 transition-colors group">
                                 <td class="px-container-margin py-2">
                                     <div class="flex items-center gap-2.5">
-                                        <div class="w-8 h-8 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center font-bold text-[10px]">MW</div>
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center font-bold text-[10px]">
+                                            MW</div>
                                         <div>
-                                            <p class="text-[12px] font-bold text-on-surface leading-tight">Marcus Wong</p>
+                                            <p class="text-[12px] font-bold text-on-surface leading-tight">Marcus Wong
+                                            </p>
                                             <p class="text-[9px] text-on-surface-variant">AQ-10025</p>
                                         </div>
                                     </div>
@@ -348,7 +446,9 @@
                                     <p class="text-[10px] text-on-surface-variant/70">m.wong@techflow.io</p>
                                 </td>
                                 <td class="px-4 py-2">
-                                    <span class="bg-surface-variant/50 px-2 py-0.5 rounded text-[10px] text-on-surface-variant font-medium">Harbor Point</span>
+                                    <span
+                                        class="bg-surface-variant/50 px-2 py-0.5 rounded text-[10px] text-on-surface-variant font-medium">Harbor
+                                        Point</span>
                                 </td>
                                 <td class="px-4 py-2 text-[11px] font-semibold">$4.25</td>
                                 <td class="px-4 py-2">
@@ -356,12 +456,14 @@
                                 </td>
                                 <td class="px-4 py-2 text-[10px] text-on-surface-variant font-medium">Oct 26, 2023</td>
                                 <td class="px-4 py-2">
-                                    <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded-full text-[9px] font-bold inline-flex items-center gap-1">
+                                    <span
+                                        class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded-full text-[9px] font-bold inline-flex items-center gap-1">
                                         <span class="w-1 h-1 rounded-full bg-on-surface-variant"></span> Inactive
                                     </span>
                                 </td>
                                 <td class="px-container-margin py-2 text-right">
-                                    <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors p-1">more_vert</button>
+                                    <button
+                                        class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors p-1">more_vert</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -375,15 +477,18 @@
         <div id="panel-suppliers" class="panel">
             <div class="flex justify-between items-end mb-8">
                 <div>
-                    <p class="font-label-xs text-label-xs text-primary uppercase tracking-widest mb-2">Operations Hub</p>
+                    <p class="font-label-xs text-label-xs text-primary uppercase tracking-widest mb-2">Operations Hub
+                    </p>
                     <h1 class="font-display-lg text-[24px] text-gradient tracking-tight">Supplier Network</h1>
                 </div>
                 <div class="flex gap-stack-md">
-                    <button class="flex items-center gap-2 bg-white border border-outline-variant px-3 py-1.5 rounded-lg hover:bg-surface-container-low transition-colors font-body-md text-body-sm shadow-sm">
+                    <button
+                        class="flex items-center gap-2 bg-white border border-outline-variant px-3 py-1.5 rounded-lg hover:bg-surface-container-low transition-colors font-body-md text-body-sm shadow-sm">
                         <span class="material-symbols-outlined text-sm">filter_list</span>
                         Filter
                     </button>
-                    <button class="flex items-center gap-2 bg-primary text-on-primary px-3 py-1.5 rounded-lg hover:opacity-90 transition-all font-body-md text-body-sm font-bold shadow-md active:scale-95">
+                    <button
+                        class="flex items-center gap-2 bg-primary text-on-primary px-3 py-1.5 rounded-lg hover:opacity-90 transition-all font-body-md text-body-sm font-bold shadow-md active:scale-95">
                         <span class="material-symbols-outlined">add</span>
                         New Supplier
                     </button>
@@ -392,18 +497,22 @@
 
             <!-- Statistical Cards -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-                <div class="bg-surface-container-lowest border border-outline-variant/20 rounded-2xl shadow-sm group hover:shadow-md transition-shadow p-3">
+                <div
+                    class="bg-surface-container-lowest border border-outline-variant/20 rounded-2xl shadow-sm group hover:shadow-md transition-shadow p-3">
                     <div class="flex justify-between items-start mb-4">
-                        <div class="w-10 h-10 rounded-full bg-primary-container/20 text-primary flex items-center justify-center">
+                        <div
+                            class="w-10 h-10 rounded-full bg-primary-container/20 text-primary flex items-center justify-center">
                             <span class="material-symbols-outlined">factory</span>
                         </div>
                     </div>
                     <p class="font-label-xs text-label-xs text-on-surface-variant mb-1">Total Suppliers</p>
                     <h3 class="font-headline-md text-xl text-on-surface">42</h3>
                 </div>
-                <div class="bg-surface-container-lowest border border-outline-variant/20 rounded-2xl shadow-sm group hover:shadow-md transition-shadow p-3">
+                <div
+                    class="bg-surface-container-lowest border border-outline-variant/20 rounded-2xl shadow-sm group hover:shadow-md transition-shadow p-3">
                     <div class="flex justify-between items-start mb-4">
-                        <div class="w-10 h-10 rounded-full bg-secondary-container/20 text-secondary flex items-center justify-center">
+                        <div
+                            class="w-10 h-10 rounded-full bg-secondary-container/20 text-secondary flex items-center justify-center">
                             <span class="material-symbols-outlined">water_drop</span>
                         </div>
                     </div>
@@ -413,18 +522,28 @@
             </div>
 
             <!-- Directory Table -->
-            <div class="bg-surface-container-lowest border border-outline-variant/20 rounded-2xl shadow-sm overflow-hidden">
-                <div class="px-container-margin py-4 border-b border-outline-variant/20 flex justify-between items-center bg-white/40 glass-effect">
+            <div
+                class="bg-surface-container-lowest border border-outline-variant/20 rounded-2xl shadow-sm overflow-hidden">
+                <div
+                    class="px-container-margin py-4 border-b border-outline-variant/20 flex justify-between items-center bg-white/40 glass-effect">
                     <h3 class="font-title-sm text-title-sm text-on-surface">Supplier Directory</h3>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
                         <thead>
                             <tr class="bg-surface-container-low/50">
-                                <th class="px-container-margin font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider py-2">Name</th>
-                                <th class="px-6 font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider py-2">Contact Info</th>
-                                <th class="px-6 font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider py-2">Status</th>
-                                <th class="px-container-margin font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider text-right py-2">Action</th>
+                                <th
+                                    class="px-container-margin font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider py-2">
+                                    Name</th>
+                                <th
+                                    class="px-6 font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider py-2">
+                                    Contact Info</th>
+                                <th
+                                    class="px-6 font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider py-2">
+                                    Status</th>
+                                <th
+                                    class="px-container-margin font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider text-right py-2">
+                                    Action</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-outline-variant/10">
@@ -432,10 +551,14 @@
                             <tr class="hover:bg-surface-container-lowest transition-colors group">
                                 <td class="px-container-margin py-2">
                                     <div class="flex items-center gap-3">
-                                        <div class="w-7 h-7 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-[10px]">AW</div>
+                                        <div
+                                            class="w-7 h-7 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-[10px]">
+                                            AW</div>
                                         <div>
-                                            <p class="font-body-md text-body-md font-bold text-on-surface">AquaWorks Corp</p>
-                                            <p class="font-label-xs text-label-xs text-on-surface-variant">ID: SP-10024</p>
+                                            <p class="font-body-md text-body-md font-bold text-on-surface">AquaWorks
+                                                Corp</p>
+                                            <p class="font-label-xs text-label-xs text-on-surface-variant">ID: SP-10024
+                                            </p>
                                         </div>
                                     </div>
                                 </td>
@@ -443,12 +566,14 @@
                                     <p class="font-body-md text-body-md text-on-surface">+1 (555) 234-9812</p>
                                 </td>
                                 <td class="px-6 py-2">
-                                    <span class="bg-primary-container/10 text-primary-container px-2.5 py-1 rounded-full font-label-xs text-label-xs font-bold inline-flex items-center gap-1.5">
+                                    <span
+                                        class="bg-primary-container/10 text-primary-container px-2.5 py-1 rounded-full font-label-xs text-label-xs font-bold inline-flex items-center gap-1.5">
                                         <span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Active
                                     </span>
                                 </td>
                                 <td class="px-container-margin text-right py-2">
-                                    <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">more_vert</button>
+                                    <button
+                                        class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">more_vert</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -462,15 +587,18 @@
         <div id="panel-inventory" class="panel">
             <div class="flex justify-between items-end mb-8">
                 <div>
-                    <p class="font-label-xs text-[9px] font-bold text-primary uppercase tracking-[0.1em] mb-0.5">Operations Hub</p>
+                    <p class="font-label-xs text-[9px] font-bold text-primary uppercase tracking-[0.1em] mb-0.5">
+                        Operations Hub</p>
                     <h1 class="font-display-lg text-[24px] text-gradient tracking-tight">Inventory Management</h1>
                 </div>
                 <div class="flex gap-2">
-                    <button class="flex items-center gap-1.5 bg-white border border-outline-variant px-3 py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors text-[11px] font-medium shadow-sm">
+                    <button
+                        class="flex items-center gap-1.5 bg-white border border-outline-variant px-3 py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors text-[11px] font-medium shadow-sm">
                         <span class="material-symbols-outlined text-[16px]">file_download</span>
                         Export
                     </button>
-                    <button class="flex items-center gap-1.5 bg-primary text-on-primary px-4 py-1.5 rounded-lg hover:shadow-md transition-all text-[11px] font-bold shadow-sm">
+                    <button
+                        class="flex items-center gap-1.5 bg-primary text-on-primary px-4 py-1.5 rounded-lg hover:shadow-md transition-all text-[11px] font-bold shadow-sm">
                         <span class="material-symbols-outlined text-[16px]">add</span>
                         Add Stock
                     </button>
@@ -486,37 +614,46 @@
                         </div>
                         <span class="text-primary bg-primary/10 px-2 py-0.5 rounded text-[10px] font-bold">Stable</span>
                     </div>
-                    <p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-1">Total Items</p>
-                    <h3 class="text-[22px] font-bold text-on-surface">14,250 <span class="text-[12px] font-normal text-on-surface-variant">units</span></h3>
+                    <p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-1">Total Items
+                    </p>
+                    <h3 class="text-[22px] font-bold text-on-surface">14,250 <span
+                            class="text-[12px] font-normal text-on-surface-variant">units</span></h3>
                 </div>
                 <div class="glass-card rounded-xl p-card-padding shadow-sm border border-error/20">
                     <div class="flex justify-between items-start mb-2">
                         <div class="w-10 h-10 rounded-full bg-error/10 text-error flex items-center justify-center">
                             <span class="material-symbols-outlined text-[20px]">warning</span>
                         </div>
-                        <span class="text-error bg-error/10 px-2 py-0.5 rounded text-[10px] font-bold">Needs Action</span>
+                        <span class="text-error bg-error/10 px-2 py-0.5 rounded text-[10px] font-bold">Needs
+                            Action</span>
                     </div>
-                    <p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-1">Low Stock Alerts</p>
-                    <h3 class="text-[22px] font-bold text-error">12 <span class="text-[12px] font-normal text-on-surface-variant">items</span></h3>
+                    <p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-1">Low Stock
+                        Alerts</p>
+                    <h3 class="text-[22px] font-bold text-error">12 <span
+                            class="text-[12px] font-normal text-on-surface-variant">items</span></h3>
                 </div>
                 <div class="glass-card rounded-xl p-card-padding shadow-sm">
                     <div class="flex justify-between items-start mb-2">
-                        <div class="w-10 h-10 rounded-full bg-secondary/10 text-secondary flex items-center justify-center">
+                        <div
+                            class="w-10 h-10 rounded-full bg-secondary/10 text-secondary flex items-center justify-center">
                             <span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>
                         </div>
                     </div>
-                    <p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-1">Inventory Value</p>
+                    <p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-1">Inventory
+                        Value</p>
                     <h3 class="text-[22px] font-bold text-on-surface">$142,500.00</h3>
                 </div>
             </div>
 
             <!-- Inventory Table -->
             <div class="glass-card rounded-xl shadow-sm overflow-hidden">
-                <div class="px-container-margin py-4 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low/30 backdrop-blur-sm">
+                <div
+                    class="px-container-margin py-4 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low/30 backdrop-blur-sm">
                     <h3 class="text-[14px] font-bold text-on-surface">Stock Directory</h3>
                     <div class="flex items-center gap-3">
                         <span class="text-[12px] text-on-surface-variant font-medium">Filter by:</span>
-                        <select class="bg-transparent border border-outline-variant rounded-md text-[11px] font-bold focus:ring-0 cursor-pointer py-1 px-2">
+                        <select
+                            class="bg-transparent border border-outline-variant rounded-md text-[11px] font-bold focus:ring-0 cursor-pointer py-1 px-2">
                             <option>All Categories</option>
                             <option>Bottles</option>
                             <option>Filters</option>
@@ -528,40 +665,77 @@
                     <table class="w-full text-left">
                         <thead>
                             <tr class="bg-surface-container-low/50 border-b border-outline-variant/10">
-                                <th class="px-container-margin py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Item Name</th>
-                                <th class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">SKU</th>
-                                <th class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Category</th>
-                                <th class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Stock Level</th>
-                                <th class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Status</th>
+                                <th
+                                    class="px-container-margin py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
+                                    Item Name</th>
+                                <th
+                                    class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
+                                    SKU</th>
+                                <th
+                                    class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
+                                    Category</th>
+                                <th
+                                    class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
+                                    Stock Level</th>
+                                <th
+                                    class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
+                                    Status</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-outline-variant/5">
                             <tr class="hover:bg-surface-container-low/50 transition-colors group">
                                 <td class="px-container-margin py-3">
-                                    <p class="text-[13px] font-bold text-on-surface leading-tight">5 Gallon Pure Water</p>
+                                    <p class="text-[13px] font-bold text-on-surface leading-tight">5 Gallon Pure Water
+                                    </p>
                                 </td>
-                                <td class="px-4 py-3"><p class="text-[12px] font-medium text-on-surface-variant">BTL-005G</p></td>
-                                <td class="px-4 py-3"><span class="bg-surface-variant/50 px-2.5 py-1 rounded-md text-[11px] font-medium">Bottles</span></td>
-                                <td class="px-4 py-3"><p class="text-[13px] font-bold text-primary">8,450</p></td>
-                                <td class="px-4 py-3"><span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-[10px] font-bold">In Stock</span></td>
+                                <td class="px-4 py-3">
+                                    <p class="text-[12px] font-medium text-on-surface-variant">BTL-005G</p>
+                                </td>
+                                <td class="px-4 py-3"><span
+                                        class="bg-surface-variant/50 px-2.5 py-1 rounded-md text-[11px] font-medium">Bottles</span>
+                                </td>
+                                <td class="px-4 py-3">
+                                    <p class="text-[13px] font-bold text-primary">8,450</p>
+                                </td>
+                                <td class="px-4 py-3"><span
+                                        class="bg-primary/10 text-primary px-3 py-1 rounded-full text-[10px] font-bold">In
+                                        Stock</span></td>
                             </tr>
                             <tr class="hover:bg-surface-container-low/50 transition-colors group">
                                 <td class="px-container-margin py-3">
-                                    <p class="text-[13px] font-bold text-on-surface leading-tight">Industrial Carbon Filter</p>
+                                    <p class="text-[13px] font-bold text-on-surface leading-tight">Industrial Carbon
+                                        Filter</p>
                                 </td>
-                                <td class="px-4 py-3"><p class="text-[12px] font-medium text-on-surface-variant">FLT-IND-01</p></td>
-                                <td class="px-4 py-3"><span class="bg-surface-variant/50 px-2.5 py-1 rounded-md text-[11px] font-medium">Filters</span></td>
-                                <td class="px-4 py-3"><p class="text-[13px] font-bold text-error">12</p></td>
-                                <td class="px-4 py-3"><span class="bg-error/10 text-error px-3 py-1 rounded-full text-[10px] font-bold animate-pulse-slow">Low Stock</span></td>
+                                <td class="px-4 py-3">
+                                    <p class="text-[12px] font-medium text-on-surface-variant">FLT-IND-01</p>
+                                </td>
+                                <td class="px-4 py-3"><span
+                                        class="bg-surface-variant/50 px-2.5 py-1 rounded-md text-[11px] font-medium">Filters</span>
+                                </td>
+                                <td class="px-4 py-3">
+                                    <p class="text-[13px] font-bold text-error">12</p>
+                                </td>
+                                <td class="px-4 py-3"><span
+                                        class="bg-error/10 text-error px-3 py-1 rounded-full text-[10px] font-bold animate-pulse-slow">Low
+                                        Stock</span></td>
                             </tr>
                             <tr class="hover:bg-surface-container-low/50 transition-colors group">
                                 <td class="px-container-margin py-3">
-                                    <p class="text-[13px] font-bold text-on-surface leading-tight">Dispenser Cooling Unit</p>
+                                    <p class="text-[13px] font-bold text-on-surface leading-tight">Dispenser Cooling
+                                        Unit</p>
                                 </td>
-                                <td class="px-4 py-3"><p class="text-[12px] font-medium text-on-surface-variant">EQP-C02</p></td>
-                                <td class="px-4 py-3"><span class="bg-surface-variant/50 px-2.5 py-1 rounded-md text-[11px] font-medium">Equipment</span></td>
-                                <td class="px-4 py-3"><p class="text-[13px] font-bold text-on-surface">145</p></td>
-                                <td class="px-4 py-3"><span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-[10px] font-bold">In Stock</span></td>
+                                <td class="px-4 py-3">
+                                    <p class="text-[12px] font-medium text-on-surface-variant">EQP-C02</p>
+                                </td>
+                                <td class="px-4 py-3"><span
+                                        class="bg-surface-variant/50 px-2.5 py-1 rounded-md text-[11px] font-medium">Equipment</span>
+                                </td>
+                                <td class="px-4 py-3">
+                                    <p class="text-[13px] font-bold text-on-surface">145</p>
+                                </td>
+                                <td class="px-4 py-3"><span
+                                        class="bg-primary/10 text-primary px-3 py-1 rounded-full text-[10px] font-bold">In
+                                        Stock</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -574,11 +748,13 @@
         <div id="panel-orders" class="panel">
             <div class="flex justify-between items-end mb-8">
                 <div>
-                    <p class="font-label-xs text-[9px] font-bold text-primary uppercase tracking-[0.1em] mb-0.5">Operations Hub</p>
+                    <p class="font-label-xs text-[9px] font-bold text-primary uppercase tracking-[0.1em] mb-0.5">
+                        Operations Hub</p>
                     <h1 class="font-display-lg text-[24px] text-gradient tracking-tight">Order Processing</h1>
                 </div>
                 <div class="flex gap-2">
-                    <button class="flex items-center gap-1.5 bg-primary text-on-primary px-4 py-1.5 rounded-lg hover:shadow-md transition-all text-[11px] font-bold shadow-sm">
+                    <button
+                        class="flex items-center gap-1.5 bg-primary text-on-primary px-4 py-1.5 rounded-lg hover:shadow-md transition-all text-[11px] font-bold shadow-sm">
                         <span class="material-symbols-outlined text-[16px]">add</span>
                         New Order
                     </button>
@@ -592,56 +768,100 @@
                     <h3 class="text-[24px] font-bold text-on-surface">45</h3>
                 </div>
                 <div class="glass-card rounded-xl p-card-padding shadow-sm border-t-4 border-t-primary-container">
-                    <p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-1">Processing</p>
+                    <p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-1">Processing
+                    </p>
                     <h3 class="text-[24px] font-bold text-on-surface">12</h3>
                 </div>
                 <div class="glass-card rounded-xl p-card-padding shadow-sm border-t-4 border-t-secondary">
-                    <p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-1">Out for Delivery</p>
+                    <p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-1">Out for
+                        Delivery</p>
                     <h3 class="text-[24px] font-bold text-on-surface">28</h3>
                 </div>
                 <div class="glass-card rounded-xl p-card-padding shadow-sm border-t-4 border-t-primary">
-                    <p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-1">Completed Today</p>
+                    <p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-1">Completed
+                        Today</p>
                     <h3 class="text-[24px] font-bold text-on-surface">156</h3>
                 </div>
             </div>
 
             <!-- Orders Table -->
             <div class="glass-card rounded-xl shadow-sm overflow-hidden">
-                <div class="px-container-margin py-4 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low/30 backdrop-blur-sm">
+                <div
+                    class="px-container-margin py-4 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low/30 backdrop-blur-sm">
                     <h3 class="text-[14px] font-bold text-on-surface">Recent Orders</h3>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left">
                         <thead>
                             <tr class="bg-surface-container-low/50 border-b border-outline-variant/10">
-                                <th class="px-container-margin py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Order ID</th>
-                                <th class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Customer</th>
-                                <th class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Amount</th>
-                                <th class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Status</th>
-                                <th class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Date</th>
+                                <th
+                                    class="px-container-margin py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
+                                    Order ID</th>
+                                <th
+                                    class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
+                                    Customer</th>
+                                <th
+                                    class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
+                                    Amount</th>
+                                <th
+                                    class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
+                                    Status</th>
+                                <th
+                                    class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
+                                    Date</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-outline-variant/5">
                             <tr class="hover:bg-surface-container-low/50 transition-colors group">
-                                <td class="px-container-margin py-3"><p class="text-[13px] font-bold text-on-surface">ORD-2093</p></td>
-                                <td class="px-4 py-3"><p class="text-[12px] font-medium text-on-surface-variant">TechFlow Solutions</p></td>
-                                <td class="px-4 py-3"><p class="text-[13px] font-bold text-on-surface">$1,250.00</p></td>
-                                <td class="px-4 py-3"><span class="bg-primary-container/20 text-primary-container px-3 py-1 rounded-full text-[10px] font-bold">Processing</span></td>
-                                <td class="px-4 py-3"><p class="text-[12px] text-on-surface-variant">Today, 10:45 AM</p></td>
+                                <td class="px-container-margin py-3">
+                                    <p class="text-[13px] font-bold text-on-surface">ORD-2093</p>
+                                </td>
+                                <td class="px-4 py-3">
+                                    <p class="text-[12px] font-medium text-on-surface-variant">TechFlow Solutions</p>
+                                </td>
+                                <td class="px-4 py-3">
+                                    <p class="text-[13px] font-bold text-on-surface">$1,250.00</p>
+                                </td>
+                                <td class="px-4 py-3"><span
+                                        class="bg-primary-container/20 text-primary-container px-3 py-1 rounded-full text-[10px] font-bold">Processing</span>
+                                </td>
+                                <td class="px-4 py-3">
+                                    <p class="text-[12px] text-on-surface-variant">Today, 10:45 AM</p>
+                                </td>
                             </tr>
                             <tr class="hover:bg-surface-container-low/50 transition-colors group">
-                                <td class="px-container-margin py-3"><p class="text-[13px] font-bold text-on-surface">ORD-2094</p></td>
-                                <td class="px-4 py-3"><p class="text-[12px] font-medium text-on-surface-variant">Green Valley Farms</p></td>
-                                <td class="px-4 py-3"><p class="text-[13px] font-bold text-on-surface">$450.00</p></td>
-                                <td class="px-4 py-3"><span class="bg-secondary/20 text-secondary px-3 py-1 rounded-full text-[10px] font-bold">Out for Delivery</span></td>
-                                <td class="px-4 py-3"><p class="text-[12px] text-on-surface-variant">Today, 09:30 AM</p></td>
+                                <td class="px-container-margin py-3">
+                                    <p class="text-[13px] font-bold text-on-surface">ORD-2094</p>
+                                </td>
+                                <td class="px-4 py-3">
+                                    <p class="text-[12px] font-medium text-on-surface-variant">Green Valley Farms</p>
+                                </td>
+                                <td class="px-4 py-3">
+                                    <p class="text-[13px] font-bold text-on-surface">$450.00</p>
+                                </td>
+                                <td class="px-4 py-3"><span
+                                        class="bg-secondary/20 text-secondary px-3 py-1 rounded-full text-[10px] font-bold">Out
+                                        for Delivery</span></td>
+                                <td class="px-4 py-3">
+                                    <p class="text-[12px] text-on-surface-variant">Today, 09:30 AM</p>
+                                </td>
                             </tr>
                             <tr class="hover:bg-surface-container-low/50 transition-colors group">
-                                <td class="px-container-margin py-3"><p class="text-[13px] font-bold text-on-surface">ORD-2095</p></td>
-                                <td class="px-4 py-3"><p class="text-[12px] font-medium text-on-surface-variant">City Plaza Offices</p></td>
-                                <td class="px-4 py-3"><p class="text-[13px] font-bold text-on-surface">$890.00</p></td>
-                                <td class="px-4 py-3"><span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-[10px] font-bold">Completed</span></td>
-                                <td class="px-4 py-3"><p class="text-[12px] text-on-surface-variant">Yesterday</p></td>
+                                <td class="px-container-margin py-3">
+                                    <p class="text-[13px] font-bold text-on-surface">ORD-2095</p>
+                                </td>
+                                <td class="px-4 py-3">
+                                    <p class="text-[12px] font-medium text-on-surface-variant">City Plaza Offices</p>
+                                </td>
+                                <td class="px-4 py-3">
+                                    <p class="text-[13px] font-bold text-on-surface">$890.00</p>
+                                </td>
+                                <td class="px-4 py-3"><span
+                                        class="bg-primary/10 text-primary px-3 py-1 rounded-full text-[10px] font-bold">Completed</span>
+                                </td>
+                                <td class="px-4 py-3">
+                                    <p class="text-[12px] text-on-surface-variant">Yesterday</p>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -654,11 +874,13 @@
         <div id="panel-logistics" class="panel">
             <div class="flex justify-between items-end mb-8">
                 <div>
-                    <p class="font-label-xs text-[9px] font-bold text-primary uppercase tracking-[0.1em] mb-0.5">Operations Hub</p>
+                    <p class="font-label-xs text-[9px] font-bold text-primary uppercase tracking-[0.1em] mb-0.5">
+                        Operations Hub</p>
                     <h1 class="font-display-lg text-[24px] text-gradient tracking-tight">Fleet & Route Logistics</h1>
                 </div>
                 <div class="flex gap-2">
-                    <button class="flex items-center gap-1.5 bg-primary text-on-primary px-4 py-1.5 rounded-lg hover:shadow-md transition-all text-[11px] font-bold shadow-sm">
+                    <button
+                        class="flex items-center gap-1.5 bg-primary text-on-primary px-4 py-1.5 rounded-lg hover:shadow-md transition-all text-[11px] font-bold shadow-sm">
                         <span class="material-symbols-outlined text-[16px]">map</span>
                         Live Map
                     </button>
@@ -671,15 +893,22 @@
                         <h3 class="text-[14px] font-bold text-on-surface">Active Routes</h3>
                     </div>
                     <!-- Mock Map Area -->
-                    <div class="w-full h-[240px] bg-surface-container rounded-lg relative overflow-hidden flex items-center justify-center border border-outline-variant/20">
-                        <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 2px 2px, #0f5238 1px, transparent 0); background-size: 20px 20px;"></div>
+                    <div
+                        class="w-full h-[240px] bg-surface-container rounded-lg relative overflow-hidden flex items-center justify-center border border-outline-variant/20">
+                        <div class="absolute inset-0 opacity-20"
+                            style="background-image: radial-gradient(circle at 2px 2px, #0f5238 1px, transparent 0); background-size: 20px 20px;">
+                        </div>
                         <div class="text-center z-10">
                             <span class="material-symbols-outlined text-[48px] text-primary/50 mb-2">location_on</span>
                             <p class="text-[13px] font-bold text-on-surface-variant">Map View Rendering...</p>
                         </div>
                         <!-- Mock Map Pointers -->
-                        <div class="absolute top-[30%] left-[20%] w-3 h-3 bg-primary rounded-full shadow-[0_0_10px_rgba(15,82,56,0.8)] animate-pulse-slow"></div>
-                        <div class="absolute top-[50%] left-[60%] w-3 h-3 bg-secondary rounded-full shadow-[0_0_10px_rgba(65,103,70,0.8)] animate-pulse-slow"></div>
+                        <div
+                            class="absolute top-[30%] left-[20%] w-3 h-3 bg-primary rounded-full shadow-[0_0_10px_rgba(15,82,56,0.8)] animate-pulse-slow">
+                        </div>
+                        <div
+                            class="absolute top-[50%] left-[60%] w-3 h-3 bg-secondary rounded-full shadow-[0_0_10px_rgba(65,103,70,0.8)] animate-pulse-slow">
+                        </div>
                     </div>
                 </div>
                 <div class="glass-card rounded-xl p-card-padding shadow-sm flex flex-col gap-4">
@@ -714,11 +943,13 @@
         <div id="panel-reports" class="panel">
             <div class="flex justify-between items-end mb-8">
                 <div>
-                    <p class="font-label-xs text-[9px] font-bold text-primary uppercase tracking-[0.1em] mb-0.5">Operations Hub</p>
+                    <p class="font-label-xs text-[9px] font-bold text-primary uppercase tracking-[0.1em] mb-0.5">
+                        Operations Hub</p>
                     <h1 class="font-display-lg text-[24px] text-gradient tracking-tight">Analytics & Reports</h1>
                 </div>
                 <div class="flex gap-2">
-                    <button class="flex items-center gap-1.5 bg-primary text-on-primary px-4 py-1.5 rounded-lg hover:shadow-md transition-all text-[11px] font-bold shadow-sm">
+                    <button
+                        class="flex items-center gap-1.5 bg-primary text-on-primary px-4 py-1.5 rounded-lg hover:shadow-md transition-all text-[11px] font-bold shadow-sm">
                         <span class="material-symbols-outlined text-[16px]">download</span>
                         Export PDF
                     </button>
@@ -730,20 +961,30 @@
                 <div class="glass-card rounded-xl p-card-padding shadow-sm">
                     <h3 class="text-[14px] font-bold text-on-surface mb-4">Monthly Resource Consumption</h3>
                     <div class="flex items-end justify-between h-[180px] gap-2 px-4">
-                        <div class="w-full bg-primary/20 rounded-t-md h-[40%] hover:bg-primary transition-colors cursor-pointer group relative">
-                            <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">4k</span>
+                        <div
+                            class="w-full bg-primary/20 rounded-t-md h-[40%] hover:bg-primary transition-colors cursor-pointer group relative">
+                            <span
+                                class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">4k</span>
                         </div>
-                        <div class="w-full bg-primary/40 rounded-t-md h-[60%] hover:bg-primary transition-colors cursor-pointer group relative">
-                            <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">6k</span>
+                        <div
+                            class="w-full bg-primary/40 rounded-t-md h-[60%] hover:bg-primary transition-colors cursor-pointer group relative">
+                            <span
+                                class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">6k</span>
                         </div>
-                        <div class="w-full bg-primary/60 rounded-t-md h-[50%] hover:bg-primary transition-colors cursor-pointer group relative">
-                            <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">5k</span>
+                        <div
+                            class="w-full bg-primary/60 rounded-t-md h-[50%] hover:bg-primary transition-colors cursor-pointer group relative">
+                            <span
+                                class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">5k</span>
                         </div>
-                        <div class="w-full bg-primary/80 rounded-t-md h-[90%] hover:bg-primary transition-colors cursor-pointer group relative">
-                            <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">9k</span>
+                        <div
+                            class="w-full bg-primary/80 rounded-t-md h-[90%] hover:bg-primary transition-colors cursor-pointer group relative">
+                            <span
+                                class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">9k</span>
                         </div>
-                        <div class="w-full bg-primary rounded-t-md h-[75%] hover:bg-primary transition-colors cursor-pointer group relative">
-                            <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">7.5k</span>
+                        <div
+                            class="w-full bg-primary rounded-t-md h-[75%] hover:bg-primary transition-colors cursor-pointer group relative">
+                            <span
+                                class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">7.5k</span>
                         </div>
                     </div>
                     <div class="flex justify-between mt-2 px-4 text-[10px] text-on-surface-variant font-medium">
@@ -757,7 +998,8 @@
                         <h3 class="text-[14px] font-bold text-on-surface">Generated Reports</h3>
                     </div>
                     <div class="flex-1 overflow-y-auto custom-scrollbar p-2">
-                        <div class="flex items-center justify-between p-3 hover:bg-surface-container-low/50 rounded-lg transition-colors cursor-pointer group">
+                        <div
+                            class="flex items-center justify-between p-3 hover:bg-surface-container-low/50 rounded-lg transition-colors cursor-pointer group">
                             <div class="flex items-center gap-3">
                                 <span class="material-symbols-outlined text-error">picture_as_pdf</span>
                                 <div>
@@ -765,9 +1007,11 @@
                                     <p class="text-[10px] text-on-surface-variant">Generated today, 08:00 AM</p>
                                 </div>
                             </div>
-                            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary text-[18px]">download</span>
+                            <span
+                                class="material-symbols-outlined text-on-surface-variant group-hover:text-primary text-[18px]">download</span>
                         </div>
-                        <div class="flex items-center justify-between p-3 hover:bg-surface-container-low/50 rounded-lg transition-colors cursor-pointer group">
+                        <div
+                            class="flex items-center justify-between p-3 hover:bg-surface-container-low/50 rounded-lg transition-colors cursor-pointer group">
                             <div class="flex items-center gap-3">
                                 <span class="material-symbols-outlined text-secondary">table_view</span>
                                 <div>
@@ -775,9 +1019,11 @@
                                     <p class="text-[10px] text-on-surface-variant">Generated yesterday, 05:30 PM</p>
                                 </div>
                             </div>
-                            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary text-[18px]">download</span>
+                            <span
+                                class="material-symbols-outlined text-on-surface-variant group-hover:text-primary text-[18px]">download</span>
                         </div>
-                        <div class="flex items-center justify-between p-3 hover:bg-surface-container-low/50 rounded-lg transition-colors cursor-pointer group">
+                        <div
+                            class="flex items-center justify-between p-3 hover:bg-surface-container-low/50 rounded-lg transition-colors cursor-pointer group">
                             <div class="flex items-center gap-3">
                                 <span class="material-symbols-outlined text-error">picture_as_pdf</span>
                                 <div>
@@ -785,7 +1031,8 @@
                                     <p class="text-[10px] text-on-surface-variant">Generated Mar 28, 2024</p>
                                 </div>
                             </div>
-                            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary text-[18px]">download</span>
+                            <span
+                                class="material-symbols-outlined text-on-surface-variant group-hover:text-primary text-[18px]">download</span>
                         </div>
                     </div>
                 </div>
@@ -797,38 +1044,49 @@
         <div id="panel-sustainability" class="panel">
             <div class="flex justify-between items-end mb-8">
                 <div>
-                    <p class="font-label-xs text-[9px] font-bold text-primary uppercase tracking-[0.1em] mb-0.5">Operations Hub</p>
+                    <p class="font-label-xs text-[9px] font-bold text-primary uppercase tracking-[0.1em] mb-0.5">
+                        Operations Hub</p>
                     <h1 class="font-display-lg text-[24px] text-gradient tracking-tight">Sustainability Tracking</h1>
                 </div>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-md">
-                <div class="glass-card rounded-xl p-card-padding shadow-sm flex flex-col items-center justify-center py-10 relative overflow-hidden">
+                <div
+                    class="glass-card rounded-xl p-card-padding shadow-sm flex flex-col items-center justify-center py-10 relative overflow-hidden">
                     <div class="absolute inset-0 bg-gradient-to-b from-transparent to-secondary/10"></div>
-                    <span class="material-symbols-outlined text-[42px] text-secondary mb-2 relative z-10">water_drop</span>
+                    <span
+                        class="material-symbols-outlined text-[42px] text-secondary mb-2 relative z-10">water_drop</span>
                     <h3 class="text-[32px] font-display-lg text-on-surface relative z-10">1.2M</h3>
-                    <p class="text-[12px] font-bold text-secondary uppercase tracking-wider relative z-10">Gallons Saved</p>
-                    <div class="w-full bg-surface-variant h-1.5 rounded-full mt-4 max-w-[150px] relative z-10 overflow-hidden">
+                    <p class="text-[12px] font-bold text-secondary uppercase tracking-wider relative z-10">Gallons Saved
+                    </p>
+                    <div
+                        class="w-full bg-surface-variant h-1.5 rounded-full mt-4 max-w-[150px] relative z-10 overflow-hidden">
                         <div class="bg-secondary h-full w-[85%] rounded-full"></div>
                     </div>
                 </div>
 
-                <div class="glass-card rounded-xl p-card-padding shadow-sm flex flex-col items-center justify-center py-10 relative overflow-hidden">
+                <div
+                    class="glass-card rounded-xl p-card-padding shadow-sm flex flex-col items-center justify-center py-10 relative overflow-hidden">
                     <div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/10"></div>
                     <span class="material-symbols-outlined text-[42px] text-primary mb-2 relative z-10">co2</span>
                     <h3 class="text-[32px] font-display-lg text-on-surface relative z-10">450</h3>
                     <p class="text-[12px] font-bold text-primary uppercase tracking-wider relative z-10">Tons Offset</p>
-                    <div class="w-full bg-surface-variant h-1.5 rounded-full mt-4 max-w-[150px] relative z-10 overflow-hidden">
+                    <div
+                        class="w-full bg-surface-variant h-1.5 rounded-full mt-4 max-w-[150px] relative z-10 overflow-hidden">
                         <div class="bg-primary h-full w-[65%] rounded-full"></div>
                     </div>
                 </div>
 
-                <div class="glass-card rounded-xl p-card-padding shadow-sm flex flex-col items-center justify-center py-10 relative overflow-hidden">
+                <div
+                    class="glass-card rounded-xl p-card-padding shadow-sm flex flex-col items-center justify-center py-10 relative overflow-hidden">
                     <div class="absolute inset-0 bg-gradient-to-b from-transparent to-tertiary-fixed-dim/20"></div>
-                    <span class="material-symbols-outlined text-[42px] text-tertiary-fixed-dim mb-2 relative z-10" style="color: #404943;">recycling</span>
+                    <span class="material-symbols-outlined text-[42px] text-tertiary-fixed-dim mb-2 relative z-10"
+                        style="color: #404943;">recycling</span>
                     <h3 class="text-[32px] font-display-lg text-on-surface relative z-10">92%</h3>
-                    <p class="text-[12px] font-bold text-on-surface-variant uppercase tracking-wider relative z-10">Bottle Recycle Rate</p>
-                    <div class="w-full bg-surface-variant h-1.5 rounded-full mt-4 max-w-[150px] relative z-10 overflow-hidden">
+                    <p class="text-[12px] font-bold text-on-surface-variant uppercase tracking-wider relative z-10">
+                        Bottle Recycle Rate</p>
+                    <div
+                        class="w-full bg-surface-variant h-1.5 rounded-full mt-4 max-w-[150px] relative z-10 overflow-hidden">
                         <div class="bg-[#404943] h-full w-[92%] rounded-full"></div>
                     </div>
                 </div>
@@ -846,40 +1104,55 @@
             <div class="glass-card rounded-xl p-8 shadow-sm max-w-4xl mx-auto mb-24">
                 <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="col-span-1 md:col-span-2">
-                        <h3 class="text-[14px] font-bold text-on-surface border-b border-outline-variant/20 pb-2 mb-4">Company Details</h3>
+                        <h3 class="text-[14px] font-bold text-on-surface border-b border-outline-variant/20 pb-2 mb-4">
+                            Company Details</h3>
                     </div>
                     <div class="flex flex-col gap-1.5">
                         <label class="text-[11px] font-bold text-on-surface-variant">Company Name *</label>
-                        <input type="text" class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 focus:border-[#0f5238]/50 transition-all outline-none" placeholder="e.g. Acme Corp">
+                        <input type="text"
+                            class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 focus:border-[#0f5238]/50 transition-all outline-none"
+                            placeholder="e.g. Acme Corp">
                     </div>
                     <div class="flex flex-col gap-1.5">
                         <label class="text-[11px] font-bold text-on-surface-variant">Contract Type</label>
-                        <select class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 transition-all outline-none cursor-pointer">
+                        <select
+                            class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 transition-all outline-none cursor-pointer">
                             <option>Monthly Subscription</option>
                             <option>Pay As You Go</option>
                             <option>Annual Enterprise</option>
                         </select>
                     </div>
                     <div class="col-span-1 md:col-span-2 mt-4">
-                        <h3 class="text-[14px] font-bold text-on-surface border-b border-outline-variant/20 pb-2 mb-4">Primary Contact</h3>
+                        <h3 class="text-[14px] font-bold text-on-surface border-b border-outline-variant/20 pb-2 mb-4">
+                            Primary Contact</h3>
                     </div>
                     <div class="flex flex-col gap-1.5">
                         <label class="text-[11px] font-bold text-on-surface-variant">Contact Name</label>
-                        <input type="text" class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none" placeholder="John Doe">
+                        <input type="text"
+                            class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none"
+                            placeholder="John Doe">
                     </div>
                     <div class="flex flex-col gap-1.5">
                         <label class="text-[11px] font-bold text-on-surface-variant">Email Address *</label>
-                        <input type="email" class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none" placeholder="john@example.com">
+                        <input type="email"
+                            class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none"
+                            placeholder="john@example.com">
                     </div>
                     <div class="flex flex-col gap-1.5 col-span-1 md:col-span-2">
                         <label class="text-[11px] font-bold text-on-surface-variant">Delivery Address</label>
-                        <input type="text" class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none" placeholder="123 Main St, City, Zip">
+                        <input type="text"
+                            class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none"
+                            placeholder="123 Main St, City, Zip">
                     </div>
                 </form>
             </div>
-            <div class="fixed bottom-[72px] md:bottom-0 right-0 left-0 md:left-[270px] bg-white/70 backdrop-blur-xl border-t border-white/60 px-8 py-4 flex justify-end gap-4 z-50 shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
-                <button type="button" class="px-5 py-2 text-[12px] font-bold text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 rounded-lg transition-colors">Cancel</button>
-                <button type="button" class="px-5 py-2 text-[12px] font-bold text-white bg-gradient-to-r from-[#0f5238] to-[#1a734e] rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all">Save Customer</button>
+            <div
+                class="fixed bottom-[72px] md:bottom-0 right-0 left-0 md:left-[270px] bg-white/70 backdrop-blur-xl border-t border-white/60 px-8 py-4 flex justify-end gap-4 z-50 shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
+                <button type="button"
+                    class="px-5 py-2 text-[12px] font-bold text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 rounded-lg transition-colors">Cancel</button>
+                <button type="button"
+                    class="px-5 py-2 text-[12px] font-bold text-white bg-gradient-to-r from-[#0f5238] to-[#1a734e] rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all">Save
+                    Customer</button>
             </div>
         </div>
         <!-- END ADD CUSTOMER PANEL -->
@@ -890,15 +1163,19 @@
             <div class="glass-card rounded-xl p-8 shadow-sm max-w-4xl mx-auto mb-24">
                 <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="col-span-1 md:col-span-2">
-                        <h3 class="text-[14px] font-bold text-on-surface border-b border-outline-variant/20 pb-2 mb-4">Supplier Information</h3>
+                        <h3 class="text-[14px] font-bold text-on-surface border-b border-outline-variant/20 pb-2 mb-4">
+                            Supplier Information</h3>
                     </div>
                     <div class="flex flex-col gap-1.5">
                         <label class="text-[11px] font-bold text-on-surface-variant">Supplier Name *</label>
-                        <input type="text" class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none" placeholder="Global Bottles Inc.">
+                        <input type="text"
+                            class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none"
+                            placeholder="Global Bottles Inc.">
                     </div>
                     <div class="flex flex-col gap-1.5">
                         <label class="text-[11px] font-bold text-on-surface-variant">Material Category</label>
-                        <select class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none cursor-pointer">
+                        <select
+                            class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none cursor-pointer">
                             <option>Plastics & Bottles</option>
                             <option>Water Filtration Systems</option>
                             <option>Machinery Parts</option>
@@ -907,9 +1184,13 @@
                     </div>
                 </form>
             </div>
-            <div class="fixed bottom-[72px] md:bottom-0 right-0 left-0 md:left-[270px] bg-white/70 backdrop-blur-xl border-t border-white/60 px-8 py-4 flex justify-end gap-4 z-50 shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
-                <button type="button" class="px-5 py-2 text-[12px] font-bold text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 rounded-lg transition-colors">Cancel</button>
-                <button type="button" class="px-5 py-2 text-[12px] font-bold text-white bg-gradient-to-r from-[#0f5238] to-[#1a734e] rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all">Add Supplier</button>
+            <div
+                class="fixed bottom-[72px] md:bottom-0 right-0 left-0 md:left-[270px] bg-white/70 backdrop-blur-xl border-t border-white/60 px-8 py-4 flex justify-end gap-4 z-50 shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
+                <button type="button"
+                    class="px-5 py-2 text-[12px] font-bold text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 rounded-lg transition-colors">Cancel</button>
+                <button type="button"
+                    class="px-5 py-2 text-[12px] font-bold text-white bg-gradient-to-r from-[#0f5238] to-[#1a734e] rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all">Add
+                    Supplier</button>
             </div>
         </div>
         <!-- END ADD SUPPLIER PANEL -->
@@ -921,25 +1202,37 @@
                 <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="flex flex-col gap-1.5">
                         <label class="text-[11px] font-bold text-on-surface-variant">Item Name *</label>
-                        <input type="text" class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none" placeholder="e.g. 10 Gallon Jug">
+                        <input type="text"
+                            class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none"
+                            placeholder="e.g. 10 Gallon Jug">
                     </div>
                     <div class="flex flex-col gap-1.5">
                         <label class="text-[11px] font-bold text-on-surface-variant">SKU</label>
-                        <input type="text" class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none" placeholder="JUG-10G">
+                        <input type="text"
+                            class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none"
+                            placeholder="JUG-10G">
                     </div>
                     <div class="flex flex-col gap-1.5">
                         <label class="text-[11px] font-bold text-on-surface-variant">Initial Quantity</label>
-                        <input type="number" class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none" placeholder="0">
+                        <input type="number"
+                            class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none"
+                            placeholder="0">
                     </div>
                     <div class="flex flex-col gap-1.5">
                         <label class="text-[11px] font-bold text-on-surface-variant">Low Stock Alert Threshold</label>
-                        <input type="number" class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none" placeholder="50">
+                        <input type="number"
+                            class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none"
+                            placeholder="50">
                     </div>
                 </form>
             </div>
-            <div class="fixed bottom-[72px] md:bottom-0 right-0 left-0 md:left-[270px] bg-white/70 backdrop-blur-xl border-t border-white/60 px-8 py-4 flex justify-end gap-4 z-50 shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
-                <button type="button" class="px-5 py-2 text-[12px] font-bold text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 rounded-lg transition-colors">Cancel</button>
-                <button type="button" class="px-5 py-2 text-[12px] font-bold text-white bg-gradient-to-r from-[#0f5238] to-[#1a734e] rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all">Save Item</button>
+            <div
+                class="fixed bottom-[72px] md:bottom-0 right-0 left-0 md:left-[270px] bg-white/70 backdrop-blur-xl border-t border-white/60 px-8 py-4 flex justify-end gap-4 z-50 shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
+                <button type="button"
+                    class="px-5 py-2 text-[12px] font-bold text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 rounded-lg transition-colors">Cancel</button>
+                <button type="button"
+                    class="px-5 py-2 text-[12px] font-bold text-white bg-gradient-to-r from-[#0f5238] to-[#1a734e] rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all">Save
+                    Item</button>
             </div>
         </div>
         <!-- END ADD INVENTORY PANEL -->
@@ -950,11 +1243,13 @@
             <div class="glass-card rounded-xl p-8 shadow-sm max-w-4xl mx-auto mb-24">
                 <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="col-span-1 md:col-span-2">
-                        <h3 class="text-[14px] font-bold text-on-surface border-b border-outline-variant/20 pb-2 mb-4">Order Details</h3>
+                        <h3 class="text-[14px] font-bold text-on-surface border-b border-outline-variant/20 pb-2 mb-4">
+                            Order Details</h3>
                     </div>
                     <div class="flex flex-col gap-1.5">
                         <label class="text-[11px] font-bold text-on-surface-variant">Select Customer *</label>
-                        <select class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none cursor-pointer">
+                        <select
+                            class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none cursor-pointer">
                             <option>TechFlow Solutions</option>
                             <option>Green Valley Farms</option>
                             <option>City Plaza Offices</option>
@@ -962,25 +1257,34 @@
                     </div>
                     <div class="flex flex-col gap-1.5">
                         <label class="text-[11px] font-bold text-on-surface-variant">Expected Delivery Date</label>
-                        <input type="date" class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none">
+                        <input type="date"
+                            class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none">
                     </div>
                     <div class="col-span-1 md:col-span-2">
                         <label class="text-[11px] font-bold text-on-surface-variant mb-1.5 block">Products</label>
-                        <div class="bg-surface-container-low/50 border border-outline-variant/20 rounded-lg p-4 text-center border-dashed">
-                            <p class="text-[12px] text-on-surface-variant font-medium">Click to select products from inventory</p>
-                            <button type="button" class="mt-2 px-4 py-1.5 text-[11px] font-bold text-primary border border-primary/30 rounded-md hover:bg-primary/5 transition-colors">+ Add Line Item</button>
+                        <div
+                            class="bg-surface-container-low/50 border border-outline-variant/20 rounded-lg p-4 text-center border-dashed">
+                            <p class="text-[12px] text-on-surface-variant font-medium">Click to select products from
+                                inventory</p>
+                            <button type="button"
+                                class="mt-2 px-4 py-1.5 text-[11px] font-bold text-primary border border-primary/30 rounded-md hover:bg-primary/5 transition-colors">+
+                                Add Line Item</button>
                         </div>
                     </div>
                 </form>
             </div>
-            <div class="fixed bottom-[72px] md:bottom-0 right-0 left-0 md:left-[270px] bg-white/70 backdrop-blur-xl border-t border-white/60 px-8 py-4 flex justify-between items-center z-50 shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
+            <div
+                class="fixed bottom-[72px] md:bottom-0 right-0 left-0 md:left-[270px] bg-white/70 backdrop-blur-xl border-t border-white/60 px-8 py-4 flex justify-between items-center z-50 shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
                 <div>
                     <p class="text-[11px] text-on-surface-variant font-bold uppercase tracking-wider">Total Amount</p>
                     <h2 class="text-[24px] font-bold text-on-surface">$0.00</h2>
                 </div>
                 <div class="flex gap-3">
-                    <button type="button" class="px-5 py-2 text-[12px] font-bold text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 rounded-lg transition-colors">Cancel</button>
-                    <button type="button" class="px-5 py-2 text-[12px] font-bold text-white bg-gradient-to-r from-[#0f5238] to-[#1a734e] rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all">Submit Order</button>
+                    <button type="button"
+                        class="px-5 py-2 text-[12px] font-bold text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 rounded-lg transition-colors">Cancel</button>
+                    <button type="button"
+                        class="px-5 py-2 text-[12px] font-bold text-white bg-gradient-to-r from-[#0f5238] to-[#1a734e] rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all">Submit
+                        Order</button>
                 </div>
             </div>
         </div>
@@ -989,12 +1293,16 @@
     </main>
 
     <!-- Footer -->
-    <footer class="w-full mt-auto flex justify-between items-center py-4 border-t border-outline-variant/10 px-container-margin ml-[220px] w-[calc(100%-220px)] relative z-10">
+    <footer
+        class="w-full mt-auto flex justify-between items-center py-4 border-t border-outline-variant/10 px-container-margin ml-[220px] w-[calc(100%-220px)] relative z-10">
         <span class="text-on-surface-variant/50 text-[10px]">© 2024 AquaFlow Pro v2.4.1</span>
         <div class="flex gap-6">
-            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">System Status: <span class="text-primary font-bold">Operational</span></a>
-            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">Privacy Policy</a>
-            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">Terms of Service</a>
+            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">System
+                Status: <span class="text-primary font-bold">Operational</span></a>
+            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">Privacy
+                Policy</a>
+            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">Terms of
+                Service</a>
         </div>
     </footer>
 
@@ -1004,4 +1312,5 @@
     <!-- Scripts -->
     <script src="./assets/js/app.js"></script>
 </body>
+
 </html>
