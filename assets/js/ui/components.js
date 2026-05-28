@@ -4,33 +4,51 @@ export function showToast(message, type = 'info') {
     if (!container) return;
 
     const toast = document.createElement('div');
-    toast.className = 'toast-enter flex items-center gap-3 px-4 py-3 rounded-xl shadow-lg border backdrop-blur-md min-w-[280px] pointer-events-auto';
 
+    // Type-specific config
     let icon = 'info';
     let iconColor = 'text-primary';
     let bgColor = 'bg-surface/90';
     let borderColor = 'border-primary/20';
+    let accentColor = 'rgba(52,199,135,0.7)';
+    let typeClass = '';
+    let progressColor = 'var(--color-primary)';
 
     if (type === 'success') {
         icon = 'check_circle';
         iconColor = 'text-primary';
         bgColor = 'bg-primary-container/90';
         borderColor = 'border-primary/30';
+        accentColor = 'rgba(52,199,135,0.9)';
+        typeClass = 'toast-success';
+        progressColor = 'var(--color-primary)';
     } else if (type === 'error') {
         icon = 'error';
-        iconColor = 'text-error';
-        bgColor = 'bg-error-container/90';
-        borderColor = 'border-error/30';
+        iconColor = 'text-red-500';
+        bgColor = 'bg-red-50/90';
+        borderColor = 'border-red-400/30';
+        accentColor = 'rgba(239,83,80,0.9)';
+        typeClass = 'toast-error';
+        progressColor = '#ef5350';
     }
 
-    toast.classList.add(bgColor, borderColor);
+    toast.className = [
+        'toast-enter', 'toast-item', typeClass,
+        'relative', 'overflow-hidden',
+        'flex', 'items-center', 'gap-3',
+        'pl-4', 'pr-3', 'py-3',
+        'rounded-2xl', 'shadow-xl', 'border', 'backdrop-blur-xl',
+        'min-w-[300px]', 'max-w-[360px]', 'pointer-events-auto',
+        bgColor, borderColor
+    ].filter(Boolean).join(' ');
 
     toast.innerHTML = `
-        <span class="material-symbols-outlined ${iconColor}" style="font-variation-settings: 'FILL' 1;">${icon}</span>
-        <span class="text-[12px] font-bold text-on-surface flex-1">${message}</span>
-        <button class="w-6 h-6 flex items-center justify-center rounded-full hover:bg-black/5 text-on-surface-variant transition-colors" onclick="this.parentElement.remove()">
-            <span class="material-symbols-outlined text-[16px]">close</span>
+        <span class="material-symbols-outlined ${iconColor} shrink-0" style="font-size:22px;font-variation-settings:'FILL' 1;">${icon}</span>
+        <span class="text-[13px] font-semibold text-on-surface flex-1 leading-snug">${message}</span>
+        <button class="w-7 h-7 shrink-0 flex items-center justify-center rounded-full hover:bg-black/10 dark:hover:bg-white/10 text-on-surface-variant transition-all active:scale-90" onclick="this.closest('.toast-item').classList.add('toast-exit');setTimeout(()=>this.closest('.toast-item')?.remove(),300)">
+            <span class="material-symbols-outlined" style="font-size:16px;">close</span>
         </button>
+        <div class="toast-progress absolute bottom-0 left-0 h-[3px] rounded-b-2xl" style="background:${progressColor};width:100%;transform-origin:left;animation:toastProgress 3s linear forwards;"></div>
     `;
 
     container.appendChild(toast);
@@ -39,10 +57,8 @@ export function showToast(message, type = 'info') {
         if (!toast.parentElement) return;
         toast.classList.remove('toast-enter');
         toast.classList.add('toast-exit');
-        setTimeout(() => {
-            toast.remove();
-        }, 400); 
-    }, 3000);
+        setTimeout(() => toast.remove(), 320);
+    }, 3300);
 }
 
 export function initComponents() {
