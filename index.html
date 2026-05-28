@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover" name="viewport" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover"
+        name="viewport" />
     <title>AquaFlow Pro - Management Portal</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <!-- External config and styles -->
@@ -85,7 +86,7 @@
                             class="text-error font-bold text-[10px] bg-error-container/40 px-2 py-0.5 rounded uppercase">High</span>
                     </div>
                     <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Pending
-                        Empties</p>
+                        Empties Bottles</p>
                     <h3 class="text-[24px] font-bold text-primary leading-tight">342</h3>
                     <p class="mt-3 text-[10px] text-on-surface-variant/60 italic leading-tight">Collection expected by
                         6:00 PM</p>
@@ -118,7 +119,8 @@
                         <span
                             class="text-primary font-bold text-[10px] bg-primary-container/20 px-2 py-0.5 rounded">Inbound</span>
                     </div>
-                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Remaining Receivable</p>
+                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Remaining
+                        Receivable</p>
                     <h3 class="text-[24px] font-bold text-primary leading-tight">$4,820</h3>
                     <div class="mt-3 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-primary text-[14px]">arrow_downward</span>
@@ -135,7 +137,8 @@
                         <span
                             class="text-error font-bold text-[10px] bg-error-container/20 px-2 py-0.5 rounded">Outbound</span>
                     </div>
-                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Remaining Payable</p>
+                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Remaining
+                        Payable</p>
                     <h3 class="text-[24px] font-bold text-error leading-tight">$1,250</h3>
                     <div class="mt-3 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-error text-[14px]">arrow_upward</span>
@@ -362,11 +365,14 @@
                     class="px-container-margin py-3 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low/30 backdrop-blur-sm">
                     <h3 class="text-[13px] font-bold text-on-surface">Directory List</h3>
                     <div class="flex items-center gap-3">
-                        <span id="pagination-customers-info" class="text-[11px] text-on-surface-variant font-medium">Showing 1-10 of 1,248</span>
+                        <span id="pagination-customers-info"
+                            class="text-[11px] text-on-surface-variant font-medium">Showing 1-10 of 1,248</span>
                         <div class="flex border border-outline-variant rounded-md overflow-hidden">
-                            <button id="btn-prev-customers" class="p-1 hover:bg-surface-container-low text-on-surface-variant disabled:opacity-50 disabled:cursor-not-allowed"><span
+                            <button id="btn-prev-customers"
+                                class="p-1 hover:bg-surface-container-low text-on-surface-variant disabled:opacity-50 disabled:cursor-not-allowed"><span
                                     class="material-symbols-outlined text-[16px]">chevron_left</span></button>
-                            <button id="btn-next-customers" class="p-1 hover:bg-surface-container-low text-on-surface-variant border-l border-outline-variant disabled:opacity-50 disabled:cursor-not-allowed"><span
+                            <button id="btn-next-customers"
+                                class="p-1 hover:bg-surface-container-low text-on-surface-variant border-l border-outline-variant disabled:opacity-50 disabled:cursor-not-allowed"><span
                                     class="material-symbols-outlined text-[16px]">chevron_right</span></button>
                         </div>
                     </div>
@@ -425,10 +431,15 @@
                     class="px-container-margin py-4 border-b border-outline-variant/20 flex justify-between items-center bg-white/40 glass-effect">
                     <h3 class="font-title-sm text-title-sm text-on-surface">Supplier List</h3>
                     <div class="flex items-center gap-3">
-                        <span id="pagination-suppliers-info" class="text-[11px] text-on-surface-variant font-medium">Showing 0 of 0</span>
+                        <span id="pagination-suppliers-info"
+                            class="text-[11px] text-on-surface-variant font-medium">Showing 0 of 0</span>
                         <div class="flex border border-outline-variant rounded-md overflow-hidden">
-                            <button id="btn-prev-suppliers" class="p-1 hover:bg-surface-container-low text-on-surface-variant disabled:opacity-50 disabled:cursor-not-allowed"><span class="material-symbols-outlined text-[16px]">chevron_left</span></button>
-                            <button id="btn-next-suppliers" class="p-1 hover:bg-surface-container-low text-on-surface-variant border-l border-outline-variant disabled:opacity-50 disabled:cursor-not-allowed"><span class="material-symbols-outlined text-[16px]">chevron_right</span></button>
+                            <button id="btn-prev-suppliers"
+                                class="p-1 hover:bg-surface-container-low text-on-surface-variant disabled:opacity-50 disabled:cursor-not-allowed"><span
+                                    class="material-symbols-outlined text-[16px]">chevron_left</span></button>
+                            <button id="btn-next-suppliers"
+                                class="p-1 hover:bg-surface-container-low text-on-surface-variant border-l border-outline-variant disabled:opacity-50 disabled:cursor-not-allowed"><span
+                                    class="material-symbols-outlined text-[16px]">chevron_right</span></button>
                         </div>
                     </div>
                 </div>
@@ -500,10 +511,15 @@
                     <h3 class="text-[14px] font-bold text-on-surface">Stock Directory</h3>
                     <div class="flex items-center gap-4">
                         <div class="flex items-center gap-3">
-                            <span id="pagination-inventory-info" class="text-[11px] text-on-surface-variant font-medium">Showing 0 of 0</span>
+                            <span id="pagination-inventory-info"
+                                class="text-[11px] text-on-surface-variant font-medium">Showing 0 of 0</span>
                             <div class="flex border border-outline-variant rounded-md overflow-hidden">
-                                <button id="btn-prev-inventory" class="p-1 hover:bg-surface-container-low text-on-surface-variant disabled:opacity-50 disabled:cursor-not-allowed"><span class="material-symbols-outlined text-[16px]">chevron_left</span></button>
-                                <button id="btn-next-inventory" class="p-1 hover:bg-surface-container-low text-on-surface-variant border-l border-outline-variant disabled:opacity-50 disabled:cursor-not-allowed"><span class="material-symbols-outlined text-[16px]">chevron_right</span></button>
+                                <button id="btn-prev-inventory"
+                                    class="p-1 hover:bg-surface-container-low text-on-surface-variant disabled:opacity-50 disabled:cursor-not-allowed"><span
+                                        class="material-symbols-outlined text-[16px]">chevron_left</span></button>
+                                <button id="btn-next-inventory"
+                                    class="p-1 hover:bg-surface-container-low text-on-surface-variant border-l border-outline-variant disabled:opacity-50 disabled:cursor-not-allowed"><span
+                                        class="material-symbols-outlined text-[16px]">chevron_right</span></button>
                             </div>
                         </div>
                         <div class="flex items-center gap-2">
@@ -563,14 +579,19 @@
                     class="px-container-margin py-4 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low/30 backdrop-blur-sm">
                     <h3 class="text-[14px] font-bold text-on-surface">Recent Orders</h3>
                     <div class="flex items-center gap-3">
-                        <span id="pagination-orders-info" class="text-[11px] text-on-surface-variant font-medium">Showing 0 of 0</span>
+                        <span id="pagination-orders-info"
+                            class="text-[11px] text-on-surface-variant font-medium">Showing 0 of 0</span>
                         <div class="flex border border-outline-variant rounded-md overflow-hidden">
-                            <button id="btn-prev-orders" class="p-1 hover:bg-surface-container-low text-on-surface-variant disabled:opacity-50 disabled:cursor-not-allowed"><span class="material-symbols-outlined text-[16px]">chevron_left</span></button>
-                            <button id="btn-next-orders" class="p-1 hover:bg-surface-container-low text-on-surface-variant border-l border-outline-variant disabled:opacity-50 disabled:cursor-not-allowed"><span class="material-symbols-outlined text-[16px]">chevron_right</span></button>
+                            <button id="btn-prev-orders"
+                                class="p-1 hover:bg-surface-container-low text-on-surface-variant disabled:opacity-50 disabled:cursor-not-allowed"><span
+                                    class="material-symbols-outlined text-[16px]">chevron_left</span></button>
+                            <button id="btn-next-orders"
+                                class="p-1 hover:bg-surface-container-low text-on-surface-variant border-l border-outline-variant disabled:opacity-50 disabled:cursor-not-allowed"><span
+                                    class="material-symbols-outlined text-[16px]">chevron_right</span></button>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Data Cards Grid -->
                 <div id="orders-card-list" class="grid grid-cols-2 lg:grid-cols-3 gap-4 p-4"></div>
             </div>
@@ -787,7 +808,9 @@
 
         <!-- ADD CUSTOMER PANEL -->
         <div id="panel-customer-add" class="panel">
-            <button class="flex items-center gap-1.5 text-[12px] font-bold text-on-surface-variant hover:text-primary transition-colors mb-4" onclick="document.querySelector('a[data-tab=\'panel-customers\']').click()">
+            <button
+                class="flex items-center gap-1.5 text-[12px] font-bold text-on-surface-variant hover:text-primary transition-colors mb-4"
+                onclick="document.querySelector('a[data-tab=\'panel-customers\']').click()">
                 <span class="material-symbols-outlined text-[16px]">arrow_back</span>
                 Back to Customers
             </button>
@@ -838,18 +861,24 @@
                     <div class="col-span-1 md:col-span-2 h-24 md:h-8"></div>
                 </form>
             </div>
-            
+
             <!-- Fixed Form Actions Footer -->
-            <div class="fixed bottom-[calc(68px+env(safe-area-inset-bottom,0px))] md:bottom-0 right-0 left-0 md:left-[270px] bg-white/70 backdrop-blur-xl border-t border-white/60 px-4 md:px-8 py-3 md:py-4 flex justify-end gap-3 z-[40] shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
-                <button type="button" class="px-5 py-2 text-[12px] font-bold text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 rounded-lg transition-colors form-btn-cancel">Cancel</button>
-                <button type="button" class="px-5 py-2 text-[12px] font-bold text-white bg-gradient-to-r from-[#0f5238] to-[#1a734e] rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all form-btn-save">Save Customer</button>
+            <div
+                class="fixed bottom-[calc(68px+env(safe-area-inset-bottom,0px))] md:bottom-0 right-0 left-0 md:left-[270px] bg-white/70 backdrop-blur-xl border-t border-white/60 px-4 md:px-8 py-3 md:py-4 flex justify-end gap-3 z-[40] shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
+                <button type="button"
+                    class="px-5 py-2 text-[12px] font-bold text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 rounded-lg transition-colors form-btn-cancel">Cancel</button>
+                <button type="button"
+                    class="px-5 py-2 text-[12px] font-bold text-white bg-gradient-to-r from-[#0f5238] to-[#1a734e] rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all form-btn-save">Save
+                    Customer</button>
             </div>
         </div>
         <!-- END ADD CUSTOMER PANEL -->
 
         <!-- ADD SUPPLIER PANEL -->
         <div id="panel-supplier-add" class="panel">
-            <button class="flex items-center gap-1.5 text-[12px] font-bold text-on-surface-variant hover:text-primary transition-colors mb-4" onclick="document.querySelector('a[data-tab=\'panel-suppliers\']').click()">
+            <button
+                class="flex items-center gap-1.5 text-[12px] font-bold text-on-surface-variant hover:text-primary transition-colors mb-4"
+                onclick="document.querySelector('a[data-tab=\'panel-suppliers\']').click()">
                 <span class="material-symbols-outlined text-[16px]">arrow_back</span>
                 Back to Suppliers
             </button>
@@ -879,18 +908,24 @@
                     <div class="col-span-1 md:col-span-2 h-24 md:h-8"></div>
                 </form>
             </div>
-            
+
             <!-- Fixed Form Actions Footer -->
-            <div class="fixed bottom-[calc(68px+env(safe-area-inset-bottom,0px))] md:bottom-0 right-0 left-0 md:left-[270px] bg-white/70 backdrop-blur-xl border-t border-white/60 px-4 md:px-8 py-3 md:py-4 flex justify-end gap-3 z-[40] shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
-                <button type="button" class="px-5 py-2 text-[12px] font-bold text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 rounded-lg transition-colors form-btn-cancel">Cancel</button>
-                <button type="button" class="px-5 py-2 text-[12px] font-bold text-white bg-gradient-to-r from-[#0f5238] to-[#1a734e] rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all form-btn-save">Add Supplier</button>
+            <div
+                class="fixed bottom-[calc(68px+env(safe-area-inset-bottom,0px))] md:bottom-0 right-0 left-0 md:left-[270px] bg-white/70 backdrop-blur-xl border-t border-white/60 px-4 md:px-8 py-3 md:py-4 flex justify-end gap-3 z-[40] shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
+                <button type="button"
+                    class="px-5 py-2 text-[12px] font-bold text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 rounded-lg transition-colors form-btn-cancel">Cancel</button>
+                <button type="button"
+                    class="px-5 py-2 text-[12px] font-bold text-white bg-gradient-to-r from-[#0f5238] to-[#1a734e] rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all form-btn-save">Add
+                    Supplier</button>
             </div>
         </div>
         <!-- END ADD SUPPLIER PANEL -->
 
         <!-- ADD INVENTORY PANEL -->
         <div id="panel-inventory-add" class="panel">
-            <button class="flex items-center gap-1.5 text-[12px] font-bold text-on-surface-variant hover:text-primary transition-colors mb-4" onclick="document.querySelector('a[data-tab=\'panel-inventory\']').click()">
+            <button
+                class="flex items-center gap-1.5 text-[12px] font-bold text-on-surface-variant hover:text-primary transition-colors mb-4"
+                onclick="document.querySelector('a[data-tab=\'panel-inventory\']').click()">
                 <span class="material-symbols-outlined text-[16px]">arrow_back</span>
                 Back to Inventory
             </button>
@@ -924,18 +959,24 @@
                     <div class="col-span-1 md:col-span-2 h-24 md:h-8"></div>
                 </form>
             </div>
-            
+
             <!-- Fixed Form Actions Footer -->
-            <div class="fixed bottom-[calc(68px+env(safe-area-inset-bottom,0px))] md:bottom-0 right-0 left-0 md:left-[270px] bg-white/70 backdrop-blur-xl border-t border-white/60 px-4 md:px-8 py-3 md:py-4 flex justify-end gap-3 z-[40] shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
-                <button type="button" class="px-5 py-2 text-[12px] font-bold text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 rounded-lg transition-colors form-btn-cancel">Cancel</button>
-                <button type="button" class="px-5 py-2 text-[12px] font-bold text-white bg-gradient-to-r from-[#0f5238] to-[#1a734e] rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all form-btn-save">Save Item</button>
+            <div
+                class="fixed bottom-[calc(68px+env(safe-area-inset-bottom,0px))] md:bottom-0 right-0 left-0 md:left-[270px] bg-white/70 backdrop-blur-xl border-t border-white/60 px-4 md:px-8 py-3 md:py-4 flex justify-end gap-3 z-[40] shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
+                <button type="button"
+                    class="px-5 py-2 text-[12px] font-bold text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 rounded-lg transition-colors form-btn-cancel">Cancel</button>
+                <button type="button"
+                    class="px-5 py-2 text-[12px] font-bold text-white bg-gradient-to-r from-[#0f5238] to-[#1a734e] rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all form-btn-save">Save
+                    Item</button>
             </div>
         </div>
         <!-- END ADD INVENTORY PANEL -->
 
         <!-- ADD ORDER PANEL -->
         <div id="panel-order-add" class="panel">
-            <button class="flex items-center gap-1.5 text-[12px] font-bold text-on-surface-variant hover:text-primary transition-colors mb-4" onclick="document.querySelector('a[data-tab=\'panel-orders\']').click()">
+            <button
+                class="flex items-center gap-1.5 text-[12px] font-bold text-on-surface-variant hover:text-primary transition-colors mb-4"
+                onclick="document.querySelector('a[data-tab=\'panel-orders\']').click()">
                 <span class="material-symbols-outlined text-[16px]">arrow_back</span>
                 Back to Orders
             </button>
@@ -970,10 +1011,12 @@
                                 Add Line Item</button>
                         </div>
                     </div>
-                    
-                    <div class="col-span-1 md:col-span-2 mt-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-t border-outline-variant/20 pt-6">
+
+                    <div
+                        class="col-span-1 md:col-span-2 mt-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-t border-outline-variant/20 pt-6">
                         <div>
-                            <p class="text-[11px] text-on-surface-variant font-bold uppercase tracking-wider">Total Amount</p>
+                            <p class="text-[11px] text-on-surface-variant font-bold uppercase tracking-wider">Total
+                                Amount</p>
                             <h2 class="text-[20px] font-bold text-on-surface">$0.00</h2>
                         </div>
                     </div>
@@ -981,11 +1024,15 @@
                     <div class="col-span-1 md:col-span-2 h-24 md:h-8"></div>
                 </form>
             </div>
-            
+
             <!-- Fixed Form Actions Footer -->
-            <div class="fixed bottom-[calc(68px+env(safe-area-inset-bottom,0px))] md:bottom-0 right-0 left-0 md:left-[270px] bg-white/70 backdrop-blur-xl border-t border-white/60 px-4 md:px-8 py-3 md:py-4 flex justify-end gap-3 z-[40] shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
-                <button type="button" class="px-5 py-2 text-[12px] font-bold text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 rounded-lg transition-colors form-btn-cancel">Cancel</button>
-                <button type="button" class="px-5 py-2 text-[12px] font-bold text-white bg-gradient-to-r from-[#0f5238] to-[#1a734e] rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all form-btn-save">Submit Order</button>
+            <div
+                class="fixed bottom-[calc(68px+env(safe-area-inset-bottom,0px))] md:bottom-0 right-0 left-0 md:left-[270px] bg-white/70 backdrop-blur-xl border-t border-white/60 px-4 md:px-8 py-3 md:py-4 flex justify-end gap-3 z-[40] shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
+                <button type="button"
+                    class="px-5 py-2 text-[12px] font-bold text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 rounded-lg transition-colors form-btn-cancel">Cancel</button>
+                <button type="button"
+                    class="px-5 py-2 text-[12px] font-bold text-white bg-gradient-to-r from-[#0f5238] to-[#1a734e] rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all form-btn-save">Submit
+                    Order</button>
             </div>
         </div>
         <!-- END ADD ORDER PANEL -->
@@ -1007,34 +1054,42 @@
     </footer>
 
     <!-- SLIDE-OVER FILTER PANEL -->
-    <div id="filter-overlay" class="fixed inset-0 bg-surface/50 backdrop-blur-sm z-[100] opacity-0 pointer-events-none transition-opacity duration-300"></div>
-    <div id="filter-panel" class="fixed top-0 right-0 h-full w-[300px] max-w-[85vw] bg-surface-container-lowest shadow-2xl z-[110] transform translate-x-full transition-transform duration-300 flex flex-col border-l border-outline-variant/20">
+    <div id="filter-overlay"
+        class="fixed inset-0 bg-surface/50 backdrop-blur-sm z-[100] opacity-0 pointer-events-none transition-opacity duration-300">
+    </div>
+    <div id="filter-panel"
+        class="fixed top-0 right-0 h-full w-[300px] max-w-[85vw] bg-surface-container-lowest shadow-2xl z-[110] transform translate-x-full transition-transform duration-300 flex flex-col border-l border-outline-variant/20">
         <!-- Header -->
         <div class="px-5 py-4 border-b border-outline-variant/10 flex justify-between items-center">
             <h3 class="text-[16px] font-bold text-on-surface flex items-center gap-2">
                 <span class="material-symbols-outlined text-[20px] text-primary">filter_list</span>
                 Advanced Filters
             </h3>
-            <button id="btn-close-filters" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-variant/50 text-on-surface-variant transition-colors">
+            <button id="btn-close-filters"
+                class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-variant/50 text-on-surface-variant transition-colors">
                 <span class="material-symbols-outlined text-[20px]">close</span>
             </button>
         </div>
-        
+
         <!-- Filter Options -->
         <div class="flex-1 overflow-y-auto p-5 flex flex-col gap-5">
             <!-- Keyword Search -->
             <div class="flex flex-col gap-1.5">
                 <label class="text-[11px] font-bold text-on-surface-variant">Keyword Search</label>
                 <div class="relative">
-                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[16px] text-on-surface-variant/50">search</span>
-                    <input type="text" id="filter-keyword" class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 pl-9 pr-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none transition-all" placeholder="Search rows...">
+                    <span
+                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[16px] text-on-surface-variant/50">search</span>
+                    <input type="text" id="filter-keyword"
+                        class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 pl-9 pr-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none transition-all"
+                        placeholder="Search rows...">
                 </div>
             </div>
 
             <!-- Status -->
             <div class="flex flex-col gap-1.5">
                 <label class="text-[11px] font-bold text-on-surface-variant">Status</label>
-                <select id="filter-status" class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none cursor-pointer">
+                <select id="filter-status"
+                    class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none cursor-pointer">
                     <option value="">All Statuses</option>
                     <option value="Active">Active / Operational</option>
                     <option value="Inactive">Inactive</option>
@@ -1048,7 +1103,8 @@
             <!-- Extra generic filter (e.g. Category/Type) -->
             <div class="flex flex-col gap-1.5">
                 <label class="text-[11px] font-bold text-on-surface-variant">Category</label>
-                <select id="filter-category" class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none cursor-pointer">
+                <select id="filter-category"
+                    class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none cursor-pointer">
                     <option value="">All Categories</option>
                     <option value="Bottles">Bottles</option>
                     <option value="Filters">Filters</option>
@@ -1060,8 +1116,10 @@
 
         <!-- Footer Actions -->
         <div class="p-5 border-t border-outline-variant/10 bg-surface-container-low/30 flex gap-3">
-            <button id="btn-reset-filters" class="flex-1 py-2 rounded-lg font-bold text-[12px] text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 transition-colors">Reset</button>
-            <button id="btn-apply-filters" class="flex-1 py-2 rounded-lg font-bold text-[12px] text-on-primary bg-primary hover:opacity-90 shadow-sm transition-opacity">Apply</button>
+            <button id="btn-reset-filters"
+                class="flex-1 py-2 rounded-lg font-bold text-[12px] text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 transition-colors">Reset</button>
+            <button id="btn-apply-filters"
+                class="flex-1 py-2 rounded-lg font-bold text-[12px] text-on-primary bg-primary hover:opacity-90 shadow-sm transition-opacity">Apply</button>
         </div>
     </div>
 
