@@ -273,11 +273,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!panel) return;
 
         const form = panel.querySelector('form');
-        const buttons = panel.querySelectorAll('.fixed.bottom-0 button');
+        const btnCancel = panel.querySelector('.form-btn-cancel');
+        const btnSave = panel.querySelector('.form-btn-save');
         
-        if (buttons.length >= 2) {
-            const btnCancel = buttons[0];
-            const btnSave = buttons[1];
+        if (btnCancel && btnSave) {
 
             btnCancel.addEventListener('click', () => {
                 if(form) form.reset();
@@ -350,12 +349,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!btn) return;
 
         // Ignore buttons that are inside forms (Cancel/Save) as they are handled above
+        if (btn.classList.contains('form-btn-cancel') || btn.classList.contains('form-btn-save')) return;
         if (btn.closest('form') && !btn.textContent.includes('Add Line Item')) return;
-        if (btn.textContent.trim() === 'Cancel' || btn.textContent.includes('Save') || btn.textContent.includes('Submit') || btn.textContent.includes('Add Supplier')) {
-            // These are the form fixed footer buttons, handled above.
-            // Note: Add Supplier is also the text for the save button.
-            if (btn.closest('.fixed.bottom-0')) return;
-        }
 
         const text = btn.textContent.trim();
         const iconText = btn.querySelector('.material-symbols-outlined')?.textContent || '';
