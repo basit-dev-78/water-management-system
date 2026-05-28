@@ -35,114 +35,78 @@
             <!-- KPI Cards Grid -->
             <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3 md:gap-gutter-md mb-gutter-md">
                 <!-- Card 1 -->
-                <div class="glass-card p-card-padding rounded-xl shadow-sm">
-                    <div class="flex justify-between items-start mb-3">
-                        <div
-                            class="w-9 h-9 bg-secondary-container/30 text-primary rounded-lg flex items-center justify-center">
-                            <span class="material-symbols-outlined text-[18px]">group</span>
-                        </div>
-                        <span
-                            class="text-primary font-bold text-[10px] bg-primary-container/20 px-2 py-0.5 rounded">+4.2%</span>
+                <div class="glass-card p-4 rounded-xl shadow-sm flex items-center gap-4">
+                    <div class="w-10 h-10 bg-secondary-container/30 text-primary rounded-full flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[20px]">group</span>
                     </div>
-                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Total
-                        Customers</p>
-                    <h3 class="text-[24px] font-bold text-primary leading-tight">1,240</h3>
-                    <div class="mt-3 w-full h-1 bg-surface-variant rounded-full overflow-hidden">
-                        <div class="h-full bg-primary w-[75%] rounded-full"></div>
+                    <div>
+                        <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold mb-0.5">Customers</p>
+                        <div class="flex items-center gap-2">
+                            <h3 class="text-[20px] font-bold text-primary leading-tight">1,240</h3>
+                            <span class="text-primary font-bold text-[9px] bg-primary-container/20 px-1.5 py-0.5 rounded">+4.2%</span>
+                        </div>
                     </div>
                 </div>
                 <!-- Card 2 -->
-                <div class="glass-card p-card-padding rounded-xl shadow-sm">
-                    <div class="flex justify-between items-start mb-3">
-                        <div
-                            class="w-9 h-9 bg-primary-container/10 text-primary rounded-lg flex items-center justify-center">
-                            <span class="material-symbols-outlined text-[18px]">local_shipping</span>
+                <div class="glass-card p-4 rounded-xl shadow-sm flex items-center gap-4">
+                    <div class="w-10 h-10 bg-primary-container/10 text-primary rounded-full flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[20px]">local_shipping</span>
+                    </div>
+                    <div>
+                        <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold mb-0.5">Deliveries</p>
+                        <div class="flex items-center gap-2">
+                            <h3 class="text-[20px] font-bold text-primary leading-tight">84 <span class="text-[12px] text-on-surface-variant font-normal">/ 120</span></h3>
                         </div>
-                        <span
-                            class="text-secondary font-bold text-[10px] bg-secondary-container/30 px-2 py-0.5 rounded uppercase">On
-                            Track</span>
-                    </div>
-                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Today's
-                        Deliveries</p>
-                    <div class="flex items-baseline gap-1.5">
-                        <h3 class="text-[24px] font-bold text-primary leading-tight">84</h3>
-                        <span class="text-[12px] text-on-surface-variant">/ 120</span>
-                    </div>
-                    <div class="mt-3 flex gap-1">
-                        <div class="h-1.5 w-full bg-primary-container rounded-sm"></div>
-                        <div class="h-1.5 w-full bg-primary-container rounded-sm"></div>
-                        <div class="h-1.5 w-full bg-primary-container rounded-sm"></div>
-                        <div class="h-1.5 w-full bg-surface-variant rounded-sm opacity-30"></div>
                     </div>
                 </div>
                 <!-- Card 3 -->
-                <div class="glass-card p-card-padding rounded-xl shadow-sm">
-                    <div class="flex justify-between items-start mb-3">
-                        <div
-                            class="w-9 h-9 bg-tertiary-container/10 text-tertiary rounded-lg flex items-center justify-center">
-                            <span class="material-symbols-outlined text-[18px]">recycling</span>
-                        </div>
-                        <span
-                            class="text-error font-bold text-[10px] bg-error-container/40 px-2 py-0.5 rounded uppercase">High</span>
+                <div class="glass-card p-4 rounded-xl shadow-sm flex items-center gap-4">
+                    <div class="w-10 h-10 bg-tertiary-container/10 text-tertiary rounded-full flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[20px]">recycling</span>
                     </div>
-                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Pending
-                        Empties Bottles</p>
-                    <h3 class="text-[24px] font-bold text-primary leading-tight">342</h3>
-                    <p class="mt-3 text-[10px] text-on-surface-variant/60 italic leading-tight">Collection expected by
-                        6:00 PM</p>
+                    <div>
+                        <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold mb-0.5">Pending Bottles</p>
+                        <div class="flex items-center gap-2">
+                            <h3 class="text-[20px] font-bold text-primary leading-tight">342</h3>
+                            <span class="text-error font-bold text-[9px] bg-error-container/40 px-1.5 py-0.5 rounded uppercase">High</span>
+                        </div>
+                    </div>
                 </div>
                 <!-- Card 4 -->
-                <div class="glass-card p-card-padding rounded-xl shadow-sm">
-                    <div class="flex justify-between items-start mb-3">
-                        <div
-                            class="w-9 h-9 bg-secondary-container/30 text-secondary rounded-lg flex items-center justify-center">
-                            <span class="material-symbols-outlined text-[18px]">payments</span>
-                        </div>
-                        <span
-                            class="text-primary font-bold text-[10px] bg-primary-container/20 px-2 py-0.5 rounded">+12%</span>
+                <div class="glass-card p-4 rounded-xl shadow-sm flex items-center gap-4">
+                    <div class="w-10 h-10 bg-secondary-container/30 text-secondary rounded-full flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[20px]">payments</span>
                     </div>
-                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Monthly
-                        Revenue</p>
-                    <h3 class="text-[24px] font-bold text-primary leading-tight">$12,450</h3>
-                    <div class="mt-3 flex items-center gap-1.5">
-                        <span class="material-symbols-outlined text-primary text-[14px]">trending_up</span>
-                        <span class="text-[10px] text-primary font-bold">Exceeding quarterly targets</span>
+                    <div>
+                        <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold mb-0.5">Revenue</p>
+                        <div class="flex items-center gap-2">
+                            <h3 class="text-[20px] font-bold text-primary leading-tight">$12,450</h3>
+                            <span class="text-primary font-bold text-[9px] bg-primary-container/20 px-1.5 py-0.5 rounded">+12%</span>
+                        </div>
                     </div>
                 </div>
                 <!-- Card 5 (Receivable) -->
-                <div class="glass-card p-card-padding rounded-xl shadow-sm border-t-2 border-primary">
-                    <div class="flex justify-between items-start mb-3">
-                        <div
-                            class="w-9 h-9 bg-primary-container/30 text-primary rounded-lg flex items-center justify-center">
-                            <span class="material-symbols-outlined text-[18px]">account_balance_wallet</span>
-                        </div>
-                        <span
-                            class="text-primary font-bold text-[10px] bg-primary-container/20 px-2 py-0.5 rounded">Inbound</span>
+                <div class="glass-card p-4 rounded-xl shadow-sm border-l-[3px] border-primary flex items-center gap-4">
+                    <div class="w-10 h-10 bg-primary-container/30 text-primary rounded-full flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>
                     </div>
-                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Remaining
-                        Receivable</p>
-                    <h3 class="text-[24px] font-bold text-primary leading-tight">$4,820</h3>
-                    <div class="mt-3 flex items-center gap-1.5">
-                        <span class="material-symbols-outlined text-primary text-[14px]">arrow_downward</span>
-                        <span class="text-[10px] text-primary font-bold">Pending from customers</span>
+                    <div>
+                        <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold mb-0.5">Receivable</p>
+                        <div class="flex items-center gap-2">
+                            <h3 class="text-[20px] font-bold text-primary leading-tight">$4,820</h3>
+                        </div>
                     </div>
                 </div>
                 <!-- Card 6 (Payable) -->
-                <div class="glass-card p-card-padding rounded-xl shadow-sm border-t-2 border-error">
-                    <div class="flex justify-between items-start mb-3">
-                        <div
-                            class="w-9 h-9 bg-error-container/30 text-error rounded-lg flex items-center justify-center">
-                            <span class="material-symbols-outlined text-[18px]">credit_card</span>
-                        </div>
-                        <span
-                            class="text-error font-bold text-[10px] bg-error-container/20 px-2 py-0.5 rounded">Outbound</span>
+                <div class="glass-card p-4 rounded-xl shadow-sm border-l-[3px] border-error flex items-center gap-4">
+                    <div class="w-10 h-10 bg-error-container/30 text-error rounded-full flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[20px]">credit_card</span>
                     </div>
-                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Remaining
-                        Payable</p>
-                    <h3 class="text-[24px] font-bold text-error leading-tight">$1,250</h3>
-                    <div class="mt-3 flex items-center gap-1.5">
-                        <span class="material-symbols-outlined text-error text-[14px]">arrow_upward</span>
-                        <span class="text-[10px] text-error font-bold">Owed to suppliers</span>
+                    <div>
+                        <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold mb-0.5">Payable</p>
+                        <div class="flex items-center gap-2">
+                            <h3 class="text-[20px] font-bold text-error leading-tight">$1,250</h3>
+                        </div>
                     </div>
                 </div>
             </section>
