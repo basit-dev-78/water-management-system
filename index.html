@@ -526,9 +526,9 @@
                 class="bg-surface-container-lowest border border-outline-variant/20 rounded-2xl shadow-sm overflow-hidden">
                 <div
                     class="px-container-margin py-4 border-b border-outline-variant/20 flex justify-between items-center bg-white/40 glass-effect">
-                    <h3 class="font-title-sm text-title-sm text-on-surface">Supplier Directory</h3>
+                    <h3 class="font-title-sm text-title-sm text-on-surface">Supplier List</h3>
                 </div>
-                <div class="overflow-x-auto">
+                <div class="hidden md:block overflow-x-auto">
                     <table class="w-full text-left border-collapse">
                         <thead>
                             <tr class="bg-surface-container-low/50">
@@ -578,6 +578,33 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+
+                <!-- Mobile Card View -->
+                <div class="md:hidden flex flex-col gap-3 p-4">
+                    <!-- Mobile Card 1 -->
+                    <div class="bg-surface-container-low/30 rounded-xl p-4 border border-outline-variant/20 shadow-sm">
+                        <div class="flex justify-between items-start mb-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-[12px]">
+                                    AW</div>
+                                <div>
+                                    <p class="font-body-md font-bold text-on-surface leading-tight">AquaWorks Corp</p>
+                                    <p class="font-label-xs text-on-surface-variant mt-0.5">ID: SP-10024</p>
+                                </div>
+                            </div>
+                            <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors p-1">more_vert</button>
+                        </div>
+                        <div class="flex justify-between items-center pt-3 border-t border-outline-variant/10 mt-1">
+                            <div class="flex items-center gap-1.5 text-on-surface-variant">
+                                <span class="material-symbols-outlined text-[14px]">call</span>
+                                <p class="text-[11px] font-medium">+1 (555) 234-9812</p>
+                            </div>
+                            <span class="bg-primary-container/10 text-primary-container px-2.5 py-1 rounded-full font-label-xs font-bold inline-flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Active
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
