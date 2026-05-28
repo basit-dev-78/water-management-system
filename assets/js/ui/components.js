@@ -46,6 +46,41 @@ export function showToast(message, type = 'info') {
 }
 
 export function initComponents() {
+    // Theme Toggle Logic
+    const btnThemeToggle = document.getElementById('btn-theme-toggle');
+    const htmlEl = document.documentElement;
+
+    function applyTheme(theme) {
+        const darkIcon = btnThemeToggle?.querySelector('.dark-icon');
+        const lightIcon = btnThemeToggle?.querySelector('.light-icon');
+
+        if (theme === 'dark') {
+            htmlEl.classList.remove('light');
+            htmlEl.classList.add('dark');
+            if (darkIcon) darkIcon.classList.add('hidden');
+            if (lightIcon) lightIcon.classList.remove('hidden');
+        } else {
+            htmlEl.classList.remove('dark');
+            htmlEl.classList.add('light');
+            if (darkIcon) darkIcon.classList.remove('hidden');
+            if (lightIcon) lightIcon.classList.add('hidden');
+        }
+    }
+
+    // Apply saved theme on startup
+    const savedTheme = localStorage.getItem('aquaflow-theme') || 'light';
+    applyTheme(savedTheme);
+
+    if (btnThemeToggle) {
+        btnThemeToggle.addEventListener('click', () => {
+            const currentTheme = htmlEl.classList.contains('dark') ? 'dark' : 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('aquaflow-theme', newTheme);
+            applyTheme(newTheme);
+            showToast(`Switched to ${newTheme} mode.`, "success");
+        });
+    }
+
     // Mobile Sidebar Toggle
     const sidebar = document.getElementById('sidebar');
     const btnMobileMenu = document.getElementById('btn-mobile-menu');
@@ -97,15 +132,31 @@ export function initComponents() {
             const searchTerm = e.target.value.toLowerCase();
             const activePanel = document.querySelector('.panel.active') || document.querySelector('.panel');
             if(activePanel) {
+                // Search inside card lists
+                const cardLists = activePanel.querySelectorAll('[id$="-card-list"] > div, .grid > .glass-card');
+                if (cardLists.length > 0) {
+                    cardLists.forEach(card => {
+                        const text = card.textContent.toLowerCase();
+                        if (text.includes(searchTerm)) {
+                            card.style.display = '';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                }
+
+                // Fallback for standard tables
                 const rows = activePanel.querySelectorAll('tbody tr');
-                rows.forEach(row => {
-                    const text = row.textContent.toLowerCase();
-                    if(text.includes(searchTerm)) {
-                        row.style.display = '';
-                    } else {
-                        row.style.display = 'none';
-                    }
-                });
+                if (rows.length > 0) {
+                    rows.forEach(row => {
+                        const text = row.textContent.toLowerCase();
+                        if (text.includes(searchTerm)) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+                }
             }
         });
     });

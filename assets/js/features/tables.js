@@ -91,8 +91,11 @@ function renderCustomers() {
                     <p class="text-[11px] font-medium text-on-surface">${c.lastOrder}</p>
                 </div>
             </div>
-            <p class="text-[10px] text-on-surface-variant/70 flex items-center gap-1">
-                <span class="material-symbols-outlined text-[12px]">call</span>${c.phone}
+            <p class="text-[10px] text-on-surface-variant/70 flex items-center justify-between gap-1 mt-1">
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">call</span>${c.phone || 'N/A'}</span>
+                <button onclick="event.stopPropagation(); if(confirm('Are you sure you want to delete ${c.name}?')) { window.DB.deleteRecord('customers', '${c.id}'); window.renderAll(); }" class="text-error hover:bg-error-container/20 p-1 rounded-md transition-colors" title="Delete Customer">
+                    <span class="material-symbols-outlined text-[16px]">delete</span>
+                </button>
             </p>
         </div>
     `).join('');
@@ -144,8 +147,11 @@ function renderSuppliers() {
                     <p class="text-[13px] font-bold text-amber-500">${stars(s.rating)}</p>
                 </div>
             </div>
-            <p class="text-[10px] text-on-surface-variant/70 flex items-center gap-1">
-                <span class="material-symbols-outlined text-[12px]">call</span>${s.phone}
+            <p class="text-[10px] text-on-surface-variant/70 flex items-center justify-between gap-1 mt-1">
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">call</span>${s.phone || 'N/A'}</span>
+                <button onclick="event.stopPropagation(); if(confirm('Are you sure you want to delete ${s.name}?')) { window.DB.deleteRecord('suppliers', '${s.id}'); window.renderAll(); }" class="text-error hover:bg-error-container/20 p-1 rounded-md transition-colors" title="Delete Supplier">
+                    <span class="material-symbols-outlined text-[16px]">delete</span>
+                </button>
             </p>
         </div>
     `).join('');
@@ -178,7 +184,12 @@ function renderInventory() {
                     <p class="text-[12px] font-bold text-on-surface truncate leading-tight">${item.name}</p>
                     <p class="text-[10px] text-on-surface-variant font-mono">${item.sku}</p>
                 </div>
-                ${statusBadge(item.status)}
+                <div class="flex items-center gap-1 shrink-0">
+                    ${statusBadge(item.status)}
+                    <button onclick="event.stopPropagation(); if(confirm('Are you sure you want to delete ${item.name}?')) { window.DB.deleteRecord('inventory', '${item.id}'); window.renderAll(); }" class="text-error hover:bg-error-container/20 p-1 rounded-md transition-colors" title="Delete Item">
+                        <span class="material-symbols-outlined text-[16px]">delete</span>
+                    </button>
+                </div>
             </div>
             <div class="border-t border-outline-variant/10 pt-2">
                 <div class="flex justify-between items-center mb-1">
@@ -224,7 +235,12 @@ function renderOrders() {
         <div class="glass-card rounded-xl p-4 flex flex-col gap-2 group cursor-pointer">
             <div class="flex items-center justify-between gap-2">
                 <p class="text-[12px] font-bold text-on-surface font-mono">${o.id}</p>
-                ${statusBadge(o.status)}
+                <div class="flex items-center gap-1">
+                    ${statusBadge(o.status)}
+                    <button onclick="event.stopPropagation(); if(confirm('Are you sure you want to cancel and delete order ${o.id}?')) { window.DB.deleteRecord('orders', '${o.id}'); window.renderAll(); }" class="text-error hover:bg-error-container/20 p-1 rounded-md transition-colors" title="Delete Order">
+                        <span class="material-symbols-outlined text-[16px]">delete</span>
+                    </button>
+                </div>
             </div>
             <p class="text-[11px] text-on-surface-variant">${o.customerName || '—'}</p>
             <div class="border-t border-outline-variant/10 pt-2 grid grid-cols-2 gap-1">

@@ -13,7 +13,7 @@
 </head>
 
 <body
-    class="bg-[#f0f4f2] text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-clip relative min-h-screen">
+    class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-clip relative min-h-screen">
 
     <!-- Animated Organic Background -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
@@ -32,12 +32,12 @@
         <div id="header-container" class="sticky top-0 z-40 md:-mx-4 md:px-4 pt-0 md:pt-4"></div>
         <!-- ADD SUPPLIER PANEL -->
         <div id="panel-supplier-add" class="panel active">
-            <button
-                class="flex items-center gap-1.5 text-[12px] font-bold text-on-surface-variant hover:text-primary transition-colors mb-4"
-                onclick="document.querySelector('a[data-tab=\'panel-suppliers\']').click()">
+            <a
+                class="flex items-center gap-1.5 text-[12px] font-bold text-on-surface-variant hover:text-primary transition-colors mb-4 w-fit"
+                href="suppliers.html">
                 <span class="material-symbols-outlined text-[16px]">arrow_back</span>
                 Back to Suppliers
-            </button>
+            </a>
             <div class="glass-card rounded-xl p-6 md:p-8 shadow-sm max-w-4xl mx-auto mb-8">
                 <form id="form-supplier-add" class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="col-span-1 md:col-span-2">
@@ -60,6 +60,18 @@
                             <option>Logistics & Fuel</option>
                         </select>
                     </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label class="text-[11px] font-bold text-on-surface-variant">Contact Name *</label>
+                        <input type="text" name="contact" id="supp-contact" required
+                            class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none"
+                            placeholder="John Smith">
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label class="text-[11px] font-bold text-on-surface-variant">Phone Number *</label>
+                        <input type="text" name="phone" id="supp-phone" required
+                            class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none"
+                            placeholder="(555) 111-2222">
+                    </div>
                     <!-- Spacer for fixed footer -->
                     <div class="col-span-1 md:col-span-2 h-24 md:h-8"></div>
                 </form>
@@ -76,6 +88,7 @@
             </div>
         </div>
         <!-- END ADD SUPPLIER PANEL -->
+    </main>
 <footer
         class="w-full md:w-[calc(100%-270px)] mt-auto flex flex-col md:flex-row justify-between items-center gap-4 py-4 border-t border-outline-variant/10 px-container-margin md:ml-[270px] relative z-10 text-center">
         <span class="text-on-surface-variant/50 text-[10px]">© 2024 AquaFlow Pro v2.4.1</span>

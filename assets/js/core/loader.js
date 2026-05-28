@@ -35,6 +35,16 @@ export async function loadComponents() {
             document.body.appendChild(div.firstElementChild);
         }
 
+        // Load AI panel
+        const aiRes = await fetch('components/ai-panel.html' + cacheBuster);
+        if (aiRes.ok) {
+            const div = document.createElement('div');
+            div.innerHTML = await aiRes.text();
+            while (div.firstChild) {
+                document.body.appendChild(div.firstChild);
+            }
+        }
+
     } catch (e) {
         console.error('Error loading components:', e);
         // Fallback layout initialization could go here
