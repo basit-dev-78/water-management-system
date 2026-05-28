@@ -595,6 +595,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Ignore buttons that are inside forms (Cancel/Save) as they are handled above
         if (btn.classList.contains('form-btn-cancel') || btn.classList.contains('form-btn-save')) return;
         if (btn.closest('form') && !btn.textContent.includes('Add Line Item')) return;
+        if (btn.closest('#filter-panel')) return;
 
         const text = btn.textContent.trim();
         const iconText = btn.querySelector('.material-symbols-outlined')?.textContent || '';
