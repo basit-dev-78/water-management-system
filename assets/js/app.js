@@ -219,9 +219,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     // ----------------------------------------------------
     function renderCustomers() {
         const tbody = document.getElementById('customers-table-body');
-        if(!tbody) return;
+        const mobileList = document.getElementById('customers-mobile-list');
+        if(!tbody || !mobileList) return;
         const customers = window.DB.getCustomers();
         tbody.innerHTML = '';
+        mobileList.innerHTML = '';
         customers.forEach(cust => {
             const tr = document.createElement('tr');
             tr.className = 'hover:bg-surface-container-low/30 transition-colors group';
@@ -261,6 +263,39 @@ document.addEventListener('DOMContentLoaded', async () => {
                 </td>
             `;
             tbody.appendChild(tr);
+
+            // Mobile Card
+            const card = document.createElement('div');
+            card.className = 'bg-surface-container-low/30 rounded-xl p-4 border border-outline-variant/20 shadow-sm';
+            card.innerHTML = `
+                <div class="flex justify-between items-start mb-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-[12px]">
+                            ${cust.name ? cust.name.substring(0,2).toUpperCase() : 'NA'}</div>
+                        <div>
+                            <p class="font-body-md font-bold text-on-surface leading-tight">${cust.name || 'Unknown'}</p>
+                            <p class="font-label-xs text-on-surface-variant mt-0.5">${cust.id}</p>
+                        </div>
+                    </div>
+                    <button class="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors p-1" onclick="DB.deleteRecord('customers', '${cust.id}'); window.renderAll();">delete</button>
+                </div>
+                <div class="flex justify-between items-center pt-3 border-t border-outline-variant/10 mt-1">
+                    <div class="flex flex-col gap-1">
+                        <div class="flex items-center gap-1.5 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[14px]">call</span>
+                            <p class="text-[11px] font-medium">${cust.phone || cust.contact || 'N/A'}</p>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[14px]">location_on</span>
+                            <p class="text-[11px] font-medium truncate max-w-[150px]">${cust.address || 'Unknown'}</p>
+                        </div>
+                    </div>
+                    <span class="${cust.status === 'Active' ? 'bg-primary/10 text-primary' : 'bg-surface-variant text-on-surface-variant'} px-2.5 py-1 rounded-full font-label-xs font-bold inline-flex items-center gap-1.5 h-fit">
+                        <span class="w-1.5 h-1.5 rounded-full ${cust.status === 'Active' ? 'bg-primary' : 'bg-on-surface-variant'}"></span> ${cust.status}
+                    </span>
+                </div>
+            `;
+            mobileList.appendChild(card);
         });
     }
 
@@ -334,9 +369,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function renderInventory() {
         const tbody = document.getElementById('inventory-table-body');
-        if(!tbody) return;
+        const mobileList = document.getElementById('inventory-mobile-list');
+        if(!tbody || !mobileList) return;
         const inventory = window.DB.getInventory();
         tbody.innerHTML = '';
+        mobileList.innerHTML = '';
         inventory.forEach(item => {
             const isLow = item.stock <= item.threshold;
             const tr = document.createElement('tr');
@@ -355,6 +392,27 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <td class="px-4 py-3"><span class="${isLow ? 'bg-error/10 text-error animate-pulse-slow' : 'bg-primary/10 text-primary'} px-3 py-1 rounded-full text-[10px] font-bold">${item.status}</span></td>
             `;
             tbody.appendChild(tr);
+
+            // Mobile Card
+            const card = document.createElement('div');
+            card.className = 'bg-surface-container-low/30 rounded-xl p-4 border border-outline-variant/20 shadow-sm';
+            card.innerHTML = `
+                <div class="flex justify-between items-start mb-2">
+                    <div>
+                        <p class="font-body-md font-bold text-on-surface leading-tight">${item.name}</p>
+                        <p class="font-label-xs text-on-surface-variant mt-0.5">SKU: ${item.sku || 'N/A'}</p>
+                    </div>
+                    <span class="${isLow ? 'bg-error/10 text-error animate-pulse-slow' : 'bg-primary/10 text-primary'} px-2.5 py-1 rounded-full text-[10px] font-bold inline-block h-fit">${item.status}</span>
+                </div>
+                <div class="flex justify-between items-center pt-2 border-t border-outline-variant/10 mt-2">
+                    <div class="flex items-center gap-1.5 text-on-surface-variant">
+                        <span class="material-symbols-outlined text-[14px]">category</span>
+                        <p class="text-[11px] font-medium">${item.category || 'General'}</p>
+                    </div>
+                    <p class="text-[14px] font-bold ${isLow ? 'text-error' : 'text-primary'}">${item.stock} <span class="text-[10px] font-normal text-on-surface-variant">units</span></p>
+                </div>
+            `;
+            mobileList.appendChild(card);
         });
     }
 
