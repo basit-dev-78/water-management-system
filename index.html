@@ -32,7 +32,7 @@
         <!-- DASHBOARD PANEL -->
         <div id="panel-dashboard" class="panel active">
             <!-- KPI Cards Grid -->
-            <section class="grid grid-cols-2 xl:grid-cols-4 gap-3 md:gap-gutter-md mb-gutter-md">
+            <section class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3 md:gap-gutter-md mb-gutter-md">
                 <!-- Card 1 -->
                 <div class="glass-card p-card-padding rounded-xl shadow-sm">
                     <div class="flex justify-between items-start mb-3">
@@ -106,6 +106,40 @@
                     <div class="mt-3 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-primary text-[14px]">trending_up</span>
                         <span class="text-[10px] text-primary font-bold">Exceeding quarterly targets</span>
+                    </div>
+                </div>
+                <!-- Card 5 (Receivable) -->
+                <div class="glass-card p-card-padding rounded-xl shadow-sm border-t-2 border-primary">
+                    <div class="flex justify-between items-start mb-3">
+                        <div
+                            class="w-9 h-9 bg-primary-container/30 text-primary rounded-lg flex items-center justify-center">
+                            <span class="material-symbols-outlined text-[18px]">account_balance_wallet</span>
+                        </div>
+                        <span
+                            class="text-primary font-bold text-[10px] bg-primary-container/20 px-2 py-0.5 rounded">Inbound</span>
+                    </div>
+                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Remaining Receivable</p>
+                    <h3 class="text-[24px] font-bold text-primary leading-tight">$4,820</h3>
+                    <div class="mt-3 flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-primary text-[14px]">arrow_downward</span>
+                        <span class="text-[10px] text-primary font-bold">Pending from customers</span>
+                    </div>
+                </div>
+                <!-- Card 6 (Payable) -->
+                <div class="glass-card p-card-padding rounded-xl shadow-sm border-t-2 border-error">
+                    <div class="flex justify-between items-start mb-3">
+                        <div
+                            class="w-9 h-9 bg-error-container/30 text-error rounded-lg flex items-center justify-center">
+                            <span class="material-symbols-outlined text-[18px]">credit_card</span>
+                        </div>
+                        <span
+                            class="text-error font-bold text-[10px] bg-error-container/20 px-2 py-0.5 rounded">Outbound</span>
+                    </div>
+                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-0.5">Remaining Payable</p>
+                    <h3 class="text-[24px] font-bold text-error leading-tight">$1,250</h3>
+                    <div class="mt-3 flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-error text-[14px]">arrow_upward</span>
+                        <span class="text-[10px] text-error font-bold">Owed to suppliers</span>
                     </div>
                 </div>
             </section>
@@ -270,7 +304,7 @@
             </div>
 
             <!-- Compact Bento Metrics -->
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter-md mb-gutter-md">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-gutter-md mb-gutter-md">
                 <div
                     class="bg-surface-container-lowest border border-outline-variant/10 rounded-xl p-card-padding shadow-sm">
                     <div class="flex justify-between items-start mb-2">
@@ -338,7 +372,7 @@
                     </div>
                 </div>
                 <!-- Data Cards Grid -->
-                <div id="customers-card-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4"></div>
+                <div id="customers-card-list" class="grid grid-cols-2 lg:grid-cols-3 gap-4 p-4"></div>
             </div>
         </div>
         <!-- END CUSTOMERS PANEL -->
@@ -359,7 +393,7 @@
             </div>
 
             <!-- Statistical Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                 <div
                     class="bg-surface-container-lowest border border-outline-variant/20 rounded-2xl shadow-sm group hover:shadow-md transition-shadow p-3">
                     <div class="flex justify-between items-start mb-4">
@@ -399,7 +433,7 @@
                     </div>
                 </div>
                 <!-- Data Cards Grid -->
-                <div id="suppliers-card-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4"></div>
+                <div id="suppliers-card-list" class="grid grid-cols-2 lg:grid-cols-3 gap-4 p-4"></div>
             </div>
         </div>
         <!-- END SUPPLIERS PANEL -->
@@ -420,7 +454,7 @@
             </div>
 
             <!-- Bento Stats -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-md mb-gutter-md">
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-gutter-md mb-gutter-md">
                 <div class="glass-card rounded-xl p-card-padding shadow-sm">
                     <div class="flex justify-between items-start mb-2">
                         <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
@@ -485,7 +519,7 @@
                     </div>
                 </div>
                 <!-- Data Cards Grid -->
-                <div id="inventory-card-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4"></div>
+                <div id="inventory-card-list" class="grid grid-cols-2 lg:grid-cols-3 gap-4 p-4"></div>
             </div>
         </div>
         <!-- END INVENTORY PANEL -->
@@ -538,7 +572,7 @@
                 </div>
                 
                 <!-- Data Cards Grid -->
-                <div id="orders-card-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4"></div>
+                <div id="orders-card-list" class="grid grid-cols-2 lg:grid-cols-3 gap-4 p-4"></div>
             </div>
         </div>
         <!-- END ORDERS PANEL -->
@@ -553,7 +587,7 @@
                 </button>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-md mb-gutter-md">
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-gutter-md mb-gutter-md">
                 <div class="glass-card rounded-xl p-card-padding shadow-sm col-span-2">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-[14px] font-bold text-on-surface">Active Routes</h3>
