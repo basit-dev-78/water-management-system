@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover"
+        name="viewport" />
+    <title>AquaFlow Pro - Management Portal</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- External config and styles -->
+    <script src="./assets/js/config.js"></script>
+    <link href="./assets/css/style.css" rel="stylesheet" />
+</head>
+
+<body
+    class="bg-[#f0f4f2] text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-clip relative min-h-screen">
+
+    <!-- Animated Organic Background -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Sidebar Container -->
+    <div id="sidebar-container" class="relative z-50"></div>
+
+    <!-- Main Content Area -->
+    <main
+        class="mx-0 px-3 md:px-0 md:ml-[270px] md:mr-4 mt-0 md:mt-4 mb-0 md:mb-4 pb-[100px] md:pb-4 min-h-[calc(100vh-32px)] flex flex-col z-10 relative transition-all duration-300">
+        <!-- Header Container -->
+        <div id="header-container" class="sticky top-0 z-40 md:-mx-4 md:px-4 pt-0 md:pt-4"></div>
+        <!-- LOGISTICS PANEL -->
+        <div id="panel-logistics" class="panel active">
+            <div class="flex justify-end items-center mb-5 gap-2">
+                <button
+                    class="flex items-center gap-1.5 bg-primary text-on-primary px-4 py-1.5 rounded-lg hover:shadow-md transition-all text-[11px] font-bold shadow-sm">
+                    <span class="material-symbols-outlined text-[16px]">map</span>
+                    Live Map
+                </button>
+            </div>
+
+            <div class="grid grid-cols-2 gap-gutter-md mb-gutter-md">
+                <div class="glass-card rounded-xl p-card-padding shadow-sm">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-[14px] font-bold text-on-surface">Active Routes</h3>
+                    </div>
+                    <!-- Mock Map Area -->
+                    <div
+                        class="w-full h-[240px] bg-surface-container rounded-lg relative overflow-hidden flex items-center justify-center border border-outline-variant/20">
+                        <div class="absolute inset-0 opacity-20"
+                            style="background-image: radial-gradient(circle at 2px 2px, #0f5238 1px, transparent 0); background-size: 20px 20px;">
+                        </div>
+                        <div class="text-center z-10">
+                            <span class="material-symbols-outlined text-[48px] text-primary/50 mb-2">location_on</span>
+                            <p class="text-[13px] font-bold text-on-surface-variant">Map View Rendering...</p>
+                        </div>
+                        <!-- Mock Map Pointers -->
+                        <div
+                            class="absolute top-[30%] left-[20%] w-3 h-3 bg-primary rounded-full shadow-[0_0_10px_rgba(15,82,56,0.8)] animate-pulse-slow">
+                        </div>
+                        <div
+                            class="absolute top-[50%] left-[60%] w-3 h-3 bg-secondary rounded-full shadow-[0_0_10px_rgba(65,103,70,0.8)] animate-pulse-slow">
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card rounded-xl p-card-padding shadow-sm flex flex-col gap-4">
+                    <h3 class="text-[14px] font-bold text-on-surface">Fleet Status</h3>
+                    <div class="flex items-center justify-between p-3 bg-surface-container-low/50 rounded-lg">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary">local_shipping</span>
+                            <span class="text-[12px] font-bold">Active On Route</span>
+                        </div>
+                        <span class="text-[16px] font-bold text-primary">24</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-surface-container-low/50 rounded-lg">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-secondary">warehouse</span>
+                            <span class="text-[12px] font-bold">Loading</span>
+                        </div>
+                        <span class="text-[16px] font-bold text-secondary">8</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-error/5 rounded-lg border border-error/10">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-error">build</span>
+                            <span class="text-[12px] font-bold">Maintenance</span>
+                        </div>
+                        <span class="text-[16px] font-bold text-error">2</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END LOGISTICS PANEL -->
+<footer
+        class="w-full md:w-[calc(100%-270px)] mt-auto flex flex-col md:flex-row justify-between items-center gap-4 py-4 border-t border-outline-variant/10 px-container-margin md:ml-[270px] relative z-10 text-center">
+        <span class="text-on-surface-variant/50 text-[10px]">© 2024 AquaFlow Pro v2.4.1</span>
+        <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">System
+                Status: <span class="text-primary font-bold">Operational</span></a>
+            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">Privacy
+                Policy</a>
+            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">Terms of
+                Service</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./assets/js/db.js"></script>
+    <script type="module" src="./assets/js/main.js"></script>
+</body>
+
+</html>

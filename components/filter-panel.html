@@ -1,0 +1,69 @@
+<!-- SLIDE-OVER FILTER PANEL -->
+    <div id="filter-overlay"
+        class="fixed inset-0 bg-surface/50 backdrop-blur-sm z-[100] opacity-0 pointer-events-none transition-opacity duration-300">
+    </div>
+    <div id="filter-panel"
+        class="fixed top-0 right-0 h-full w-[300px] max-w-[85vw] bg-surface-container-lowest shadow-2xl z-[110] transform translate-x-full transition-transform duration-300 flex flex-col border-l border-outline-variant/20">
+        <!-- Header -->
+        <div class="px-5 py-4 border-b border-outline-variant/10 flex justify-between items-center">
+            <h3 class="text-[16px] font-bold text-on-surface flex items-center gap-2">
+                <span class="material-symbols-outlined text-[20px] text-primary">filter_list</span>
+                Advanced Filters
+            </h3>
+            <button id="btn-close-filters"
+                class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-variant/50 text-on-surface-variant transition-colors">
+                <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+        </div>
+
+        <!-- Filter Options -->
+        <div class="flex-1 overflow-y-auto p-5 flex flex-col gap-5">
+            <!-- Keyword Search -->
+            <div class="flex flex-col gap-1.5">
+                <label class="text-[11px] font-bold text-on-surface-variant">Keyword Search</label>
+                <div class="relative">
+                    <span
+                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[16px] text-on-surface-variant/50">search</span>
+                    <input type="text" id="filter-keyword"
+                        class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 pl-9 pr-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none transition-all"
+                        placeholder="Search rows...">
+                </div>
+            </div>
+
+            <!-- Status -->
+            <div class="flex flex-col gap-1.5">
+                <label class="text-[11px] font-bold text-on-surface-variant">Status</label>
+                <select id="filter-status"
+                    class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none cursor-pointer">
+                    <option value="">All Statuses</option>
+                    <option value="Active">Active / Operational</option>
+                    <option value="Inactive">Inactive</option>
+                    <option value="Low Stock">Low Stock</option>
+                    <option value="Out of Stock">Out of Stock</option>
+                    <option value="Processing">Processing</option>
+                    <option value="Completed">Completed / Delivered</option>
+                </select>
+            </div>
+
+            <!-- Extra generic filter (e.g. Category/Type) -->
+            <div class="flex flex-col gap-1.5">
+                <label class="text-[11px] font-bold text-on-surface-variant">Category</label>
+                <select id="filter-category"
+                    class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none cursor-pointer">
+                    <option value="">All Categories</option>
+                    <option value="Bottles">Bottles</option>
+                    <option value="Filters">Filters</option>
+                    <option value="Equipment">Equipment</option>
+                    <option value="Logistics & Fuel">Logistics</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Footer Actions -->
+        <div class="p-5 border-t border-outline-variant/10 bg-surface-container-low/30 flex gap-3">
+            <button id="btn-reset-filters"
+                class="flex-1 py-2 rounded-lg font-bold text-[12px] text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 transition-colors">Reset</button>
+            <button id="btn-apply-filters"
+                class="flex-1 py-2 rounded-lg font-bold text-[12px] text-on-primary bg-primary hover:opacity-90 shadow-sm transition-opacity">Apply</button>
+        </div>
+    </div>

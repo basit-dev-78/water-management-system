@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover"
+        name="viewport" />
+    <title>AquaFlow Pro - Management Portal</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- External config and styles -->
+    <script src="./assets/js/config.js"></script>
+    <link href="./assets/css/style.css" rel="stylesheet" />
+</head>
+
+<body
+    class="bg-[#f0f4f2] text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-clip relative min-h-screen">
+
+    <!-- Animated Organic Background -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Sidebar Container -->
+    <div id="sidebar-container" class="relative z-50"></div>
+
+    <!-- Main Content Area -->
+    <main
+        class="mx-0 px-3 md:px-0 md:ml-[270px] md:mr-4 mt-0 md:mt-4 mb-0 md:mb-4 pb-[100px] md:pb-4 min-h-[calc(100vh-32px)] flex flex-col z-10 relative transition-all duration-300">
+        <!-- Header Container -->
+        <div id="header-container" class="sticky top-0 z-40 md:-mx-4 md:px-4 pt-0 md:pt-4"></div>
+        <!-- SUPPLIERS PANEL -->
+        <div id="panel-suppliers" class="panel active">
+            <div class="flex justify-end items-center mb-5 gap-3">
+                <button
+                    class="flex items-center gap-2 bg-white border border-outline-variant px-3 py-1.5 rounded-lg hover:bg-surface-container-low transition-colors font-body-md text-body-sm shadow-sm">
+                    <span class="material-symbols-outlined text-[16px]">filter_list</span>
+                    Filter
+                </button>
+                <button
+                    class="flex items-center gap-2 bg-primary text-on-primary px-3 py-1.5 rounded-lg hover:opacity-90 transition-all font-body-md text-body-sm font-bold shadow-md active:scale-95">
+                    <span class="material-symbols-outlined text-[16px]">add</span>
+                    New Supplier
+                </button>
+            </div>
+
+            <!-- Statistical Cards -->
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <div
+                    class="bg-surface-container-lowest border border-outline-variant/20 rounded-2xl shadow-sm group hover:shadow-md transition-shadow p-3">
+                    <div class="flex justify-between items-start mb-4">
+                        <div
+                            class="w-10 h-10 rounded-full bg-primary-container/20 text-primary flex items-center justify-center">
+                            <span class="material-symbols-outlined">factory</span>
+                        </div>
+                    </div>
+                    <p class="font-label-xs text-label-xs text-on-surface-variant mb-1">Total Suppliers</p>
+                    <h3 class="font-headline-md text-xl text-on-surface">42</h3>
+                </div>
+                <div
+                    class="bg-surface-container-lowest border border-outline-variant/20 rounded-2xl shadow-sm group hover:shadow-md transition-shadow p-3">
+                    <div class="flex justify-between items-start mb-4">
+                        <div
+                            class="w-10 h-10 rounded-full bg-secondary-container/20 text-secondary flex items-center justify-center">
+                            <span class="material-symbols-outlined">water_drop</span>
+                        </div>
+                    </div>
+                    <p class="font-label-xs text-label-xs text-on-surface-variant mb-1">Total Capacity</p>
+                    <h3 class="font-headline-md text-xl text-on-surface">5,000k/day</h3>
+                </div>
+            </div>
+
+            <!-- Directory Table -->
+            <div
+                class="bg-surface-container-lowest border border-outline-variant/20 rounded-2xl shadow-sm overflow-hidden">
+                <div
+                    class="px-container-margin py-4 border-b border-outline-variant/20 flex justify-between items-center bg-white/80 glass-effect">
+                    <h3 class="font-title-sm text-title-sm text-on-surface">Supplier List</h3>
+                    <div class="flex items-center gap-3">
+                        <span id="pagination-suppliers-info"
+                            class="text-[11px] text-on-surface-variant font-medium">Showing 0 of 0</span>
+                        <div class="flex border border-outline-variant rounded-md overflow-hidden">
+                            <button id="btn-prev-suppliers"
+                                class="p-1 hover:bg-surface-container-low text-on-surface-variant disabled:opacity-50 disabled:cursor-not-allowed"><span
+                                    class="material-symbols-outlined text-[16px]">chevron_left</span></button>
+                            <button id="btn-next-suppliers"
+                                class="p-1 hover:bg-surface-container-low text-on-surface-variant border-l border-outline-variant disabled:opacity-50 disabled:cursor-not-allowed"><span
+                                    class="material-symbols-outlined text-[16px]">chevron_right</span></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Data Cards Grid -->
+                <div id="suppliers-card-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4"></div>
+            </div>
+        </div>
+        <!-- END SUPPLIERS PANEL -->
+<footer
+        class="w-full md:w-[calc(100%-270px)] mt-auto flex flex-col md:flex-row justify-between items-center gap-4 py-4 border-t border-outline-variant/10 px-container-margin md:ml-[270px] relative z-10 text-center">
+        <span class="text-on-surface-variant/50 text-[10px]">© 2024 AquaFlow Pro v2.4.1</span>
+        <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">System
+                Status: <span class="text-primary font-bold">Operational</span></a>
+            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">Privacy
+                Policy</a>
+            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">Terms of
+                Service</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./assets/js/db.js"></script>
+    <script type="module" src="./assets/js/main.js"></script>
+</body>
+
+</html>

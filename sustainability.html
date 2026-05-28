@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover"
+        name="viewport" />
+    <title>AquaFlow Pro - Management Portal</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- External config and styles -->
+    <script src="./assets/js/config.js"></script>
+    <link href="./assets/css/style.css" rel="stylesheet" />
+</head>
+
+<body
+    class="bg-[#f0f4f2] text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-clip relative min-h-screen">
+
+    <!-- Animated Organic Background -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Sidebar Container -->
+    <div id="sidebar-container" class="relative z-50"></div>
+
+    <!-- Main Content Area -->
+    <main
+        class="mx-0 px-3 md:px-0 md:ml-[270px] md:mr-4 mt-0 md:mt-4 mb-0 md:mb-4 pb-[100px] md:pb-4 min-h-[calc(100vh-32px)] flex flex-col z-10 relative transition-all duration-300">
+        <!-- Header Container -->
+        <div id="header-container" class="sticky top-0 z-40 md:-mx-4 md:px-4 pt-0 md:pt-4"></div>
+        <!-- SUSTAINABILITY PANEL -->
+        <div id="panel-sustainability" class="panel active">
+            <div class="mb-5"></div>
+
+            <div class="grid grid-cols-2 gap-gutter-md">
+                <div
+                    class="glass-card rounded-xl p-card-padding shadow-sm flex flex-col items-center justify-center py-10 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-secondary/10"></div>
+                    <span
+                        class="material-symbols-outlined text-[42px] text-secondary mb-2 relative z-10">water_drop</span>
+                    <h3 class="text-[32px] font-display-lg text-on-surface relative z-10">1.2M</h3>
+                    <p class="text-[12px] font-bold text-secondary uppercase tracking-wider relative z-10">Gallons Saved
+                    </p>
+                    <div
+                        class="w-full bg-surface-variant h-1.5 rounded-full mt-4 max-w-[150px] relative z-10 overflow-hidden">
+                        <div class="bg-secondary h-full w-[85%] rounded-full"></div>
+                    </div>
+                </div>
+
+                <div
+                    class="glass-card rounded-xl p-card-padding shadow-sm flex flex-col items-center justify-center py-10 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/10"></div>
+                    <span class="material-symbols-outlined text-[42px] text-primary mb-2 relative z-10">co2</span>
+                    <h3 class="text-[32px] font-display-lg text-on-surface relative z-10">450</h3>
+                    <p class="text-[12px] font-bold text-primary uppercase tracking-wider relative z-10">Tons Offset</p>
+                    <div
+                        class="w-full bg-surface-variant h-1.5 rounded-full mt-4 max-w-[150px] relative z-10 overflow-hidden">
+                        <div class="bg-primary h-full w-[65%] rounded-full"></div>
+                    </div>
+                </div>
+
+                <div
+                    class="glass-card rounded-xl p-card-padding shadow-sm col-span-2 flex flex-col items-center justify-center py-10 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-tertiary-fixed-dim/20"></div>
+                    <span class="material-symbols-outlined text-[42px] text-tertiary-fixed-dim mb-2 relative z-10"
+                        style="color: #404943;">recycling</span>
+                    <h3 class="text-[32px] font-display-lg text-on-surface relative z-10">92%</h3>
+                    <p class="text-[12px] font-bold text-on-surface-variant uppercase tracking-wider relative z-10">
+                        Bottle Recycle Rate</p>
+                    <div
+                        class="w-full bg-surface-variant h-1.5 rounded-full mt-4 max-w-[150px] relative z-10 overflow-hidden">
+                        <div class="bg-[#404943] h-full w-[92%] rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END SUSTAINABILITY PANEL -->
+<footer
+        class="w-full md:w-[calc(100%-270px)] mt-auto flex flex-col md:flex-row justify-between items-center gap-4 py-4 border-t border-outline-variant/10 px-container-margin md:ml-[270px] relative z-10 text-center">
+        <span class="text-on-surface-variant/50 text-[10px]">© 2024 AquaFlow Pro v2.4.1</span>
+        <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">System
+                Status: <span class="text-primary font-bold">Operational</span></a>
+            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">Privacy
+                Policy</a>
+            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">Terms of
+                Service</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./assets/js/db.js"></script>
+    <script type="module" src="./assets/js/main.js"></script>
+</body>
+
+</html>
