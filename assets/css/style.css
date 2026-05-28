@@ -22,22 +22,6 @@ h1, h2, h3, h4, h5, h6, .font-display-lg, .font-headline-md {
     vertical-align: middle;
 }
 
-/* Premium Glassmorphism */
-.glass-card, .glass-panel, .glass-effect {
-    background: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    box-shadow: 0 8px 32px 0 rgba(15, 82, 56, 0.05);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.glass-card:hover {
-    box-shadow: 0 12px 40px 0 rgba(15, 82, 56, 0.08);
-    border-color: rgba(149, 212, 179, 0.4);
-    transform: translateY(-2px);
-}
-
 /* Chart Gradient */
 .chart-bar-gradient {
     background: linear-gradient(180deg, #2d6a4f 0%, #95d4b3 100%);

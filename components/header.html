@@ -5,7 +5,13 @@
         <div
             class="bg-surface-variant/30 flex items-center px-3 py-1 rounded-full border border-outline-variant/20 hidden md:flex">
             <span class="material-symbols-outlined text-[14px] mr-1.5">calendar_today</span>
-            <span class="text-[11px] font-medium text-on-surface-variant">Monday, June 22</span>
+            <span id="current-date" class="text-[11px] font-medium text-on-surface-variant"></span>
+        <script>
+            (function() {
+                const d = new Date();
+                document.getElementById('current-date').textContent = d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+            })();
+        </script>
         </div>
     </div>
     <div class="flex items-center gap-stack-md">

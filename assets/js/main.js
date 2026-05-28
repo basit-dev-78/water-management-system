@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 5. Initialize Tables
     initTables();
 
-    // 5. Render Data if DB is ready
+    // 6. Render Data if DB is ready
     if (window.renderAll) {
         window.renderAll();
     }
