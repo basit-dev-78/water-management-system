@@ -218,55 +218,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     // DYNAMIC DATA RENDERING
     // ----------------------------------------------------
     function renderCustomers() {
-        const tbody = document.getElementById('customers-table-body');
-        const mobileList = document.getElementById('customers-mobile-list');
-        if(!tbody || !mobileList) return;
+        const cardList = document.getElementById('customers-card-list');
+        if(!cardList) return;
         const customers = window.DB.getCustomers();
-        tbody.innerHTML = '';
-        mobileList.innerHTML = '';
+        cardList.innerHTML = '';
         customers.forEach(cust => {
-            const tr = document.createElement('tr');
-            tr.className = 'hover:bg-surface-container-low/30 transition-colors group';
-            tr.innerHTML = `
-                <td class="px-container-margin py-2">
-                    <div class="flex items-center gap-2.5">
-                        <div class="w-8 h-8 rounded-lg bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-[10px]">
-                            ${cust.name ? cust.name.substring(0,2).toUpperCase() : 'NA'}</div>
-                        <div>
-                            <p class="text-[12px] font-bold text-on-surface leading-tight">${cust.name || 'Unknown'}</p>
-                            <p class="text-[9px] text-on-surface-variant">${cust.id}</p>
-                        </div>
-                    </div>
-                </td>
-                <td class="px-4 py-2">
-                    <p class="text-[11px] font-medium text-on-surface">${cust.phone || cust.contact || 'N/A'}</p>
-                    <p class="text-[10px] text-on-surface-variant/70">${cust.email || 'N/A'}</p>
-                </td>
-                <td class="px-4 py-2">
-                    <span class="bg-surface-variant/50 px-2 py-0.5 rounded text-[10px] text-on-surface-variant font-medium">${cust.address ? cust.address.split(',')[0] : 'Unknown'}</span>
-                </td>
-                <td class="px-4 py-2 text-[11px] font-semibold">$4.50</td>
-                <td class="px-4 py-2">
-                    <div class="flex items-center gap-1">
-                        <span class="text-[11px] font-bold text-primary">${cust.totalOrders || 0}</span>
-                        <span class="text-[9px] text-on-surface-variant">orders</span>
-                    </div>
-                </td>
-                <td class="px-4 py-2 text-[10px] text-on-surface-variant font-medium">${cust.lastOrder || 'N/A'}</td>
-                <td class="px-4 py-2">
-                    <span class="${cust.status === 'Active' ? 'bg-primary/10 text-primary' : 'bg-surface-variant text-on-surface-variant'} px-2 py-0.5 rounded-full text-[9px] font-bold inline-flex items-center gap-1">
-                        <span class="w-1 h-1 rounded-full ${cust.status === 'Active' ? 'bg-primary' : 'bg-on-surface-variant'}"></span> ${cust.status}
-                    </span>
-                </td>
-                <td class="px-container-margin py-2 text-right">
-                    <button class="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors p-1" onclick="DB.deleteRecord('customers', '${cust.id}'); window.renderAll();">delete</button>
-                </td>
-            `;
-            tbody.appendChild(tr);
-
-            // Mobile Card
             const card = document.createElement('div');
-            card.className = 'bg-surface-container-low/30 rounded-xl p-4 border border-outline-variant/20 shadow-sm';
+            card.className = 'bg-surface-container-low/30 rounded-xl p-4 border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow group relative overflow-hidden';
             card.innerHTML = `
                 <div class="flex justify-between items-start mb-3">
                     <div class="flex items-center gap-3">
@@ -295,52 +253,18 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </span>
                 </div>
             `;
-            mobileList.appendChild(card);
+            cardList.appendChild(card);
         });
     }
 
     function renderSuppliers() {
-        const tbody = document.getElementById('suppliers-table-body');
-        const mobileList = document.getElementById('suppliers-mobile-list');
-        if(!tbody || !mobileList) return;
-        
+        const cardList = document.getElementById('suppliers-card-list');
+        if(!cardList) return;
         const suppliers = window.DB.getSuppliers();
-        tbody.innerHTML = '';
-        mobileList.innerHTML = '';
-        
+        cardList.innerHTML = '';
         suppliers.forEach(supp => {
-            // Desktop Row
-            const tr = document.createElement('tr');
-            tr.className = 'hover:bg-surface-container-lowest transition-colors group';
-            tr.innerHTML = `
-                <td class="px-container-margin py-2">
-                    <div class="flex items-center gap-3">
-                        <div class="w-7 h-7 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-[10px]">
-                            ${supp.name ? supp.name.substring(0,2).toUpperCase() : 'NA'}</div>
-                        <div>
-                            <p class="font-body-md text-body-md font-bold text-on-surface">${supp.name || 'Unknown'}</p>
-                            <p class="font-label-xs text-label-xs text-on-surface-variant">ID: ${supp.id}</p>
-                        </div>
-                    </div>
-                </td>
-                <td class="px-6 py-2">
-                    <p class="font-body-md text-body-md text-on-surface">${supp.phone || supp.contact || 'N/A'}</p>
-                    <p class="text-[10px] text-on-surface-variant">${supp.category || ''}</p>
-                </td>
-                <td class="px-6 py-2">
-                    <span class="bg-primary-container/10 text-primary-container px-2.5 py-1 rounded-full font-label-xs text-label-xs font-bold inline-flex items-center gap-1.5">
-                        <span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> ${supp.status || 'Active'}
-                    </span>
-                </td>
-                <td class="px-container-margin text-right py-2">
-                    <button class="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors" onclick="DB.deleteRecord('suppliers', '${supp.id}'); window.renderAll();">delete</button>
-                </td>
-            `;
-            tbody.appendChild(tr);
-
-            // Mobile Card
             const card = document.createElement('div');
-            card.className = 'bg-surface-container-low/30 rounded-xl p-4 border border-outline-variant/20 shadow-sm';
+            card.className = 'bg-surface-container-low/30 rounded-xl p-4 border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow group relative overflow-hidden';
             card.innerHTML = `
                 <div class="flex justify-between items-start mb-3">
                     <div class="flex items-center gap-3">
@@ -363,39 +287,19 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </span>
                 </div>
             `;
-            mobileList.appendChild(card);
+            cardList.appendChild(card);
         });
     }
 
     function renderInventory() {
-        const tbody = document.getElementById('inventory-table-body');
-        const mobileList = document.getElementById('inventory-mobile-list');
-        if(!tbody || !mobileList) return;
+        const cardList = document.getElementById('inventory-card-list');
+        if(!cardList) return;
         const inventory = window.DB.getInventory();
-        tbody.innerHTML = '';
-        mobileList.innerHTML = '';
+        cardList.innerHTML = '';
         inventory.forEach(item => {
             const isLow = item.stock <= item.threshold;
-            const tr = document.createElement('tr');
-            tr.className = 'hover:bg-surface-container-low/50 transition-colors group';
-            tr.innerHTML = `
-                <td class="px-container-margin py-3">
-                    <p class="text-[13px] font-bold text-on-surface leading-tight">${item.name}</p>
-                </td>
-                <td class="px-4 py-3">
-                    <p class="text-[12px] font-medium text-on-surface-variant">${item.sku || 'N/A'}</p>
-                </td>
-                <td class="px-4 py-3"><span class="bg-surface-variant/50 px-2.5 py-1 rounded-md text-[11px] font-medium">${item.category || 'General'}</span></td>
-                <td class="px-4 py-3">
-                    <p class="text-[13px] font-bold ${isLow ? 'text-error' : 'text-primary'}">${item.stock}</p>
-                </td>
-                <td class="px-4 py-3"><span class="${isLow ? 'bg-error/10 text-error animate-pulse-slow' : 'bg-primary/10 text-primary'} px-3 py-1 rounded-full text-[10px] font-bold">${item.status}</span></td>
-            `;
-            tbody.appendChild(tr);
-
-            // Mobile Card
             const card = document.createElement('div');
-            card.className = 'bg-surface-container-low/30 rounded-xl p-4 border border-outline-variant/20 shadow-sm';
+            card.className = 'bg-surface-container-low/30 rounded-xl p-4 border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow group relative overflow-hidden';
             card.innerHTML = `
                 <div class="flex justify-between items-start mb-2">
                     <div>
@@ -412,45 +316,22 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <p class="text-[14px] font-bold ${isLow ? 'text-error' : 'text-primary'}">${item.stock} <span class="text-[10px] font-normal text-on-surface-variant">units</span></p>
                 </div>
             `;
-            mobileList.appendChild(card);
+            cardList.appendChild(card);
         });
     }
 
     function renderOrders() {
-        const tbody = document.getElementById('orders-table-body');
-        const mobileList = document.getElementById('orders-mobile-list');
-        if(!tbody || !mobileList) return;
+        const cardList = document.getElementById('orders-card-list');
+        if(!cardList) return;
         const orders = window.DB.getOrders();
-        tbody.innerHTML = '';
-        mobileList.innerHTML = '';
+        cardList.innerHTML = '';
         orders.forEach(order => {
             let statusClass = 'bg-primary-container/20 text-primary-container'; // processing
             if(order.status === 'Shipped' || order.status === 'Out for Delivery') statusClass = 'bg-secondary/20 text-secondary';
             if(order.status === 'Delivered' || order.status === 'Completed') statusClass = 'bg-primary/10 text-primary';
             
-            // Desktop Table Row
-            const tr = document.createElement('tr');
-            tr.className = 'hover:bg-surface-container-low/50 transition-colors group';
-            tr.innerHTML = `
-                <td class="px-container-margin py-3">
-                    <p class="text-[13px] font-bold text-on-surface">${order.id}</p>
-                </td>
-                <td class="px-4 py-3">
-                    <p class="text-[12px] font-medium text-on-surface-variant">${order.customerName}</p>
-                </td>
-                <td class="px-4 py-3">
-                    <p class="text-[13px] font-bold text-on-surface">$${(order.total || 0).toFixed(2)}</p>
-                </td>
-                <td class="px-4 py-3"><span class="${statusClass} px-3 py-1 rounded-full text-[10px] font-bold">${order.status}</span></td>
-                <td class="px-4 py-3">
-                    <p class="text-[12px] text-on-surface-variant">${order.date}</p>
-                </td>
-            `;
-            tbody.appendChild(tr);
-
-            // Mobile Card
             const card = document.createElement('div');
-            card.className = 'bg-surface-container-low/30 rounded-xl p-4 border border-outline-variant/20 shadow-sm';
+            card.className = 'bg-surface-container-low/30 rounded-xl p-4 border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow group relative overflow-hidden';
             card.innerHTML = `
                 <div class="flex justify-between items-start mb-2">
                     <div>
@@ -467,7 +348,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <p class="text-[14px] font-bold text-on-surface">$${(order.total || 0).toFixed(2)}</p>
                 </div>
             `;
-            mobileList.appendChild(card);
+            cardList.appendChild(card);
         });
     }
 
@@ -731,12 +612,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Reset active rows
             const activePanel = document.querySelector('.panel.active');
             if(activePanel) {
-                const rows = activePanel.querySelectorAll('tbody tr');
-                rows.forEach(row => row.style.display = '');
-                // Also reset mobile cards
-                const cards = activePanel.querySelectorAll('.glass-card.rounded-xl.p-4');
+                // Also reset cards
+                const cards = activePanel.querySelectorAll('[id$="-card-list"] > div');
                 cards.forEach(card => {
-                    if(card.parentElement && card.parentElement.id.includes('list')) card.style.display = '';
+                    card.style.display = '';
                 });
             }
             closeFilterPanel();
@@ -755,24 +634,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             const activePanel = document.querySelector('.panel.active');
             if(activePanel) {
-                const rows = activePanel.querySelectorAll('tbody tr');
-                rows.forEach(row => {
-                    const text = row.textContent.toLowerCase();
-                    let matchKeyword = keyword === '' || text.includes(keyword);
-                    let matchStatus = status === '' || text.includes(status);
-                    let matchCategory = category === '' || text.includes(category);
-                    
-                    if(matchKeyword && matchStatus && matchCategory) {
-                        row.style.display = '';
-                    } else {
-                        row.style.display = 'none';
-                    }
-                });
-                
-                // Also filter mobile cards
-                const cards = activePanel.querySelectorAll('.glass-card.rounded-xl.p-4');
+                // Also filter cards
+                const cards = activePanel.querySelectorAll('[id$="-card-list"] > div');
                 cards.forEach(card => {
-                    if(card.parentElement && !card.parentElement.id.includes('list')) return; // Ensure it's a list card
                     const text = card.textContent.toLowerCase();
                     let matchKeyword = keyword === '' || text.includes(keyword);
                     let matchStatus = status === '' || text.includes(status);

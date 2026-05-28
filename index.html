@@ -338,44 +338,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- Mobile Cards -->
-                <div id="customers-mobile-list" class="flex flex-col gap-3 md:hidden p-4"></div>
-                
-                <div class="hidden md:block overflow-x-auto">
-                    <table class="w-full text-left">
-                        <thead>
-                            <tr class="bg-surface-container-low/50 border-b border-outline-variant/10">
-                                <th
-                                    class="px-container-margin py-2.5 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">
-                                    Customer</th>
-                                <th
-                                    class="px-4 py-2.5 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">
-                                    Contact</th>
-                                <th
-                                    class="px-4 py-2.5 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">
-                                    Area</th>
-                                <th
-                                    class="px-4 py-2.5 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">
-                                    Unit Price</th>
-                                <th
-                                    class="px-4 py-2.5 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">
-                                    Pending</th>
-                                <th
-                                    class="px-4 py-2.5 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">
-                                    Last Delivery</th>
-                                <th
-                                    class="px-4 py-2.5 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">
-                                    Status</th>
-                                <th
-                                    class="px-container-margin py-2.5 text-right text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">
-                                    Action</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-outline-variant/5" id="customers-table-body">
-                            <!-- JS will populate rows here -->
-                        </tbody>
-                    </table>
-                </div>
+                <!-- Data Cards Grid -->
+                <div id="customers-card-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4"></div>
             </div>
         </div>
         <!-- END CUSTOMERS PANEL -->
@@ -428,34 +392,8 @@
                     class="px-container-margin py-4 border-b border-outline-variant/20 flex justify-between items-center bg-white/40 glass-effect">
                     <h3 class="font-title-sm text-title-sm text-on-surface">Supplier List</h3>
                 </div>
-                <div class="hidden md:block overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-surface-container-low/50">
-                                <th
-                                    class="px-container-margin font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider py-2">
-                                    Name</th>
-                                <th
-                                    class="px-6 font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider py-2">
-                                    Contact Info</th>
-                                <th
-                                    class="px-6 font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider py-2">
-                                    Status</th>
-                                <th
-                                    class="px-container-margin font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider text-right py-2">
-                                    Action</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-outline-variant/10" id="suppliers-table-body">
-                            <!-- JS will populate rows here -->
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Mobile Card View -->
-                <div class="md:hidden flex flex-col gap-3 p-4" id="suppliers-mobile-list">
-                    <!-- JS will populate cards here -->
-                </div>
+                <!-- Data Cards Grid -->
+                <div id="suppliers-card-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4"></div>
             </div>
         </div>
         <!-- END SUPPLIERS PANEL -->
@@ -531,35 +469,8 @@
                         </select>
                     </div>
                 </div>
-                <!-- Mobile Cards -->
-                <div id="inventory-mobile-list" class="flex flex-col gap-3 md:hidden p-4"></div>
-                
-                <div class="hidden md:block overflow-x-auto">
-                    <table class="w-full text-left">
-                        <thead>
-                            <tr class="bg-surface-container-low/50 border-b border-outline-variant/10">
-                                <th
-                                    class="px-container-margin py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
-                                    Item Name</th>
-                                <th
-                                    class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
-                                    SKU</th>
-                                <th
-                                    class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
-                                    Category</th>
-                                <th
-                                    class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
-                                    Stock Level</th>
-                                <th
-                                    class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
-                                    Status</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-outline-variant/5" id="inventory-table-body">
-                            <!-- JS will populate rows here -->
-                        </tbody>
-                    </table>
-                </div>
+                <!-- Data Cards Grid -->
+                <div id="inventory-card-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4"></div>
             </div>
         </div>
         <!-- END INVENTORY PANEL -->
@@ -604,35 +515,8 @@
                     <h3 class="text-[14px] font-bold text-on-surface">Recent Orders</h3>
                 </div>
                 
-                <!-- Mobile Cards -->
-                <div id="orders-mobile-list" class="flex flex-col gap-3 md:hidden p-4"></div>
-                
-                <div class="hidden md:block overflow-x-auto">
-                    <table class="w-full text-left">
-                        <thead>
-                            <tr class="bg-surface-container-low/50 border-b border-outline-variant/10">
-                                <th
-                                    class="px-container-margin py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
-                                    Order ID</th>
-                                <th
-                                    class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
-                                    Customer</th>
-                                <th
-                                    class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
-                                    Amount</th>
-                                <th
-                                    class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
-                                    Status</th>
-                                <th
-                                    class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
-                                    Date</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-outline-variant/5" id="orders-table-body">
-                            <!-- JS will populate rows here -->
-                        </tbody>
-                    </table>
-                </div>
+                <!-- Data Cards Grid -->
+                <div id="orders-card-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4"></div>
             </div>
         </div>
         <!-- END ORDERS PANEL -->
