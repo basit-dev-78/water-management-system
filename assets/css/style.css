@@ -8,6 +8,8 @@ body {
                 #f8f9fa;
     background-attachment: fixed;
     color: #191c1d;
+    overscroll-behavior-y: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 h1, h2, h3, h4, h5, h6, .font-display-lg, .font-headline-md {
@@ -208,4 +210,18 @@ tr.group {
 
 .toast-exit {
     animation: slideOutRight 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+/* Mobile Bottom Navigation Styles */
+.mobile-nav-link.active-nav .icon-container {
+    background-color: #c2edc4; /* secondary-fixed */
+}
+.mobile-nav-link.active-nav {
+    color: #0f5238; /* primary */
+}
+.mobile-nav-link.active-nav .nav-icon {
+    font-variation-settings: 'FILL' 1;
+}
+.mobile-nav-link:active {
+    transform: scale(0.92);
 }

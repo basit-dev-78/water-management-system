@@ -205,20 +205,35 @@
 </aside>
 
 <!-- Mobile Bottom Navigation Bar -->
-<nav id="mobile-bottom-nav" class="md:hidden fixed bottom-0 left-0 right-0 h-[72px] bg-white/90 backdrop-blur-md border-t border-outline-variant/20 z-50 flex items-center justify-around px-2 shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
-    <a data-tab="panel-dashboard" class="flex flex-col items-center justify-center gap-1 text-on-surface-variant w-[60px]" href="#">
-        <span class="material-symbols-outlined text-[24px]">dashboard</span>
+<nav id="mobile-bottom-nav" class="md:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-outline-variant/20 z-50 flex items-center justify-around px-2 shadow-[0_-4px_24px_rgba(0,0,0,0.05)] pb-[env(safe-area-inset-bottom,0px)] pt-1.5 h-[calc(68px+env(safe-area-inset-bottom,0px))]">
+    <a data-tab="panel-dashboard" class="mobile-nav-link flex flex-col items-center justify-center text-on-surface-variant w-[64px] transition-all active-nav" href="#">
+        <div class="icon-container px-3 py-0.5 rounded-full transition-colors flex items-center justify-center">
+            <span class="material-symbols-outlined text-[24px] nav-icon transition-transform">dashboard</span>
+        </div>
+        <span class="text-[10px] font-medium mt-0.5">Home</span>
     </a>
-    <a data-tab="panel-customers" class="flex flex-col items-center justify-center gap-1 text-on-surface-variant w-[60px]" href="#">
-        <span class="material-symbols-outlined text-[24px]">group</span>
+    <a data-tab="panel-customers" class="mobile-nav-link flex flex-col items-center justify-center text-on-surface-variant w-[64px] transition-all" href="#">
+        <div class="icon-container px-3 py-0.5 rounded-full transition-colors flex items-center justify-center">
+            <span class="material-symbols-outlined text-[24px] nav-icon transition-transform">group</span>
+        </div>
+        <span class="text-[10px] font-medium mt-0.5">Clients</span>
     </a>
-    <a data-tab="panel-suppliers" class="flex flex-col items-center justify-center gap-1 text-on-surface-variant w-[60px]" href="#">
-        <span class="material-symbols-outlined text-[24px]">inventory_2</span>
+    <a data-tab="panel-suppliers" class="mobile-nav-link flex flex-col items-center justify-center text-on-surface-variant w-[64px] transition-all" href="#">
+        <div class="icon-container px-3 py-0.5 rounded-full transition-colors flex items-center justify-center">
+            <span class="material-symbols-outlined text-[24px] nav-icon transition-transform">inventory_2</span>
+        </div>
+        <span class="text-[10px] font-medium mt-0.5">Suppliers</span>
     </a>
-    <a data-tab="panel-inventory" class="flex flex-col items-center justify-center gap-1 text-on-surface-variant w-[60px]" href="#">
-        <span class="material-symbols-outlined text-[24px]">water_bottle</span>
+    <a data-tab="panel-inventory" class="mobile-nav-link flex flex-col items-center justify-center text-on-surface-variant w-[64px] transition-all" href="#">
+        <div class="icon-container px-3 py-0.5 rounded-full transition-colors flex items-center justify-center">
+            <span class="material-symbols-outlined text-[24px] nav-icon transition-transform">water_bottle</span>
+        </div>
+        <span class="text-[10px] font-medium mt-0.5">Stock</span>
     </a>
-    <a data-tab="panel-orders" class="flex flex-col items-center justify-center gap-1 text-on-surface-variant w-[60px]" href="#">
-        <span class="material-symbols-outlined text-[24px]">shopping_cart</span>
+    <a data-tab="panel-orders" class="mobile-nav-link flex flex-col items-center justify-center text-on-surface-variant w-[64px] transition-all" href="#">
+        <div class="icon-container px-3 py-0.5 rounded-full transition-colors flex items-center justify-center">
+            <span class="material-symbols-outlined text-[24px] nav-icon transition-transform">shopping_cart</span>
+        </div>
+        <span class="text-[10px] font-medium mt-0.5">Orders</span>
     </a>
 </nav>
