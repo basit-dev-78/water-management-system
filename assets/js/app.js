@@ -360,14 +360,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function renderOrders() {
         const tbody = document.getElementById('orders-table-body');
-        if(!tbody) return;
+        const mobileList = document.getElementById('orders-mobile-list');
+        if(!tbody || !mobileList) return;
         const orders = window.DB.getOrders();
         tbody.innerHTML = '';
+        mobileList.innerHTML = '';
         orders.forEach(order => {
             let statusClass = 'bg-primary-container/20 text-primary-container'; // processing
             if(order.status === 'Shipped' || order.status === 'Out for Delivery') statusClass = 'bg-secondary/20 text-secondary';
             if(order.status === 'Delivered' || order.status === 'Completed') statusClass = 'bg-primary/10 text-primary';
             
+            // Desktop Table Row
             const tr = document.createElement('tr');
             tr.className = 'hover:bg-surface-container-low/50 transition-colors group';
             tr.innerHTML = `
@@ -386,6 +389,27 @@ document.addEventListener('DOMContentLoaded', async () => {
                 </td>
             `;
             tbody.appendChild(tr);
+
+            // Mobile Card
+            const card = document.createElement('div');
+            card.className = 'bg-surface-container-low/30 rounded-xl p-4 border border-outline-variant/20 shadow-sm';
+            card.innerHTML = `
+                <div class="flex justify-between items-start mb-2">
+                    <div>
+                        <p class="font-body-md font-bold text-on-surface leading-tight">${order.customerName}</p>
+                        <p class="font-label-xs text-on-surface-variant mt-0.5">Order ID: ${order.id}</p>
+                    </div>
+                    <span class="${statusClass} px-2.5 py-1 rounded-full text-[10px] font-bold inline-block">${order.status}</span>
+                </div>
+                <div class="flex justify-between items-center pt-2 border-t border-outline-variant/10 mt-2">
+                    <div class="flex items-center gap-1.5 text-on-surface-variant">
+                        <span class="material-symbols-outlined text-[14px]">calendar_today</span>
+                        <p class="text-[11px] font-medium">${order.date}</p>
+                    </div>
+                    <p class="text-[14px] font-bold text-on-surface">$${(order.total || 0).toFixed(2)}</p>
+                </div>
+            `;
+            mobileList.appendChild(card);
         });
     }
 
