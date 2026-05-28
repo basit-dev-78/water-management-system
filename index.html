@@ -328,12 +328,11 @@
                     class="px-container-margin py-3 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low/30 backdrop-blur-sm">
                     <h3 class="text-[13px] font-bold text-on-surface">Directory List</h3>
                     <div class="flex items-center gap-3">
-                        <span class="text-[11px] text-on-surface-variant font-medium">Showing 1-10 of 1,248</span>
+                        <span id="pagination-customers-info" class="text-[11px] text-on-surface-variant font-medium">Showing 1-10 of 1,248</span>
                         <div class="flex border border-outline-variant rounded-md overflow-hidden">
-                            <button class="p-1 hover:bg-surface-container-low text-on-surface-variant"><span
+                            <button id="btn-prev-customers" class="p-1 hover:bg-surface-container-low text-on-surface-variant disabled:opacity-50 disabled:cursor-not-allowed"><span
                                     class="material-symbols-outlined text-[16px]">chevron_left</span></button>
-                            <button
-                                class="p-1 hover:bg-surface-container-low text-on-surface-variant border-l border-outline-variant"><span
+                            <button id="btn-next-customers" class="p-1 hover:bg-surface-container-low text-on-surface-variant border-l border-outline-variant disabled:opacity-50 disabled:cursor-not-allowed"><span
                                     class="material-symbols-outlined text-[16px]">chevron_right</span></button>
                         </div>
                     </div>
@@ -391,6 +390,13 @@
                 <div
                     class="px-container-margin py-4 border-b border-outline-variant/20 flex justify-between items-center bg-white/40 glass-effect">
                     <h3 class="font-title-sm text-title-sm text-on-surface">Supplier List</h3>
+                    <div class="flex items-center gap-3">
+                        <span id="pagination-suppliers-info" class="text-[11px] text-on-surface-variant font-medium">Showing 0 of 0</span>
+                        <div class="flex border border-outline-variant rounded-md overflow-hidden">
+                            <button id="btn-prev-suppliers" class="p-1 hover:bg-surface-container-low text-on-surface-variant disabled:opacity-50 disabled:cursor-not-allowed"><span class="material-symbols-outlined text-[16px]">chevron_left</span></button>
+                            <button id="btn-next-suppliers" class="p-1 hover:bg-surface-container-low text-on-surface-variant border-l border-outline-variant disabled:opacity-50 disabled:cursor-not-allowed"><span class="material-symbols-outlined text-[16px]">chevron_right</span></button>
+                        </div>
+                    </div>
                 </div>
                 <!-- Data Cards Grid -->
                 <div id="suppliers-card-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4"></div>
@@ -456,17 +462,26 @@
             <!-- Inventory Table -->
             <div class="glass-card rounded-xl shadow-sm overflow-hidden">
                 <div
-                    class="px-container-margin py-4 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low/30 backdrop-blur-sm">
+                    class="px-container-margin py-4 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low/30 backdrop-blur-sm flex-wrap gap-2">
                     <h3 class="text-[14px] font-bold text-on-surface">Stock Directory</h3>
-                    <div class="flex items-center gap-3">
-                        <span class="text-[12px] text-on-surface-variant font-medium">Filter by:</span>
-                        <select
-                            class="bg-transparent border border-outline-variant rounded-md text-[11px] font-bold focus:ring-0 cursor-pointer py-1 px-2">
-                            <option>All Categories</option>
-                            <option>Bottles</option>
-                            <option>Filters</option>
-                            <option>Equipment</option>
-                        </select>
+                    <div class="flex items-center gap-4">
+                        <div class="flex items-center gap-3">
+                            <span id="pagination-inventory-info" class="text-[11px] text-on-surface-variant font-medium">Showing 0 of 0</span>
+                            <div class="flex border border-outline-variant rounded-md overflow-hidden">
+                                <button id="btn-prev-inventory" class="p-1 hover:bg-surface-container-low text-on-surface-variant disabled:opacity-50 disabled:cursor-not-allowed"><span class="material-symbols-outlined text-[16px]">chevron_left</span></button>
+                                <button id="btn-next-inventory" class="p-1 hover:bg-surface-container-low text-on-surface-variant border-l border-outline-variant disabled:opacity-50 disabled:cursor-not-allowed"><span class="material-symbols-outlined text-[16px]">chevron_right</span></button>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[12px] text-on-surface-variant font-medium">Filter by:</span>
+                            <select
+                                class="bg-transparent border border-outline-variant rounded-md text-[11px] font-bold focus:ring-0 cursor-pointer py-1 px-2">
+                                <option>All Categories</option>
+                                <option>Bottles</option>
+                                <option>Filters</option>
+                                <option>Equipment</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <!-- Data Cards Grid -->
@@ -513,6 +528,13 @@
                 <div
                     class="px-container-margin py-4 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low/30 backdrop-blur-sm">
                     <h3 class="text-[14px] font-bold text-on-surface">Recent Orders</h3>
+                    <div class="flex items-center gap-3">
+                        <span id="pagination-orders-info" class="text-[11px] text-on-surface-variant font-medium">Showing 0 of 0</span>
+                        <div class="flex border border-outline-variant rounded-md overflow-hidden">
+                            <button id="btn-prev-orders" class="p-1 hover:bg-surface-container-low text-on-surface-variant disabled:opacity-50 disabled:cursor-not-allowed"><span class="material-symbols-outlined text-[16px]">chevron_left</span></button>
+                            <button id="btn-next-orders" class="p-1 hover:bg-surface-container-low text-on-surface-variant border-l border-outline-variant disabled:opacity-50 disabled:cursor-not-allowed"><span class="material-symbols-outlined text-[16px]">chevron_right</span></button>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Data Cards Grid -->

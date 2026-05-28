@@ -215,12 +215,47 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     // ----------------------------------------------------
+    // PAGINATION LOGIC
+    // ----------------------------------------------------
+    const PAGINATION = {
+        customers: { page: 1, perPage: 12 },
+        suppliers: { page: 1, perPage: 12 },
+        inventory: { page: 1, perPage: 12 },
+        orders: { page: 1, perPage: 12 }
+    };
+
+    function updatePaginationUI(type, totalItems) {
+        const state = PAGINATION[type];
+        const totalPages = Math.ceil(totalItems / state.perPage) || 1;
+        
+        if (state.page > totalPages) state.page = totalPages;
+        if (state.page < 1) state.page = 1;
+        
+        const startItem = totalItems === 0 ? 0 : ((state.page - 1) * state.perPage) + 1;
+        const endItem = Math.min(state.page * state.perPage, totalItems);
+        
+        const infoSpan = document.getElementById(`pagination-${type}-info`);
+        if (infoSpan) infoSpan.textContent = `Showing ${startItem}-${endItem} of ${totalItems}`;
+        
+        const btnPrev = document.getElementById(`btn-prev-${type}`);
+        const btnNext = document.getElementById(`btn-next-${type}`);
+        
+        if (btnPrev) btnPrev.disabled = state.page <= 1;
+        if (btnNext) btnNext.disabled = state.page >= totalPages;
+    }
+
+    // ----------------------------------------------------
     // DYNAMIC DATA RENDERING
     // ----------------------------------------------------
     function renderCustomers() {
         const cardList = document.getElementById('customers-card-list');
         if(!cardList) return;
-        const customers = window.DB.getCustomers();
+        let customers = window.DB.getCustomers();
+        
+        updatePaginationUI('customers', customers.length);
+        const state = PAGINATION.customers;
+        customers = customers.slice((state.page - 1) * state.perPage, state.page * state.perPage);
+        
         cardList.innerHTML = '';
         customers.forEach(cust => {
             const card = document.createElement('div');
@@ -260,7 +295,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     function renderSuppliers() {
         const cardList = document.getElementById('suppliers-card-list');
         if(!cardList) return;
-        const suppliers = window.DB.getSuppliers();
+        let suppliers = window.DB.getSuppliers();
+
+        updatePaginationUI('suppliers', suppliers.length);
+        const state = PAGINATION.suppliers;
+        suppliers = suppliers.slice((state.page - 1) * state.perPage, state.page * state.perPage);
+
         cardList.innerHTML = '';
         suppliers.forEach(supp => {
             const card = document.createElement('div');
@@ -294,7 +334,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     function renderInventory() {
         const cardList = document.getElementById('inventory-card-list');
         if(!cardList) return;
-        const inventory = window.DB.getInventory();
+        let inventory = window.DB.getInventory();
+
+        updatePaginationUI('inventory', inventory.length);
+        const state = PAGINATION.inventory;
+        inventory = inventory.slice((state.page - 1) * state.perPage, state.page * state.perPage);
+
         cardList.innerHTML = '';
         inventory.forEach(item => {
             const isLow = item.stock <= item.threshold;
@@ -323,7 +368,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     function renderOrders() {
         const cardList = document.getElementById('orders-card-list');
         if(!cardList) return;
-        const orders = window.DB.getOrders();
+        let orders = window.DB.getOrders();
+
+        updatePaginationUI('orders', orders.length);
+        const state = PAGINATION.orders;
+        orders = orders.slice((state.page - 1) * state.perPage, state.page * state.perPage);
+
         cardList.innerHTML = '';
         orders.forEach(order => {
             let statusClass = 'bg-primary-container/20 text-primary-container'; // processing
@@ -360,6 +410,33 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderOrders();
     };
     
+    // Pagination Event Listeners
+    ['customers', 'suppliers', 'inventory', 'orders'].forEach(type => {
+        const btnPrev = document.getElementById(`btn-prev-${type}`);
+        const btnNext = document.getElementById(`btn-next-${type}`);
+        
+        if (btnPrev) {
+            btnPrev.addEventListener('click', () => {
+                if (PAGINATION[type].page > 1) {
+                    PAGINATION[type].page--;
+                    if (type === 'customers') renderCustomers();
+                    if (type === 'suppliers') renderSuppliers();
+                    if (type === 'inventory') renderInventory();
+                    if (type === 'orders') renderOrders();
+                }
+            });
+        }
+        if (btnNext) {
+            btnNext.addEventListener('click', () => {
+                PAGINATION[type].page++;
+                if (type === 'customers') renderCustomers();
+                if (type === 'suppliers') renderSuppliers();
+                if (type === 'inventory') renderInventory();
+                if (type === 'orders') renderOrders();
+            });
+        }
+    });
+
     // Call render once after a short delay to ensure DOM is ready
     setTimeout(window.renderAll, 100);
 
