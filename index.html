@@ -29,7 +29,7 @@
     <main
         class="mx-0 px-3 md:px-0 md:ml-[270px] md:mr-4 mt-0 md:mt-4 mb-0 md:mb-4 pb-[100px] md:pb-4 min-h-[calc(100vh-32px)] flex flex-col z-10 relative transition-all duration-300">
         <!-- Header Container -->
-        <div id="header-container"></div>
+        <div id="header-container" class="sticky top-0 z-40 md:-mx-4 md:px-4 pt-0 md:pt-4"></div>
         <!-- DASHBOARD PANEL -->
         <div id="panel-dashboard" class="panel active">
             <!-- KPI Cards Grid -->
@@ -362,7 +362,7 @@
             <div
                 class="bg-surface-container-lowest border border-outline-variant/10 rounded-xl shadow-sm overflow-hidden">
                 <div
-                    class="px-container-margin py-3 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low/30 backdrop-blur-sm">
+                    class="px-container-margin py-3 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low/80 backdrop-blur-md sticky top-[68px] md:top-[90px] z-30">
                     <h3 class="text-[13px] font-bold text-on-surface">Directory List</h3>
                     <div class="flex items-center gap-3">
                         <span id="pagination-customers-info"
@@ -428,7 +428,7 @@
             <div
                 class="bg-surface-container-lowest border border-outline-variant/20 rounded-2xl shadow-sm overflow-hidden">
                 <div
-                    class="px-container-margin py-4 border-b border-outline-variant/20 flex justify-between items-center bg-white/40 glass-effect">
+                    class="px-container-margin py-4 border-b border-outline-variant/20 flex justify-between items-center bg-white/80 glass-effect sticky top-[68px] md:top-[90px] z-30">
                     <h3 class="font-title-sm text-title-sm text-on-surface">Supplier List</h3>
                     <div class="flex items-center gap-3">
                         <span id="pagination-suppliers-info"
@@ -507,7 +507,7 @@
             <!-- Inventory Table -->
             <div class="glass-card rounded-xl shadow-sm overflow-hidden">
                 <div
-                    class="px-container-margin py-4 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low/30 backdrop-blur-sm flex-wrap gap-2">
+                    class="px-container-margin py-4 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low/80 backdrop-blur-md flex-wrap gap-2 sticky top-[68px] md:top-[90px] z-30">
                     <h3 class="text-[14px] font-bold text-on-surface">Stock Directory</h3>
                     <div class="flex items-center gap-4">
                         <div class="flex items-center gap-3">
@@ -576,7 +576,7 @@
             <!-- Orders Table -->
             <div class="glass-card rounded-xl shadow-sm overflow-hidden">
                 <div
-                    class="px-container-margin py-4 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low/30 backdrop-blur-sm">
+                    class="px-container-margin py-4 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low/80 backdrop-blur-md sticky top-[68px] md:top-[90px] z-30">
                     <h3 class="text-[14px] font-bold text-on-surface">Recent Orders</h3>
                     <div class="flex items-center gap-3">
                         <span id="pagination-orders-info"
