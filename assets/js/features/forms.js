@@ -33,9 +33,13 @@ export function initForms() {
 
     if (orderCustomerSelect && window.DB) {
         const customers = window.DB.getCustomers();
-        orderCustomerSelect.innerHTML = customers.map(c => 
-            `<option value="${c.id}">${c.name} (${c.id})</option>`
-        ).join('');
+        if (customers.length === 0) {
+            orderCustomerSelect.innerHTML = '<option value="">No customers — add one first</option>';
+        } else {
+            orderCustomerSelect.innerHTML = customers.map(c => 
+                `<option value="${c.id}">${c.name} (${c.id})</option>`
+            ).join('');
+        }
     }
 
     if (orderProductSelect && window.DB) {

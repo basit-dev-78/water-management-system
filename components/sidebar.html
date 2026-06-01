@@ -174,6 +174,40 @@
             <span class="text-[12px] font-bold">Logistics</span>
         </a>
 
+        <!-- Drivers -->
+        <div class="nav-group">
+            <a href="#"
+                class="nav-parent flex items-center justify-between text-on-surface-variant hover:bg-surface-variant/50 rounded-lg px-3 py-2 transition-all duration-200">
+                <div class="flex items-center gap-stack-md">
+                    <span class="material-symbols-outlined text-[18px]">badge</span>
+                    <span class="text-[12px] font-bold">Drivers</span>
+                </div>
+                <span
+                    class="material-symbols-outlined text-[16px] transition-transform duration-300 expand-icon">expand_more</span>
+            </a>
+            <div class="nav-children overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
+                <div
+                    class="flex flex-col gap-1 pl-8 pr-2 py-2 relative before:content-[''] before:absolute before:left-5 before:top-2 before:bottom-2 before:w-[2px] before:bg-outline-variant/20 before:rounded-full">
+                    <a data-tab="panel-drivers"
+                        class="nav-link-sub relative text-[11px] font-medium text-on-surface-variant hover:text-primary hover:bg-primary/5 py-2 px-3 rounded-lg transition-all duration-200 flex items-center gap-2 group"
+                        href="drivers.html">
+                        <div
+                            class="sub-dot w-1.5 h-1.5 rounded-full bg-outline-variant/50 group-hover:bg-primary transition-colors">
+                        </div>
+                        <span>Fleet Registry</span>
+                    </a>
+                    <a data-tab="panel-driver-add"
+                        class="nav-link-sub relative text-[11px] font-medium text-on-surface-variant hover:text-primary hover:bg-primary/5 py-2 px-3 rounded-lg transition-all duration-200 flex items-center gap-2 group"
+                        href="driver-add.html">
+                        <div
+                            class="sub-dot w-1.5 h-1.5 rounded-full bg-outline-variant/50 group-hover:bg-primary transition-colors">
+                        </div>
+                        <span>Add Driver</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
         <!-- Reports (No subtabs needed) -->
         <a data-tab="panel-reports"
             class="nav-link-primary flex items-center gap-stack-md text-on-surface-variant hover:bg-surface-variant/50 rounded-lg px-3 py-2 transition-all duration-200 mt-1"

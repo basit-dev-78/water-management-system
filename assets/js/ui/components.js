@@ -133,6 +133,14 @@ export function initComponents() {
         });
     });
 
+    // Deliveries Card Click Navigation
+    const deliveriesCard = document.getElementById('dashboard-deliveries-card');
+    if (deliveriesCard) {
+        deliveriesCard.addEventListener('click', () => {
+            window.location.href = 'deliveries.html';
+        });
+    }
+
     // Sidebar search interaction and Global Search Filtering
     const searchInputs = document.querySelectorAll('input[type="text"]');
     searchInputs.forEach(searchInput => {
@@ -279,6 +287,10 @@ export function initGlobalButtons() {
             window.location.href = 'customer-add.html';
             return;
         }
+        if (text.includes('Add Driver') || text.includes('New Driver')) {
+            window.location.href = 'driver-add.html';
+            return;
+        }
         if ((text.includes('Add Supplier') || text.includes('New Supplier')) && !btn.closest('.fixed.bottom-0')) {
             window.location.href = 'supplier-add.html';
             return;
@@ -294,7 +306,11 @@ export function initGlobalButtons() {
 
         // Generic Toast Triggers
         if (text.includes('Export')) {
-            showToast("Data exported successfully to CSV.", "success");
+            if (typeof window.exportCurrentPage === 'function') {
+                window.exportCurrentPage();
+            } else {
+                showToast("Data exported successfully to CSV.", "success");
+            }
         } else if (text.includes('Filter') || iconText === 'filter_list') {
             const overlay = document.getElementById('filter-overlay');
             const panel = document.getElementById('filter-panel');
@@ -320,4 +336,136 @@ export function initGlobalButtons() {
             showToast("User profile opened.");
         }
     });
+}
+
+export function updateMetrics() {
+    if (!window.DB) return;
+    const db = window.DB;
+    const stats = db.getStats();
+    const metrics = db.getMetrics();
+
+    const setText = (id, text) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = text;
+    };
+
+    // Dashboard page metrics
+    setText('dashboard-customers-count', stats.customerCount.toLocaleString());
+    
+    const dashboardDeliveries = document.getElementById('dashboard-deliveries-count');
+    if (dashboardDeliveries) {
+        dashboardDeliveries.innerHTML = `${stats.delivered} <span class="text-[12px] text-on-surface-variant font-normal">/ ${stats.orderCount}</span>`;
+    }
+
+    setText('dashboard-revenue-amount', `$${stats.revenue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
+    
+    // Empty Bottles
+    setText('dashboard-empty-bottles', stats.emptyBottles.toLocaleString());
+    const dashboardEmptyBottlesBadge = document.getElementById('dashboard-empty-bottles-badge');
+    if (dashboardEmptyBottlesBadge) {
+        if (stats.emptyBottles > 200) {
+            dashboardEmptyBottlesBadge.classList.remove('hidden');
+        } else {
+            dashboardEmptyBottlesBadge.classList.add('hidden');
+        }
+    }
+
+    setText('dashboard-receivable', `$${stats.receivable.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
+    setText('dashboard-payable', `$${stats.payable.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
+    setText('dashboard-expenses', `$${stats.expenses.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
+
+    // Revenue chart rendering
+    const chartContainer = document.getElementById('dashboard-revenue-chart');
+    if (chartContainer) {
+        const chartData = metrics.chartData || [];
+        chartContainer.innerHTML = chartData.map(d => `
+            <div class="flex-1 flex flex-col items-center group">
+                <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80"
+                    style="height: ${d.height}%;"></div>
+                <span class="text-[9px] mt-2 font-bold text-on-surface-variant/50 uppercase">${d.day}</span>
+            </div>
+        `).join('');
+    }
+
+    // Dynamic Alerts rendering
+    const alertsCount = document.getElementById('dashboard-alerts-count');
+    const alertsList = document.getElementById('dashboard-alerts-list');
+    if (alertsCount && alertsList) {
+        const alerts = metrics.alerts || [];
+        alertsCount.textContent = `${alerts.length} NEW`;
+        if (alerts.length === 0) {
+            alertsList.innerHTML = `
+                <div class="h-full w-full flex flex-col items-center justify-center text-center p-6 opacity-60">
+                    <span class="material-symbols-outlined text-[36px] text-on-surface-variant/40 mb-1">notifications_off</span>
+                    <p class="text-[11px] font-bold text-on-surface-variant">No critical alerts</p>
+                    <p class="text-[10px] text-on-surface-variant/80 mt-0.5">Your system is running smoothly.</p>
+                </div>
+            `;
+        } else {
+            alertsList.innerHTML = alerts.map(a => {
+                let icon = 'warning';
+                let colorCls = 'text-error';
+                let bgCls = 'bg-error-container/10 border-error/10';
+                if (a.type === 'inventory') {
+                    icon = 'inventory_2';
+                    colorCls = 'text-tertiary';
+                    bgCls = 'bg-tertiary-container/5 border-outline-variant/20';
+                } else if (a.type === 'success') {
+                    icon = 'cloud_done';
+                    colorCls = 'text-primary';
+                    bgCls = 'bg-primary-container/5 border-primary/10';
+                }
+                return `
+                    <div class="p-3 ${bgCls} rounded-lg border flex gap-3 relative group">
+                        <div class="${colorCls}">
+                            <span class="material-symbols-outlined text-[18px]"
+                                style="font-variation-settings: 'FILL' 1;">${icon}</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h5 class="text-[12px] font-bold text-on-surface leading-tight">${a.title}</h5>
+                            <p class="text-[11px] text-on-surface-variant/80 mt-0.5 leading-tight">${a.desc}</p>
+                            <span class="text-[9px] ${a.type === 'warning' ? 'text-error' : (a.type === 'success' ? 'text-primary' : 'text-on-surface-variant/60')} font-bold mt-1.5 inline-block uppercase">${a.time}</span>
+                        </div>
+                        <button onclick="event.stopPropagation(); window.DB.deleteAlert('${a.id}'); window.updateMetrics();" class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity text-on-surface-variant/50 hover:text-error" title="Dismiss Alert">
+                            <span class="material-symbols-outlined text-[14px]">close</span>
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        }
+    }
+    
+    // Customers page metrics
+    setText('kpi-active-customers', stats.activeCustomers.toLocaleString());
+    
+    const kpiPendingDelivery = document.getElementById('kpi-pending-delivery');
+    if (kpiPendingDelivery) {
+        const pendingUnits = db.getOrders().filter(o => o.status === 'Processing').reduce((sum, o) => sum + (o.items || 0), 0);
+        kpiPendingDelivery.innerHTML = `${pendingUnits} <span class="text-[11px] font-normal text-on-surface-variant">units</span>`;
+    }
+    
+    // Orders page metrics
+    setText('kpi-orders-new', stats.processing.toLocaleString());
+    setText('kpi-orders-processing', stats.processing.toLocaleString());
+    setText('kpi-orders-shipped', stats.shipped.toLocaleString());
+    setText('kpi-orders-completed', stats.delivered.toLocaleString());
+
+    // Inventory page metrics
+    const invTotal = document.getElementById('kpi-inventory-total');
+    if (invTotal) {
+        const totalStock = db.getInventory().reduce((s, i) => s + (i.stock || 0), 0);
+        invTotal.innerHTML = `${totalStock.toLocaleString()} <span class="text-[12px] font-normal text-on-surface-variant">units</span>`;
+    }
+    
+    const kpiLow = document.getElementById('kpi-inventory-low');
+    if (kpiLow) {
+        kpiLow.innerHTML = `${stats.lowStock} <span class="text-[12px] font-normal text-on-surface-variant">items</span>`;
+    }
+
+    const kpiValue = document.getElementById('kpi-inventory-value');
+    if (kpiValue) {
+        const prices = { 'INV-001': 25, 'INV-002': 15, 'INV-003': 45, 'INV-004': 5 };
+        const value = db.getInventory().reduce((s, i) => s + (i.stock || 0) * (prices[i.id] || 10), 0);
+        kpiValue.textContent = `$${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    }
 }

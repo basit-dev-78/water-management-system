@@ -1,52 +1,59 @@
+import { TEMPLATES } from './component-templates.js';
+
+function getBasePath() {
+    const path = window.location.pathname;
+    const lastSlash = path.lastIndexOf('/');
+    if (lastSlash <= 0) return './';
+    return path.substring(0, lastSlash + 1);
+}
+
+async function loadHtml(path, fallbackKey) {
+    try {
+        const base = getBasePath();
+        const res = await fetch(base + path);
+        if (res.ok) return await res.text();
+    } catch (_) { /* file:// or network error — use fallback */ }
+
+    if (fallbackKey && TEMPLATES[fallbackKey]) {
+        return TEMPLATES[fallbackKey];
+    }
+    return '';
+}
+
 export async function loadComponents() {
     try {
-        const cacheBuster = '?v=' + new Date().getTime();
-        
-        // Load sidebar
-        const sidebarRes = await fetch('components/sidebar.html' + cacheBuster);
-        if (sidebarRes.ok) {
-            document.getElementById('sidebar-container').innerHTML = await sidebarRes.text();
-        } else {
-            console.error('Failed to load sidebar.html');
-        }
+        const [sidebar, header, filter, toast, ai] = await Promise.all([
+            loadHtml('components/sidebar.html', 'sidebar'),
+            loadHtml('components/header.html', 'header'),
+            loadHtml('components/filter-panel.html', 'filter'),
+            loadHtml('components/toast-container.html', 'toast'),
+            loadHtml('components/ai-panel.html', 'ai')
+        ]);
 
-        // Load header
-        const headerRes = await fetch('components/header.html' + cacheBuster);
-        if (headerRes.ok) {
-            document.getElementById('header-container').innerHTML = await headerRes.text();
-        } else {
-            console.error('Failed to load header.html');
-        }
+        const sidebarEl = document.getElementById('sidebar-container');
+        if (sidebarEl && sidebar) sidebarEl.innerHTML = sidebar;
 
-        // Load filter panel
-        const filterRes = await fetch('components/filter-panel.html' + cacheBuster);
-        if (filterRes.ok) {
-            // Append to body or a specific container
+        const headerEl = document.getElementById('header-container');
+        if (headerEl && header) headerEl.innerHTML = header;
+
+        if (filter) {
             const div = document.createElement('div');
-            div.innerHTML = await filterRes.text();
+            div.innerHTML = filter;
             document.body.appendChild(div);
         }
 
-        // Load toast container
-        const toastRes = await fetch('components/toast-container.html' + cacheBuster);
-        if (toastRes.ok) {
+        if (toast) {
             const div = document.createElement('div');
-            div.innerHTML = await toastRes.text();
-            document.body.appendChild(div.firstElementChild);
+            div.innerHTML = toast;
+            if (div.firstElementChild) document.body.appendChild(div.firstElementChild);
         }
 
-        // Load AI panel
-        const aiRes = await fetch('components/ai-panel.html' + cacheBuster);
-        if (aiRes.ok) {
+        if (ai) {
             const div = document.createElement('div');
-            div.innerHTML = await aiRes.text();
-            while (div.firstChild) {
-                document.body.appendChild(div.firstChild);
-            }
+            div.innerHTML = ai;
+            while (div.firstChild) document.body.appendChild(div.firstChild);
         }
-
     } catch (e) {
         console.error('Error loading components:', e);
-        // Fallback layout initialization could go here
     }
 }

@@ -21,13 +21,44 @@ const defaultData = {
         { id: 'ORD-1001', customerName: 'TechFlow Solutions', customerId: 'CUST-001', date: '2024-06-22', expectedDate: '2024-06-25', status: 'Processing', total: 450.00, items: 3 },
         { id: 'ORD-1002', customerName: 'Green Valley Farms', customerId: 'CUST-002', date: '2024-06-21', expectedDate: '2024-06-23', status: 'Shipped', total: 1200.50, items: 12 },
         { id: 'ORD-1003', customerName: 'City Plaza Offices', customerId: 'CUST-003', date: '2024-06-20', expectedDate: '2024-06-20', status: 'Delivered', total: 85.00, items: 1 }
-    ]
+    ],
+    drivers: [
+        { id: 'DRV-001', name: 'Mark Wilson', phone: '(555) 019-2831', status: 'On Delivery', vehicle: 'TRK-01', tasks: ['ORD-1002'] },
+        { id: 'DRV-002', name: 'Sarah Connor', phone: '(555) 043-9821', status: 'On Delivery', vehicle: 'TRK-02', tasks: ['ORD-1001'] },
+        { id: 'DRV-003', name: 'David Miller', phone: '(555) 091-3482', status: 'Available', vehicle: 'TRK-03', tasks: [] }
+    ],
+    metrics: {
+        receivable: 4820.00,
+        payable: 1250.00,
+        expenses: 3680.00,
+        emptyBottles: 342,
+        alerts: [
+            { id: 'ALT-001', type: 'warning', title: 'Supply Delay: West Coast', desc: 'Shipment #AQ-908 delayed by 4 hours.', time: '12 min ago' },
+            { id: 'ALT-002', type: 'inventory', title: 'Low Inventory: Filters', desc: 'Central Hub reporting < 15% stock.', time: '1 hour ago' },
+            { id: 'ALT-003', type: 'success', title: 'Sensor Sync', desc: '32 new sensors mapped to northern grid.', time: '3 hours ago' }
+        ],
+        chartData: [
+            { day: 'Mon', height: 45 },
+            { day: 'Tue', height: 60 },
+            { day: 'Wed', height: 55 },
+            { day: 'Thu', height: 85 },
+            { day: 'Fri', height: 70 },
+            { day: 'Sat', height: 30 },
+            { day: 'Sun', height: 40 }
+        ]
+    }
 };
 
 window.DB = {
     init: function() {
         if (!localStorage.getItem(DB_KEY)) {
             localStorage.setItem(DB_KEY, JSON.stringify(defaultData));
+        } else {
+            const data = JSON.parse(localStorage.getItem(DB_KEY));
+            if (!data.drivers) {
+                data.drivers = defaultData.drivers;
+                localStorage.setItem(DB_KEY, JSON.stringify(data));
+            }
         }
     },
     
@@ -88,10 +119,14 @@ window.DB = {
         order.items = parseInt(order.items) || 1;
         order.total = parseFloat(order.total) || 0;
         
-        // Lookup customer name if not provided
-        if(!order.customerName && order.customerId) {
+        // Lookup customer name and update their order count/last order date
+        if (order.customerId) {
             const cust = data.customers.find(c => c.id === order.customerId);
-            if(cust) order.customerName = cust.name;
+            if (cust) {
+                order.customerName = cust.name;
+                cust.totalOrders = (cust.totalOrders || 0) + 1;
+                cust.lastOrder = order.date;
+            }
         }
 
         data.orders.push(order);
@@ -99,13 +134,170 @@ window.DB = {
         return order;
     },
 
+    updateOrderStatus: function(id, status) {
+        const data = this.getData();
+        const order = data.orders.find(o => o.id === id);
+        if (order) {
+            order.status = status;
+            this.saveData(data);
+            return order;
+        }
+        return null;
+    },
+
+    getStats: function() {
+        const data = this.getData();
+        const orders = data.orders || [];
+        const customers = data.customers || [];
+        const inventory = data.inventory || [];
+
+        const revenue = orders.reduce((sum, o) => sum + (parseFloat(o.total) || 0), 0);
+        const delivered = orders.filter(o => o.status === 'Delivered').length;
+        const processing = orders.filter(o => o.status === 'Processing').length;
+        const shipped = orders.filter(o => o.status === 'Shipped').length;
+        const emptyBottles = inventory
+            .filter(i => i.category === 'Containers')
+            .reduce((sum, i) => sum + Math.max(0, i.threshold * 2 - i.stock), 0);
+        const lowStock = inventory.filter(i => i.stock <= i.threshold).length;
+        const receivable = orders
+            .filter(o => o.status !== 'Delivered')
+            .reduce((sum, o) => sum + (parseFloat(o.total) || 0), 0);
+        const payable = (data.suppliers || []).length * 250;
+        const expenses = Math.round(revenue * 0.28);
+
+        return {
+            customerCount: customers.length,
+            activeCustomers: customers.filter(c => c.status === 'Active').length,
+            orderCount: orders.length,
+            delivered,
+            processing,
+            shipped,
+            revenue,
+            receivable,
+            payable,
+            expenses,
+            emptyBottles: emptyBottles || inventory.reduce((s, i) => s + (i.stock <= i.threshold ? i.threshold - i.stock : 0), 0),
+            lowStock
+        };
+    },
+
     // UTILS
     deleteRecord: function(collection, id) {
         const data = this.getData();
         if (data[collection]) {
+            // If deleting an order, decrement the customer's totalOrders and update lastOrder date
+            if (collection === 'orders') {
+                const order = data.orders.find(item => item.id === id);
+                if (order && order.customerId) {
+                    const cust = data.customers.find(c => c.id === order.customerId);
+                    if (cust) {
+                        cust.totalOrders = Math.max(0, (cust.totalOrders || 0) - 1);
+                        const remainingOrders = data.orders.filter(o => o.id !== id && o.customerId === order.customerId);
+                        if (remainingOrders.length > 0) {
+                            remainingOrders.sort((a, b) => new Date(b.date) - new Date(a.date));
+                            cust.lastOrder = remainingOrders[0].date;
+                        } else {
+                            cust.lastOrder = 'N/A';
+                        }
+                    }
+                }
+            }
+
             data[collection] = data[collection].filter(item => item.id !== id);
+
+            // If deleting a customer, also delete all orders associated with them
+            if (collection === 'customers') {
+                if (data.orders) {
+                    data.orders = data.orders.filter(order => order.customerId !== id);
+                }
+            }
+
             this.saveData(data);
         }
+    },
+
+    // METRICS & DASHBOARD UTILS
+    getMetrics: function() {
+        const data = this.getData();
+        if (!data.metrics) {
+            data.metrics = defaultData.metrics;
+            this.saveData(data);
+        }
+        return data.metrics;
+    },
+    
+    deleteAlert: function(alertId) {
+        const data = this.getData();
+        if (data.metrics && data.metrics.alerts) {
+            data.metrics.alerts = data.metrics.alerts.filter(a => a.id !== alertId);
+            this.saveData(data);
+        }
+    },
+
+    // DRIVERS
+    getDrivers: function() { 
+        return this.getData().drivers || []; 
+    },
+    addDriver: function(driver) {
+        const data = this.getData();
+        if (!data.drivers) data.drivers = [];
+        driver.id = 'DRV-' + Math.floor(1000 + Math.random() * 9000);
+        driver.tasks = driver.tasks || [];
+        driver.status = driver.status || 'Available';
+        driver.vehicle = driver.vehicle || 'None';
+        data.drivers.push(driver);
+        this.saveData(data);
+        return driver;
+    },
+    deleteDriver: function(id) {
+        const data = this.getData();
+        if (data.drivers) {
+            data.drivers = data.drivers.filter(d => d.id !== id);
+            this.saveData(data);
+        }
+    },
+    assignTaskToDriver: function(driverId, task) {
+        const data = this.getData();
+        if (data.drivers) {
+            const driver = data.drivers.find(d => d.id === driverId);
+            if (driver) {
+                driver.tasks = driver.tasks || [];
+                if (!driver.tasks.includes(task)) {
+                    driver.tasks.push(task);
+                    driver.status = 'On Delivery';
+                    this.saveData(data);
+                    return true;
+                }
+            }
+        }
+        return false;
+    },
+    removeTaskFromDriver: function(driverId, taskIndex) {
+        const data = this.getData();
+        if (data.drivers) {
+            const driver = data.drivers.find(d => d.id === driverId);
+            if (driver && driver.tasks) {
+                driver.tasks.splice(taskIndex, 1);
+                if (driver.tasks.length === 0) {
+                    driver.status = 'Available';
+                }
+                this.saveData(data);
+                return true;
+            }
+        }
+        return false;
+    },
+    updateDriverStatus: function(driverId, status) {
+        const data = this.getData();
+        if (data.drivers) {
+            const driver = data.drivers.find(d => d.id === driverId);
+            if (driver) {
+                driver.status = status;
+                this.saveData(data);
+                return true;
+            }
+        }
+        return false;
     }
 };
 

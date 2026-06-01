@@ -176,89 +176,10 @@
                     </div>
                 </div>
             </div>
-            
-            <script>
-                const TRUCK_DATA = {
-                    1: {
-                        id: 'TRK-01',
-                        driver: 'Mark Wilson',
-                        cargo: '120 jugs (5 Gallon)',
-                        status: 'ON TIME',
-                        statusClass: 'bg-primary/10 text-primary',
-                        destination: 'TechFlow Solutions',
-                        speed: '42 mph',
-                        fuel: '84%'
-                    },
-                    2: {
-                        id: 'TRK-02',
-                        driver: 'Sarah Connor',
-                        cargo: '80 jugs (10 Gallon)',
-                        status: 'DELAYED',
-                        statusClass: 'bg-error-container/60 text-error',
-                        destination: 'Green Valley Farms',
-                        speed: '18 mph',
-                        fuel: '45%'
-                    },
-                    3: {
-                        id: 'TRK-03',
-                        driver: 'David Miller',
-                        cargo: '15 Filtration Cores',
-                        status: 'LOADING',
-                        statusClass: 'bg-secondary/15 text-secondary',
-                        destination: 'City Plaza Offices',
-                        speed: '0 mph',
-                        fuel: '98%'
-                    }
-                };
-                
-                function selectTruck(id) {
-                    const data = TRUCK_DATA[id];
-                    if (!data) return;
-                    
-                    document.getElementById('telemetry-empty').classList.add('hidden');
-                    document.getElementById('telemetry-details').classList.remove('hidden');
-                    document.getElementById('telemetry-details').classList.add('flex');
-                    
-                    document.getElementById('telemetry-id').textContent = data.id;
-                    document.getElementById('telemetry-driver').textContent = data.driver;
-                    document.getElementById('telemetry-cargo').textContent = data.cargo;
-                    document.getElementById('telemetry-destination').textContent = data.destination;
-                    document.getElementById('telemetry-speed').textContent = data.speed;
-                    document.getElementById('telemetry-fuel').textContent = data.fuel;
-                    
-                    const statusEl = document.getElementById('telemetry-status');
-                    statusEl.textContent = data.status;
-                    statusEl.className = `px-2 py-0.5 rounded-full text-[9px] font-bold \${data.statusClass}`;
-                    
-                    // Highlight selected truck in SVG
-                    for (let i = 1; i <= 3; i++) {
-                        const trkEl = document.getElementById('map-truck-' + i);
-                        if (trkEl) {
-                            if (i === id) {
-                                trkEl.querySelector('circle:nth-child(2)').setAttribute('stroke', 'var(--color-on-surface)');
-                                trkEl.querySelector('circle:nth-child(2)').setAttribute('stroke-width', '2');
-                            } else {
-                                trkEl.querySelector('circle:nth-child(2)').removeAttribute('stroke');
-                            }
-                        }
-                    }
-                }
-            </script>
         </div>
         <!-- END LOGISTICS PANEL -->
     </main>
-<footer
-        class="w-full md:w-[calc(100%-270px)] mt-auto flex flex-col md:flex-row justify-between items-center gap-4 py-4 border-t border-outline-variant/10 px-container-margin md:ml-[270px] relative z-10 text-center">
-        <span class="text-on-surface-variant/50 text-[10px]">© 2024 AquaFlow Pro v2.4.1</span>
-        <div class="flex flex-wrap justify-center gap-4 md:gap-6">
-            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">System
-                Status: <span class="text-primary font-bold">Operational</span></a>
-            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">Privacy
-                Policy</a>
-            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">Terms of
-                Service</a>
-        </div>
-    </footer>
+
 
     <!-- Scripts -->
     <script src="./assets/js/db.js"></script>

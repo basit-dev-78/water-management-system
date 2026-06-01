@@ -44,12 +44,13 @@
                         <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold mb-0.5">
                             Customers</p>
                         <div class="flex items-center gap-2">
-                            <h3 class="text-[20px] font-bold text-primary leading-tight">1,240</h3>
+                            <h3 id="dashboard-customers-count" class="text-[20px] font-bold text-primary leading-tight">
+                                0</h3>
                         </div>
                     </div>
                 </div>
                 <!-- Card 2 -->
-                <div class="glass-card p-4 rounded-xl shadow-sm flex items-center gap-4">
+                <div id="dashboard-deliveries-card" class="glass-card p-4 rounded-xl shadow-sm flex items-center gap-4 cursor-pointer hover:border-primary/30 transition-all hover:scale-[1.02] active:scale-[0.98] duration-300">
                     <div
                         class="w-10 h-10 bg-primary-container/10 text-primary rounded-full flex items-center justify-center shrink-0">
                         <span class="material-symbols-outlined text-[20px]">local_shipping</span>
@@ -58,8 +59,9 @@
                         <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold mb-0.5">
                             Deliveries</p>
                         <div class="flex items-center gap-2">
-                            <h3 class="text-[20px] font-bold text-primary leading-tight">84 <span
-                                    class="text-[12px] text-on-surface-variant font-normal">/ 120</span></h3>
+                            <h3 id="dashboard-deliveries-count"
+                                class="text-[20px] font-bold text-primary leading-tight">0 <span
+                                    class="text-[12px] text-on-surface-variant font-normal">/ 0</span></h3>
                         </div>
                     </div>
                 </div>
@@ -70,12 +72,13 @@
                         <span class="material-symbols-outlined text-[20px]">recycling</span>
                     </div>
                     <div>
-                        <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold mb-0.5">Pending
-                            Empty Bottles</p>
+                        <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold mb-0.5">Empty
+                            Bottles</p>
                         <div class="flex items-center gap-2">
-                            <h3 class="text-[20px] font-bold text-primary leading-tight">342</h3>
-                            <span
-                                class="text-error font-bold text-[9px] bg-error-container/40 px-1.5 py-0.5 rounded uppercase">High</span>
+                            <h3 id="dashboard-empty-bottles" class="text-[20px] font-bold text-primary leading-tight">0
+                            </h3>
+                            <span id="dashboard-empty-bottles-badge"
+                                class="text-error font-bold text-[9px] bg-error-container/40 px-1.5 py-0.5 rounded uppercase hidden">High</span>
                         </div>
                     </div>
                 </div>
@@ -89,7 +92,8 @@
                         <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold mb-0.5">Revenue
                         </p>
                         <div class="flex items-center gap-2">
-                            <h3 class="text-[20px] font-bold text-primary leading-tight">$12,450</h3>
+                            <h3 id="dashboard-revenue-amount" class="text-[20px] font-bold text-primary leading-tight">
+                                $0.00</h3>
                         </div>
                     </div>
                 </div>
@@ -103,7 +107,8 @@
                         <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold mb-0.5">
                             Receivable</p>
                         <div class="flex items-center gap-2">
-                            <h3 class="text-[20px] font-bold text-primary leading-tight">$4,820</h3>
+                            <h3 id="dashboard-receivable" class="text-[20px] font-bold text-primary leading-tight">$0.00
+                            </h3>
                         </div>
                     </div>
                 </div>
@@ -117,12 +122,12 @@
                         <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold mb-0.5">Payable
                         </p>
                         <div class="flex items-center gap-2">
-                            <h3 class="text-[20px] font-bold text-error leading-tight">$1,250</h3>
+                            <h3 id="dashboard-payable" class="text-[20px] font-bold text-error leading-tight">$0.00</h3>
                         </div>
                     </div>
                 </div>
                 <!-- Card 7 (Expenses) -->
-                <div class="col-span-2 glass-card p-4 rounded-xl shadow-sm border-l-[3px] border-tertiary flex items-center gap-4">
+                <div class="glass-card p-4 rounded-xl shadow-sm border-l-[3px] border-tertiary flex items-center gap-4">
                     <div
                         class="w-10 h-10 bg-tertiary-container/30 text-tertiary rounded-full flex items-center justify-center shrink-0">
                         <span class="material-symbols-outlined text-[20px]">receipt_long</span>
@@ -131,7 +136,8 @@
                         <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold mb-0.5">
                             Expenses</p>
                         <div class="flex items-center gap-2">
-                            <h3 class="text-[20px] font-bold text-tertiary leading-tight">$3,680</h3>
+                            <h3 id="dashboard-expenses" class="text-[20px] font-bold text-tertiary leading-tight">$0.00
+                            </h3>
                         </div>
                     </div>
                 </div>
@@ -159,94 +165,18 @@
                             </button>
                         </div>
                     </div>
-                    <div class="flex-1 flex items-end justify-between gap-3 h-[240px] mb-2 px-2">
-                        <div class="flex-1 flex flex-col items-center group">
-                            <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80"
-                                style="height: 45%;"></div>
-                            <span class="text-[9px] mt-2 font-bold text-on-surface-variant/50 uppercase">Mon</span>
-                        </div>
-                        <div class="flex-1 flex flex-col items-center group">
-                            <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80"
-                                style="height: 60%;"></div>
-                            <span class="text-[9px] mt-2 font-bold text-on-surface-variant/50 uppercase">Tue</span>
-                        </div>
-                        <div class="flex-1 flex flex-col items-center group">
-                            <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80"
-                                style="height: 55%;"></div>
-                            <span class="text-[9px] mt-2 font-bold text-on-surface-variant/50 uppercase">Wed</span>
-                        </div>
-                        <div class="flex-1 flex flex-col items-center group">
-                            <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80"
-                                style="height: 85%;"></div>
-                            <span class="text-[9px] mt-2 font-bold text-on-surface-variant/50 uppercase">Thu</span>
-                        </div>
-                        <div class="flex-1 flex flex-col items-center group">
-                            <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80"
-                                style="height: 70%;"></div>
-                            <span class="text-[9px] mt-2 font-bold text-on-surface-variant/50 uppercase">Fri</span>
-                        </div>
-                        <div class="flex-1 flex flex-col items-center group">
-                            <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80"
-                                style="height: 30%;"></div>
-                            <span class="text-[9px] mt-2 font-bold text-on-surface-variant/50 uppercase">Sat</span>
-                        </div>
-                        <div class="flex-1 flex flex-col items-center group">
-                            <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80"
-                                style="height: 40%;"></div>
-                            <span class="text-[9px] mt-2 font-bold text-on-surface-variant/50 uppercase">Sun</span>
-                        </div>
-                    </div>
+                    <div id="dashboard-revenue-chart"
+                        class="flex-1 flex items-end justify-between gap-3 h-[240px] mb-2 px-2"></div>
                 </div>
                 <!-- Critical Alerts Section -->
                 <div
                     class="col-span-12 lg:col-span-4 glass-card p-card-padding rounded-xl shadow-sm flex flex-col overflow-hidden border border-outline-variant/10">
                     <div class="flex justify-between items-center mb-4">
                         <h4 class="text-[15px] font-bold text-on-surface">Critical Alerts</h4>
-                        <span class="bg-error text-on-error px-1.5 py-0.5 rounded-full text-[9px] font-bold">3
-                            NEW</span>
+                        <span id="dashboard-alerts-count"
+                            class="bg-error text-on-error px-1.5 py-0.5 rounded-full text-[9px] font-bold">0 NEW</span>
                     </div>
-                    <div class="flex-1 space-y-3 overflow-y-auto pr-1 custom-scrollbar">
-                        <div class="p-3 bg-error-container/10 rounded-lg border border-error/10 flex gap-3">
-                            <div class="text-error">
-                                <span class="material-symbols-outlined text-[18px]"
-                                    style="font-variation-settings: 'FILL' 1;">warning</span>
-                            </div>
-                            <div>
-                                <h5 class="text-[12px] font-bold text-on-surface leading-tight">Supply Delay: West Coast
-                                </h5>
-                                <p class="text-[11px] text-on-surface-variant/80 mt-0.5 leading-tight">Shipment #AQ-908
-                                    delayed by 4 hours.</p>
-                                <span class="text-[9px] text-error font-bold mt-1.5 inline-block uppercase">12 min
-                                    ago</span>
-                            </div>
-                        </div>
-                        <div class="p-3 bg-tertiary-container/5 rounded-lg border border-outline-variant/20 flex gap-3">
-                            <div class="text-tertiary">
-                                <span class="material-symbols-outlined text-[18px]"
-                                    style="font-variation-settings: 'FILL' 1;">inventory_2</span>
-                            </div>
-                            <div>
-                                <h5 class="text-[12px] font-bold text-on-surface leading-tight">Low Inventory: Filters
-                                </h5>
-                                <p class="text-[11px] text-on-surface-variant/80 mt-0.5 leading-tight">Central Hub
-                                    reporting &lt; 15% stock.</p>
-                                <span class="text-[9px] text-on-surface-variant/60 mt-1.5 inline-block uppercase">1 hour
-                                    ago</span>
-                            </div>
-                        </div>
-                        <div class="p-3 bg-primary-container/5 rounded-lg border border-primary/10 flex gap-3">
-                            <div class="text-primary">
-                                <span class="material-symbols-outlined text-[18px]"
-                                    style="font-variation-settings: 'FILL' 1;">cloud_done</span>
-                            </div>
-                            <div>
-                                <h5 class="text-[12px] font-bold text-on-surface leading-tight">Sensor Sync</h5>
-                                <p class="text-[11px] text-on-surface-variant/80 mt-0.5 leading-tight">32 new sensors
-                                    mapped to northern grid.</p>
-                                <span class="text-[9px] text-primary font-bold mt-1.5 inline-block uppercase">3 hours
-                                    ago</span>
-                            </div>
-                        </div>
+                    <div id="dashboard-alerts-list" class="flex-1 space-y-3 overflow-y-auto pr-1 custom-scrollbar">
                     </div>
                     <button
                         class="mt-4 w-full py-2 rounded-lg border border-outline-variant/30 text-[11px] font-bold hover:bg-surface-variant/30 transition-colors">
@@ -282,18 +212,7 @@
         <!-- END DASHBOARD PANEL -->
     </main>
 
-    <footer
-        class="w-full md:w-[calc(100%-270px)] mt-auto flex flex-col md:flex-row justify-between items-center gap-4 py-4 border-t border-outline-variant/10 px-container-margin md:ml-[270px] relative z-10 text-center">
-        <span class="text-on-surface-variant/50 text-[10px]">© 2025 AquaFlow Pro v2.4.1</span>
-        <div class="flex flex-wrap justify-center gap-4 md:gap-6">
-            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">System
-                Status: <span class="text-primary font-bold">Operational</span></a>
-            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">Privacy
-                Policy</a>
-            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">Terms of
-                Service</a>
-        </div>
-    </footer>
+
 
     <!-- Scripts -->
     <script src="./assets/js/db.js"></script>

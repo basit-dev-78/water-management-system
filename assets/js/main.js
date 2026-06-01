@@ -1,32 +1,36 @@
 import { loadComponents } from './core/loader.js';
 import { initRouter } from './core/router.js';
-import { initComponents, initFilterPanel, initGlobalButtons } from './ui/components.js';
+import { initComponents, initFilterPanel, initGlobalButtons, updateMetrics } from './ui/components.js';
 import { initForms } from './features/forms.js';
 import { initTables } from './features/tables.js';
 import { initAIChat } from './features/ai-chat.js';
+import { initLogistics } from './features/logistics.js';
+import { initReports } from './features/reports.js';
+import { initDeliveries } from './features/deliveries.js';
+import { initDrivers } from './features/drivers.js';
+import { renderDashboard } from './features/dashboard.js';
+import { exportCurrentPage } from './features/export.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // 1. Load HTML Components (Sidebar, Header, Filter, Toast, AI Panel)
     await loadComponents();
-
-    // 2. Initialize Routing (Active states based on URL)
     initRouter();
-
-    // 3. Initialize UI Components
     initComponents();
     initFilterPanel();
     initGlobalButtons();
+    
+    window.updateMetrics = updateMetrics;
+    window.exportCurrentPage = exportCurrentPage;
+    updateMetrics();
+    renderDashboard();
 
-    // 4. Initialize AI Assistant
     initAIChat();
-
-    // 5. Initialize Forms
     initForms();
-
-    // 6. Initialize Tables
     initTables();
+    initLogistics();
+    initReports();
+    initDeliveries();
+    initDrivers();
 
-    // 7. Render Data if DB is ready
     if (window.renderAll) {
         window.renderAll();
     }

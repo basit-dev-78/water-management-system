@@ -111,107 +111,10 @@
                     </div>
                 </div>
             </div>
-            
-            <script>
-                document.getElementById('btn-generate-report').addEventListener('click', () => {
-                    const type = document.getElementById('report-type').value;
-                    const format = document.querySelector('input[name="report-format"]:checked').value;
-                    const db = window.DB;
-                    
-                    if (!db) {
-                        alert("Database not ready!");
-                        return;
-                    }
-                    
-                    let data = [];
-                    let filename = `aquaflow_${type}_report_${new Date().toISOString().split('T')[0]}`;
-                    let outputText = '';
-                    
-                    if (type === 'financial') {
-                        const orders = db.getOrders();
-                        data = orders.map(o => ({
-                            OrderID: o.id,
-                            Client: o.customerName,
-                            Date: o.date,
-                            TotalAmount: o.total,
-                            ItemsCount: o.items,
-                            Status: o.status
-                        }));
-                    } else if (type === 'inventory') {
-                        const inv = db.getInventory();
-                        data = inv.map(i => ({
-                            ItemID: i.id,
-                            Name: i.name,
-                            SKU: i.sku,
-                            Category: i.category,
-                            StockLevel: i.stock,
-                            Threshold: i.threshold,
-                            Status: i.status
-                        }));
-                    } else if (type === 'clients') {
-                        const custs = db.getCustomers();
-                        data = custs.map(c => ({
-                            ClientID: c.id,
-                            Name: c.name,
-                            Email: c.email,
-                            Phone: c.phone,
-                            Status: c.status,
-                            TotalOrders: c.totalOrders,
-                            LastOrderDate: c.lastOrder
-                        }));
-                    }
-                    
-                    if (format === 'json') {
-                        outputText = JSON.stringify(data, null, 2);
-                        filename += '.json';
-                    } else {
-                        // Convert to CSV
-                        if (data.length > 0) {
-                            const headers = Object.keys(data[0]);
-                            const rows = data.map(obj => headers.map(h => `"${String(obj[h]).replace(/"/g, '""')}"`).join(','));
-                            outputText = [headers.join(','), ...rows].join('\n');
-                        } else {
-                            outputText = 'No data available.';
-                        }
-                        filename += '.csv';
-                    }
-                    
-                    // Render preview
-                    document.getElementById('report-preview').value = outputText;
-                    
-                    // Trigger download
-                    const blob = new Blob([outputText], { type: format === 'json' ? 'application/json' : 'text/csv' });
-                    const link = document.createElement('a');
-                    link.href = URL.createObjectURL(blob);
-                    link.download = filename;
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    
-                    if (window.showToast) {
-                        window.showToast("Report generated & downloaded successfully!", "success");
-                    } else if (window.DB && typeof showToast === 'function') {
-                        showToast("Report generated!", "success");
-                    } else {
-                        alert("Report generated & downloaded successfully!");
-                    }
-                });
-            </script>
         </div>
         <!-- END REPORTS PANEL -->
     </main>
-<footer
-        class="w-full md:w-[calc(100%-270px)] mt-auto flex flex-col md:flex-row justify-between items-center gap-4 py-4 border-t border-outline-variant/10 px-container-margin md:ml-[270px] relative z-10 text-center">
-        <span class="text-on-surface-variant/50 text-[10px]">© 2024 AquaFlow Pro v2.4.1</span>
-        <div class="flex flex-wrap justify-center gap-4 md:gap-6">
-            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">System
-                Status: <span class="text-primary font-bold">Operational</span></a>
-            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">Privacy
-                Policy</a>
-            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">Terms of
-                Service</a>
-        </div>
-    </footer>
+
 
     <!-- Scripts -->
     <script src="./assets/js/db.js"></script>

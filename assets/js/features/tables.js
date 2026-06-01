@@ -1,4 +1,5 @@
 import { showToast } from '../ui/components.js';
+import { renderDashboard } from './dashboard.js';
 
 // ─── Pagination State ───────────────────────────────────────────────────────
 const PAGINATION = {
@@ -214,6 +215,23 @@ function renderInventory() {
     }).join('');
 }
 
+// ─── Order Status Flow ───────────────────────────────────────────────────────
+const ORDER_FLOW = ['Processing', 'Shipped', 'Delivered'];
+
+window.advanceOrderStatus = function(id) {
+    if (!window.DB) return;
+    const order = window.DB.getOrders().find(o => o.id === id);
+    if (!order) return;
+    const idx = ORDER_FLOW.indexOf(order.status);
+    if (idx < ORDER_FLOW.length - 1) {
+        window.DB.updateOrderStatus(id, ORDER_FLOW[idx + 1]);
+        showToast(`Order ${id} moved to ${ORDER_FLOW[idx + 1]}.`, 'success');
+        window.renderAll();
+    } else {
+        showToast(`Order ${id} is already delivered.`);
+    }
+};
+
 // ─── Render: Orders ──────────────────────────────────────────────────────────
 function renderOrders() {
     const list = document.getElementById('orders-card-list');
@@ -261,6 +279,12 @@ function renderOrders() {
                     <p class="text-[11px] font-medium text-on-surface">${o.expectedDate || '—'}</p>
                 </div>
             </div>
+            ${o.status !== 'Delivered' ? `
+            <button onclick="event.stopPropagation(); window.advanceOrderStatus('${o.id}')"
+                class="mt-1 w-full py-1.5 rounded-lg bg-primary/10 text-primary text-[10px] font-bold hover:bg-primary/20 transition-colors flex items-center justify-center gap-1">
+                <span class="material-symbols-outlined text-[14px]">local_shipping</span>
+                Advance to ${ORDER_FLOW[ORDER_FLOW.indexOf(o.status) + 1] || 'Delivered'}
+            </button>` : ''}
         </div>
     `).join('');
 }
@@ -297,6 +321,10 @@ export function initTables() {
         renderSuppliers();
         renderInventory();
         renderOrders();
+        renderDashboard();
+        if (typeof window.updateMetrics === 'function') {
+            window.updateMetrics();
+        }
     };
 
     // Initial render after a short delay to ensure DOM is ready

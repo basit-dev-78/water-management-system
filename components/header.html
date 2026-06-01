@@ -1,17 +1,18 @@
 <header
     class="glass-card rounded-none md:rounded-2xl mb-4 md:mb-6 px-4 md:px-6 py-4 flex items-center justify-between shadow-sm sticky top-0 md:top-4 z-30 border-b md:border border-white/50 transition-all pt-[max(env(safe-area-inset-top),16px)] md:pt-4">
     <div class="flex items-center gap-3 md:gap-stack-md">
-        <h2 id="header-title" class="font-display-lg text-[20px] md:text-[22px] text-gradient tracking-tight font-bold">Dashboard</h2>
+<h2 id="header-title" class="font-display-lg text-[20px] md:text-[22px] text-gradient tracking-tight font-bold">
+            Dashboard</h2>
         <div
             class="bg-surface-variant/30 flex items-center px-3 py-1 rounded-full border border-outline-variant/20 hidden md:flex">
             <span class="material-symbols-outlined text-[14px] mr-1.5">calendar_today</span>
             <span id="current-date" class="text-[11px] font-medium text-on-surface-variant"></span>
-        <script>
-            (function() {
-                const d = new Date();
-                document.getElementById('current-date').textContent = d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
-            })();
-        </script>
+            <script>
+                (function () {
+                    const d = new Date();
+                    document.getElementById('current-date').textContent = d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+                })();
+            </script>
         </div>
     </div>
     <div class="flex items-center gap-stack-md">
@@ -35,18 +36,36 @@
                 <span
                     class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full border border-white animate-pulse"></span>
             </button>
-            <div class="h-8 w-px bg-outline-variant/30 mx-1"></div>
-            <div class="flex items-center gap-2 cursor-pointer group">
-                <div class="text-right hidden xl:block">
-                    <p
-                        class="font-title-sm text-[12px] font-bold leading-none group-hover:text-[#0f5238] transition-colors">
-                        Alex Henderson</p>
-                    <p class="text-[10px] text-on-surface-variant/80 mt-0.5 leading-none">Operations Lead</p>
-                </div>
-                <div
-                    class="w-10 h-10 rounded-full bg-gradient-to-br from-[#0f5238] to-[#95d4b3] p-0.5 shadow-md group-hover:scale-105 transition-transform">
-                    <img alt="User profile" class="w-full h-full rounded-full object-cover border-2 border-white"
-                        src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />
+            <div class="h-8 w-px bg-outline-variant/30 mx-1 hidden sm:block"></div>
+            <div class="relative">
+                <button id="btn-profile" class="flex items-center gap-2 cursor-pointer group">
+                    <div class="text-right hidden xl:block">
+                        <p
+                            class="font-title-sm text-[12px] font-bold leading-none group-hover:text-[#0f5238] transition-colors">
+                            Alex Henderson</p>
+                        <p class="text-[10px] text-on-surface-variant/80 mt-0.5 leading-none">Operations Lead</p>
+                    </div>
+                    <div
+                        class="w-10 h-10 rounded-full bg-gradient-to-br from-[#0f5238] to-[#95d4b3] p-0.5 shadow-md group-hover:scale-105 transition-transform">
+                        <img alt="User profile" class="w-full h-full rounded-full object-cover border-2 border-white"
+                            src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />
+                    </div>
+                </button>
+                <div id="dropdown-profile"
+                    class="hidden absolute right-0 top-full mt-2 w-48 bg-surface-container-lowest border border-outline-variant/20 rounded-xl shadow-xl py-1 z-50">
+                    <a href="#"
+                        class="flex items-center gap-2 px-4 py-2 text-[12px] text-on-surface hover:bg-surface-variant/30 transition-colors">
+                        <span class="material-symbols-outlined text-[16px]">person</span> My Profile
+                    </a>
+                    <a href="#"
+                        class="flex items-center gap-2 px-4 py-2 text-[12px] text-on-surface hover:bg-surface-variant/30 transition-colors">
+                        <span class="material-symbols-outlined text-[16px]">settings</span> Settings
+                    </a>
+                    <div class="border-t border-outline-variant/10 my-1"></div>
+                    <a href="#"
+                        class="flex items-center gap-2 px-4 py-2 text-[12px] text-error hover:bg-error-container/20 transition-colors">
+                        <span class="material-symbols-outlined text-[16px]">logout</span> Sign Out
+                    </a>
                 </div>
             </div>
         </div>

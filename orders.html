@@ -44,22 +44,22 @@
             <div class="grid grid-cols-2 gap-gutter-md mb-gutter-md">
                 <div class="glass-card rounded-xl p-card-padding shadow-sm border-t-4 border-t-tertiary-fixed-dim">
                     <p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-1">New</p>
-                    <h3 class="text-[24px] font-bold text-on-surface">45</h3>
+                    <h3 class="text-[24px] font-bold text-on-surface" id="kpi-orders-new">45</h3>
                 </div>
                 <div class="glass-card rounded-xl p-card-padding shadow-sm border-t-4 border-t-primary-container">
                     <p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-1">Processing
                     </p>
-                    <h3 class="text-[24px] font-bold text-on-surface">12</h3>
+                    <h3 class="text-[24px] font-bold text-on-surface" id="kpi-orders-processing">12</h3>
                 </div>
                 <div class="glass-card rounded-xl p-card-padding shadow-sm border-t-4 border-t-secondary">
                     <p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-1">Out for
                         Delivery</p>
-                    <h3 class="text-[24px] font-bold text-on-surface">28</h3>
+                    <h3 class="text-[24px] font-bold text-on-surface" id="kpi-orders-shipped">28</h3>
                 </div>
                 <div class="glass-card rounded-xl p-card-padding shadow-sm border-t-4 border-t-primary">
                     <p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-1">Completed
                         Today</p>
-                    <h3 class="text-[24px] font-bold text-on-surface">156</h3>
+                    <h3 class="text-[24px] font-bold text-on-surface" id="kpi-orders-completed">156</h3>
                 </div>
             </div>
 
@@ -88,18 +88,7 @@
         </div>
         <!-- END ORDERS PANEL -->
     </main>
-<footer
-        class="w-full md:w-[calc(100%-270px)] mt-auto flex flex-col md:flex-row justify-between items-center gap-4 py-4 border-t border-outline-variant/10 px-container-margin md:ml-[270px] relative z-10 text-center">
-        <span class="text-on-surface-variant/50 text-[10px]">© 2024 AquaFlow Pro v2.4.1</span>
-        <div class="flex flex-wrap justify-center gap-4 md:gap-6">
-            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">System
-                Status: <span class="text-primary font-bold">Operational</span></a>
-            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">Privacy
-                Policy</a>
-            <a class="text-on-surface-variant/60 hover:text-on-surface transition-colors text-[10px]" href="#">Terms of
-                Service</a>
-        </div>
-    </footer>
+
 
     <!-- Scripts -->
     <script src="./assets/js/db.js"></script>

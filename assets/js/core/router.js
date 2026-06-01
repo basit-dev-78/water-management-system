@@ -7,6 +7,7 @@ export function initRouter() {
         const path = window.location.pathname;
         let page = path.split('/').pop();
         if (!page || page === '') page = 'index.html';
+        if (!page.includes('.')) page = page + '.html';
 
         let activeTabId = null;
         let titleText = 'Dashboard';
@@ -21,6 +22,14 @@ export function initRouter() {
                 if(textSpan) titleText = textSpan.textContent.trim();
             }
         });
+
+        if (page === 'deliveries.html') {
+            titleText = 'Deliveries';
+        } else if (page === 'drivers.html') {
+            titleText = 'Drivers';
+        } else if (page === 'driver-add.html') {
+            titleText = 'Add Driver';
+        }
 
         // Update Header Title
         if(headerTitle) {

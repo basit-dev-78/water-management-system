@@ -1,0 +1,9 @@
+{
+  "name": "aquaflow-pro",
+  "version": "2.4.1",
+  "description": "AquaFlow Pro Water Management Portal",
+  "scripts": {
+    "start": "npx --yes serve . -p 3000",
+    "build:templates": "node scripts/build-templates.js"
+  }
+}
