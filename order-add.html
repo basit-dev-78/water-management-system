@@ -58,6 +58,16 @@
                         <input type="date" name="expectedDate" id="order-date"
                             class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none">
                     </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label class="text-[11px] font-bold text-on-surface-variant">Payment Type *</label>
+                        <select name="paymentType" id="order-payment-type" required
+                            class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2.5 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none cursor-pointer">
+                            <option value="Cash on Delivery">Cash on Delivery</option>
+                            <option value="Credit Card">Credit Card</option>
+                            <option value="Bank Transfer">Bank Transfer</option>
+                            <option value="Mobile Wallet">Mobile Wallet</option>
+                        </select>
+                    </div>
                     <div class="col-span-1 md:col-span-2">
                         <label class="text-[11px] font-bold text-on-surface-variant mb-1.5 block font-bold">Order Items</label>
                         <div class="bg-surface-container-low/50 border border-outline-variant/20 rounded-lg p-4 flex flex-col gap-3">

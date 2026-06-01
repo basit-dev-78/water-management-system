@@ -189,13 +189,15 @@ function renderDeliveries() {
                         <span class="text-on-surface-variant/60 block text-[9px] uppercase tracking-wider font-bold">Total Bill</span>
                         <span class="font-bold text-primary">$${Number(o.total).toFixed(2)}</span>
                     </div>
-                    <div>
-                        <span class="text-on-surface-variant/60 block text-[9px] uppercase tracking-wider font-bold">Order Date</span>
-                        <span class="font-medium text-on-surface">${o.date}</span>
-                    </div>
-                    <div>
-                        <span class="text-on-surface-variant/60 block text-[9px] uppercase tracking-wider font-bold">Expected Date</span>
-                        <span class="font-bold text-on-surface">${o.expectedDate || '—'}</span>
+                    <div class="col-span-2 border-t border-outline-variant/10 pt-2 flex justify-between items-center">
+                        <div>
+                            <span class="text-on-surface-variant/60 block text-[9px] uppercase tracking-wider font-bold">Payment Type</span>
+                            <span class="font-bold text-on-surface">${o.paymentType || 'Cash on Delivery'}</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-on-surface-variant/60 block text-[9px] uppercase tracking-wider font-bold">Expected Date</span>
+                            <span class="font-bold text-on-surface">${o.expectedDate || '—'}</span>
+                        </div>
                     </div>
                 </div>
 

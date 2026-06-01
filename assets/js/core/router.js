@@ -25,6 +25,7 @@ export function initRouter() {
 
         if (page === 'deliveries.html') {
             titleText = 'Deliveries';
+            activeTabId = 'panel-deliveries';
         } else if (page === 'drivers.html') {
             titleText = 'Drivers';
         } else if (page === 'driver-add.html') {
@@ -81,7 +82,11 @@ export function initRouter() {
 
         // Update Mobile Bottom Nav Active State
         mobileBottomLinks.forEach(link => {
-            if (link.getAttribute('data-tab') === activeTabId || (activeTabId && activeTabId.includes(link.getAttribute('data-tab').replace('panel-', '')))) {
+            const linkTab = link.getAttribute('data-tab') || '';
+            const normalizedLink = linkTab.replace('-add', '').replace(/s$/, '');
+            const normalizedActive = (activeTabId || '').replace('-add', '').replace(/s$/, '');
+
+            if (linkTab === activeTabId || (normalizedActive && normalizedActive === normalizedLink)) {
                 link.classList.remove('text-on-surface-variant');
                 link.classList.add('text-[#0f5238]', 'scale-110');
                 const span = link.querySelector('span');

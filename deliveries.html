@@ -30,28 +30,37 @@
         class="mx-0 px-3 md:px-0 md:ml-[270px] md:mr-4 mt-0 md:mt-4 mb-0 md:mb-4 pb-[100px] md:pb-4 min-h-[calc(100vh-32px)] flex flex-col z-10 relative transition-all duration-300">
         <!-- Header Container -->
         <div id="header-container" class="sticky top-0 z-40 md:-mx-4 md:px-4 pt-0 md:pt-4"></div>
-        
+
         <!-- DELIVERIES PANEL -->
         <div id="panel-deliveries" class="panel active">
             <!-- Tabs & Search bar row -->
             <div class="flex flex-col md:flex-row justify-between items-stretch md:items-center gap-3 mb-5 mt-2">
                 <!-- Toggle Segment Tabs -->
-                <div class="bg-surface-container-low/80 backdrop-blur-md p-1 rounded-xl border border-outline-variant/10 flex gap-1 w-full md:w-auto">
-                    <button id="tab-today" class="tab-btn flex-1 md:flex-none text-center px-4 py-2 rounded-lg text-[11px] font-bold transition-all bg-primary text-on-primary shadow-sm" onclick="switchDeliveryTab('today')">
+                <div
+                    class="bg-surface-container-low/80 backdrop-blur-md p-1 rounded-xl border border-outline-variant/10 flex gap-1 w-full md:w-auto">
+                    <button id="tab-today"
+                        class="tab-btn flex-1 md:flex-none text-center px-4 py-2 rounded-lg text-[11px] font-bold transition-all bg-primary text-on-primary shadow-sm"
+                        onclick="switchDeliveryTab('today')">
                         Today's Deliveries
                     </button>
-                    <button id="tab-pending" class="tab-btn flex-1 md:flex-none text-center px-4 py-2 rounded-lg text-[11px] font-medium text-on-surface-variant hover:text-primary transition-all" onclick="switchDeliveryTab('pending')">
+                    <button id="tab-pending"
+                        class="tab-btn flex-1 md:flex-none text-center px-4 py-2 rounded-lg text-[11px] font-medium text-on-surface-variant hover:text-primary transition-all"
+                        onclick="switchDeliveryTab('pending')">
                         Pending Deliveries
                     </button>
-                    <button id="tab-completed" class="tab-btn flex-1 md:flex-none text-center px-4 py-2 rounded-lg text-[11px] font-medium text-on-surface-variant hover:text-primary transition-all" onclick="switchDeliveryTab('completed')">
+                    <button id="tab-completed"
+                        class="tab-btn flex-1 md:flex-none text-center px-4 py-2 rounded-lg text-[11px] font-medium text-on-surface-variant hover:text-primary transition-all"
+                        onclick="switchDeliveryTab('completed')">
                         Completed Deliveries
                     </button>
                 </div>
-                
+
                 <!-- Quick Filter / Search input -->
-                <div class="flex items-center bg-surface-container-low/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-outline-variant/10 w-full md:w-72 shadow-sm">
+                <div
+                    class="flex items-center bg-surface-container-low/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-outline-variant/10 w-full md:w-72 shadow-sm">
                     <span class="material-symbols-outlined text-[18px] text-on-surface-variant/50 mr-2">search</span>
-                    <input id="deliveries-search" type="text" placeholder="Search by customer, address..." class="bg-transparent border-0 p-0 text-[12px] placeholder:text-on-surface-variant/40 focus:ring-0 outline-none w-full" />
+                    <input id="deliveries-search" type="text" placeholder="Search by customer, address..."
+                        class="bg-transparent border-0 p-0 text-[12px] placeholder:text-on-surface-variant/40 focus:ring-0 outline-none w-full" />
                 </div>
             </div>
 
@@ -59,24 +68,36 @@
             <div class="grid grid-cols-3 gap-3 md:gap-gutter-md mb-gutter-md">
                 <div class="glass-card rounded-xl p-3 md:p-card-padding shadow-sm flex flex-col justify-between">
                     <div>
-                        <span class="material-symbols-outlined text-primary text-[20px] md:text-[24px]">calendar_today</span>
-                        <p class="text-[9px] md:text-[10px] text-on-surface-variant font-bold uppercase tracking-wider mt-1">Today's Total</p>
+                        <span
+                            class="material-symbols-outlined text-primary text-[20px] md:text-[24px]">calendar_today</span>
+                        <p
+                            class="text-[9px] md:text-[10px] text-on-surface-variant font-bold uppercase tracking-wider mt-1">
+                            Today's Total</p>
                     </div>
-                    <h3 id="delivery-stat-today" class="text-[20px] md:text-[24px] font-bold text-on-surface mt-2">0</h3>
+                    <h3 id="delivery-stat-today" class="text-[20px] md:text-[24px] font-bold text-on-surface mt-2">0
+                    </h3>
                 </div>
                 <div class="glass-card rounded-xl p-3 md:p-card-padding shadow-sm flex flex-col justify-between">
                     <div>
-                        <span class="material-symbols-outlined text-tertiary text-[20px] md:text-[24px]">pending_actions</span>
-                        <p class="text-[9px] md:text-[10px] text-on-surface-variant font-bold uppercase tracking-wider mt-1">Pending Dispatch</p>
+                        <span
+                            class="material-symbols-outlined text-tertiary text-[20px] md:text-[24px]">pending_actions</span>
+                        <p
+                            class="text-[9px] md:text-[10px] text-on-surface-variant font-bold uppercase tracking-wider mt-1">
+                            Pending Dispatch</p>
                     </div>
-                    <h3 id="delivery-stat-pending" class="text-[20px] md:text-[24px] font-bold text-on-surface mt-2">0</h3>
+                    <h3 id="delivery-stat-pending" class="text-[20px] md:text-[24px] font-bold text-on-surface mt-2">0
+                    </h3>
                 </div>
                 <div class="glass-card rounded-xl p-3 md:p-card-padding shadow-sm flex flex-col justify-between">
                     <div>
-                        <span class="material-symbols-outlined text-secondary text-[20px] md:text-[24px]">task_alt</span>
-                        <p class="text-[9px] md:text-[10px] text-on-surface-variant font-bold uppercase tracking-wider mt-1">Delivered Today</p>
+                        <span
+                            class="material-symbols-outlined text-secondary text-[20px] md:text-[24px]">task_alt</span>
+                        <p
+                            class="text-[9px] md:text-[10px] text-on-surface-variant font-bold uppercase tracking-wider mt-1">
+                            Delivered Today</p>
                     </div>
-                    <h3 id="delivery-stat-completed" class="text-[20px] md:text-[24px] font-bold text-on-surface mt-2">0</h3>
+                    <h3 id="delivery-stat-completed" class="text-[20px] md:text-[24px] font-bold text-on-surface mt-2">0
+                    </h3>
                 </div>
             </div>
 
