@@ -23,9 +23,9 @@ export function initRouter() {
             }
         });
 
-        if (page === 'deliveries.html') {
-            titleText = 'Deliveries';
-            activeTabId = 'panel-deliveries';
+        if (page === 'settings.html') {
+            titleText = 'Settings';
+            activeTabId = 'panel-settings';
         } else if (page === 'drivers.html') {
             titleText = 'Drivers';
         } else if (page === 'driver-add.html') {

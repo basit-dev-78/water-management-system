@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover"
+        name="viewport" />
+    <title>AquaFlow Pro - Settings Portal</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- External config and styles -->
+    <script src="./assets/js/config.js"></script>
+    <link href="./assets/css/style.css" rel="stylesheet" />
+    <style>
+        /* Tab switching transitions */
+        .settings-tab-content {
+            display: none;
+        }
+        .settings-tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-clip relative min-h-screen">
+
+    <!-- Animated Organic Background -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Sidebar Container -->
+    <div id="sidebar-container" class="relative z-50"></div>
+
+    <!-- Main Content Area -->
+    <main
+        class="mx-0 px-3 md:px-0 md:ml-[270px] md:mr-4 mt-0 md:mt-4 mb-0 md:mb-4 pb-[100px] md:pb-4 min-h-[calc(100vh-32px)] flex flex-col z-10 relative transition-all duration-300">
+        <!-- Header Container -->
+        <div id="header-container" class="sticky top-0 z-40 md:-mx-4 md:px-4 pt-0 md:pt-4"></div>
+
+        <!-- SETTINGS PANEL -->
+        <div id="panel-settings" class="panel active">
+            <!-- Grid Layout -->
+            <div class="grid grid-cols-12 gap-gutter-md">
+                
+                <!-- Left Column: Settings Options -->
+                <div class="col-span-12 lg:col-span-8 flex flex-col gap-gutter-md">
+                    
+                    <!-- Tabs Navigation Header -->
+                    <div class="glass-card rounded-xl p-1.5 flex flex-wrap gap-1 border border-outline-variant/10 shadow-sm">
+                        <button id="btn-tab-general"
+                            class="settings-tab-btn flex-1 md:flex-none text-center px-4 py-2 rounded-lg text-[11px] font-bold transition-all bg-primary text-on-primary shadow-sm"
+                            data-tab="settings-general">
+                            General
+                        </button>
+                        <button id="btn-tab-printer"
+                            class="settings-tab-btn flex-1 md:flex-none text-center px-4 py-2 rounded-lg text-[11px] font-medium text-on-surface-variant hover:text-primary transition-all"
+                            data-tab="settings-printer">
+                            Receipt Printer
+                        </button>
+                        <button id="btn-tab-notifications"
+                            class="settings-tab-btn flex-1 md:flex-none text-center px-4 py-2 rounded-lg text-[11px] font-medium text-on-surface-variant hover:text-primary transition-all"
+                            data-tab="settings-notifications">
+                            Notifications
+                        </button>
+                        <button id="btn-tab-database"
+                            class="settings-tab-btn flex-1 md:flex-none text-center px-4 py-2 rounded-lg text-[11px] font-medium text-on-surface-variant hover:text-primary transition-all"
+                            data-tab="settings-database">
+                            Database Tools
+                        </button>
+                    </div>
+
+                    <!-- Settings Form Card -->
+                    <div class="glass-card rounded-2xl p-6 border border-outline-variant/15 shadow-md flex-1">
+                        <form id="form-settings" class="space-y-6">
+                            
+                            <!-- TAB 1: GENERAL SETTINGS -->
+                            <div id="settings-general" class="settings-tab-content active space-y-4">
+                                <div class="border-b border-outline-variant/10 pb-3 mb-4">
+                                    <h3 class="text-[15px] font-bold text-on-surface">General Settings</h3>
+                                    <p class="text-[11px] text-on-surface-variant/80">Configure core business information and application preferences.</p>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="flex flex-col gap-1.5">
+                                        <label for="company-name" class="text-[11px] font-bold text-on-surface-variant">Company Name</label>
+                                        <input type="text" id="company-name" name="companyName"
+                                            class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none transition-all" />
+                                    </div>
+                                    <div class="flex flex-col gap-1.5">
+                                        <label for="company-phone" class="text-[11px] font-bold text-on-surface-variant">Contact Phone</label>
+                                        <input type="text" id="company-phone" name="phone"
+                                            class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none transition-all" />
+                                    </div>
+                                    <div class="flex flex-col gap-1.5">
+                                        <label for="company-email" class="text-[11px] font-bold text-on-surface-variant">Contact Email</label>
+                                        <input type="email" id="company-email" name="email"
+                                            class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none transition-all" />
+                                    </div>
+                                    <div class="flex flex-col gap-1.5">
+                                        <label for="company-address" class="text-[11px] font-bold text-on-surface-variant">Office Address</label>
+                                        <input type="text" id="company-address" name="address"
+                                            class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none transition-all" />
+                                    </div>
+                                    <div class="flex flex-col gap-1.5">
+                                        <label for="currency-symbol" class="text-[11px] font-bold text-on-surface-variant">Currency Symbol</label>
+                                        <input type="text" id="currency-symbol" name="currency" maxlength="5"
+                                            class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none transition-all" />
+                                    </div>
+                                    <div class="flex flex-col gap-1.5">
+                                        <label for="date-format" class="text-[11px] font-bold text-on-surface-variant">Date Format</label>
+                                        <select id="date-format" name="dateFormat"
+                                            class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none cursor-pointer">
+                                            <option value="YYYY-MM-DD">YYYY-MM-DD (e.g. 2026-06-03)</option>
+                                            <option value="DD/MM/YYYY">DD/MM/YYYY (e.g. 03/06/2026)</option>
+                                            <option value="MM/DD/YYYY">MM/DD/YYYY (e.g. 06/03/2026)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- TAB 2: RECEIPT PRINTER SETTINGS -->
+                            <div id="settings-printer" class="settings-tab-content space-y-4">
+                                <div class="border-b border-outline-variant/10 pb-3 mb-4">
+                                    <h3 class="text-[15px] font-bold text-on-surface">Receipt Printer Configuration</h3>
+                                    <p class="text-[11px] text-on-surface-variant/80">Configure parameters for receipt printing and layout. Perfect for small thermal receipt printers.</p>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="flex flex-col gap-1.5">
+                                        <label for="printer-width" class="text-[11px] font-bold text-on-surface-variant">Printer Paper Width</label>
+                                        <select id="printer-width" name="width"
+                                            class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none cursor-pointer">
+                                            <option value="80mm">80mm (3-inch Desktop Printer)</option>
+                                            <option value="58mm">58mm (2-inch Mobile/Bluetooth Printer)</option>
+                                            <option value="A4">Standard A4 / Letter Page</option>
+                                        </select>
+                                    </div>
+                                    <div class="flex flex-col gap-1.5">
+                                        <label for="printer-template" class="text-[11px] font-bold text-on-surface-variant">Receipt Style / Template</label>
+                                        <select id="printer-template" name="template"
+                                            class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none cursor-pointer">
+                                            <option value="minimalist">Default Minimalist</option>
+                                            <option value="delivery">Service & Delivery Layout</option>
+                                            <option value="invoice">Invoice / Tax Receipt</option>
+                                            <option value="compact">Compact Thermal (Eco)</option>
+                                        </select>
+                                    </div>
+                                    <div class="flex flex-col gap-1.5">
+                                        <label for="printer-connection" class="text-[11px] font-bold text-on-surface-variant">Connection Interface</label>
+                                        <div class="flex gap-2">
+                                            <select id="printer-connection" name="connection"
+                                                class="flex-1 bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none cursor-pointer">
+                                                <option value="browser">System Print Dialog (Browser Print) - Recommended</option>
+                                                <option value="usb">USB (WebUSB Direct Access)</option>
+                                                <option value="bluetooth">Bluetooth (WebBluetooth Access)</option>
+                                                <option value="wifi">Network / Ethernet IP Address</option>
+                                            </select>
+                                            <button type="button" id="btn-pair-printer"
+                                                class="bg-secondary hover:opacity-95 text-on-secondary px-4 py-2 rounded-lg text-[11px] font-bold shadow-sm flex items-center gap-1.5 transition-all hidden">
+                                                <span class="material-symbols-outlined text-[16px]">sync</span> Pair Device
+                                            </button>
+                                        </div>
+                                        <div id="printer-connection-status" class="text-[10px] font-medium text-on-surface-variant/60 flex items-center gap-1.5 mt-0.5">
+                                            <span class="w-2 h-2 rounded-full bg-outline-variant/60"></span>
+                                            <span>Not Connected</span>
+                                        </div>
+                                    </div>
+                                    <div id="printer-ip-container" class="flex flex-col gap-1.5 hidden col-span-1 md:col-span-2">
+                                        <label for="printer-ip" class="text-[11px] font-bold text-on-surface-variant">Printer IP Address</label>
+                                        <input type="text" id="printer-ip" name="ipAddress" placeholder="e.g. 192.168.1.100"
+                                            class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none transition-all" />
+                                    </div>
+                                    <div class="flex flex-col gap-1.5">
+                                        <label for="printer-header" class="text-[11px] font-bold text-on-surface-variant">Receipt Header Title</label>
+                                        <input type="text" id="printer-header" name="headerText"
+                                            class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none transition-all" />
+                                    </div>
+                                    <div class="flex flex-col gap-1.5">
+                                        <label for="printer-footer" class="text-[11px] font-bold text-on-surface-variant">Receipt Footer Greeting</label>
+                                        <input type="text" id="printer-footer" name="footerText"
+                                            class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none transition-all" />
+                                    </div>
+                                    <div class="flex items-center gap-2 mt-4 md:col-span-2">
+                                        <input type="checkbox" id="printer-autoprint" name="autoPrint"
+                                            class="rounded border-outline-variant/30 text-primary focus:ring-primary/30 h-4 w-4 cursor-pointer" />
+                                        <label for="printer-autoprint" class="text-[12px] font-medium text-on-surface select-none cursor-pointer">
+                                            Auto-trigger print dialog when a new Order is successfully saved
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- TAB 3: NOTIFICATION SETTINGS -->
+                            <div id="settings-notifications" class="settings-tab-content space-y-4">
+                                <div class="border-b border-outline-variant/10 pb-3 mb-4">
+                                    <h3 class="text-[15px] font-bold text-on-surface">Notification Preferences</h3>
+                                    <p class="text-[11px] text-on-surface-variant/80">Manage system triggers, email alerts, and background warning levels.</p>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="flex flex-col gap-1.5">
+                                        <label for="stock-threshold" class="text-[11px] font-bold text-on-surface-variant">Inventory Warning Threshold</label>
+                                        <input type="number" id="stock-threshold" name="lowStockThreshold" min="1" max="1000"
+                                            class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none transition-all" />
+                                        <span class="text-[9px] text-on-surface-variant/60">Triggers a 'Low Stock' alert status when items fall below this number.</span>
+                                    </div>
+                                    <div class="flex flex-col gap-1.5 justify-center mt-2">
+                                        <div class="flex items-center gap-2">
+                                            <input type="checkbox" id="email-alerts" name="emailAlerts"
+                                                class="rounded border-outline-variant/30 text-primary focus:ring-primary/30 h-4 w-4 cursor-pointer" />
+                                            <label for="email-alerts" class="text-[12px] font-medium text-on-surface select-none cursor-pointer">
+                                                Enable Email Alerts for critical operational updates
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- TAB 4: DATABASE TOOLS -->
+                            <div id="settings-database" class="settings-tab-content space-y-4">
+                                <div class="border-b border-outline-variant/10 pb-3 mb-4">
+                                    <h3 class="text-[15px] font-bold text-on-surface">Database & Backup Utilities</h3>
+                                    <p class="text-[11px] text-on-surface-variant/80">Manage your system's offline database, download backups, or reset parameters to default.</p>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <!-- Export Card -->
+                                    <div class="p-4 bg-surface-container-low/40 rounded-xl border border-outline-variant/10 flex flex-col justify-between">
+                                        <div>
+                                            <span class="material-symbols-outlined text-primary text-[24px]">backup</span>
+                                            <h4 class="text-[12px] font-bold text-on-surface mt-2">Backup Database</h4>
+                                            <p class="text-[10px] text-on-surface-variant/70 mt-1 leading-normal">
+                                                Download all customers, inventory, orders, and current settings as a single JSON backup file.
+                                            </p>
+                                        </div>
+                                        <button type="button" id="btn-db-export"
+                                            class="mt-4 w-full bg-primary hover:opacity-95 text-on-primary font-bold py-2 rounded-lg text-[11px] shadow-sm flex items-center justify-center gap-1.5 transition-all">
+                                            <span class="material-symbols-outlined text-[16px]">download</span> Export Database (.json)
+                                        </button>
+                                    </div>
+                                    
+                                    <!-- Import Card -->
+                                    <div class="p-4 bg-surface-container-low/40 rounded-xl border border-outline-variant/10 flex flex-col justify-between">
+                                        <div>
+                                            <span class="material-symbols-outlined text-secondary text-[24px]">settings_backup_restore</span>
+                                            <h4 class="text-[12px] font-bold text-on-surface mt-2">Restore Backup</h4>
+                                            <p class="text-[10px] text-on-surface-variant/70 mt-1 leading-normal">
+                                                Upload a previously exported AquaFlow backup file. This will merge/overwrite the current active registry.
+                                            </p>
+                                        </div>
+                                        <div class="mt-4 flex gap-2">
+                                            <input type="file" id="db-file-input" accept=".json" class="hidden" />
+                                            <button type="button" id="btn-db-import"
+                                                class="w-full bg-white border border-outline-variant hover:bg-surface-container-low text-on-surface font-bold py-2 rounded-lg text-[11px] shadow-sm flex items-center justify-center gap-1.5 transition-all">
+                                                <span class="material-symbols-outlined text-[16px]">upload_file</span> Choose Backup File
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Reset Database Card -->
+                                    <div class="p-4 bg-red-50/20 rounded-xl border border-red-200/20 col-span-1 md:col-span-2 flex flex-col md:flex-row items-center justify-between gap-4 mt-2">
+                                        <div class="text-left flex gap-3 items-start">
+                                            <span class="material-symbols-outlined text-error text-[24px] mt-0.5">warning</span>
+                                            <div>
+                                                <h4 class="text-[12px] font-bold text-on-surface">Factory Reset Database</h4>
+                                                <p class="text-[10px] text-on-surface-variant/70 mt-1 leading-normal max-w-lg">
+                                                    Wipe all orders, custom customers, driver logs, and reset settings back to system defaults. This operation is permanent and cannot be undone.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <button type="button" id="btn-db-reset"
+                                            class="w-full md:w-auto bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg text-[11px] shadow-sm shrink-0 flex items-center justify-center gap-1.5 transition-all">
+                                            <span class="material-symbols-outlined text-[16px]">delete_forever</span> Wipe Database
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Footer Save Button -->
+                            <div class="flex justify-end gap-3 border-t border-outline-variant/10 pt-4 mt-4">
+                                <button type="button" id="btn-settings-cancel"
+                                    class="px-4 py-2 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-container-low text-[12px] font-bold shadow-sm transition-all">
+                                    Cancel
+                                </button>
+                                <button type="submit" id="btn-settings-save"
+                                    class="px-6 py-2 bg-[#0f5238] hover:bg-[#1a734e] text-on-primary rounded-lg text-[12px] font-bold shadow-[0_4px_12px_rgba(15,82,56,0.3)] transition-all">
+                                    Save Config
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Right Column: Live Receipt Preview -->
+                <div class="col-span-12 lg:col-span-4">
+                    <div class="sticky top-20 flex flex-col gap-4">
+                        
+                        <!-- Actions card -->
+                        <div class="glass-card rounded-xl p-4 border border-outline-variant/10 shadow-sm flex items-center justify-between">
+                            <div>
+                                <h4 class="text-[13px] font-bold text-on-surface">Thermal Receipt Preview</h4>
+                                <p class="text-[10px] text-on-surface-variant/70 mt-0.5">Real-time print layout output</p>
+                            </div>
+                            <button type="button" id="btn-print-test"
+                                class="bg-primary hover:opacity-95 text-on-primary px-3 py-1.5 rounded-lg text-[11px] font-bold shadow-sm flex items-center gap-1 transition-all">
+                                <span class="material-symbols-outlined text-[16px]">print</span> Print Test
+                            </button>
+                        </div>
+
+                        <!-- Receipt container -->
+                        <div class="flex justify-center w-full">
+                            <div id="receipt-preview-container" class="receipt-paper rounded-t shadow-lg w-full max-w-[340px] p-5 text-left select-none overflow-hidden transition-all duration-300">
+                                
+                                <!-- Logo & Header -->
+                                <div class="text-center mb-4 pb-2 border-b border-dashed border-gray-400">
+                                    <div class="w-8 h-8 rounded-full bg-gray-100 mx-auto flex items-center justify-center mb-1 border border-gray-200">
+                                        <span class="material-symbols-outlined text-[18px] text-gray-700">water_drop</span>
+                                    </div>
+                                    <h2 id="receipt-preview-title" class="font-bold text-[14px] uppercase tracking-wide">AQUAFLOW PRO</h2>
+                                    <p id="receipt-preview-address" class="text-[10px] text-gray-600 mt-0.5">456 Water Way, Aquapolis</p>
+                                    <p id="receipt-preview-phone" class="text-[10px] text-gray-600">Tel: (555) 019-8833</p>
+                                </div>
+
+                                <!-- Transaction Info -->
+                                <div class="text-[10px] space-y-1 mb-4">
+                                    <div class="flex justify-between">
+                                        <span>Invoice: #INV-9408</span>
+                                        <span id="receipt-preview-date">03/06/2026</span>
+                                    </div>
+                                    <div>Client: City Plaza Offices</div>
+                                    <div>Operator: Alex Henderson</div>
+                                </div>
+
+                                <!-- Items List -->
+                                <div class="text-[10px] border-b border-dashed border-gray-400 pb-2 mb-2">
+                                    <div class="flex justify-between font-bold border-b border-dashed border-gray-400 pb-1 mb-1.5">
+                                        <span>Item Description</span>
+                                        <span>Total</span>
+                                    </div>
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between">
+                                            <span>3x 10 Gallon Jug Refill</span>
+                                            <span id="preview-item-sub1">$75.00</span>
+                                        </div>
+                                        <div class="flex justify-between text-gray-600 pl-2">
+                                            <span>@ $25.00 each</span>
+                                            <span></span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span>3x Empty Jug Return Deposit</span>
+                                            <span id="preview-item-sub2">$15.00</span>
+                                        </div>
+                                        <div class="flex justify-between text-gray-600 pl-2">
+                                            <span>@ $5.00 each</span>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Financial Totals -->
+                                <div class="text-[10px] space-y-1.5 mb-5 pl-8">
+                                    <div class="flex justify-between">
+                                        <span>Subtotal:</span>
+                                        <span id="preview-financial-subtotal">$90.00</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Tax (<span id="preview-financial-tax-pct">5</span>%):</span>
+                                        <span id="preview-financial-tax">$4.50</span>
+                                    </div>
+                                    <div class="flex justify-between font-bold border-t border-dashed border-gray-400 pt-1.5 text-[11px]">
+                                        <span>GRAND TOTAL:</span>
+                                        <span id="preview-financial-total">$94.50</span>
+                                    </div>
+                                </div>
+
+                                <!-- Barcode simulation -->
+                                <div class="flex flex-col items-center justify-center gap-1 py-1 text-center">
+                                    <div class="w-48 h-8 bg-[repeating-linear-gradient(90deg,#000,#000_2px,transparent_2px,transparent_6px,#000_6px,#000_10px,transparent_10px,transparent_12px)] opacity-85"></div>
+                                    <span class="text-[8px] font-mono tracking-widest mt-1">#ORD-9408-AQUA#</span>
+                                </div>
+
+                                <!-- Footer -->
+                                <div class="text-center text-[10px] mt-4 pt-2 border-t border-dashed border-gray-400">
+                                    <p id="receipt-preview-footer" class="italic text-gray-600">Thank you for your business!</p>
+                                    <p class="text-[8px] text-gray-400 mt-1">AquaFlow Pro — POS Software v1.2</p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- END SETTINGS PANEL -->
+    </main>
+
+    <!-- Hidden Printer Scoped Receipt Element (Used for window.print()) -->
+    <div id="print-receipt-container">
+        <!-- Populated dynamically before print trigger -->
+    </div>
+
+    <!-- Scripts -->
+    <script src="./assets/js/db.js"></script>
+    <script type="module" src="./assets/js/main.js"></script>
+</body>
+
+</html>

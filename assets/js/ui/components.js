@@ -133,11 +133,11 @@ export function initComponents() {
         });
     });
 
-    // Deliveries Card Click Navigation
-    const deliveriesCard = document.getElementById('dashboard-deliveries-card');
-    if (deliveriesCard) {
-        deliveriesCard.addEventListener('click', () => {
-            window.location.href = 'deliveries.html';
+    // Settings / Printer Card Click Navigation
+    const settingsCard = document.getElementById('dashboard-settings-card');
+    if (settingsCard) {
+        settingsCard.addEventListener('click', () => {
+            window.location.href = 'settings.html';
         });
     }
 
@@ -352,9 +352,10 @@ export function updateMetrics() {
     // Dashboard page metrics
     setText('dashboard-customers-count', stats.customerCount.toLocaleString());
     
-    const dashboardDeliveries = document.getElementById('dashboard-deliveries-count');
-    if (dashboardDeliveries) {
-        dashboardDeliveries.innerHTML = `${stats.delivered} <span class="text-[12px] text-on-surface-variant font-normal">/ ${stats.orderCount}</span>`;
+    const dashboardPrinter = document.getElementById('dashboard-printer-status');
+    if (dashboardPrinter) {
+        const settings = db.getSettings();
+        dashboardPrinter.innerHTML = `${settings.printer.width} <span class="text-[12px] text-on-surface-variant font-normal">/ ${settings.printer.connection.toUpperCase()}</span>`;
     }
 
     setText('dashboard-revenue-amount', `$${stats.revenue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);

@@ -2,9 +2,9 @@ const DB_KEY = 'aquaflow_db_v1';
 
 const defaultData = {
     customers: [
-        { id: 'CUST-001', name: 'TechFlow Solutions', email: 'contact@techflow.com', phone: '(555) 123-4567', address: '123 Tech Park, SF', status: 'Active', totalOrders: 24, lastOrder: '2024-06-20' },
-        { id: 'CUST-002', name: 'Green Valley Farms', email: 'orders@greenvalley.com', phone: '(555) 987-6543', address: '456 Farm Rd, Rural', status: 'Active', totalOrders: 12, lastOrder: '2024-06-18' },
-        { id: 'CUST-003', name: 'City Plaza Offices', email: 'facilities@cityplaza.com', phone: '(555) 456-7890', address: '789 Business Blvd', status: 'Inactive', totalOrders: 3, lastOrder: '2024-01-15' }
+        { id: 'CUST-001', name: 'TechFlow Solutions', email: 'contact@techflow.com', phone: '(555) 123-4567', address: '123 Tech Park, SF', status: 'Active', totalOrders: 24, lastOrder: '2024-06-20', pendingAmount: 150.00 },
+        { id: 'CUST-002', name: 'Green Valley Farms', email: 'orders@greenvalley.com', phone: '(555) 987-6543', address: '456 Farm Rd, Rural', status: 'Active', totalOrders: 12, lastOrder: '2024-06-18', pendingAmount: 320.00 },
+        { id: 'CUST-003', name: 'City Plaza Offices', email: 'facilities@cityplaza.com', phone: '(555) 456-7890', address: '789 Business Blvd', status: 'Inactive', totalOrders: 3, lastOrder: '2024-01-15', pendingAmount: 0.00 }
     ],
     suppliers: [
         { id: 'SUP-001', name: 'Global Bottles Inc.', category: 'Plastics & Bottles', contact: 'Sarah Jenkins', phone: '(555) 111-2222', status: 'Active', rating: 4.8 },
@@ -46,6 +46,29 @@ const defaultData = {
             { day: 'Sat', height: 30 },
             { day: 'Sun', height: 40 }
         ]
+    },
+    settings: {
+        printer: {
+            width: '80mm',
+            connection: 'browser',
+            template: 'minimalist',
+            ipAddress: '192.168.1.100',
+            autoPrint: false,
+            headerText: 'AquaFlow Pro',
+            footerText: 'Thank you for your business!'
+        },
+        general: {
+            companyName: 'AquaFlow Pro',
+            phone: '(555) 019-8833',
+            email: 'support@aquaflowpro.com',
+            address: '456 Water Way, Aquapolis',
+            currency: '$',
+            dateFormat: 'YYYY-MM-DD'
+        },
+        notifications: {
+            emailAlerts: true,
+            lowStockThreshold: 20
+        }
     }
 };
 
@@ -55,8 +78,16 @@ window.DB = {
             localStorage.setItem(DB_KEY, JSON.stringify(defaultData));
         } else {
             const data = JSON.parse(localStorage.getItem(DB_KEY));
+            let updated = false;
             if (!data.drivers) {
                 data.drivers = defaultData.drivers;
+                updated = true;
+            }
+            if (!data.settings) {
+                data.settings = defaultData.settings;
+                updated = true;
+            }
+            if (updated) {
                 localStorage.setItem(DB_KEY, JSON.stringify(data));
             }
         }
@@ -78,6 +109,7 @@ window.DB = {
         customer.totalOrders = 0;
         customer.lastOrder = 'N/A';
         customer.status = 'Active';
+        customer.pendingAmount = parseFloat(customer.pendingAmount) || 0.00;
         data.customers.push(customer);
         this.saveData(data);
         return customer;
@@ -126,6 +158,7 @@ window.DB = {
                 order.customerName = cust.name;
                 cust.totalOrders = (cust.totalOrders || 0) + 1;
                 cust.lastOrder = order.date;
+                cust.pendingAmount = (parseFloat(cust.pendingAmount) || 0) + order.total;
             }
         }
 
@@ -298,6 +331,22 @@ window.DB = {
             }
         }
         return false;
+    },
+
+    // SETTINGS MANAGEMENT
+    getSettings: function() {
+        const data = this.getData();
+        if (!data.settings) {
+            data.settings = defaultData.settings;
+            this.saveData(data);
+        }
+        return data.settings;
+    },
+    saveSettings: function(settings) {
+        const data = this.getData();
+        data.settings = settings;
+        this.saveData(data);
+        return settings;
     }
 };
 

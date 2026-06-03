@@ -82,14 +82,18 @@ function renderCustomers() {
                 </div>
                 ${statusBadge(c.status)}
             </div>
-            <div class="border-t border-outline-variant/10 pt-2 grid grid-cols-2 gap-1">
+            <div class="border-t border-outline-variant/10 pt-2 grid grid-cols-3 gap-1">
                 <div>
                     <p class="text-[9px] uppercase text-on-surface-variant/60 font-bold tracking-wider">Orders</p>
                     <p class="text-[13px] font-bold text-on-surface">${c.totalOrders}</p>
                 </div>
                 <div>
+                    <p class="text-[9px] uppercase text-on-surface-variant/60 font-bold tracking-wider">Pending</p>
+                    <p class="text-[13px] font-bold text-error">$${(c.pendingAmount || 0).toFixed(2)}</p>
+                </div>
+                <div>
                     <p class="text-[9px] uppercase text-on-surface-variant/60 font-bold tracking-wider">Last Order</p>
-                    <p class="text-[11px] font-medium text-on-surface">${c.lastOrder}</p>
+                    <p class="text-[11px] font-medium text-on-surface truncate">${c.lastOrder}</p>
                 </div>
             </div>
             <p class="text-[10px] text-on-surface-variant/70 flex items-center justify-between gap-1 mt-1">

@@ -1,4 +1,5 @@
 import { showToast } from '../ui/components.js';
+import { Printer } from '../core/printer.js';
 
 function routeToParent(currentPanelId) {
     let targetPage = '';
@@ -40,6 +41,11 @@ export function initForms() {
                 `<option value="${c.id}">${c.name} (${c.id})</option>`
             ).join('');
         }
+
+        orderCustomerSelect.addEventListener('change', () => {
+            updateBillBreakdown();
+        });
+        setTimeout(updateBillBreakdown, 50);
     }
 
     if (orderProductSelect && window.DB) {
@@ -49,13 +55,40 @@ export function initForms() {
         ).join('');
     }
 
+    function updateBillBreakdown() {
+        const customerSelect = document.getElementById('order-customer');
+        const txtSubtotal = document.getElementById('order-subtotal-disp');
+        const txtPending = document.getElementById('customer-pending-disp');
+        const txtTotal = document.getElementById('order-total-amount');
+        
+        let subtotal = 0;
+        addedItems.forEach(item => {
+            subtotal += item.price * item.qty;
+        });
+
+        let pending = 0;
+        if (customerSelect && window.DB) {
+            const custId = customerSelect.value;
+            const customer = window.DB.getCustomers().find(c => c.id === custId);
+            if (customer) {
+                pending = parseFloat(customer.pendingAmount) || 0;
+            }
+        }
+
+        const totalBill = subtotal + pending;
+
+        if (txtSubtotal) txtSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+        if (txtPending) txtPending.textContent = `$${pending.toFixed(2)}`;
+        if (txtTotal) txtTotal.textContent = `$${totalBill.toFixed(2)}`;
+        if (inputHiddenTotal) inputHiddenTotal.value = subtotal.toFixed(2);
+    }
+
     function renderOrderItems() {
         if (!orderItemsList) return;
         if (addedItems.length === 0) {
             orderItemsList.innerHTML = `<p class="text-[11px] text-on-surface-variant/50 text-center py-2">No items added to order yet.</p>`;
-            if (txtOrderTotal) txtOrderTotal.textContent = '$0.00';
-            if (inputHiddenTotal) inputHiddenTotal.value = '0';
             if (inputHiddenItems) inputHiddenItems.value = '0';
+            updateBillBreakdown();
             return;
         }
 
@@ -82,9 +115,8 @@ export function initForms() {
             `;
         }).join('');
 
-        if (txtOrderTotal) txtOrderTotal.textContent = `$${totalAmount.toFixed(2)}`;
-        if (inputHiddenTotal) inputHiddenTotal.value = totalAmount.toFixed(2);
         if (inputHiddenItems) inputHiddenItems.value = totalCount.toString();
+        updateBillBreakdown();
 
         // Wire delete buttons
         orderItemsList.querySelectorAll('.btn-remove-item').forEach(btn => {
@@ -209,7 +241,7 @@ export function initForms() {
                     data.items = parseInt(inputHiddenItems.value) || 0;
                     
                     // Add order to DB
-                    window.DB.addOrder(data);
+                    const savedOrder = window.DB.addOrder(data);
 
                     // Decrement Inventory Stock in DB!
                     const dbData = window.DB.getData();
@@ -223,6 +255,75 @@ export function initForms() {
                     window.DB.saveData(dbData);
 
                     successMessage = "Order created successfully!";
+
+                    // Auto-print receipt if enabled in settings
+                    const settings = window.DB.getSettings();
+                    if (settings.printer && settings.printer.autoPrint) {
+                        const printItems = addedItems.map(item => ({
+                            name: item.name,
+                            qty: item.qty,
+                            total: item.price * item.qty
+                        }));
+                        const customer = window.DB.getCustomers().find(c => c.id === data.customerId);
+                        
+                        const receiptData = {
+                            title: settings.printer.headerText || settings.general.companyName || 'AquaFlow Pro',
+                            address: settings.general.address || '',
+                            phone: settings.general.phone || '',
+                            date: savedOrder.date || new Date().toLocaleDateString(),
+                            invoiceId: savedOrder.id || `#ORD-${Math.floor(1000 + Math.random() * 9000)}`,
+                            client: customer ? customer.name : 'Walk-in Customer',
+                            operator: 'Alex Henderson',
+                            template: settings.printer.template || 'minimalist',
+                            subtotal: savedOrder.total,
+                            tax: savedOrder.total * 0.05,
+                            taxPct: 5,
+                            total: savedOrder.total * 1.05,
+                            footer: settings.printer.footerText || 'Thank you for your business!',
+                            items: printItems
+                        };
+
+                        (async () => {
+                            const printed = await Printer.printESC(receiptData, settings);
+                            if (!printed) {
+                                let printArea = document.getElementById('print-receipt-container');
+                                if (!printArea) {
+                                    printArea = document.createElement('div');
+                                    printArea.id = 'print-receipt-container';
+                                    document.body.appendChild(printArea);
+                                }
+
+                                // Apply classes and styles matching the preview container
+                                printArea.className = 'receipt-paper text-left select-none overflow-hidden';
+                                const width = settings.printer.width || '80mm';
+                                if (width === '58mm') {
+                                    printArea.style.maxWidth = '250px';
+                                    printArea.style.fontSize = '9px';
+                                    printArea.classList.add('receipt-mono');
+                                } else if (width === '80mm') {
+                                    printArea.style.maxWidth = '340px';
+                                    printArea.style.fontSize = '11px';
+                                    printArea.classList.add('receipt-mono');
+                                } else {
+                                    printArea.style.maxWidth = '100%';
+                                    printArea.style.fontSize = '13px';
+                                    printArea.classList.remove('receipt-mono');
+                                }
+
+                                printArea.innerHTML = Printer.renderReceiptHtml(receiptData, settings);
+
+                                let printWidth = '80mm';
+                                if (settings.printer.width === '58mm') {
+                                    printWidth = '58mm';
+                                } else if (settings.printer.width === 'A4') {
+                                    printWidth = '210mm';
+                                }
+                                document.documentElement.style.setProperty('--receipt-width', printWidth);
+
+                                window.print();
+                            }
+                        })();
+                    }
                 }
 
                 if (window.renderAll) window.renderAll();

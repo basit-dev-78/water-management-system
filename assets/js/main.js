@@ -6,7 +6,7 @@ import { initTables } from './features/tables.js';
 import { initAIChat } from './features/ai-chat.js';
 import { initLogistics } from './features/logistics.js';
 import { initReports } from './features/reports.js';
-import { initDeliveries } from './features/deliveries.js';
+import { initSettings } from './features/settings.js';
 import { initDrivers } from './features/drivers.js';
 import { renderDashboard } from './features/dashboard.js';
 import { exportCurrentPage } from './features/export.js';
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initTables();
     initLogistics();
     initReports();
-    initDeliveries();
+    initSettings();
     initDrivers();
 
     if (window.renderAll) {
