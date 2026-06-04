@@ -358,7 +358,10 @@ export function updateMetrics() {
         dashboardPrinter.innerHTML = `${settings.printer.width} <span class="text-[12px] text-on-surface-variant font-normal">/ ${settings.printer.connection.toUpperCase()}</span>`;
     }
 
-    setText('dashboard-revenue-amount', `$${stats.revenue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
+    const settings = db.getSettings();
+    const currency = settings.general.currency || 'Rs.';
+
+    setText('dashboard-revenue-amount', `${currency}${stats.revenue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
     
     // Empty Bottles
     setText('dashboard-empty-bottles', stats.emptyBottles.toLocaleString());
@@ -371,9 +374,9 @@ export function updateMetrics() {
         }
     }
 
-    setText('dashboard-receivable', `$${stats.receivable.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
-    setText('dashboard-payable', `$${stats.payable.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
-    setText('dashboard-expenses', `$${stats.expenses.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
+    setText('dashboard-receivable', `${currency}${stats.receivable.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
+    setText('dashboard-payable', `${currency}${stats.payable.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
+    setText('dashboard-expenses', `${currency}${stats.expenses.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
 
     // Revenue chart rendering
     const chartContainer = document.getElementById('dashboard-revenue-chart');
@@ -467,6 +470,8 @@ export function updateMetrics() {
     if (kpiValue) {
         const prices = { 'INV-001': 25, 'INV-002': 15, 'INV-003': 45, 'INV-004': 5 };
         const value = db.getInventory().reduce((s, i) => s + (i.stock || 0) * (prices[i.id] || 10), 0);
-        kpiValue.textContent = `$${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        const settings = db.getSettings();
+        const currency = settings.general.currency || 'Rs.';
+        kpiValue.textContent = `${currency}${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     }
 }

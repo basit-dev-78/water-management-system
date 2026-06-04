@@ -50,8 +50,10 @@ export function initForms() {
 
     if (orderProductSelect && window.DB) {
         const inventory = window.DB.getInventory();
+        const settings = window.DB.getSettings();
+        const currency = settings.general.currency || 'Rs.';
         orderProductSelect.innerHTML = inventory.map(item => 
-            `<option value="${item.id}">${item.name} ($${(PRODUCT_PRICES[item.id] || 10.00).toFixed(2)}) - Stock: ${item.stock}</option>`
+            `<option value="${item.id}">${item.name} (${currency}${(PRODUCT_PRICES[item.id] || 10.00).toFixed(2)}) - Stock: ${item.stock}</option>`
         ).join('');
     }
 
@@ -76,10 +78,12 @@ export function initForms() {
         }
 
         const totalBill = subtotal + pending;
+        const settings = window.DB ? window.DB.getSettings() : null;
+        const currency = settings ? settings.general.currency || 'Rs.' : 'Rs.';
 
-        if (txtSubtotal) txtSubtotal.textContent = `$${subtotal.toFixed(2)}`;
-        if (txtPending) txtPending.textContent = `$${pending.toFixed(2)}`;
-        if (txtTotal) txtTotal.textContent = `$${totalBill.toFixed(2)}`;
+        if (txtSubtotal) txtSubtotal.textContent = `${currency}${subtotal.toFixed(2)}`;
+        if (txtPending) txtPending.textContent = `${currency}${pending.toFixed(2)}`;
+        if (txtTotal) txtTotal.textContent = `${currency}${totalBill.toFixed(2)}`;
         if (inputHiddenTotal) inputHiddenTotal.value = subtotal.toFixed(2);
     }
 
@@ -94,6 +98,8 @@ export function initForms() {
 
         let totalAmount = 0;
         let totalCount = 0;
+        const settings = window.DB ? window.DB.getSettings() : null;
+        const currency = settings ? settings.general.currency || 'Rs.' : 'Rs.';
 
         orderItemsList.innerHTML = addedItems.map((item, idx) => {
             const itemTotal = item.price * item.qty;
@@ -103,10 +109,10 @@ export function initForms() {
                 <div class="flex items-center justify-between bg-white/40 p-2 rounded-lg border border-outline-variant/10 text-[11px] font-medium">
                     <div class="flex flex-col">
                         <span class="font-bold text-on-surface">${item.name}</span>
-                        <span class="text-on-surface-variant/70">Qty: ${item.qty} × $${item.price.toFixed(2)}</span>
+                        <span class="text-on-surface-variant/70">Qty: ${item.qty} × ${currency}${item.price.toFixed(2)}</span>
                     </div>
                     <div class="flex items-center gap-3">
-                        <span class="font-bold text-primary">$${itemTotal.toFixed(2)}</span>
+                        <span class="font-bold text-primary">${currency}${itemTotal.toFixed(2)}</span>
                         <button type="button" class="text-error hover:bg-error-container/20 p-1 rounded-md btn-remove-item" data-idx="${idx}">
                             <span class="material-symbols-outlined text-[14px]">close</span>
                         </button>
@@ -240,6 +246,13 @@ export function initForms() {
                     data.total = parseFloat(inputHiddenTotal.value) || 0;
                     data.items = parseInt(inputHiddenItems.value) || 0;
                     
+                    // Attach detailed items list for receipt printing
+                    data.itemsDetail = addedItems.map(item => ({
+                        name: item.name,
+                        qty: item.qty,
+                        total: item.price * item.qty
+                    }));
+                    
                     // Add order to DB
                     const savedOrder = window.DB.addOrder(data);
 
@@ -268,6 +281,7 @@ export function initForms() {
                         
                         const receiptData = {
                             title: settings.printer.headerText || settings.general.companyName || 'AquaFlow Pro',
+                            hideCompanyName: !!settings.printer.hideCompanyName,
                             address: settings.general.address || '',
                             phone: settings.general.phone || '',
                             date: savedOrder.date || new Date().toLocaleDateString(),
@@ -321,6 +335,33 @@ export function initForms() {
                                 document.documentElement.style.setProperty('--receipt-width', printWidth);
 
                                 window.print();
+
+                                // Post system print trigger prompt to share on WhatsApp
+                                setTimeout(() => {
+                                    if (confirm("Receipt print dialog opened. Would you like to share this receipt on WhatsApp?")) {
+                                        const currencySymbol = settings.general.currency || 'Rs.';
+                                        const message = `*${receiptData.title || 'AQUAFLOW PRO'} - RECEIPT*\n\n` +
+                                            `*Client:* ${receiptData.client}\n` +
+                                            `*Invoice/Receipt ID:* ${receiptData.invoiceId}\n` +
+                                            `*Date:* ${receiptData.date}\n` +
+                                            `---------------------------\n` +
+                                            `*Items:*\n` +
+                                            (receiptData.items || []).map(i => `• ${i.name} (x${i.qty}): ${currencySymbol}${i.total.toFixed(2)}`).join('\n') + `\n` +
+                                            `---------------------------\n` +
+                                            `*Subtotal:* ${currencySymbol}${receiptData.subtotal.toFixed(2)}\n` +
+                                            `*Sales Tax:* ${currencySymbol}${receiptData.tax.toFixed(2)}\n` +
+                                            `*TOTAL:* ${currencySymbol}${receiptData.total.toFixed(2)}\n` +
+                                            `---------------------------\n` +
+                                            `${receiptData.footer || 'Thank you for your business!'}`;
+
+                                        if (typeof window.showWhatsAppDispatchModal === 'function') {
+                                            window.showWhatsAppDispatchModal({
+                                                customer: customer,
+                                                messageText: message
+                                            });
+                                        }
+                                    }
+                                }, 1000);
                             }
                         })();
                     }

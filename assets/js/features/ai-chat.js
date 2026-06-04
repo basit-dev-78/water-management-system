@@ -103,7 +103,10 @@ export function initAIChat() {
             const totalRevenue = orders.reduce((sum, o) => sum + (parseFloat(o.total) || 0), 0);
             const activeOrders = orders.filter(o => o.status === 'Processing' || o.status === 'Shipped').length;
             
-            return `**Operational Finance Summary:**\n\n• **Total Cumulative Revenue:** $${totalRevenue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}\n• **Total Order Count:** ${orders.length} orders\n• **Active Pipeline Orders:** ${activeOrders} in progress\n• **Average Order Value:** $${(totalRevenue / (orders.length || 1)).toFixed(2)}\n\nThis data reflects real-time client contracts and order submissions.`;
+            const settings = window.DB.getSettings();
+            const currency = settings.general.currency || 'Rs.';
+
+            return `**Operational Finance Summary:**\n\n• **Total Cumulative Revenue:** ${currency}${totalRevenue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}\n• **Total Order Count:** ${orders.length} orders\n• **Active Pipeline Orders:** ${activeOrders} in progress\n• **Average Order Value:** ${currency}${(totalRevenue / (orders.length || 1)).toFixed(2)}\n\nThis data reflects real-time client contracts and order submissions.`;
         }
 
         // 3. Customers / Clients Query

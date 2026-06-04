@@ -25,13 +25,15 @@ function renderRevenueChart() {
 
     const totals = getOrderRevenueByDay();
     const max = Math.max(...totals, 1);
+    const settings = window.DB ? window.DB.getSettings() : null;
+    const currency = settings ? settings.general.currency || 'Rs.' : 'Rs.';
 
     container.innerHTML = DAY_LABELS.map((label, i) => {
         const pct = Math.round((totals[i] / max) * 100);
         return `
             <div class="flex-1 flex flex-col items-center group">
                 <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80"
-                    style="height: ${Math.max(pct, 8)}%;" title="$${totals[i].toFixed(2)}"></div>
+                    style="height: ${Math.max(pct, 8)}%;" title="${currency}${totals[i].toFixed(2)}"></div>
                 <span class="text-[9px] mt-2 font-bold text-on-surface-variant/50 uppercase">${label}</span>
             </div>`;
     }).join('');

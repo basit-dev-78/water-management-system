@@ -55,14 +55,33 @@ const defaultData = {
             ipAddress: '192.168.1.100',
             autoPrint: false,
             headerText: 'AquaFlow Pro',
-            footerText: 'Thank you for your business!'
+            footerText: 'Thank you for your business!',
+            items: [
+                { name: '10 Gallon Jug Refill', qty: 3, price: 25.00 },
+                { name: 'Empty Jug Return Deposit', qty: 3, price: 5.00 }
+            ],
+            fbr: {
+                businessNtn: '1234567-8',
+                businessStrn: '9876543210123',
+                posId: 'POS-88992',
+                clientNtn: '7654321-0',
+                clientCnic: '42101-1234567-1',
+                clientName: 'City Plaza Offices',
+                clientAddress: '789 Business Blvd',
+                salesTaxPct: 18
+            },
+            delivery: {
+                driver: 'Sarah Connor',
+                client: 'City Plaza Offices',
+                address: '789 Business Blvd'
+            }
         },
         general: {
             companyName: 'AquaFlow Pro',
             phone: '(555) 019-8833',
             email: 'support@aquaflowpro.com',
             address: '456 Water Way, Aquapolis',
-            currency: '$',
+            currency: 'Rs.',
             dateFormat: 'YYYY-MM-DD'
         },
         notifications: {
@@ -86,6 +105,23 @@ window.DB = {
             if (!data.settings) {
                 data.settings = defaultData.settings;
                 updated = true;
+            } else {
+                if (data.settings.general && (data.settings.general.currency === '$' || !data.settings.general.currency)) {
+                    data.settings.general.currency = 'Rs.';
+                    updated = true;
+                }
+                if (!data.settings.printer.items) {
+                    data.settings.printer.items = defaultData.settings.printer.items;
+                    updated = true;
+                }
+                if (!data.settings.printer.fbr) {
+                    data.settings.printer.fbr = defaultData.settings.printer.fbr;
+                    updated = true;
+                }
+                if (!data.settings.printer.delivery) {
+                    data.settings.printer.delivery = defaultData.settings.printer.delivery;
+                    updated = true;
+                }
             }
             if (updated) {
                 localStorage.setItem(DB_KEY, JSON.stringify(data));

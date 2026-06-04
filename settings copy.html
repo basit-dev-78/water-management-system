@@ -118,35 +118,6 @@
                                             <option value="MM/DD/YYYY">MM/DD/YYYY (e.g. 06/03/2026)</option>
                                         </select>
                                     </div>
-
-                                    <!-- Company Logo Upload -->
-                                    <div class="flex flex-col gap-1.5 md:col-span-2">
-                                        <label class="text-[11px] font-bold text-on-surface-variant">Company Logo (Receipt Branding)</label>
-                                        <div class="flex flex-col sm:flex-row gap-3 items-start">
-                                            <!-- Logo Preview -->
-                                            <div id="logo-preview-wrapper" class="w-20 h-20 rounded-xl border-2 border-dashed border-outline-variant/30 bg-surface-container-low/30 flex items-center justify-center overflow-hidden shrink-0 transition-all">
-                                                <div id="logo-placeholder" class="flex flex-col items-center justify-center text-on-surface-variant/40">
-                                                    <span class="material-symbols-outlined text-[28px]">image</span>
-                                                    <span class="text-[8px] mt-0.5">No Logo</span>
-                                                </div>
-                                                <img id="logo-preview-img" src="" alt="Logo Preview" class="w-full h-full object-contain hidden" />
-                                            </div>
-                                            <!-- Upload Controls -->
-                                            <div class="flex flex-col gap-2 flex-1">
-                                                <input type="file" id="logo-file-input" accept="image/png,image/jpeg,image/svg+xml,image/webp" class="hidden" />
-                                                <button type="button" id="btn-upload-logo"
-                                                    class="w-full sm:w-auto bg-surface-container-low/50 hover:bg-primary/10 border border-outline-variant/30 hover:border-primary/30 text-on-surface font-bold py-2 px-4 rounded-lg text-[11px] shadow-sm flex items-center justify-center gap-1.5 transition-all">
-                                                    <span class="material-symbols-outlined text-[16px]">upload</span> Upload Logo
-                                                </button>
-                                                <button type="button" id="btn-remove-logo"
-                                                    class="w-full sm:w-auto bg-red-50/20 hover:bg-red-100/30 border border-red-200/20 text-red-600 font-bold py-1.5 px-4 rounded-lg text-[10px] shadow-sm items-center justify-center gap-1 transition-all hidden"
-                                                    style="display:none;">
-                                                    <span class="material-symbols-outlined text-[14px]">delete</span> Remove Logo
-                                                </button>
-                                                <span class="text-[9px] text-on-surface-variant/60">PNG, JPEG, SVG, or WebP. Max 500KB. Shows on receipts.</span>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
 
@@ -295,13 +266,6 @@
                                         <label for="printer-header" class="text-[11px] font-bold text-on-surface-variant">Receipt Header Title</label>
                                         <input type="text" id="printer-header" name="headerText"
                                             class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none transition-all" />
-                                        <div class="flex items-center gap-2 mt-1">
-                                            <input type="checkbox" id="printer-hide-company-name" name="hideCompanyName"
-                                                class="rounded border-outline-variant/30 text-primary focus:ring-primary/30 h-3.5 w-3.5 cursor-pointer" />
-                                            <label for="printer-hide-company-name" class="text-[11px] font-medium text-on-surface-variant select-none cursor-pointer">
-                                                Hide company name from receipt
-                                            </label>
-                                        </div>
                                     </div>
                                     <div class="flex flex-col gap-1.5">
                                         <label for="printer-footer" class="text-[11px] font-bold text-on-surface-variant">Receipt Footer Greeting</label>
@@ -403,26 +367,26 @@
                                     </div>
                                     <div class="space-y-4">
                                         <!-- Table Form for Receipt Items -->
-                                        <div class="overflow-hidden rounded-xl border border-outline-variant/30 bg-surface-container-lowest shadow-sm">
+                                        <div class="overflow-hidden rounded-xl border border-outline-variant/10 bg-surface-container-lowest/30 shadow-sm">
                                             <div class="overflow-x-auto">
-                                                <table class="w-full text-left border-collapse table-fixed">
+                                                <table class="w-full text-left border-collapse table-auto">
                                                     <thead>
-                                                        <tr class="bg-surface-container-low border-b border-outline-variant/30 text-on-surface-variant text-[10px] uppercase tracking-wider">
-                                                            <th class="border-r border-outline-variant/30 py-2.5 px-3 font-bold">Item Description</th>
-                                                            <th class="border-r border-outline-variant/30 py-2.5 px-3 font-bold text-center w-16">Qty</th>
-                                                            <th class="border-r border-outline-variant/30 py-2.5 px-3 font-bold text-right w-28">Unit Price</th>
-                                                            <th class="py-2.5 px-2 font-bold text-center w-10"></th>
+                                                        <tr class="bg-surface-container-low/60 border-b border-outline-variant/10 text-on-surface-variant font-bold text-[10px] uppercase tracking-wider">
+                                                            <th class="py-2.5 px-4 font-bold">Item Name</th>
+                                                            <th class="py-2.5 px-4 font-bold w-24">Qty</th>
+                                                            <th class="py-2.5 px-4 font-bold w-32">Price</th>
+                                                            <th class="py-2.5 px-4 font-bold w-16 text-center">Action</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody id="receipt-items-container" class="divide-y divide-outline-variant/30">
+                                                    <tbody id="receipt-items-container" class="divide-y divide-outline-variant/10">
                                                         <!-- Dynamic receipt items rows injected here -->
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div class="p-2 bg-surface-container-low/40 border-t border-outline-variant/30 flex justify-end">
+                                            <div class="p-3 bg-surface-container-low/20 border-t border-outline-variant/10 flex justify-end">
                                                 <button type="button" id="btn-add-receipt-item"
-                                                    class="bg-secondary hover:bg-secondary/90 text-white px-4 py-1.5 rounded text-[11px] font-bold transition-all flex items-center gap-1 shadow-sm">
-                                                    <span class="material-symbols-outlined text-[15px]">add</span> Add Row
+                                                    class="bg-secondary/15 hover:bg-secondary/25 text-secondary px-4 py-2 rounded-lg text-[11px] font-bold transition-all flex items-center gap-1.5 border border-secondary/20 shadow-sm">
+                                                    <span class="material-symbols-outlined text-[15px]">add</span> Add Item Row
                                                 </button>
                                             </div>
                                         </div>
@@ -432,7 +396,7 @@
 
                             <!-- Footer Save Button -->
                             <div class="flex justify-end gap-3 border-t border-outline-variant/10 pt-4 mt-4">
-                                <button type="button" id="btn-settings-cancel" tabindex="-1"
+                                <button type="button" id="btn-settings-cancel"
                                     class="px-4 py-2 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-container-low text-[12px] font-bold shadow-sm transition-all">
                                     Cancel
                                 </button>

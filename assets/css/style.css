@@ -456,20 +456,21 @@ tr.group {
         display: block !important;
         position: relative !important;
         margin: 0 auto !important;
+        max-width: 100% !important;
         width: var(--receipt-width, 80mm) !important;
         box-shadow: none !important;
         print-color-adjust: exact;
         -webkit-print-color-adjust: exact;
         background-color: #ffffff !important;
         color: #111111 !important;
-        border-top: 4px dashed #bfc9c1 !important;
     }
     #print-receipt-container * {
         print-color-adjust: exact;
         -webkit-print-color-adjust: exact;
     }
+    /* Default @page is overridden dynamically via <style id="print-page-style"> injected by JS */
     @page {
-        size: var(--receipt-width, 80mm) auto;
-        margin: 0;
+        margin: 10mm;
     }
 }
+
