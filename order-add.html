@@ -1,19 +1,14 @@
-<!DOCTYPE html>
-<html class="light" lang="en">
-
-<head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover"
-        name="viewport" />
+<!DOCTYPE html><html class="light" lang="en"><head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover" name="viewport">
     <title>AquaFlow Pro - Management Portal</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <!-- External config and styles -->
     <script src="./assets/js/config.js"></script>
-    <link href="./assets/css/style.css" rel="stylesheet" />
+    <link href="./assets/css/style.css" rel="stylesheet">
 </head>
 
-<body
-    class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-clip relative min-h-screen">
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-clip relative min-h-screen">
 
     <!-- Animated Organic Background -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
@@ -26,15 +21,12 @@
     <div id="sidebar-container" class="relative z-50"></div>
 
     <!-- Main Content Area -->
-    <main
-        class="mx-0 px-3 md:px-0 md:ml-[270px] md:mr-4 mt-0 md:mt-4 mb-0 md:mb-4 pb-[100px] md:pb-4 min-h-[calc(100vh-32px)] flex flex-col z-10 relative transition-all duration-300">
+    <main class="mx-0 px-3 md:px-0 md:ml-[270px] md:mr-4 mt-0 md:mt-4 mb-0 md:mb-4 pb-[100px] md:pb-4 min-h-[calc(100vh-32px)] flex flex-col z-10 relative transition-all duration-300">
         <!-- Header Container -->
         <div id="header-container" class="sticky top-0 z-40 md:-mx-4 md:px-4 pt-0 md:pt-4"></div>
         <!-- ADD ORDER PANEL -->
         <div id="panel-order-add" class="panel active">
-            <a
-                class="flex items-center gap-1.5 text-[12px] font-bold text-on-surface-variant hover:text-primary transition-colors mb-4 w-fit"
-                href="orders.html">
+            <a class="flex items-center gap-1.5 text-[12px] font-bold text-on-surface-variant hover:text-primary transition-colors mb-4 w-fit" href="orders.html">
                 <span class="material-symbols-outlined text-[16px]">arrow_back</span>
                 Back to Orders
             </a>
@@ -45,23 +37,20 @@
                             Order Details</h3>
                     </div>
                     <div class="flex flex-col gap-1.5">
-                        <label class="text-[11px] font-bold text-on-surface-variant">Select Customer *</label>
-                        <select name="customerId" id="order-customer" required
-                            class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none cursor-pointer">
+                        <label class="text-[11px] font-bold text-on-surface-variant mb-1">Select Customer *</label>
+                        <select name="customerId" id="order-customer" required="" class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none cursor-pointer">
                             <option>TechFlow Solutions</option>
                             <option>Green Valley Farms</option>
                             <option>City Plaza Offices</option>
                         </select>
                     </div>
+                    <div class="floating-label-group mb-2">
+                        
+                        <input type="date" name="expectedDate" id="order-date" class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none" placeholder=" ">
+                    <label class="" for="order-date">Expected Delivery Date</label></div>
                     <div class="flex flex-col gap-1.5">
-                        <label class="text-[11px] font-bold text-on-surface-variant">Expected Delivery Date</label>
-                        <input type="date" name="expectedDate" id="order-date"
-                            class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none">
-                    </div>
-                    <div class="flex flex-col gap-1.5">
-                        <label class="text-[11px] font-bold text-on-surface-variant">Payment Type *</label>
-                        <select name="paymentType" id="order-payment-type" required
-                            class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2.5 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none cursor-pointer">
+                        <label class="text-[11px] font-bold text-on-surface-variant mb-1">Payment Type *</label>
+                        <select name="paymentType" id="order-payment-type" required="" class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2.5 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none cursor-pointer">
                             <option value="Cash on Delivery">Cash on Delivery</option>
                             <option value="Credit Card">Credit Card</option>
                             <option value="Bank Transfer">Bank Transfer</option>
@@ -75,14 +64,10 @@
                                 <p class="text-[11px] text-on-surface-variant/50 text-center py-2">No items added to order yet.</p>
                             </div>
                             <div class="flex gap-2 items-center flex-wrap pt-2 border-t border-outline-variant/10">
-                                <select id="line-item-product"
-                                    class="bg-white border border-outline-variant/30 rounded-lg py-1.5 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none cursor-pointer flex-1">
+                                <select id="line-item-product" class="bg-white border border-outline-variant/30 rounded-lg py-1.5 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none cursor-pointer flex-1">
                                 </select>
-                                <input type="number" id="line-item-qty" min="1" value="1"
-                                    class="bg-white border border-outline-variant/30 rounded-lg py-1.5 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none w-20"
-                                    placeholder="Qty">
-                                <button type="button" id="btn-add-line-item"
-                                    class="px-4 py-1.5 text-[11px] font-bold text-white bg-primary rounded-md hover:opacity-95 transition-all">
+                                <input type="number" id="line-item-qty" min="1" value="1" class="bg-white border border-outline-variant/30 rounded-lg py-1.5 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none w-20" placeholder="Qty">
+                                <button type="button" id="btn-add-line-item" class="px-4 py-1.5 text-[11px] font-bold text-white bg-primary rounded-md hover:opacity-95 transition-all">
                                     + Add Item
                                 </button>
                             </div>
@@ -104,7 +89,7 @@
                         <div class="flex justify-between items-center">
                             <div>
                                 <p class="text-[11px] text-on-surface-variant font-bold uppercase tracking-wider">Total Outstanding Bill</p>
-                                <span class="text-[9px] text-on-surface-variant/60">(Includes current order & pending balance)</span>
+                                <span class="text-[9px] text-on-surface-variant/60">(Includes current order &amp; pending balance)</span>
                             </div>
                             <h2 class="text-[22px] font-extrabold text-primary" id="order-total-amount">$0.00</h2>
                         </div>
@@ -117,12 +102,9 @@
             </div>
 
             <!-- Fixed Form Actions Footer -->
-            <div
-                class="fixed bottom-[calc(68px+env(safe-area-inset-bottom,0px))] md:bottom-0 right-0 left-0 md:left-[270px] bg-white/70 backdrop-blur-xl border-t border-white/60 px-4 md:px-8 py-3 md:py-4 flex justify-end gap-3 z-[40] shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
-                <button type="button"
-                    class="px-5 py-2 text-[12px] font-bold text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 rounded-lg transition-colors form-btn-cancel">Cancel</button>
-                <button type="button"
-                    class="px-5 py-2 text-[12px] font-bold text-white bg-gradient-to-r from-[#0f5238] to-[#1a734e] rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all form-btn-save">Submit
+            <div class="fixed bottom-[calc(68px+env(safe-area-inset-bottom,0px))] md:bottom-0 right-0 left-0 md:left-[270px] bg-white/70 backdrop-blur-xl border-t border-white/60 px-4 md:px-8 py-3 md:py-4 flex justify-end gap-3 z-[40] shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
+                <button type="button" class="px-5 py-2 text-[12px] font-bold text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 rounded-lg transition-colors form-btn-cancel">Cancel</button>
+                <button type="button" class="px-5 py-2 text-[12px] font-bold text-white bg-gradient-to-r from-[#0f5238] to-[#1a734e] rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all form-btn-save">Submit
                     Order</button>
             </div>
         </div>
@@ -133,6 +115,6 @@
     <!-- Scripts -->
     <script src="./assets/js/db.js"></script>
     <script type="module" src="./assets/js/main.js"></script>
-</body>
 
-</html>
+
+</body></html>

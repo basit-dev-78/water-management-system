@@ -193,6 +193,9 @@ export function initComponents() {
         btnProfile.addEventListener('click', (e) => {
             e.stopPropagation();
             dropdownProfile.classList.toggle('hidden');
+            if (dropdownNotifications && !dropdownNotifications.classList.contains('hidden')) {
+                dropdownNotifications.classList.add('hidden');
+            }
         });
 
         document.addEventListener('click', (e) => {
@@ -201,6 +204,46 @@ export function initComponents() {
             }
         });
     }
+
+    // Notifications dropdown
+    const btnNotifications = document.getElementById('btn-notifications');
+    const dropdownNotifications = document.getElementById('dropdown-notifications');
+    
+    if (btnNotifications && dropdownNotifications) {
+        btnNotifications.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownNotifications.classList.toggle('hidden');
+            if (dropdownProfile && !dropdownProfile.classList.contains('hidden')) {
+                dropdownProfile.classList.add('hidden');
+            }
+            // Hide the pulse indicator when clicked
+            const pulse = btnNotifications.querySelector('.animate-pulse');
+            if (pulse) pulse.classList.add('hidden');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!dropdownNotifications.contains(e.target) && !btnNotifications.contains(e.target)) {
+                dropdownNotifications.classList.add('hidden');
+            }
+        });
+    }
+
+    // Sync header profile with DB
+    function syncHeaderProfile() {
+        if (!window.DB) return;
+        const profile = window.DB.getUserProfile();
+        const nameEl = document.getElementById('header-profile-name');
+        const roleEl = document.getElementById('header-profile-role');
+        const imgEl = document.getElementById('header-profile-img');
+
+        if (nameEl) nameEl.textContent = `${profile.firstName} ${profile.lastName}`;
+        if (roleEl) roleEl.textContent = profile.role;
+        if (imgEl) imgEl.src = profile.avatarUrl;
+    }
+
+    // Wait slightly to ensure DB is loaded if components load very fast
+    setTimeout(syncHeaderProfile, 50);
+    window.syncHeaderProfile = syncHeaderProfile;
 }
 
 export function initFilterPanel() {
@@ -330,10 +373,8 @@ export function initGlobalButtons() {
             showToast("Loading next page...");
         } else if (iconText === 'chevron_left' || text === 'chevron_left') {
             showToast("Loading previous page...");
-        } else if (iconText === 'notifications' || text === 'notifications_active') {
-            showToast("You have 3 new notifications.");
         } else if (btn.classList.contains('rounded-full') && !text) {
-            showToast("User profile opened.");
+            // Profile or settings button clicked
         }
     });
 }
@@ -383,12 +424,28 @@ export function updateMetrics() {
     if (chartContainer) {
         const chartData = metrics.chartData || [];
         chartContainer.innerHTML = chartData.map(d => `
-            <div class="flex-1 flex flex-col items-center group">
+            <div class="flex-1 flex flex-col items-center group relative h-full justify-end">
+                <div class="chart-tooltip">
+                    ${currency}${Math.round((d.height / 100) * 1500).toLocaleString()}
+                </div>
                 <div class="w-full chart-bar-gradient rounded-t-md transition-all group-hover:opacity-80"
                     style="height: ${d.height}%;"></div>
-                <span class="text-[9px] mt-2 font-bold text-on-surface-variant/50 uppercase">${d.day}</span>
+                <span class="text-[9px] mt-2 font-bold text-on-surface-variant/50 uppercase shrink-0">${d.day}</span>
             </div>
         `).join('');
+
+        // Wire tooltip interactions
+        const bars = chartContainer.querySelectorAll('.group');
+        bars.forEach(bar => {
+            bar.addEventListener('mouseenter', () => {
+                const tooltip = bar.querySelector('.chart-tooltip');
+                if(tooltip) tooltip.classList.add('active');
+            });
+            bar.addEventListener('mouseleave', () => {
+                const tooltip = bar.querySelector('.chart-tooltip');
+                if(tooltip) tooltip.classList.remove('active');
+            });
+        });
     }
 
     // Dynamic Alerts rendering

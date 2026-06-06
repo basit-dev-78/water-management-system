@@ -21,7 +21,7 @@ export function initSettings() {
     const logoPlaceholder = document.getElementById('logo-placeholder');
     const btnRemoveLogo = document.getElementById('btn-remove-logo');
     let currentLogoData = settings.general.logo || '';
-    
+
     function updateLogoPreview(dataUrl) {
         if (dataUrl) {
             logoPreviewImg.src = dataUrl;
@@ -116,7 +116,7 @@ export function initSettings() {
     // Populate Receipt Items rows
     const itemsContainer = document.getElementById('receipt-items-container');
     const items = settings.printer.items || [];
-    
+
     function renderItemRow(item = { name: '', qty: 1, price: 0.00 }) {
         const currencySymbol = document.getElementById('currency-symbol')?.value.trim() || settings.general.currency || 'Rs.';
         const row = document.createElement('tr');
@@ -138,7 +138,7 @@ export function initSettings() {
                 </button>
             </td>
         `;
-        
+
         row.querySelector('.btn-remove-receipt-item').addEventListener('click', () => {
             row.remove();
             updateReceiptPreview();
@@ -182,7 +182,7 @@ export function initSettings() {
             renderItemRow({ name: '10 Gallon Jug Refill', qty: 3, price: 25.00 });
             renderItemRow({ name: 'Empty Jug Return Deposit', qty: 3, price: 5.00 });
         }
-        
+
         const addRowBtn = document.getElementById('btn-add-receipt-item');
         addRowBtn.tabIndex = -1; // Skip Add Row in tab order
         addRowBtn.addEventListener('click', () => {
@@ -216,11 +216,11 @@ export function initSettings() {
     function handleTemplateFieldsToggle(templateValue) {
         const taxSection = document.getElementById('receipt-tax-section');
         const deliverySection = document.getElementById('receipt-delivery-section');
-        
+
         if (taxSection && deliverySection) {
             taxSection.classList.add('hidden');
             deliverySection.classList.add('hidden');
-            
+
             if (templateValue === 'invoice' || templateValue === 'fbr') {
                 taxSection.classList.remove('hidden');
             } else if (templateValue === 'delivery') {
@@ -228,7 +228,7 @@ export function initSettings() {
             }
         }
     }
-    
+
     // Check initially
     handleTemplateFieldsToggle(settings.printer.template);
     updateReceiptPreview();
@@ -534,7 +534,7 @@ function updateReceiptPreview() {
     const template = document.getElementById('printer-template').value;
     const width = document.getElementById('printer-width').value;
     const currency = document.getElementById('currency-symbol').value.trim() || '$';
-    
+
     // Header titles
     const headerVal = document.getElementById('printer-header').value.trim();
     const compNameVal = document.getElementById('company-name').value.trim();
@@ -542,7 +542,7 @@ function updateReceiptPreview() {
     const addressText = document.getElementById('company-address').value.trim() || '456 Water Way, Aquapolis';
     const phoneText = document.getElementById('company-phone').value.trim();
     const footerText = document.getElementById('printer-footer').value.trim() || 'Thank you for your business!';
-    
+
     const d = new Date();
     const dateText = d.toLocaleDateString();
 
@@ -673,7 +673,7 @@ function showPrintPreviewModal(receiptData, settings, onConfirm) {
     if (connType === 'wifi') connLabel = 'Network Printer';
 
     modal.innerHTML = `
-        <div class="bg-surface rounded-3xl border border-outline-variant/20 p-6 shadow-[0_24px_50px_rgba(0,0,0,0.5)] max-w-[400px] w-full flex flex-col relative overflow-hidden animate-sim-slide-up text-on-surface">
+        <div class="bg-surface rounded-3xl border border-outline-variant/20 p-6 shadow-[0_24px_50px_rgba(0,0,0,0.5)] max-w-[400px] w-full flex flex-col relative overflow-hidden animate-sim-slide-up text-on-surface transition-all duration-300">
             <!-- Close button -->
             <button type="button" id="btn-close-preview" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface transition-colors">
                 <span class="material-symbols-outlined">close</span>
@@ -692,19 +692,22 @@ function showPrintPreviewModal(receiptData, settings, onConfirm) {
             <!-- Receipt Scroll Container -->
             <div class="w-full overflow-hidden flex justify-center bg-surface-container-low/40 rounded-xl p-3 border border-outline-variant/10">
                 <div class="w-full max-h-[300px] overflow-y-auto custom-scrollbar flex justify-center">
-                    <div id="modal-receipt-paper" class="receipt-paper shadow-sm w-full max-w-[280px] p-4 text-left text-[10px] select-none overflow-hidden">
+                    <div id="modal-receipt-paper" class="receipt-paper shadow-sm w-full max-w-[300px] p-4 text-left text-[10px] select-none overflow-hidden bg-white">
                         <!-- Rendered receipt content -->
                     </div>
                 </div>
             </div>
 
             <!-- Controls -->
-            <div class="w-full mt-5 flex gap-3">
-                <button type="button" id="btn-cancel-print" class="flex-1 px-4 py-2.5 border border-outline-variant rounded-xl text-on-surface-variant hover:bg-surface-container-low text-[12px] font-bold transition-all">
+            <div class="w-full mt-5 flex gap-2">
+                <button type="button" id="btn-cancel-print" class="flex-1 px-3 py-2.5 border border-outline-variant rounded-xl text-on-surface-variant hover:bg-surface-container-low text-[12px] font-bold transition-all">
                     Cancel
                 </button>
+                <button type="button" id="btn-wa-share" class="flex-1 bg-[#25d366] hover:bg-[#20ba5a] text-white py-2.5 rounded-xl text-[12px] font-bold shadow-[0_4px_12px_rgba(37,211,102,0.3)] transition-all flex items-center justify-center gap-1.5" title="Share as Image">
+                    <span class="material-symbols-outlined text-[16px]">share</span> Share WA
+                </button>
                 <button type="button" id="btn-confirm-print" class="flex-1 bg-[#0f5238] hover:bg-[#1a734e] text-white py-2.5 rounded-xl text-[12px] font-bold shadow-[0_4px_12px_rgba(15,82,56,0.3)] transition-all flex items-center justify-center gap-1.5">
-                    <span class="material-symbols-outlined text-[16px]">print</span> Print Receipt
+                    <span class="material-symbols-outlined text-[16px]">print</span> Print
                 </button>
             </div>
         </div>
@@ -715,20 +718,28 @@ function showPrintPreviewModal(receiptData, settings, onConfirm) {
     const paper = document.getElementById('modal-receipt-paper');
     if (paper && typeof Printer.renderReceiptHtml === 'function') {
         paper.innerHTML = Printer.renderReceiptHtml(receiptData, settings);
-        
-        // Match receipt styling width
+
+        // Match receipt styling width but compress font sizes/scaling for a compact software preview
         const width = settings.printer.width || '80mm';
         if (width === '58mm') {
             paper.style.maxWidth = '220px';
-            paper.style.fontSize = '8px';
+            paper.style.fontSize = '7px';
+            paper.style.lineHeight = '1.2';
             paper.classList.add('receipt-mono');
         } else if (width === '80mm') {
             paper.style.maxWidth = '280px';
-            paper.style.fontSize = '10px';
+            paper.style.fontSize = '8px';
+            paper.style.lineHeight = '1.2';
             paper.classList.add('receipt-mono');
+        } else if (width === 'A4') {
+            paper.style.width = '794px'; // Standard A4 width in pixels
+            paper.style.maxWidth = 'none';
+            paper.style.zoom = '0.35'; // Perfect compact scaling for software preview
+            paper.classList.remove('receipt-mono');
         } else {
             paper.style.maxWidth = '100%';
-            paper.style.fontSize = '11px';
+            paper.style.fontSize = '9px';
+            paper.style.lineHeight = '1.2';
             paper.classList.remove('receipt-mono');
         }
     }
@@ -740,11 +751,45 @@ function showPrintPreviewModal(receiptData, settings, onConfirm) {
 
     document.getElementById('btn-close-preview').addEventListener('click', closeModal);
     document.getElementById('btn-cancel-print').addEventListener('click', closeModal);
-    
+
     document.getElementById('btn-confirm-print').addEventListener('click', () => {
         closeModal();
         if (typeof onConfirm === 'function') {
             onConfirm();
+        }
+    });
+
+    document.getElementById('btn-wa-share').addEventListener('click', async () => {
+        closeModal(); // Close print preview modal
+
+        if (typeof window.showWhatsAppDispatchModal === 'function') {
+            const invoiceId = receiptData.invoiceId || '#INV-TEST';
+            const dateText = receiptData.date || new Date().toLocaleDateString();
+            const clientName = receiptData.client || 'Customer';
+            const currency = (settings && settings.general && settings.general.currency) || 'Rs.';
+
+            const message = `*${receiptData.title || 'AQUAFLOW PRO'} - RECEIPT*\n\n` +
+                `*Client:* ${clientName}\n` +
+                `*Invoice/Receipt ID:* ${invoiceId}\n` +
+                `*Date:* ${dateText}\n` +
+                `---------------------------\n` +
+                `*Items:*\n` +
+                (receiptData.items || []).map(i => `• ${i.name} (x${i.qty}): ${currency}${i.total.toFixed(2)}`).join('\n') + `\n` +
+                `---------------------------\n` +
+                `*Subtotal:* ${currency}${receiptData.subtotal.toFixed(2)}\n` +
+                `*Sales Tax:* ${currency}${receiptData.tax.toFixed(2)}\n` +
+                `*TOTAL:* ${currency}${receiptData.total.toFixed(2)}\n` +
+                `---------------------------\n` +
+                `${receiptData.footer || 'Thank you for your business!'}`;
+
+            window.showWhatsAppDispatchModal({
+                customer: { name: clientName, phone: receiptData.phone || '' },
+                messageText: message,
+                receiptData: receiptData,
+                onDone: () => { }
+            });
+        } else {
+            alert("WhatsApp dispatch module not loaded.");
         }
     });
 }

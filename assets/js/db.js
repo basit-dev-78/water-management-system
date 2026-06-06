@@ -88,6 +88,13 @@ const defaultData = {
             emailAlerts: true,
             lowStockThreshold: 20
         }
+    },
+    userProfile: {
+        firstName: 'Abdul',
+        lastName: 'Basit',
+        email: 'abdul@aquaflow.com',
+        role: 'Operations Lead',
+        avatarUrl: './assets/img/default-avatar.jpg'
     }
 };
 
@@ -101,6 +108,17 @@ window.DB = {
             if (!data.drivers) {
                 data.drivers = defaultData.drivers;
                 updated = true;
+            }
+            if (!data.userProfile) {
+                data.userProfile = defaultData.userProfile;
+                updated = true;
+            } else {
+                if (data.userProfile.avatarUrl.includes('pravatar') || data.userProfile.firstName === 'Alex') {
+                    data.userProfile.firstName = 'Abdul';
+                    data.userProfile.lastName = 'Basit';
+                    data.userProfile.avatarUrl = './assets/img/default-avatar.jpg';
+                    updated = true;
+                }
             }
             if (!data.settings) {
                 data.settings = defaultData.settings;
@@ -135,6 +153,21 @@ window.DB = {
     
     saveData: function(data) {
         localStorage.setItem(DB_KEY, JSON.stringify(data));
+    },
+
+    getUserProfile: function() {
+        const data = this.getData();
+        if(!data.userProfile) {
+            data.userProfile = defaultData.userProfile;
+            this.saveData(data);
+        }
+        return data.userProfile;
+    },
+    saveUserProfile: function(profile) {
+        const data = this.getData();
+        data.userProfile = profile;
+        this.saveData(data);
+        return profile;
     },
 
     // CUSTOMERS

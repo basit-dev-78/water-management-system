@@ -14,16 +14,16 @@ export function initReports() {
         const type = typeEl.value;
         const format = formatEl.value;
         const db = window.DB;
-        
+
         if (!db) {
             alert("Database not ready!");
             return;
         }
-        
+
         let data = [];
         let filename = `aquaflow_${type}_report_${new Date().toISOString().split('T')[0]}`;
         let outputText = '';
-        
+
         if (type === 'financial') {
             const orders = db.getOrders();
             const customers = db.getCustomers();
@@ -61,7 +61,7 @@ export function initReports() {
                 LastOrderDate: c.lastOrder
             }));
         }
-        
+
         if (format === 'json') {
             outputText = JSON.stringify(data, null, 2);
             filename += '.json';
@@ -76,12 +76,12 @@ export function initReports() {
             }
             filename += '.csv';
         }
-        
+
         // Render preview
         if (previewEl) {
             previewEl.value = outputText;
         }
-        
+
         // Trigger download
         const blob = new Blob([outputText], { type: format === 'json' ? 'application/json' : 'text/csv' });
         const link = document.createElement('a');
@@ -90,7 +90,7 @@ export function initReports() {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-        
+
         if (showToast) {
             showToast("Report generated & downloaded successfully!", "success");
         } else if (window.showToast) {

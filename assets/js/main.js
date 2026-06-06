@@ -10,6 +10,7 @@ import { initSettings } from './features/settings.js';
 import { initDrivers } from './features/drivers.js';
 import { renderDashboard } from './features/dashboard.js';
 import { exportCurrentPage } from './features/export.js';
+import { initGlobalPrint } from './features/global-print.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     await loadComponents();
@@ -30,6 +31,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initReports();
     initSettings();
     initDrivers();
+    initGlobalPrint();
 
     if (window.renderAll) {
         window.renderAll();

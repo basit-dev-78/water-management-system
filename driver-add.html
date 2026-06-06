@@ -1,19 +1,14 @@
-<!DOCTYPE html>
-<html class="light" lang="en">
-
-<head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover"
-        name="viewport" />
+<!DOCTYPE html><html class="light" lang="en"><head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover" name="viewport">
     <title>AquaFlow Pro - Add Fleet Driver</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <!-- External config and styles -->
     <script src="./assets/js/config.js"></script>
-    <link href="./assets/css/style.css" rel="stylesheet" />
+    <link href="./assets/css/style.css" rel="stylesheet">
 </head>
 
-<body
-    class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-clip relative min-h-screen">
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-clip relative min-h-screen">
 
     <!-- Animated Organic Background -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
@@ -26,15 +21,13 @@
     <div id="sidebar-container" class="relative z-50"></div>
 
     <!-- Main Content Area -->
-    <main
-        class="mx-0 px-3 md:px-0 md:ml-[270px] md:mr-4 mt-0 md:mt-4 mb-0 md:mb-4 pb-[100px] md:pb-4 min-h-[calc(100vh-32px)] flex flex-col z-10 relative transition-all duration-300">
+    <main class="mx-0 px-3 md:px-0 md:ml-[270px] md:mr-4 mt-0 md:mt-4 mb-0 md:mb-4 pb-[100px] md:pb-4 min-h-[calc(100vh-32px)] flex flex-col z-10 relative transition-all duration-300">
         <!-- Header Container -->
         <div id="header-container" class="sticky top-0 z-40 md:-mx-4 md:px-4 pt-0 md:pt-4"></div>
         
         <!-- ADD DRIVER PANEL -->
         <div id="panel-driver-add" class="panel active">
-            <a class="flex items-center gap-1.5 text-[12px] font-bold text-on-surface-variant hover:text-primary transition-colors mb-4 w-fit"
-                href="drivers.html">
+            <a class="flex items-center gap-1.5 text-[12px] font-bold text-on-surface-variant hover:text-primary transition-colors mb-4 w-fit" href="drivers.html">
                 <span class="material-symbols-outlined text-[16px]">arrow_back</span>
                 Back to Fleet Registry
             </a>
@@ -46,29 +39,24 @@
                             Driver Credentials</h3>
                     </div>
                     
-                    <div class="flex flex-col gap-1.5">
-                        <label class="text-[11px] font-bold text-on-surface-variant">Driver Full Name *</label>
-                        <input type="text" id="driver-name" required
-                            class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 focus:border-[#0f5238]/50 transition-all outline-none"
-                            placeholder="e.g. Michael Thorne">
-                    </div>
+                    <div class="floating-label-group mb-2">
+                        
+                        <input type="text" id="driver-name" required="" class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 focus:border-[#0f5238]/50 transition-all outline-none" placeholder=" " title="e.g. Michael Thorne">
+                    <label class="" for="driver-name">Driver Full Name *</label></div>
                     
-                    <div class="flex flex-col gap-1.5">
-                        <label class="text-[11px] font-bold text-on-surface-variant">Phone Number *</label>
-                        <input type="text" id="driver-phone" required
-                            class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none"
-                            placeholder="e.g. (555) 019-9238">
-                    </div>
+                    <div class="floating-label-group mb-2">
+                        
+                        <input type="text" id="driver-phone" required="" class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none" placeholder=" " title="e.g. (555) 019-9238">
+                    <label class="" for="driver-phone">Phone Number *</label></div>
 
                     <div class="col-span-1 md:col-span-2 mt-4">
                         <h3 class="text-[14px] font-bold text-on-surface border-b border-outline-variant/20 pb-2 mb-4">
-                            Logistics & Duty</h3>
+                            Logistics &amp; Duty</h3>
                     </div>
 
                     <div class="flex flex-col gap-1.5">
-                        <label class="text-[11px] font-bold text-on-surface-variant">Assigned Vehicle / Truck *</label>
-                        <select id="driver-vehicle"
-                            class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2.5 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none cursor-pointer">
+                        <label class="text-[11px] font-bold text-on-surface-variant mb-1">Assigned Vehicle / Truck *</label>
+                        <select id="driver-vehicle" class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2.5 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none cursor-pointer">
                             <option value="TRK-01">TRK-01 (Light Hauler)</option>
                             <option value="TRK-02">TRK-02 (Heavy Cargo)</option>
                             <option value="TRK-03">TRK-03 (Utility Tanker)</option>
@@ -78,9 +66,8 @@
                     </div>
 
                     <div class="flex flex-col gap-1.5">
-                        <label class="text-[11px] font-bold text-on-surface-variant">Duty Status *</label>
-                        <select id="driver-status"
-                            class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2.5 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none cursor-pointer">
+                        <label class="text-[11px] font-bold text-on-surface-variant mb-1">Duty Status *</label>
+                        <select id="driver-status" class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2.5 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none cursor-pointer">
                             <option value="Available">Available for Dispatch</option>
                             <option value="On Delivery">On Active Delivery</option>
                             <option value="Off Duty">Off Duty</option>
@@ -93,12 +80,9 @@
             </div>
 
             <!-- Fixed Form Actions Footer -->
-            <div
-                class="fixed bottom-[calc(68px+env(safe-area-inset-bottom,0px))] md:bottom-0 right-0 left-0 md:left-[270px] bg-white/70 backdrop-blur-xl border-t border-white/60 px-4 md:px-8 py-3 md:py-4 flex justify-end gap-3 z-[40] shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
-                <button type="button" id="cancel-driver-btn"
-                    class="px-5 py-2 text-[12px] font-bold text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 rounded-lg transition-colors form-btn-cancel">Cancel</button>
-                <button type="button" id="save-driver-btn"
-                    class="px-5 py-2 text-[12px] font-bold text-white bg-gradient-to-r from-[#0f5238] to-[#1a734e] rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all form-btn-save">Save
+            <div class="fixed bottom-[calc(68px+env(safe-area-inset-bottom,0px))] md:bottom-0 right-0 left-0 md:left-[270px] bg-white/70 backdrop-blur-xl border-t border-white/60 px-4 md:px-8 py-3 md:py-4 flex justify-end gap-3 z-[40] shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
+                <button type="button" id="cancel-driver-btn" class="px-5 py-2 text-[12px] font-bold text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 rounded-lg transition-colors form-btn-cancel">Cancel</button>
+                <button type="button" id="save-driver-btn" class="px-5 py-2 text-[12px] font-bold text-white bg-gradient-to-r from-[#0f5238] to-[#1a734e] rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all form-btn-save">Save
                     Driver</button>
             </div>
         </div>
@@ -110,6 +94,7 @@
     <!-- Scripts -->
     <script src="./assets/js/db.js"></script>
     <script type="module" src="./assets/js/main.js"></script>
-</body>
 
-</html>
+
+
+</body></html>

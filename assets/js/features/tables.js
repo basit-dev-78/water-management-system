@@ -7,7 +7,7 @@ const PAGINATION = {
     customers: { page: 1, perPage: 12 },
     suppliers: { page: 1, perPage: 12 },
     inventory: { page: 1, perPage: 12 },
-    orders:    { page: 1, perPage: 12 }
+    orders: { page: 1, perPage: 12 }
 };
 
 function updatePaginationUI(type, totalItems) {
@@ -18,7 +18,7 @@ function updatePaginationUI(type, totalItems) {
     if (state.page < 1) state.page = 1;
 
     const startItem = totalItems === 0 ? 0 : ((state.page - 1) * state.perPage) + 1;
-    const endItem   = Math.min(state.page * state.perPage, totalItems);
+    const endItem = Math.min(state.page * state.perPage, totalItems);
 
     const infoSpan = document.getElementById(`pagination-${type}-info`);
     if (infoSpan) infoSpan.textContent = `Showing ${startItem}–${endItem} of ${totalItems}`;
@@ -37,22 +37,22 @@ function getPage(items, type) {
 // ─── Status Badge Helper ─────────────────────────────────────────────────────
 function statusBadge(status) {
     const map = {
-        'Active':       'bg-primary/10 text-primary',
-        'Inactive':     'bg-outline-variant/30 text-on-surface-variant',
-        'Review':       'bg-error-container/60 text-error',
-        'In Stock':     'bg-primary/10 text-primary',
-        'Low Stock':    'bg-error-container/60 text-error',
+        'Active': 'bg-primary/10 text-primary',
+        'Inactive': 'bg-outline-variant/30 text-on-surface-variant',
+        'Review': 'bg-error-container/60 text-error',
+        'In Stock': 'bg-primary/10 text-primary',
+        'Low Stock': 'bg-error-container/60 text-error',
         'Out of Stock': 'bg-error text-on-error',
-        'Processing':   'bg-primary-container/60 text-primary',
-        'Shipped':      'bg-secondary/10 text-secondary',
-        'Delivered':    'bg-primary/10 text-primary',
-        'Pending':      'bg-tertiary-container/40 text-tertiary',
+        'Processing': 'bg-primary-container/60 text-primary',
+        'Shipped': 'bg-secondary/10 text-secondary',
+        'Delivered': 'bg-primary/10 text-primary',
+        'Pending': 'bg-tertiary-container/40 text-tertiary',
     };
     const cls = map[status] || 'bg-outline-variant/30 text-on-surface-variant';
     return `<span class="text-[9px] font-bold uppercase px-2 py-0.5 rounded-full ${cls}">${status}</span>`;
 }
 
-window.showReceivableSlip = function(customerId) {
+window.showReceivableSlip = function (customerId) {
     if (!window.DB) return;
     const customer = window.DB.getCustomers().find(c => c.id === customerId);
     if (!customer) return;
@@ -181,9 +181,31 @@ window.showReceivableSlip = function(customerId) {
             `---------------------------\n` +
             `Please clear your outstanding balance at your earliest convenience. Thank you!`;
 
+        const slipData = {
+            title: "RECEIVABLE SLIP",
+            address: settings.general.address || '456 Water Way, Aquapolis',
+            phone: settings.general.phone || '',
+            date: new Date().toLocaleDateString(),
+            invoiceId: `#BAL-${customer.id}`,
+            client: customer.name,
+            operator: 'Alex Henderson',
+            template: 'minimalist',
+            subtotal: customer.pendingAmount,
+            tax: 0,
+            taxPct: 0,
+            total: customer.pendingAmount,
+            footer: "Please clear the outstanding balance.",
+            items: ledgerItems.map(item => ({
+                qty: item.ref,
+                name: item.description,
+                total: item.amount
+            }))
+        };
+
         window.showWhatsAppDispatchModal({
             customer: customer,
             messageText: defaultMessageText,
+            receiptData: slipData,
             onDone: closeModal
         });
     });
@@ -222,26 +244,76 @@ window.showReceivableSlip = function(customerId) {
     });
 };
 
+
+// ─── Loading & Empty State Helpers ──────────────────────────────────────────
+function renderWithSkeleton(list, html) {
+    if (!list) return;
+    const skeleton = Array(4).fill(
+        '<div class="glass-card rounded-xl p-4 flex flex-col gap-3">' +
+            '<div class="flex items-center gap-3">' +
+                '<div class="w-10 h-10 rounded-full skeleton-loader shrink-0"></div>' +
+                '<div class="flex-1 space-y-2">' +
+                    '<div class="h-3 w-1/2 skeleton-loader"></div>' +
+                    '<div class="h-2 w-1/3 skeleton-loader"></div>' +
+                '</div>' +
+            '</div>' +
+            '<div class="border-t border-outline-variant/10 pt-3 space-y-2 mt-1">' +
+                '<div class="h-2 w-full skeleton-loader"></div>' +
+                '<div class="h-2 w-4/5 skeleton-loader"></div>' +
+            '</div>' +
+        '</div>'
+    ).join('');
+
+    list.innerHTML = skeleton;
+    
+    setTimeout(() => {
+        list.innerHTML = html;
+        const cards = list.querySelectorAll(':scope > div.glass-card');
+        cards.forEach((c, i) => {
+            const staggerClass = 'stagger-' + Math.min(i + 1, 6);
+            c.classList.add(staggerClass);
+        });
+    }, 250);
+}
+
+function getEmptyStateHTML(icon, title, desc, linkUrl, linkText) {
+    return '<div class="col-span-full py-16 flex flex-col items-center justify-center text-center">' +
+        '<div class="w-20 h-20 rounded-full bg-surface-variant/30 flex items-center justify-center mb-4 border border-outline-variant/10">' +
+            '<span class="material-symbols-outlined text-[40px] text-on-surface-variant/40">' + icon + '</span>' +
+        '</div>' +
+        '<h3 class="text-[16px] font-bold text-on-surface mb-1">' + title + '</h3>' +
+        '<p class="text-[12px] text-on-surface-variant mb-4 max-w-xs">' + desc + '</p>' +
+        '<a href="' + linkUrl + '" class="bg-primary text-on-primary px-5 py-2.5 rounded-lg text-[12px] font-bold shadow-md hover:shadow-lg transition-all ripple-btn">' + linkText + '</a>' +
+    '</div>';
+}
+
 // ─── Render: Customers ───────────────────────────────────────────────────────
 function renderCustomers() {
     const list = document.getElementById('customers-card-list');
     if (!list || !window.DB) return;
 
-    const all = window.DB.getCustomers();
+    let all = window.DB.getCustomers();
+    const path = window.location.pathname;
+
+    if (path.includes('customer-balances.html')) {
+        all = all.filter(c => c.pendingAmount > 0);
+    } else if (path.includes('customer-segments.html')) {
+        // Retail: <=10 orders, Wholesale: >10 orders
+        all = all.sort((a, b) => b.totalOrders - a.totalOrders);
+    }
+
     const settings = window.DB.getSettings();
     const currency = settings.general.currency || 'Rs.';
     updatePaginationUI('customers', all.length);
     const items = getPage(all, 'customers');
 
     if (items.length === 0) {
-        list.innerHTML = `<div class="col-span-3 py-12 text-center text-on-surface-variant text-[12px]">
-            <span class="material-symbols-outlined text-[40px] opacity-30 block mb-2">group_off</span>
-            No customers yet. <a href="customer-add.html" class="text-primary font-bold hover:underline">Add one →</a>
-        </div>`;
+        const emptyHtml = getEmptyStateHTML('group_off', 'No Customers Found', 'You haven\'t added any customers yet. Add your first customer to start tracking.', 'customer-add.html', 'Add Customer');
+        renderWithSkeleton(list, emptyHtml);
         return;
     }
 
-    list.innerHTML = items.map(c => `
+    const html = items.map(c => `
         <div class="glass-card rounded-xl p-4 flex flex-col gap-2 group cursor-pointer">
             <div class="flex items-center justify-between gap-2">
                 <div class="flex items-center gap-2 min-w-0">
@@ -285,6 +357,7 @@ function renderCustomers() {
             </p>
         </div>
     `).join('');
+    renderWithSkeleton(list, html);
 }
 
 // ─── Render: Suppliers ───────────────────────────────────────────────────────
@@ -292,15 +365,18 @@ function renderSuppliers() {
     const list = document.getElementById('suppliers-card-list');
     if (!list || !window.DB) return;
 
-    const all = window.DB.getSuppliers();
+    let all = window.DB.getSuppliers();
+    const path = window.location.pathname;
+
+    if (path.includes('supplier-active.html')) {
+        all = all.filter(s => s.status === 'Active');
+    }
     updatePaginationUI('suppliers', all.length);
     const items = getPage(all, 'suppliers');
 
     if (items.length === 0) {
-        list.innerHTML = `<div class="col-span-3 py-12 text-center text-on-surface-variant text-[12px]">
-            <span class="material-symbols-outlined text-[40px] opacity-30 block mb-2">inventory_2</span>
-            No suppliers yet. <a href="supplier-add.html" class="text-primary font-bold hover:underline">Add one →</a>
-        </div>`;
+        const emptyHtml = getEmptyStateHTML('inventory_2', 'No Suppliers Found', 'Keep track of your vendors and suppliers by adding them to the system.', 'supplier-add.html', 'Add Supplier');
+        renderWithSkeleton(list, emptyHtml);
         return;
     }
 
@@ -309,7 +385,7 @@ function renderSuppliers() {
         return '★'.repeat(full) + '☆'.repeat(5 - full) + ` <span class="text-[10px] font-normal">${rating}</span>`;
     };
 
-    list.innerHTML = items.map(s => `
+    const html = items.map(s => `
         <div class="glass-card rounded-xl p-4 flex flex-col gap-2 group cursor-pointer">
             <div class="flex items-center justify-between gap-2">
                 <div class="flex items-center gap-2 min-w-0">
@@ -341,6 +417,7 @@ function renderSuppliers() {
             </p>
         </div>
     `).join('');
+    renderWithSkeleton(list, html);
 }
 
 // ─── Render: Inventory ───────────────────────────────────────────────────────
@@ -348,19 +425,22 @@ function renderInventory() {
     const list = document.getElementById('inventory-card-list');
     if (!list || !window.DB) return;
 
-    const all = window.DB.getInventory();
+    let all = window.DB.getInventory();
+    const path = window.location.pathname;
+
+    if (path.includes('inventory-alerts.html')) {
+        all = all.filter(i => i.stock <= i.threshold);
+    }
     updatePaginationUI('inventory', all.length);
     const items = getPage(all, 'inventory');
 
     if (items.length === 0) {
-        list.innerHTML = `<div class="col-span-3 py-12 text-center text-on-surface-variant text-[12px]">
-            <span class="material-symbols-outlined text-[40px] opacity-30 block mb-2">water_bottle</span>
-            No inventory items yet. <a href="inventory-add.html" class="text-primary font-bold hover:underline">Add one →</a>
-        </div>`;
+        const emptyHtml = getEmptyStateHTML('water_bottle', 'Inventory is Empty', 'Add items to your inventory to keep track of stock levels and pricing.', 'inventory-add.html', 'Add Inventory Item');
+        renderWithSkeleton(list, emptyHtml);
         return;
     }
 
-    list.innerHTML = items.map(item => {
+    const html = items.map(item => {
         const pct = item.threshold > 0 ? Math.min(100, Math.round((item.stock / (item.threshold * 2)) * 100)) : 100;
         const barColor = item.stock === 0 ? 'bg-error' : (item.stock <= item.threshold ? 'bg-amber-400' : 'bg-primary');
         return `
@@ -398,12 +478,13 @@ function renderInventory() {
             </div>
         </div>`;
     }).join('');
+    renderWithSkeleton(list, html);
 }
 
 // ─── Order Status Flow ───────────────────────────────────────────────────────
 const ORDER_FLOW = ['Processing', 'Shipped', 'Delivered'];
 
-window.advanceOrderStatus = function(id) {
+window.advanceOrderStatus = function (id) {
     if (!window.DB) return;
     const order = window.DB.getOrders().find(o => o.id === id);
     if (!order) return;
@@ -422,21 +503,27 @@ function renderOrders() {
     const list = document.getElementById('orders-card-list');
     if (!list || !window.DB) return;
 
-    const all = window.DB.getOrders();
+    let all = window.DB.getOrders();
+    const path = window.location.pathname;
+
+    if (path.includes('orders-pending.html')) {
+        all = all.filter(o => o.status !== 'Delivered');
+    } else if (path.includes('orders-completed.html')) {
+        all = all.filter(o => o.status === 'Delivered');
+    }
+
     const settings = window.DB.getSettings();
     const currency = settings.general.currency || 'Rs.';
     updatePaginationUI('orders', all.length);
     const items = getPage(all, 'orders');
 
     if (items.length === 0) {
-        list.innerHTML = `<div class="col-span-3 py-12 text-center text-on-surface-variant text-[12px]">
-            <span class="material-symbols-outlined text-[40px] opacity-30 block mb-2">shopping_cart_off</span>
-            No orders yet. <a href="order-add.html" class="text-primary font-bold hover:underline">Create one →</a>
-        </div>`;
+        const emptyHtml = getEmptyStateHTML('shopping_cart_off', 'No Orders Yet', 'Ready to make a sale? Create your first order to get started.', 'order-add.html', 'Create Order');
+        renderWithSkeleton(list, emptyHtml);
         return;
     }
 
-    list.innerHTML = items.map(o => `
+    const html = items.map(o => `
         <div class="glass-card rounded-xl p-4 flex flex-col gap-2 group cursor-pointer">
             <div class="flex items-center justify-between gap-2">
                 <p class="text-[12px] font-bold text-on-surface font-mono">${o.id}</p>
@@ -477,6 +564,7 @@ function renderOrders() {
             </button>` : ''}
         </div>
     `).join('');
+    renderWithSkeleton(list, html);
 }
 
 // ─── Wire Pagination Buttons ─────────────────────────────────────────────────
@@ -504,7 +592,7 @@ export function initTables() {
     wirePagination('customers', renderCustomers);
     wirePagination('suppliers', renderSuppliers);
     wirePagination('inventory', renderInventory);
-    wirePagination('orders',    renderOrders);
+    wirePagination('orders', renderOrders);
 
     window.renderAll = function () {
         renderCustomers();
@@ -521,7 +609,7 @@ export function initTables() {
     setTimeout(window.renderAll, 120);
 }
 
-window.printOrder = async function(orderId) {
+window.printOrder = async function (orderId) {
     if (!window.DB) return;
     const order = window.DB.getOrders().find(o => o.id === orderId);
     if (!order) return;
@@ -581,15 +669,172 @@ window.printOrder = async function(orderId) {
 
                 window.showWhatsAppDispatchModal({
                     customer: customer,
-                    messageText: message
+                    messageText: message,
+                    receiptData: receiptData
                 });
             }
         }, 1000);
     }
 };
 
+// Helper function to render a highly professional and colorful 80mm receipt HTML matching mobile transaction success style
+function getColorfulReceiptHtml(receiptData, settings) {
+    const currency = (settings && settings.general && settings.general.currency) || 'Rs.';
+    const companyName = (settings && settings.general && settings.general.companyName) || 'AquaFlow Pro';
+    const addressText = receiptData.address || (settings && settings.general && settings.general.address) || '456 Water Way, Aquapolis';
+    const phoneText = receiptData.phone || (settings && settings.general && settings.general.phone) || '';
+    const footerText = receiptData.footer || 'Thank you for choosing AquaFlow!';
+    const dateText = receiptData.date || new Date().toLocaleDateString();
+    const invoiceId = receiptData.invoiceId || '#INV-TEST';
+    const client = receiptData.client || 'Walk-in Customer';
+    const operator = receiptData.operator || 'System Operator';
+    const subtotal = typeof receiptData.subtotal === 'number' ? receiptData.subtotal : 0;
+    const taxPct = typeof receiptData.taxPct === 'number' ? receiptData.taxPct : 0;
+    const tax = typeof receiptData.tax === 'number' ? receiptData.tax : (subtotal * taxPct / 100);
+    const total = typeof receiptData.total === 'number' ? receiptData.total : (subtotal + tax);
+    const items = receiptData.items || [];
+
+    // Formatted date text like: 04-Jun-2026 05:47:58 PM
+    let formattedDate = dateText;
+    try {
+        const d = new Date();
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const day = String(d.getDate()).padStart(2, '0');
+        const month = months[d.getMonth()];
+        const year = d.getFullYear();
+        let hours = d.getHours();
+        const minutes = String(d.getMinutes()).padStart(2, '0');
+        const seconds = String(d.getSeconds()).padStart(2, '0');
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        const hoursStr = String(hours).padStart(2, '0');
+        formattedDate = `${day}-${month}-${year} ${hoursStr}:${minutes}:${seconds} ${ampm}`;
+    } catch(e) {}
+
+    const titleText = receiptData.title || 'RECEIPT';
+
+    return `
+    <div id="wa-receipt-capture-outer" style="background-color: transparent; padding: 0 0 8px 0; display: inline-block; box-sizing: border-box;">
+        <div id="wa-receipt-capture-target" style="width: 320px; background-color: #ffffff; color: #1e293b; font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; box-sizing: border-box; border-radius: 16px 16px 0 0; position: relative; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -2px rgba(0, 0, 0, 0.03); overflow: visible;">
+            <!-- Top Red Accent Bar -->
+            <div style="height: 8px; background-color: #e53e3e; border-radius: 16px 16px 0 0; width: 100%;"></div>
+            
+            <div style="padding: 24px 20px 20px 20px; position: relative;">
+                <!-- Concentric Circle Stamp next to the Ref# and Date lines -->
+                <div style="position: absolute; top: 34px; right: 12px; width: 56px; height: 56px; transform: rotate(-20deg); opacity: 0.85; box-sizing: border-box;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" style="width: 56px; height: 56px; display: block;">
+                        <!-- Outer Solid Circle -->
+                        <circle cx="28" cy="28" r="26.5" stroke="#10b981" stroke-width="1.8" fill="none" />
+                        
+                        <!-- Inner Dashed Circle -->
+                        <circle cx="28" cy="28" r="22.5" stroke="#10b981" stroke-width="0.8" stroke-dasharray="2 2" fill="none" />
+                        
+                        <!-- White Masking Rectangle behind the text band -->
+                        <rect x="6.5" y="21.5" width="43" height="13" fill="#ffffff" />
+                        
+                        <!-- Top Parallel Line -->
+                        <line x1="6.5" y1="21.5" x2="49.5" y2="21.5" stroke="#10b981" stroke-width="0.8" />
+                        
+                        <!-- Bottom Parallel Line -->
+                        <line x1="6.5" y1="34.5" x2="49.5" y2="34.5" stroke="#10b981" stroke-width="0.8" />
+                        
+                        <!-- Text "PAID BY AQUA" -->
+                        <text x="28" y="29.8" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-size="5px" font-weight="bold" fill="#10b981" text-anchor="middle" textLength="30" lengthAdjust="spacingAndGlyphs">PAID BY AQUA</text>
+                        
+                        <!-- Top Stars -->
+                        <text x="28" y="16.0" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-size="4px" fill="#10b981" text-anchor="middle">★ ★ ★</text>
+                        
+                        <!-- Bottom Stars -->
+                        <text x="28" y="43.0" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-size="4px" fill="#10b981" text-anchor="middle">★ ★ ★</text>
+                    </svg>
+                </div>
+
+
+
+                <!-- Transaction Status Details -->
+                <div style="text-align: center; margin-bottom: 16px;">
+                    <div style="font-size: 14.5px; font-weight: 800; color: #334155; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em;">${titleText}</div>
+                    <div style="font-size: 11px; color: #64748b; font-family: monospace;">Ref#${invoiceId.replace('#', '')}</div>
+                    <div style="font-size: 10.5px; color: #64748b; margin-top: 4px;">${formattedDate}</div>
+                </div>
+
+                <!-- Large amount display in currency layout -->
+                <div style="text-align: center; font-size: 24px; font-weight: 800; color: #1e293b; margin: 18px 0 16px 0; font-family: 'Plus Jakarta Sans', sans-serif;">
+                    ${currency} ${total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                </div>
+
+                <!-- Gray dashed divider -->
+                <div style="border-top: 1.5px dashed #cbd5e1; margin: 16px 0;"></div>
+
+                <!-- Key-value detail block -->
+                <div style="display: flex; flex-direction: column; gap: 10px; font-size: 11.5px; line-height: 1.4;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <span style="font-weight: 700; color: #334155; min-width: 90px; text-align: left;">Client</span>
+                        <span style="color: #475569; text-align: right; word-break: break-word; max-width: 180px; font-weight: 500;">${client}</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <span style="font-weight: 700; color: #334155; min-width: 90px; text-align: left;">Company</span>
+                        <span style="color: #475569; text-align: right; font-weight: 500;">${companyName}</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <span style="font-weight: 700; color: #334155; min-width: 90px; text-align: left;">Invoice No</span>
+                        <span style="color: #475569; text-align: right; font-family: monospace; font-weight: 600;">${invoiceId}</span>
+                    </div>
+                    
+                    ${receiptData.driver || operator ? `
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <span style="font-weight: 700; color: #334155; min-width: 90px; text-align: left;">Operator/Driver</span>
+                        <span style="color: #475569; text-align: right; font-weight: 500;">${receiptData.driver || operator}</span>
+                    </div>` : ''}
+
+                    <!-- Gray dashed divider before items list -->
+                    <div style="border-top: 1.5px dashed #e2e8f0; margin: 8px 0 4px 0;"></div>
+                    
+                    <!-- Itemized block headers -->
+                    <div style="font-size: 10px; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; text-align: left; margin-bottom: 2px;">Items Purchased</div>
+                    
+                    ${items.map(item => {
+                        const qty = item.qty || 1;
+                        const price = typeof item.price === 'number' ? item.price : (item.total / qty) || 0;
+                        return `
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; font-size: 11px;">
+                            <div style="display: flex; flex-direction: column; text-align: left; max-width: 190px;">
+                                <span style="font-weight: 700; color: #1e293b;">${item.name}</span>
+                                <span style="font-size: 9px; color: #64748b; margin-top: 1px;">${qty} x ${currency}${price.toFixed(2)}</span>
+                            </div>
+                            <span style="color: #0f172a; font-weight: 700; font-family: monospace; margin-top: 2px;">${currency}${item.total.toFixed(2)}</span>
+                        </div>
+                        `;
+                    }).join('')}
+
+                    ${tax > 0 ? `
+                    <div style="border-top: 1px dashed #e2e8f0; margin: 4px 0;"></div>
+                    <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                        <span style="font-weight: 700; color: #64748b; text-align: left;">Subtotal</span>
+                        <span style="color: #475569; font-family: monospace;">${currency}${subtotal.toFixed(2)}</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                        <span style="font-weight: 700; color: #64748b; text-align: left;">Sales Tax (${taxPct}%)</span>
+                        <span style="color: #475569; font-family: monospace;">${currency}${tax.toFixed(2)}</span>
+                    </div>
+                    ` : ''}
+                </div>
+
+                <div style="text-align: center; border-top: 1px dashed #cbd5e1; padding-top: 14px; margin-top: 16px; font-size: 10px; color: #64748b; font-style: italic; line-height: 1.4;">
+                    Thank you for choosing ${companyName}!
+                </div>
+            </div>
+
+            <!-- CSS Zigzag teeth at the bottom -->
+            <div style="position: absolute; bottom: -8px; left: 0; right: 0; height: 8px; background-image: linear-gradient(-135deg, #ffffff 4px, transparent 0), linear-gradient(135deg, #ffffff 4px, transparent 0); background-size: 8px 8px; background-position: bottom left; z-index: 10;"></div>
+        </div>
+    </div>
+    `;
+}
+
 // Global showWhatsAppDispatchModal Helper
-window.showWhatsAppDispatchModal = function({ customer, messageText, onDone }) {
+window.showWhatsAppDispatchModal = function ({ customer, messageText, receiptData, onDone }) {
     if (!customer) {
         customer = { id: 'WALK-IN', name: 'Walk-in Customer', phone: '' };
     }
@@ -620,6 +865,15 @@ window.showWhatsAppDispatchModal = function({ customer, messageText, onDone }) {
 
     displayPhone = displayPhone.replace(/^[0]+/g, '').replace(/[^0-9]/g, '');
 
+    // Inject Plus Jakarta Sans font link for premium receipt rendering if not exists
+    if (!document.getElementById('wa-receipt-font')) {
+        const link = document.createElement('link');
+        link.id = 'wa-receipt-font';
+        link.rel = 'stylesheet';
+        link.href = 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap';
+        document.head.appendChild(link);
+    }
+
     // Open WhatsApp Customizer Modal
     const existingCustomizer = document.getElementById('whatsapp-customizer-modal');
     if (existingCustomizer) existingCustomizer.remove();
@@ -627,10 +881,14 @@ window.showWhatsAppDispatchModal = function({ customer, messageText, onDone }) {
     const customizer = document.createElement('div');
     customizer.id = 'whatsapp-customizer-modal';
     customizer.className = 'fixed inset-0 bg-black/85 backdrop-blur-sm z-[10000] flex items-center justify-center p-4 animate-sim-fade-in text-on-surface';
-    
+
+    const hasReceipt = !!receiptData;
+    const modalWidthClass = hasReceipt ? 'max-w-[780px]' : 'max-w-[420px]';
+    const settings = window.DB ? window.DB.getSettings() : null;
+
     customizer.innerHTML = `
-        <div class="bg-surface rounded-3xl border border-outline-variant/35 p-6 shadow-[0_24px_60px_rgba(0,0,0,0.6)] max-w-[420px] w-full flex flex-col relative overflow-hidden animate-sim-slide-up">
-            <button id="btn-close-wa-customizer" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface transition-colors">
+        <div class="bg-surface rounded-3xl border border-outline-variant/35 p-6 shadow-[0_24px_60px_rgba(0,0,0,0.6)] ${modalWidthClass} w-full flex flex-col relative overflow-hidden animate-sim-slide-up">
+            <button id="btn-close-wa-customizer" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface transition-colors z-10">
                 <span class="material-symbols-outlined">close</span>
             </button>
             
@@ -639,49 +897,82 @@ window.showWhatsAppDispatchModal = function({ customer, messageText, onDone }) {
                 <h3 class="text-[16px] font-bold">WhatsApp Dispatch Portal</h3>
             </div>
             
-            <div class="space-y-4 text-[12px]">
-                <div class="flex flex-col gap-1.5">
-                    <label for="wa-phone" class="font-bold text-on-surface-variant">Recipient Phone Number</label>
-                    <div class="flex gap-2">
-                        <select id="wa-country-prefix" class="bg-surface-container-low border border-outline-variant/30 rounded-lg py-2 px-2 text-[11px] outline-none">
-                            <option value="92" ${selectedPrefix === '92' ? 'selected' : ''}>PK (+92)</option>
-                            <option value="1" ${selectedPrefix === '1' ? 'selected' : ''}>US/CA (+1)</option>
-                            <option value="44" ${selectedPrefix === '44' ? 'selected' : ''}>UK (+44)</option>
-                            <option value="966" ${selectedPrefix === '966' ? 'selected' : ''}>SA (+966)</option>
-                            <option value="971" ${selectedPrefix === '971' ? 'selected' : ''}>AE (+971)</option>
-                            <option value="91" ${selectedPrefix === '91' ? 'selected' : ''}>IN (+91)</option>
-                        </select>
-                        <input type="text" id="wa-phone" class="flex-1 bg-surface-container-low border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none font-mono" placeholder="e.g. 3211234567 or 5551234567" value="${displayPhone}" />
+            <div class="flex flex-col md:flex-row gap-6">
+                <!-- Left panel: Customizer details -->
+                <div class="flex-1 space-y-4 text-[12px] min-w-0">
+                    <div class="flex flex-col gap-1.5">
+                        <label for="wa-phone" class="font-bold text-on-surface-variant">Recipient Phone Number</label>
+                        <div class="flex gap-2">
+                            <select id="wa-country-prefix" class="bg-surface-container-low border border-outline-variant/30 rounded-lg py-2 px-2 text-[11px] outline-none">
+                                <option value="92" ${selectedPrefix === '92' ? 'selected' : ''}>PK (+92)</option>
+                                <option value="1" ${selectedPrefix === '1' ? 'selected' : ''}>US/CA (+1)</option>
+                                <option value="44" ${selectedPrefix === '44' ? 'selected' : ''}>UK (+44)</option>
+                                <option value="966" ${selectedPrefix === '966' ? 'selected' : ''}>SA (+966)</option>
+                                <option value="971" ${selectedPrefix === '971' ? 'selected' : ''}>AE (+971)</option>
+                                <option value="91" ${selectedPrefix === '91' ? 'selected' : ''}>IN (+91)</option>
+                            </select>
+                            <input type="text" id="wa-phone" class="flex-1 bg-surface-container-low border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none font-mono" placeholder="e.g. 3211234567 or 5551234567" value="${displayPhone}" />
+                        </div>
+                        <p class="text-[9px] text-on-surface-variant/70 mt-0.5">Automated prefixing will clean spaces, parentheses, and leading zeros.</p>
                     </div>
-                    <p class="text-[9px] text-on-surface-variant/70 mt-0.5">Automated prefixing will clean spaces, parentheses, and leading zeros.</p>
-                </div>
-                
-                <div class="flex flex-col gap-1.5">
-                    <label for="wa-message" class="font-bold text-on-surface-variant">Message Body</label>
-                    <textarea id="wa-message" rows="7" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg py-2 px-3 text-[11px] font-mono focus:ring-2 focus:ring-primary/30 outline-none resize-none custom-scrollbar">${messageText}</textarea>
+                    
+                    <!-- Message Body textarea removed per user request -->
+
+
+                    <div class="flex flex-col gap-1.5">
+                        <label for="wa-dispatch-type" class="font-bold text-on-surface-variant">WhatsApp Protocol</label>
+                        <select id="wa-dispatch-type" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg py-2 px-3 text-[11px] cursor-pointer">
+                            <option value="universal" selected>Universal Link (wa.me) - Mobile App & Web</option>
+                            <option value="web">WhatsApp Web (web.whatsapp.com) - Desktop Browser</option>
+                        </select>
+                    </div>
+
+                    ${hasReceipt ? `
+                    <div class="pt-2 text-[10px] text-on-surface-variant/80 flex items-start gap-1.5 bg-[#0284c7]/5 p-3 rounded-xl border border-[#0284c7]/15">
+                        <span class="material-symbols-outlined text-[#0284c7] text-[16px] shrink-0 mt-0.5">info</span>
+                        <div>
+                            <strong>Instant Clipboard Flow:</strong> Clicking "Launch Chat" generates a premium colorful receipt image and copies it to your clipboard. Once WhatsApp opens, simply press <strong>Ctrl + V</strong> to paste and send.
+                        </div>
+                    </div>
+                    ` : ''}
+
+                    <div class="w-full mt-4 flex gap-3">
+                        <button type="button" id="btn-cancel-wa-dispatch" class="flex-1 py-2.5 border border-outline-variant rounded-xl text-on-surface-variant hover:bg-surface-container-low text-[12px] font-bold transition-all">
+                            Cancel
+                        </button>
+                        <button type="button" id="btn-send-wa-dispatch" class="flex-1 bg-[#25d366] hover:bg-[#20ba5a] text-white py-2.5 rounded-xl text-[12px] font-bold shadow-[0_4px_12px_rgba(37,211,102,0.3)] transition-all flex items-center justify-center gap-1.5">
+                            <span class="material-symbols-outlined text-[16px]">send</span> Launch Chat
+                        </button>
+                    </div>
                 </div>
 
-                <div class="flex flex-col gap-1.5">
-                    <label for="wa-dispatch-type" class="font-bold text-on-surface-variant">WhatsApp Protocol</label>
-                    <select id="wa-dispatch-type" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg py-2 px-3 text-[11px] cursor-pointer">
-                        <option value="universal" selected>Universal Link (wa.me) - Mobile App & Web</option>
-                        <option value="web">WhatsApp Web (web.whatsapp.com) - Desktop Browser</option>
-                    </select>
+                <!-- Right panel: Receipt Preview -->
+                ${hasReceipt ? `
+                <div class="w-full md:w-[340px] flex flex-col items-center shrink-0 border-t md:border-t-0 md:border-l border-outline-variant/20 pt-4 md:pt-0 md:pl-6">
+                    <h4 class="text-[11px] font-bold text-on-surface-variant mb-2.5 self-start flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-primary text-[16px]">receipt_long</span> 
+                        Receipt Preview (80mm / 3" Image)
+                    </h4>
+                    <div class="w-full max-h-[350px] overflow-y-auto custom-scrollbar p-1.5 bg-surface-container-low rounded-2xl border border-outline-variant/20 flex justify-center items-start shadow-inner">
+                        <div id="wa-receipt-preview-wrapper" class="origin-top scale-[0.95] md:scale-100">
+                            <!-- Colorful receipt rendered here -->
+                        </div>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="w-full mt-6 flex gap-3">
-                <button type="button" id="btn-cancel-wa-dispatch" class="flex-1 py-2.5 border border-outline-variant rounded-xl text-on-surface-variant hover:bg-surface-container-low text-[12px] font-bold transition-all">
-                    Cancel
-                </button>
-                <button type="button" id="btn-send-wa-dispatch" class="flex-1 bg-[#25d366] hover:bg-[#20ba5a] text-white py-2.5 rounded-xl text-[12px] font-bold shadow-[0_4px_12px_rgba(37,211,102,0.3)] transition-all flex items-center justify-center gap-1.5">
-                    <span class="material-symbols-outlined text-[16px]">send</span> Launch Chat
-                </button>
+                ` : ''}
             </div>
         </div>
     `;
 
     document.body.appendChild(customizer);
+
+    // Render preview of the colorful receipt
+    if (hasReceipt) {
+        const previewWrapper = document.getElementById('wa-receipt-preview-wrapper');
+        if (previewWrapper) {
+            previewWrapper.innerHTML = getColorfulReceiptHtml(receiptData, settings);
+        }
+    }
 
     const closeCustomizer = () => {
         customizer.classList.add('transition-opacity', 'duration-300', 'opacity-0');
@@ -692,42 +983,115 @@ window.showWhatsAppDispatchModal = function({ customer, messageText, onDone }) {
     document.getElementById('btn-close-wa-customizer').addEventListener('click', closeCustomizer);
     document.getElementById('btn-cancel-wa-dispatch').addEventListener('click', closeCustomizer);
 
-    document.getElementById('btn-send-wa-dispatch').addEventListener('click', () => {
-        const prefix = document.getElementById('wa-country-prefix').value;
-        let localPhone = document.getElementById('wa-phone').value.replace(/[^0-9]/g, '');
-        if (localPhone.startsWith('0')) {
-            localPhone = localPhone.substring(1);
-        }
-        
-        const finalPhone = prefix + localPhone;
-        const finalMsg = document.getElementById('wa-message').value;
-        const protocol = document.getElementById('wa-dispatch-type').value;
+    document.getElementById('btn-send-wa-dispatch').addEventListener('click', async () => {
+        const sendBtn = document.getElementById('btn-send-wa-dispatch');
+        const originalText = sendBtn.innerHTML;
+        sendBtn.innerHTML = `<span class="material-symbols-outlined text-[15px] animate-spin">sync</span> Generating Image...`;
+        sendBtn.disabled = true;
 
-        // Save updated number to database for persistent correctness
-        if (customer.id && customer.id !== 'WALK-IN') {
-            const formattedRawNumber = `+${prefix} ${document.getElementById('wa-phone').value.trim()}`;
-            if (customer.phone !== formattedRawNumber) {
-                const data = window.DB.getData();
-                const dbCust = data.customers.find(c => c.id === customer.id);
-                if (dbCust) {
-                    dbCust.phone = formattedRawNumber;
-                    window.DB.saveData(data);
-                    if (window.renderAll) {
-                        window.renderAll();
+        try {
+            // Check if we need to copy a colorful receipt image to clipboard
+            if (hasReceipt) {
+                // Dynamically load html2canvas if not present
+                if (typeof html2canvas === 'undefined') {
+                    await new Promise((resolve, reject) => {
+                        const script = document.createElement('script');
+                        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+                        script.onload = resolve;
+                        script.onerror = reject;
+                        document.head.appendChild(script);
+                    });
+                }
+
+                // Render in a clean offscreen element to avoid parent styles/dimensions issues
+                const tempDiv = document.createElement('div');
+                tempDiv.style.position = 'absolute';
+                tempDiv.style.top = '-9999px';
+                tempDiv.style.left = '-9999px';
+                tempDiv.innerHTML = getColorfulReceiptHtml(receiptData, settings);
+                document.body.appendChild(tempDiv);
+
+                // Force font loading in canvas rendering
+                await document.fonts.ready;
+
+                const targetEl = tempDiv.firstElementChild;
+                const canvas = await html2canvas(targetEl, {
+                    scale: 2.5, // 2.5x resolution for crystal clear POS receipts on high-dpi screens
+                    backgroundColor: '#ffffff',
+                    useCORS: true,
+                    logging: false
+                });
+
+                // Remove temp element
+                tempDiv.remove();
+
+                // Convert canvas to blob and write to clipboard
+                await new Promise((resolve, reject) => {
+                    canvas.toBlob(async (blob) => {
+                        try {
+                            const item = new ClipboardItem({ "image/png": blob });
+                            await navigator.clipboard.write([item]);
+                            resolve();
+                        } catch (err) {
+                            console.error("Failed to copy image to clipboard:", err);
+                            reject(err);
+                        }
+                    }, 'image/png');
+                });
+            }
+
+            // WhatsApp dispatch
+            const prefix = document.getElementById('wa-country-prefix').value;
+            let localPhone = document.getElementById('wa-phone').value.replace(/[^0-9]/g, '');
+            if (localPhone.startsWith('0')) {
+                localPhone = localPhone.substring(1);
+            }
+
+            const finalPhone = prefix + localPhone;
+            const protocol = document.getElementById('wa-dispatch-type').value;
+
+            // Save updated number to database for persistent correctness
+            if (customer.id && customer.id !== 'WALK-IN') {
+                const formattedRawNumber = `+${prefix} ${document.getElementById('wa-phone').value.trim()}`;
+                if (customer.phone !== formattedRawNumber) {
+                    const data = window.DB.getData();
+                    const dbCust = data.customers.find(c => c.id === customer.id);
+                    if (dbCust) {
+                        dbCust.phone = formattedRawNumber;
+                        window.DB.saveData(data);
+                        if (window.renderAll) {
+                            window.renderAll();
+                        }
                     }
                 }
             }
-        }
 
-        let url = '';
-        if (protocol === 'web') {
-            url = `https://web.whatsapp.com/send?phone=${encodeURIComponent(finalPhone)}&text=${encodeURIComponent(finalMsg)}`;
-        } else {
-            url = `https://wa.me/${encodeURIComponent(finalPhone)}?text=${encodeURIComponent(finalMsg)}`;
-        }
+            let url = '';
+            if (protocol === 'web') {
+                url = `https://web.whatsapp.com/send/?phone=${encodeURIComponent(finalPhone)}`;
+            } else {
+                url = `https://api.whatsapp.com/send/?phone=${encodeURIComponent(finalPhone)}&type=phone_number&app_absent=0`;
+            }
 
-        window.open(url, '_blank');
-        closeCustomizer();
-        showToast("WhatsApp dispatch launched!", "success");
+            window.open(url, '_blank');
+            closeCustomizer();
+
+            if (hasReceipt) {
+                showToast("Receipt image copied! Paste (Ctrl+V) in WhatsApp to attach the colorful receipt.", "success");
+            } else {
+                showToast("WhatsApp dispatch launched!", "success");
+            }
+        } catch (err) {
+            console.error("WhatsApp copy/dispatch error:", err);
+            // Revert button status
+            sendBtn.innerHTML = originalText;
+            sendBtn.disabled = false;
+            
+            if (hasReceipt) {
+                alert("Failed to copy receipt image to clipboard. Please check browser clipboard permissions.");
+            } else {
+                alert("An error occurred launching WhatsApp.");
+            }
+        }
     });
 };

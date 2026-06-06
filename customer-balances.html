@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover"
+        name="viewport" />
+    <title>AquaFlow Pro - Management Portal</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- External config and styles -->
+    <script src="./assets/js/config.js"></script>
+    <link href="./assets/css/style.css" rel="stylesheet" />
+</head>
+
+<body
+    class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-clip relative min-h-screen">
+
+    <!-- Animated Organic Background -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Sidebar Container -->
+    <div id="sidebar-container" class="relative z-50"></div>
+
+    <!-- Main Content Area -->
+    <main
+        class="mx-0 px-3 md:px-0 md:ml-[270px] md:mr-4 mt-0 md:mt-4 mb-0 md:mb-4 pb-[100px] md:pb-4 min-h-[calc(100vh-32px)] flex flex-col z-10 relative transition-all duration-300">
+        <!-- Header Container -->
+        <div id="header-container" class="sticky top-0 z-40 md:-mx-4 md:px-4 pt-0 md:pt-4"></div>
+        <!-- CUSTOMERS PANEL -->
+        <div id="panel-customers" class="panel active">
+            <div class="flex justify-end items-center mb-5 gap-2">
+                <button
+                    class="flex items-center gap-1.5 bg-white border border-outline-variant px-3 py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors text-[11px] font-medium shadow-sm">
+                    <span class="material-symbols-outlined text-[16px]">filter_list</span>
+                    Filter
+                </button>
+                <button
+                    class="flex items-center gap-1.5 bg-primary text-on-primary px-4 py-1.5 rounded-lg hover:shadow-md transition-all text-[11px] font-bold shadow-sm">
+                    <span class="material-symbols-outlined text-[16px]">add</span>
+                    New Customer
+                </button>
+            </div>
+
+            <!-- Compact Bento Metrics -->
+            <div class="grid grid-cols-2 gap-gutter-md mb-gutter-md">
+                <div
+                    class="bg-surface-container-lowest border border-outline-variant/10 rounded-xl p-card-padding shadow-sm">
+                    <div class="flex justify-between items-start mb-2">
+                        <div class="w-8 h-8 rounded-lg bg-error/10 text-error flex items-center justify-center">
+                            <span class="material-symbols-outlined text-[18px]">account_balance_wallet</span>
+                        </div>
+                    </div>
+                    <p class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider mb-0.5">Total
+                        Pending</p>
+                    <h3 class="text-[18px] font-bold text-error" id="kpi-total-pending">Rs. 4,820</h3>
+                </div>
+                <div
+                    class="bg-surface-container-lowest border border-outline-variant/10 rounded-xl p-card-padding shadow-sm">
+                    <div class="flex justify-between items-start mb-2">
+                        <div class="w-8 h-8 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center">
+                            <span class="material-symbols-outlined text-[18px]">warning</span>
+                        </div>
+                    </div>
+                    <p class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider mb-0.5">Overdue Accounts</p>
+                    <h3 class="text-[18px] font-bold text-on-surface" id="kpi-overdue-accounts">12</h3>
+                </div>
+            </div>
+
+            <!-- High-Density Table Section -->
+            <div
+                class="bg-surface-container-lowest border border-outline-variant/10 rounded-xl shadow-sm overflow-hidden">
+                <div
+                    class="px-container-margin py-3 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low/80 backdrop-blur-md">
+                    <h3 class="text-[13px] font-bold text-on-surface">Pending Receivables List</h3>
+                    <div class="flex items-center gap-3">
+                        <span id="pagination-customers-info"
+                            class="text-[11px] text-on-surface-variant font-medium">Showing 1-10 of 1,248</span>
+                        <div class="flex border border-outline-variant rounded-md overflow-hidden">
+                            <button id="btn-prev-customers"
+                                class="p-1 hover:bg-surface-container-low text-on-surface-variant disabled:opacity-50 disabled:cursor-not-allowed"><span
+                                    class="material-symbols-outlined text-[16px]">chevron_left</span></button>
+                            <button id="btn-next-customers"
+                                class="p-1 hover:bg-surface-container-low text-on-surface-variant border-l border-outline-variant disabled:opacity-50 disabled:cursor-not-allowed"><span
+                                    class="material-symbols-outlined text-[16px]">chevron_right</span></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Data Cards Grid -->
+                <div id="customers-card-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4"></div>
+            </div>
+        </div>
+        <!-- END CUSTOMERS PANEL -->
+    </main>
+
+
+    <!-- Scripts -->
+    <script src="./assets/js/db.js"></script>
+    <script type="module" src="./assets/js/main.js"></script>
+</body>
+
+</html>

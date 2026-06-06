@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover" name="viewport" />
+    <title>AquaFlow Pro - Help & Support</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="./assets/js/config.js"></script>
+    <link href="./assets/css/style.css" rel="stylesheet" />
+</head>
+
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-clip relative min-h-screen">
+
+    <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div id="sidebar-container" class="relative z-50"></div>
+
+    <main class="mx-0 px-3 md:px-0 md:ml-[270px] md:mr-4 mt-0 md:mt-4 mb-0 md:mb-4 pb-[100px] md:pb-4 min-h-[calc(100vh-32px)] flex flex-col z-10 relative transition-all duration-300">
+        <div id="header-container" class="sticky top-0 z-40 md:-mx-4 md:px-4 pt-0 md:pt-4"></div>
+
+        <div id="panel-help" class="panel active">
+            
+            <div class="text-center mb-8 mt-4">
+                <h1 class="text-[24px] font-display-lg font-bold text-gradient">How can we help you today?</h1>
+                <p class="text-[12px] text-on-surface-variant mt-2 max-w-md mx-auto">Browse our knowledge base or contact the support team directly.</p>
+                
+                <div class="relative w-full max-w-lg mx-auto mt-6">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/50 text-[20px]">search</span>
+                    <input type="text" placeholder="Search for articles, guides, or FAQs..." class="w-full bg-surface-container-low/70 border border-outline-variant/30 rounded-2xl py-3 pl-12 pr-4 text-[13px] focus:ring-2 focus:ring-primary/30 outline-none shadow-sm transition-all" />
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-md">
+                
+                <!-- FAQ Section -->
+                <div class="col-span-1 md:col-span-2 flex flex-col gap-4">
+                    <div class="glass-card rounded-2xl p-6 border border-outline-variant/15 shadow-md">
+                        <h3 class="text-[15px] font-bold text-on-surface mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">live_help</span> Frequently Asked Questions
+                        </h3>
+                        
+                        <div class="space-y-4">
+                            <div class="border-b border-outline-variant/10 pb-4">
+                                <button class="w-full text-left flex justify-between items-center text-[13px] font-bold text-on-surface hover:text-primary transition-colors focus:outline-none" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                                    How do I pair a Bluetooth thermal printer?
+                                    <span class="material-symbols-outlined text-[16px]">expand_more</span>
+                                </button>
+                                <div class="hidden mt-2 text-[11px] text-on-surface-variant/80 leading-relaxed pl-1 border-l-2 border-primary/30 ml-1">
+                                    Go to <strong>Settings &gt; Receipt Settings</strong>. Select "Bluetooth" as your connection interface and click the "Pair Device" button. Ensure your printer is powered on and discoverable.
+                                </div>
+                            </div>
+                            
+                            <div class="border-b border-outline-variant/10 pb-4">
+                                <button class="w-full text-left flex justify-between items-center text-[13px] font-bold text-on-surface hover:text-primary transition-colors focus:outline-none" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                                    Why is WhatsApp Web dispatch not working?
+                                    <span class="material-symbols-outlined text-[16px]">expand_more</span>
+                                </button>
+                                <div class="hidden mt-2 text-[11px] text-on-surface-variant/80 leading-relaxed pl-1 border-l-2 border-primary/30 ml-1">
+                                    Ensure that the client has a valid phone number formatted correctly (e.g., +1 234 567 8900). If you are using desktop, you must have WhatsApp Desktop installed or be logged into web.whatsapp.com. Due to browser security, image receipts must be pasted using Ctrl+V manually.
+                                </div>
+                            </div>
+
+                            <div class="border-b border-outline-variant/10 pb-4">
+                                <button class="w-full text-left flex justify-between items-center text-[13px] font-bold text-on-surface hover:text-primary transition-colors focus:outline-none" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                                    How to export my data?
+                                    <span class="material-symbols-outlined text-[16px]">expand_more</span>
+                                </button>
+                                <div class="hidden mt-2 text-[11px] text-on-surface-variant/80 leading-relaxed pl-1 border-l-2 border-primary/30 ml-1">
+                                    Navigate to <strong>Settings &gt; Database Tools</strong> and click "Export Database (.json)". This will download a full backup of all your clients, inventory, and configuration.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Support -->
+                <div class="col-span-1 flex flex-col gap-4">
+                    <div class="glass-card rounded-2xl p-6 border border-outline-variant/15 shadow-md h-full">
+                        <h3 class="text-[15px] font-bold text-on-surface mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-secondary">support_agent</span> Contact Support
+                        </h3>
+                        <form class="flex flex-col gap-3 h-full">
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-[11px] font-bold text-on-surface-variant">Issue Type</label>
+                                <select class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none">
+                                    <option>Technical Issue / Bug</option>
+                                    <option>Billing Question</option>
+                                    <option>Feature Request</option>
+                                </select>
+                            </div>
+                            <div class="flex flex-col gap-1.5 flex-1">
+                                <label class="text-[11px] font-bold text-on-surface-variant">Describe the problem</label>
+                                <textarea class="w-full h-full min-h-[120px] bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none resize-none" placeholder="Please provide as much detail as possible..."></textarea>
+                            </div>
+                            <button type="button" onclick="alert('Support ticket submitted successfully!')" class="mt-2 w-full bg-primary hover:bg-primary/90 text-on-primary font-bold py-2.5 rounded-xl text-[12px] shadow-sm flex items-center justify-center gap-1.5 transition-all">
+                                <span class="material-symbols-outlined text-[16px]">send</span> Submit Ticket
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="./assets/js/db.js"></script>
+    <script type="module" src="./assets/js/main.js"></script>
+</body>
+</html>

@@ -16,7 +16,7 @@
     --color-on-primary: #ffffff;
     --color-primary-container: #2d6a4f;
     --color-on-primary-container: #a8e7c5;
-    
+
     --color-secondary: #416746;
     --color-on-secondary: #ffffff;
     --color-secondary-container: #c0ebc1;
@@ -39,7 +39,7 @@
     --color-on-primary: #003823;
     --color-primary-container: #0f5238;
     --color-on-primary-container: #b1f0ce;
-    
+
     --color-secondary: #a7d1a9;
     --color-on-secondary: #11381b;
     --color-secondary-container: #2a4f30;
@@ -50,8 +50,8 @@ body {
     font-family: 'Inter', sans-serif;
     /* Soft gradient mesh background */
     background: radial-gradient(circle at 15% 50%, rgba(149, 212, 179, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 85% 30%, rgba(45, 106, 79, 0.04) 0%, transparent 50%),
-                var(--color-background);
+        radial-gradient(circle at 85% 30%, rgba(45, 106, 79, 0.04) 0%, transparent 50%),
+        var(--color-background);
     background-attachment: fixed;
     color: var(--color-on-surface);
     overscroll-behavior-y: none;
@@ -61,11 +61,18 @@ body {
 
 .dark body {
     background: radial-gradient(circle at 15% 50%, rgba(52, 199, 135, 0.06) 0%, transparent 50%),
-                radial-gradient(circle at 85% 30%, rgba(15, 82, 56, 0.03) 0%, transparent 50%),
-                var(--color-background);
+        radial-gradient(circle at 85% 30%, rgba(15, 82, 56, 0.03) 0%, transparent 50%),
+        var(--color-background);
 }
 
-h1, h2, h3, h4, h5, h6, .font-display-lg, .font-headline-md {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-display-lg,
+.font-headline-md {
     font-family: 'Outfit', sans-serif;
 }
 
@@ -92,13 +99,16 @@ h1, h2, h3, h4, h5, h6, .font-display-lg, .font-headline-md {
 .custom-scrollbar::-webkit-scrollbar {
     width: 4px;
 }
+
 .custom-scrollbar::-webkit-scrollbar-track {
     background: transparent;
 }
+
 .custom-scrollbar::-webkit-scrollbar-thumb {
     background: #c2edc4;
     border-radius: 10px;
 }
+
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: #95d4b3;
 }
@@ -109,6 +119,7 @@ h1, h2, h3, h4, h5, h6, .font-display-lg, .font-headline-md {
     opacity: 0;
     transition: opacity 0.4s ease-out;
 }
+
 .panel.active {
     display: block;
     animation: fadeIn 0.4s ease-out forwards;
@@ -121,12 +132,15 @@ h1, h2, h3, h4, h5, h6, .font-display-lg, .font-headline-md {
 }
 
 /* Micro-animations */
-button, a {
+button,
+a {
     transition: all 0.2s ease;
 }
+
 button:active {
     transform: scale(0.97);
 }
+
 tr.group {
     transition: background-color 0.2s ease;
 }
@@ -182,28 +196,33 @@ tr.group {
     0% {
         transform: translate(0, 0) scale(1);
     }
+
     50% {
         transform: translate(5%, 10%) scale(1.05);
     }
+
     100% {
         transform: translate(-5%, 5%) scale(0.95);
     }
 }
 
 /* Upgraded Glass Card */
-.glass-card, .glass-panel, .glass-effect {
+.glass-card,
+.glass-panel,
+.glass-effect {
     background: rgba(255, 255, 255, 0.55);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     border: 1px solid rgba(255, 255, 255, 0.9);
-    box-shadow: 
+    box-shadow:
         0 8px 32px 0 rgba(15, 82, 56, 0.08),
-        inset 0 1px 0 0 rgba(255, 255, 255, 1); /* Inner glow */
+        inset 0 1px 0 0 rgba(255, 255, 255, 1);
+    /* Inner glow */
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .glass-card:hover {
-    box-shadow: 
+    box-shadow:
         0 16px 48px 0 rgba(15, 82, 56, 0.12),
         inset 0 1px 0 0 rgba(255, 255, 255, 1);
     border-color: rgba(255, 255, 255, 1);
@@ -220,8 +239,13 @@ tr.group {
 
 /* Toast Animations — slide up from bottom-right */
 @keyframes toastProgress {
-    from { transform: scaleX(1); }
-    to   { transform: scaleX(0); }
+    from {
+        transform: scaleX(1);
+    }
+
+    to {
+        transform: scaleX(0);
+    }
 }
 
 
@@ -230,6 +254,7 @@ tr.group {
         transform: translateY(24px) translateX(8px) scale(0.94);
         opacity: 0;
     }
+
     to {
         transform: translateY(0) translateX(0) scale(1);
         opacity: 1;
@@ -241,6 +266,7 @@ tr.group {
         transform: translateY(0) scale(1);
         opacity: 1;
     }
+
     to {
         transform: translateY(24px) scale(0.94);
         opacity: 0;
@@ -290,33 +316,40 @@ tr.group {
 .mobile-nav-link.active-nav .icon-container {
     background-color: var(--color-secondary-container);
 }
+
 .mobile-nav-link.active-nav {
     color: var(--color-primary);
 }
+
 .mobile-nav-link.active-nav .nav-icon {
     font-variation-settings: 'FILL' 1;
 }
+
 .mobile-nav-link:active {
     transform: scale(0.92);
 }
 
 /* Dark Mode overrides */
-.dark .glass-card, .dark .glass-panel, .dark .glass-effect {
+.dark .glass-card,
+.dark .glass-panel,
+.dark .glass-effect {
     background: rgba(20, 24, 22, 0.65);
     border-color: rgba(255, 255, 255, 0.08);
-    box-shadow: 
+    box-shadow:
         0 8px 32px 0 rgba(0, 0, 0, 0.3),
         inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
 }
 
 .dark .glass-card:hover {
-    box-shadow: 
+    box-shadow:
         0 16px 48px 0 rgba(0, 0, 0, 0.4),
         inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
     border-color: rgba(255, 255, 255, 0.15);
 }
 
-.dark input, .dark select, .dark textarea {
+.dark input,
+.dark select,
+.dark textarea {
     background-color: rgba(26, 32, 28, 0.6) !important;
     color: var(--color-on-surface) !important;
     border-color: rgba(255, 255, 255, 0.1) !important;
@@ -330,15 +363,19 @@ tr.group {
     background-color: rgba(15, 19, 17, 0.95);
     border-color: rgba(255, 255, 255, 0.08);
 }
+
 .dark #mobile-bottom-nav a {
     color: var(--color-on-surface-variant);
 }
+
 .dark #mobile-bottom-nav a.text-\[\#0f5238\] {
     color: var(--color-primary) !important;
 }
+
 .dark .mobile-nav-link.active-nav .icon-container {
     background-color: var(--color-secondary-container) !important;
 }
+
 .dark .mobile-nav-link.active-nav {
     color: var(--color-primary) !important;
 }
@@ -346,69 +383,91 @@ tr.group {
 .dark .bg-white {
     background-color: var(--color-surface-container-lowest) !important;
 }
+
 .dark .text-on-surface-variant {
     color: var(--color-on-surface-variant) !important;
 }
+
 .dark .border-outline-variant {
     border-color: var(--color-outline-variant) !important;
 }
+
 .dark .hover\:bg-surface-container-low:hover {
     background-color: var(--color-surface-container-low) !important;
 }
+
 .dark .bg-surface-container-lowest {
     background-color: var(--color-surface-container-lowest) !important;
 }
+
 .dark .bg-surface-container-low {
     background-color: var(--color-surface-container-low) !important;
 }
+
 .dark .bg-surface-container-low\/50 {
     background-color: rgba(26, 32, 28, 0.5) !important;
 }
+
 .dark .text-primary {
     color: var(--color-primary) !important;
 }
+
 .dark .bg-primary\/10 {
     background-color: rgba(52, 199, 135, 0.15) !important;
 }
+
 .dark .text-secondary {
     color: var(--color-secondary) !important;
 }
+
 .dark .bg-secondary\/10 {
     background-color: rgba(167, 209, 169, 0.15) !important;
 }
+
 .dark .border-outline-variant\/10 {
     border-color: rgba(255, 255, 255, 0.06) !important;
 }
+
 .dark .border-outline-variant\/20 {
     border-color: rgba(255, 255, 255, 0.1) !important;
 }
+
 .dark .border-outline-variant\/30 {
     border-color: rgba(255, 255, 255, 0.15) !important;
 }
+
 .dark .bg-surface-container-low\/80 {
     background-color: rgba(26, 32, 28, 0.8) !important;
 }
+
 .dark .bg-white\/80 {
     background-color: rgba(20, 24, 22, 0.8) !important;
 }
+
 .dark .bg-white\/75 {
     background-color: rgba(20, 24, 22, 0.75) !important;
 }
+
 .dark .bg-white\/50 {
     background-color: rgba(20, 24, 22, 0.5) !important;
 }
+
 .dark .bg-white\/40 {
     background-color: rgba(20, 24, 22, 0.4) !important;
 }
+
 .dark .bg-white\/70 {
     background-color: rgba(20, 24, 22, 0.7) !important;
 }
+
 .dark .border-white\/40 {
     border-color: rgba(255, 255, 255, 0.08) !important;
 }
+
 .dark .border-white\/50 {
     border-color: rgba(255, 255, 255, 0.1) !important;
 }
+
 .dark .border-white\/60 {
     border-color: rgba(255, 255, 255, 0.12) !important;
 }
@@ -449,9 +508,11 @@ tr.group {
     body {
         background-color: #ffffff !important;
     }
-    body > *:not(#print-receipt-container) {
+
+    body>*:not(#print-receipt-container) {
         display: none !important;
     }
+
     #print-receipt-container {
         display: block !important;
         position: relative !important;
@@ -464,13 +525,161 @@ tr.group {
         background-color: #ffffff !important;
         color: #111111 !important;
     }
+
     #print-receipt-container * {
         print-color-adjust: exact;
         -webkit-print-color-adjust: exact;
     }
+
     /* Default @page is overridden dynamically via <style id="print-page-style"> injected by JS */
     @page {
         margin: 10mm;
     }
 }
 
+/* -------------------------------------
+   ULTRA-PREMIUM AESTHETICS - UX ENHANCEMENTS
+------------------------------------- */
+
+/* 1. Staggered Entry Animations */
+.stagger-1 { animation: fadeInSlideUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.05s both; }
+.stagger-2 { animation: fadeInSlideUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.10s both; }
+.stagger-3 { animation: fadeInSlideUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s both; }
+.stagger-4 { animation: fadeInSlideUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.20s both; }
+.stagger-5 { animation: fadeInSlideUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.25s both; }
+.stagger-6 { animation: fadeInSlideUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.30s both; }
+
+@keyframes fadeInSlideUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 2. Enhanced Table Row Interactions */
+table tbody tr {
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+table tbody tr:hover {
+    background-color: var(--color-surface-container-high) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    z-index: 10;
+    position: relative;
+}
+.dark table tbody tr:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* 3. Ripple Effect for Buttons */
+.ripple-btn {
+    position: relative;
+    overflow: hidden;
+}
+.ripple-btn::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.4);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: width 0.4s ease-out, height 0.4s ease-out, opacity 0.4s ease-out;
+}
+.ripple-btn:active::after {
+    width: 200px;
+    height: 200px;
+    opacity: 1;
+    transition: 0s;
+}
+
+/* 4. Skeleton Loading Animation */
+@keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+.skeleton-loader {
+    animation: shimmer 2s infinite linear;
+    background: linear-gradient(to right, var(--color-surface-container-low) 4%, var(--color-surface-container-high) 25%, var(--color-surface-container-low) 36%);
+    background-size: 1000px 100%;
+    border-radius: 4px;
+}
+.dark .skeleton-loader {
+    background: linear-gradient(to right, rgba(255,255,255,0.05) 4%, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.05) 36%);
+    background-size: 1000px 100%;
+}
+
+/* 5. Custom Select Arrow styling */
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 1rem center !important;
+    background-size: 1em !important;
+    padding-right: 2.5rem !important;
+}
+.dark select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c0c9c2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+}
+
+/* 6. Floating Form Labels */
+.floating-label-group {
+    position: relative;
+}
+.floating-label-group input, 
+.floating-label-group textarea {
+    padding-top: 1.25rem !important;
+    padding-bottom: 0.25rem !important;
+}
+.floating-label-group label {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: var(--color-on-surface-variant);
+    opacity: 0.7;
+    pointer-events: none;
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-size: 13px;
+    margin: 0 !important;
+}
+.floating-label-group textarea ~ label {
+    top: 12px;
+    transform: none;
+}
+.floating-label-group input:focus ~ label,
+.floating-label-group input:not(:placeholder-shown) ~ label,
+.floating-label-group textarea:focus ~ label,
+.floating-label-group textarea:not(:placeholder-shown) ~ label {
+    top: 8px;
+    transform: translateY(0);
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--color-primary);
+    opacity: 1;
+}
+
+/* Chart Tooltip Overlay */
+.chart-tooltip {
+    position: absolute;
+    background: var(--color-surface-container-highest);
+    color: var(--color-on-surface);
+    border: 1px solid var(--color-outline-variant);
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: bold;
+    pointer-events: none;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+    transform: translate(-50%, -10px);
+}
+.chart-tooltip.active {
+    opacity: 1;
+    transform: translate(-50%, -30px);
+}

@@ -22,7 +22,7 @@ let activeType = null; // 'usb' or 'bluetooth'
 let bluetoothChar = null; // GATT characteristic for writing
 
 export const Printer = {
-    getConnectionState: function() {
+    getConnectionState: function () {
         if (!activeDevice) return { status: 'disconnected', name: '' };
         if (activeType === 'simulated-usb') {
             return { status: 'connected', name: 'Virtual USB Printer (Simulated)', type: 'usb' };
@@ -34,7 +34,7 @@ export const Printer = {
         return { status: 'connected', name: name, type: activeType };
     },
 
-    disconnect: async function() {
+    disconnect: async function () {
         try {
             if (activeType === 'usb' && activeDevice) {
                 await activeDevice.close();
@@ -52,7 +52,7 @@ export const Printer = {
         }
     },
 
-    connectUSB: async function() {
+    connectUSB: async function () {
         await this.disconnect();
         try {
             if (!navigator.usb) throw new Error("WebUSB API not supported in this browser.");
@@ -73,7 +73,7 @@ export const Printer = {
             if (device.configuration === null) {
                 await device.selectConfiguration(1);
             }
-            
+
             // Dynamically scan for the printer class interface or bulk-out endpoints instead of hardcoding 0
             let interfaceNum = 0;
             if (device.configuration && device.configuration.interfaces) {
@@ -97,7 +97,7 @@ export const Printer = {
 
             activeDevice = device;
             activeType = 'usb';
-            
+
             console.log('[Printer Core] Connected to USB printer:', device);
             return { success: true, name: device.productName || 'USB Thermal Printer' };
         } catch (err) {
@@ -114,7 +114,7 @@ export const Printer = {
         }
     },
 
-    connectBluetooth: async function() {
+    connectBluetooth: async function () {
         await this.disconnect();
         try {
             if (!navigator.bluetooth) throw new Error("WebBluetooth API not supported in this browser.");
@@ -133,7 +133,7 @@ export const Printer = {
 
             console.log('[Printer Core] Connecting GATT Server...');
             const server = await device.gatt.connect();
-            
+
             // Look for standard writing services/characteristics
             const services = await server.getPrimaryServices();
             let txChar = null;
@@ -174,7 +174,7 @@ export const Printer = {
     },
 
     // Compiles structured parameters into ESC/POS bytes
-    compileEscPos: function(data, paperWidth = '80mm', settings = null) {
+    compileEscPos: function (data, paperWidth = '80mm', settings = null) {
         const encoder = new TextEncoder();
         const buffer = [];
 
@@ -206,7 +206,7 @@ export const Printer = {
             writeBytes(CMD.DOUBLE_SIZE);
             writeLine(data.title.toUpperCase());
         }
-        
+
         // Address & Phone (Centered, Normal)
         writeBytes(CMD.NORMAL_SIZE);
         writeBytes(CMD.BOLD_OFF);
@@ -263,7 +263,7 @@ export const Printer = {
         writeBytes(CMD.ALIGN_RIGHT);
         if (data.subtotal) writeLine(`Subtotal: ${currency}${data.subtotal.toFixed(2)}`);
         if (data.tax) writeLine(`Tax (${data.taxPct || 5}%): ${currency}${data.tax.toFixed(2)}`);
-        
+
         writeBytes(CMD.BOLD_ON);
         writeBytes(CMD.DOUBLE_SIZE);
         writeLine(`TOTAL: ${currency}${data.total.toFixed(2)}`);
@@ -293,13 +293,13 @@ export const Printer = {
         return new Uint8Array(buffer);
     },
 
-    printESC: async function(receiptData, settings) {
+    printESC: async function (receiptData, settings) {
         const width = settings.printer.width || '80mm';
         const compiledBytes = this.compileEscPos(receiptData, width, settings);
 
         // Debug Log in Console
         console.log(`[Printer Core] Sending ${compiledBytes.length} ESC/POS bytes to printer:`, compiledBytes);
-        
+
         // Log readable output representation for testing/debugging
         let hexString = Array.from(compiledBytes.slice(0, 40))
             .map(b => b.toString(16).padStart(2, '0').toUpperCase())
@@ -343,7 +343,7 @@ export const Printer = {
         } else if (activeType === 'bluetooth' && bluetoothChar) {
             try {
                 // Bluetooth writes usually capped to 20-512 bytes chunks depending on MTU
-                const chunkSize = 20; 
+                const chunkSize = 20;
                 console.log(`[Printer Core] Writing Bluetooth packets in chunks of ${chunkSize} bytes...`);
                 for (let i = 0; i < compiledBytes.length; i += chunkSize) {
                     const chunk = compiledBytes.slice(i, i + chunkSize);
@@ -387,7 +387,7 @@ export const Printer = {
         }
     },
 
-    injectSimulatorStyles: function() {
+    injectSimulatorStyles: function () {
         if (document.getElementById('printer-simulator-styles')) return;
         const style = document.createElement('style');
         style.id = 'printer-simulator-styles';
@@ -417,10 +417,10 @@ export const Printer = {
         document.head.appendChild(style);
     },
 
-    showPairingModal: function(connType) {
+    showPairingModal: function (connType) {
         return new Promise((resolve, reject) => {
             this.injectSimulatorStyles();
-            
+
             const existing = document.getElementById('printer-pairing-modal');
             if (existing) existing.remove();
 
@@ -536,10 +536,10 @@ export const Printer = {
         });
     },
 
-    showWifiTransmissionModal: function(receiptData, settings, ip) {
+    showWifiTransmissionModal: function (receiptData, settings, ip) {
         return new Promise((resolve) => {
             this.injectSimulatorStyles();
-            
+
             const existing = document.getElementById('printer-wifi-modal');
             if (existing) existing.remove();
 
@@ -604,7 +604,7 @@ export const Printer = {
         });
     },
 
-    showSimulatorUI: function(receiptData, settings) {
+    showSimulatorUI: function (receiptData, settings) {
         this.injectSimulatorStyles();
 
         // Check if there is an existing overlay and remove it
@@ -729,7 +729,8 @@ export const Printer = {
             if (typeof window.showWhatsAppDispatchModal === 'function') {
                 window.showWhatsAppDispatchModal({
                     customer: targetCustomer,
-                    messageText: message
+                    messageText: message,
+                    receiptData: receiptData
                 });
             } else {
                 showToast("WhatsApp dispatch module is loading, please try again.", "info");
@@ -748,7 +749,7 @@ export const Printer = {
     // ─── Shared system print trigger ─────────────────────────────────────────
     // @page { size } cannot use CSS custom properties, so we inject a real
     // <style> tag with the exact page dimensions before calling window.print().
-    _triggerSystemPrint: function(receiptData, settings, width) {
+    _triggerSystemPrint: function (receiptData, settings, width) {
         width = width || (settings && settings.printer && settings.printer.width) || '80mm';
 
         let pageSize = '80mm auto';
@@ -825,7 +826,7 @@ export const Printer = {
         window.print();
     },
 
-    renderReceiptHtml: function(data, settings) {
+    renderReceiptHtml: function (data, settings) {
         const template = data.template || 'minimalist';
         const currency = (settings && settings.general && settings.general.currency) || '$';
         const titleText = (data.title || 'AQUAFLOW PRO').toUpperCase();
@@ -869,12 +870,266 @@ export const Printer = {
                 <span class="material-symbols-outlined" style="font-size:18px;color:#374151;">water_drop</span>
                </div>`;
 
+        const isReceivable = data.title === "RECEIVABLE SLIP";
+        const width = (settings && settings.printer && settings.printer.width) || '80mm';
+
+        if (width === 'A4') {
+            const a4LogoHtml = logoDataUrl && logoDataUrl.startsWith('data:')
+                ? `<img src="${logoDataUrl}" alt="Logo" style="max-width:120px;max-height:80px;object-fit:contain;margin-bottom:8px;" />`
+                : `<div style="width:64px;height:64px;border-radius:50%;background:#f3f4f6;display:flex;align-items:center;justify-content:center;border:1px solid #e5e7eb;margin-bottom:8px;">
+                    <span class="material-symbols-outlined" style="font-size:32px;color:#374151;">water_drop</span>
+                   </div>`;
+
+            // Set dynamic titles and extra header blocks
+            let documentTitle = 'TAX INVOICE';
+            if (template === 'delivery') documentTitle = 'DELIVERY CHALLAN';
+            else if (template === 'minimalist' || template === 'compact') documentTitle = 'RECEIPT';
+            else if (template === 'fbr') documentTitle = 'FBR SALES TAX INVOICE';
+            else if (isReceivable) documentTitle = 'RECEIVABLE SLIP';
+
+            let headerExtra = '';
+            if (template === 'fbr') {
+                headerExtra = `
+                <div style="margin-top: 1rem; padding: 0.75rem; background: #f9fafb; border: 1px dashed #d1d5db; border-radius: 4px; font-size: 0.75rem; color: #4b5563; max-width: 250px;">
+                    <strong style="color: #111827;">FBR Integration Details:</strong><br/>
+                    POS ID: ${posId}<br/>
+                    FBR Inv #: FBR-${invoiceId.replace(/[^0-9]/g, '') || '883921'}<br/>
+                </div>
+                `;
+            }
+
+            // Decide table headers
+            let tableHeaders = '';
+            if (template === 'delivery') {
+                tableHeaders = `
+                    <th style="padding: 0.75rem 1rem; width: 4rem; text-align: center; color: #000000; border: 1px solid #000000;">Qty</th>
+                    <th style="padding: 0.75rem 1rem; color: #000000; border: 1px solid #000000;">Description</th>
+                    <th style="padding: 0.75rem 1rem; text-align: right; width: 8rem; color: #000000; border: 1px solid #000000;">Status</th>
+                `;
+            } else if (template === 'fbr') {
+                tableHeaders = `
+                    <th style="padding: 0.75rem 1rem; width: 4rem; text-align: center; color: #000000; border: 1px solid #000000;">Qty</th>
+                    <th style="padding: 0.75rem 1rem; color: #000000; border: 1px solid #000000;">Description</th>
+                    <th style="padding: 0.75rem 1rem; text-align: right; width: 8rem; color: #000000; border: 1px solid #000000;">Rate</th>
+                    <th style="padding: 0.75rem 1rem; text-align: right; width: 6rem; color: #000000; border: 1px solid #000000;">Tax %</th>
+                    <th style="padding: 0.75rem 1rem; text-align: right; width: 8rem; color: #000000; border: 1px solid #000000;">Total</th>
+                `;
+            } else if (template === 'minimalist' || template === 'compact') {
+                tableHeaders = `
+                    <th style="padding: 0.75rem 1rem; width: 4rem; text-align: center; color: #000000; border: 1px solid #000000;">${isReceivable ? 'Ref/Date' : 'Qty'}</th>
+                    <th style="padding: 0.75rem 1rem; color: #000000; border: 1px solid #000000;">Description</th>
+                    <th style="padding: 0.75rem 1rem; text-align: right; width: 8rem; color: #000000; border: 1px solid #000000;">Amount</th>
+                `;
+            } else {
+                tableHeaders = `
+                    <th style="padding: 0.75rem 1rem; width: 4rem; text-align: center; color: #000000; border: 1px solid #000000;">${isReceivable ? 'Ref/Date' : 'Qty'}</th>
+                    <th style="padding: 0.75rem 1rem; color: #000000; border: 1px solid #000000;">Description</th>
+                    <th style="padding: 0.75rem 1rem; text-align: right; width: 8rem; color: #000000; border: 1px solid #000000;">Rate</th>
+                    <th style="padding: 0.75rem 1rem; text-align: right; width: 8rem; color: #000000; border: 1px solid #000000;">Total</th>
+                `;
+            }
+
+            const itemsRowsHtml = (data.items || []).map(i => {
+                const itemQty = i.qty || 1;
+                const itemTotal = typeof i.total === 'number' ? i.total : (i.price ? i.price * itemQty : 0);
+                const itemRate = typeof i.price === 'number' ? i.price : (itemTotal / itemQty);
+                if (template === 'delivery') {
+                    return `
+                        <tr>
+                            <td style="padding: 0.75rem 1rem; text-align: center; color: #374151; font-weight: 600; border: 1px solid #000000;">${itemQty}x</td>
+                            <td style="padding: 0.75rem 1rem; color: #000000; font-weight: 500; border: 1px solid #000000;">${i.name}</td>
+                            <td style="padding: 0.75rem 1rem; text-align: right; color: #000000; font-weight: 700; border: 1px solid #000000;">Delivered</td>
+                        </tr>
+                    `;
+                } else if (template === 'fbr') {
+                    return `
+                        <tr>
+                            <td style="padding: 0.75rem 1rem; text-align: center; color: #6b7280; font-weight: 600; border: 1px solid #000000;">${itemQty}x</td>
+                            <td style="padding: 0.75rem 1rem; color: #111827; font-weight: 500; border: 1px solid #000000;">${i.name}</td>
+                            <td style="padding: 0.75rem 1rem; text-align: right; color: #6b7280; border: 1px solid #000000;">${currency}${itemRate.toFixed(2)}</td>
+                            <td style="padding: 0.75rem 1rem; text-align: right; color: #6b7280; border: 1px solid #000000;">${salesTaxPct}%</td>
+                            <td style="padding: 0.75rem 1rem; text-align: right; color: #111827; font-weight: 600; border: 1px solid #000000;">${currency}${itemTotal.toFixed(2)}</td>
+                        </tr>
+                    `;
+                } else if (template === 'minimalist' || template === 'compact') {
+                    return `
+                        <tr>
+                            <td style="padding: 0.75rem 1rem; text-align: center; color: #6b7280; font-weight: 600; border: 1px solid #000000;">${isReceivable ? itemQty : itemQty + 'x'}</td>
+                            <td style="padding: 0.75rem 1rem; color: #111827; font-weight: 500; border: 1px solid #000000;">${i.name}</td>
+                            <td style="padding: 0.75rem 1rem; text-align: right; color: #111827; font-weight: 600; border: 1px solid #000000;">${currency}${itemTotal.toFixed(2)}</td>
+                        </tr>
+                    `;
+                } else {
+                    return `
+                        <tr>
+                            <td style="padding: 0.75rem 1rem; text-align: center; color: #6b7280; font-weight: 600; border: 1px solid #000000;">${isReceivable ? itemQty : itemQty + 'x'}</td>
+                            <td style="padding: 0.75rem 1rem; color: #111827; font-weight: 500; border: 1px solid #000000;">${i.name}</td>
+                            <td style="padding: 0.75rem 1rem; text-align: right; color: #6b7280; border: 1px solid #000000;">${currency}${itemRate.toFixed(2)}</td>
+                            <td style="padding: 0.75rem 1rem; text-align: right; color: #111827; font-weight: 600; border: 1px solid #000000;">${currency}${itemTotal.toFixed(2)}</td>
+                        </tr>
+                    `;
+                }
+            }).join('');
+
+            // Decide Totals Block
+            let totalsRowsHtml = '';
+            if (template !== 'delivery') {
+                const colCount = template === 'fbr' ? 5 : (template === 'minimalist' || template === 'compact' ? 3 : 4);
+                const colspan = colCount - 1;
+                totalsRowsHtml = `
+                    <tr>
+                        <td colspan="${colspan}" style="padding: 0.75rem 1rem; border-top: 2px solid #000; text-align: right; font-weight: 600; color: #374151;">Subtotal</td>
+                        <td style="padding: 0.75rem 1rem; border-top: 2px solid #000; text-align: right; font-weight: 700; color: #000000;">${currency}${subtotal.toFixed(2)}</td>
+                    </tr>
+                    ${taxPct > 0 ? `
+                    <tr>
+                        <td colspan="${colspan}" style="padding: 0.5rem 1rem; text-align: right; font-weight: 600; color: #374151;">Sales Tax (${taxPct}%)</td>
+                        <td style="padding: 0.5rem 1rem; text-align: right; font-weight: 700; color: #000000;">${currency}${tax.toFixed(2)}</td>
+                    </tr>
+                    ` : ''}
+                    <tr>
+                        <td colspan="${colspan}" style="padding: 1rem; border-top: 2px solid #000; border-bottom: 2px solid #000; text-align: right; font-weight: 900; font-size: 1.1rem; color: #000000;">TOTAL AMOUNT</td>
+                        <td style="padding: 1rem; border-top: 2px solid #000; border-bottom: 2px solid #000; text-align: right; font-weight: 900; font-size: 1.1rem; color: #000000;">${currency}${total.toFixed(2)}</td>
+                    </tr>
+                `;
+            }
+
+            let totalsBlock = '';
+            const paymentTermsHtml = `
+                <div style="flex-grow: 1; padding-right: 2rem;">
+                    <h4 style="font-size: 0.875rem; font-weight: 700; color: #111827; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 0.5rem 0;">Payment Info & Terms</h4>
+                    <p style="font-size: 0.75rem; color: #4b5563; margin: 0 0 0.25rem 0;"><strong>Bank:</strong> AquaBank PLC</p>
+                    <p style="font-size: 0.75rem; color: #4b5563; margin: 0 0 0.25rem 0;"><strong>Account Name:</strong> AquaFlow Pro</p>
+                    <p style="font-size: 0.75rem; color: #4b5563; margin: 0 0 0.75rem 0;"><strong>IBAN:</strong> PK92 AQUA 0000 1234 5678</p>
+                    <p style="font-size: 0.75rem; color: #6b7280; font-style: italic; line-height: 1.4;">Please make all cheques payable to AquaFlow Pro. Payment is due within 15 days of invoice date. Late payments may be subject to a 1.5% monthly fee.</p>
+                </div>
+            `;
+            const signatoryHtml = `
+                <div style="margin-top: 4rem; display: flex; justify-content: flex-end;">
+                    <div style="width: 250px; text-align: center;">
+                        <div style="border-bottom: 1px solid #111827; margin-bottom: 0.5rem;"></div>
+                        <p style="font-size: 0.875rem; color: #374151; font-weight: 600; text-transform: uppercase;">Authorized Signatory</p>
+                    </div>
+                </div>
+            `;
+
+            if (template === 'delivery') {
+                totalsBlock = `
+                <div style="margin-top: 3rem; margin-bottom: 3rem; display: flex; justify-content: space-between; align-items: flex-end;">
+                    <div style="width: 45%;">
+                        <div style="margin-bottom: 2rem;"><strong>Empty Bottles Returned:</strong> __________________</div>
+                        <div><strong>Driver Signature:</strong> __________________</div>
+                    </div>
+                    <div style="width: 45%; text-align: right;">
+                        <div><strong>Customer Signature:</strong> __________________</div>
+                    </div>
+                </div>
+                `;
+            } else {
+                totalsBlock = `
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-top: 1rem; margin-bottom: 2rem;">
+                    ${paymentTermsHtml}
+                    <div style="width: 50%; min-width: 320px; max-width: 400px; padding: 0;"></div>
+                </div>
+                ${signatoryHtml}
+                `;
+            }
+
+            return `
+             <style>
+                @media print {
+                    .a4-print-header { position: fixed; top: 0; left: 0; right: 0; background: white; z-index: 999; }
+                    .a4-print-footer { position: fixed; bottom: 0; left: 0; right: 0; background: white; z-index: 999; }
+                    .a4-spacer-header { height: 280px; }
+                    .a4-spacer-footer { height: 120px; }
+                    .a4-main-container { min-height: auto !important; padding: 0 !important; display: block !important; }
+                    .a4-inner-container { display: block !important; position: relative; }
+                }
+                @media screen {
+                    .a4-spacer-header, .a4-spacer-footer { display: none; }
+                    .a4-inner-container { position: relative; }
+                }
+             </style>
+             <div class="a4-main-container" style="width: 100%; min-height: 277mm; display: flex; flex-direction: column; background: #ffffff; color: #111827; padding: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; text-align: left; box-sizing: border-box; position: relative;">
+                
+                <div class="a4-print-header">
+                    <!-- Top Accent Bar -->
+                    <div style="height: 12px; width: 100%; background: #000000;"></div>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; border-bottom: 3px solid #d1d5db; padding-bottom: 1.5rem; padding-top: 2rem; padding-left: 2rem; padding-right: 2rem; background: white;">
+                        <div>
+                            ${a4LogoHtml}
+                            <h1 style="font-size: 2rem; font-weight: 800; text-transform: uppercase; margin: 0; color: #000000; letter-spacing: -0.025em;">${!hideCompanyName ? titleText : documentTitle}</h1>
+                            <p style="color: #4b5563; margin: 0.5rem 0 0 0; max-width: 250px; line-height: 1.5; font-size: 0.875rem;">${addressText}</p>
+                            ${phoneText ? `<p style="color: #4b5563; margin: 0.25rem 0 0 0; font-size: 0.875rem;">${phoneText}</p>` : ''}
+                            ${businessStrn && (template === 'fbr' || template === 'invoice') ? `<p style="color: #4b5563; font-size: 0.875rem; margin: 0.5rem 0 0 0; background: #ffffff; border: 1px solid #d1d5db; padding: 0.25rem 0.5rem; display: inline-block;">STRN: <strong>${businessStrn}</strong> | NTN: <strong>${businessNtn}</strong></p>` : ''}
+                            ${headerExtra}
+                        </div>
+                        <div style="text-align: right;">
+                            <h2 style="font-size: 2.25rem; font-weight: 800; color: #9ca3af; margin: 0 0 1rem 0; text-transform: uppercase; letter-spacing: 0.05em;">${documentTitle}</h2>
+                            <div style="display: grid; grid-template-columns: auto auto; column-gap: 1.5rem; row-gap: 0.75rem; font-size: 0.875rem; justify-content: flex-end; background: #ffffff; padding: 1rem; border: 2px solid #000000;">
+                                <span style="color: #374151; text-align: left; font-weight: 600;">Invoice No:</span> <span style="font-weight: 700; color: #000000; text-align: right;">${invoiceId}</span>
+                                <span style="color: #374151; text-align: left; font-weight: 600;">Date:</span> <span style="font-weight: 700; color: #000000; text-align: right;">${dateText}</span>
+                                ${template === 'delivery' ? `<span style="color: #374151; text-align: left; font-weight: 600;">Driver:</span> <span style="font-weight: 700; color: #000000; text-align: right;">${data.driver || 'Sarah Connor'}</span>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <table style="width: 100%; border: none; border-collapse: collapse; background: white;">
+                    <thead style="display: table-header-group;">
+                        <tr><td><div class="a4-spacer-header">&nbsp;</div></td></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 0; page-break-inside: auto; position: relative;">
+                                <div class="a4-inner-container" style="flex-grow: 1; display: flex; flex-direction: column; padding: 0 2rem; position: relative; z-index: 1;">
+                                    <div style="margin-bottom: 2rem; page-break-inside: avoid;">
+                                        <h3 style="font-size: 0.875rem; font-weight: 800; color: #000000; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">BILL TO</h3>
+                                        <p style="font-weight: 700; font-size: 1.25rem; margin: 0; color: #000000;">${client}</p>
+                                        <p style="color: #4b5563; margin: 0.25rem 0 0 0; line-height: 1.5; font-size: 0.875rem; max-width: 300px;">${clientAddress}</p>
+                                        ${clientNtn && clientNtn !== '7654321-0' ? `<p style="color: #374151; font-size: 0.875rem; margin: 0.5rem 0 0 0;"><span style="background: #ffffff; border: 1px solid #d1d5db; padding: 0.25rem 0.5rem;">NTN: <strong>${clientNtn}</strong></span></p>` : ''}
+                                    </div>
+                                    
+                                    <table style="width: 100%; text-align: left; border-collapse: collapse; margin-bottom: 2rem; background: white; border: 1px solid #000000;">
+                                        <thead>
+                                            <tr style="background-color: #ffffff; text-transform: uppercase; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.05em;">
+                                                ${tableHeaders}
+                                            </tr>
+                                        </thead>
+                                            ${itemsRowsHtml}
+                                            ${totalsRowsHtml}
+                                        </tbody>
+                                    </table>
+                                    
+                                    <div style="page-break-inside: avoid;">
+                                        ${totalsBlock}
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot style="display: table-footer-group;">
+                        <tr><td><div class="a4-spacer-footer">&nbsp;</div></td></tr>
+                    </tfoot>
+                </table>
+                
+                <div class="a4-print-footer">
+                    <div style="text-align: center; font-size: 0.875rem; margin-top: auto; padding-top: 1.5rem; padding-bottom: 2.5rem; background: white;">
+                        <div style="width: 40px; height: 4px; background-color: #000000; margin: 0 auto 1rem auto;"></div>
+                        <p style="margin: 0; font-style: italic; color: #4b5563; font-weight: 500;">${footerText}</p>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.75rem; color: #6b7280; letter-spacing: 0.05em; text-transform: uppercase;">AquaFlow Pro — Premium POS System</p>
+                    </div>
+                </div>
+             </div>
+            `;
+        }
+
         if (template === 'minimalist') {
-            const isReceivable = data.title === "RECEIVABLE SLIP";
             const col1Header = isReceivable ? "Ref/Date" : "Qty";
             const col2Header = isReceivable ? "Description" : "Description";
             const col3Header = isReceivable ? "Amount" : "Total";
-            
+
             const itemsHtml = `
                 <table class="w-full text-left border-collapse border border-gray-400 text-[9px] my-2 bg-white">
                     <thead>
@@ -892,10 +1147,14 @@ export const Printer = {
                                 <td class="border border-gray-300 px-2 py-1 text-right font-medium">${currency}${i.total.toFixed(2)}</td>
                             </tr>
                         `).join('')}
+                        <tr>
+                            <td colspan="2" class="border border-gray-300 px-2 py-1 text-right font-bold">TOTAL:</td>
+                            <td class="border border-gray-300 px-2 py-1 text-right font-bold">${currency}${total.toFixed(2)}</td>
+                        </tr>
                     </tbody>
                 </table>
             `;
-            
+
             templateHtml = `
                 <!-- Minimalist Template Header -->
                 <div class="text-center mb-3">
@@ -910,10 +1169,6 @@ export const Printer = {
                 </div>
                 ${divLine}
                 ${itemsHtml}
-                ${divLine}
-                <div class="space-y-0.5 text-right font-bold">
-                    <div class="flex justify-between"><span>TOTAL:</span><span>${currency}${total.toFixed(2)}</span></div>
-                </div>
                 ${divLine}
                 <div class="text-center text-[9px] mt-3 italic text-gray-600">
                     <p>${footerText}</p>
@@ -940,7 +1195,7 @@ export const Printer = {
                     </tbody>
                 </table>
             `;
-            
+
             templateHtml = `
                 <!-- Service & Delivery Template -->
                 <div class="text-center mb-3">
@@ -992,6 +1247,18 @@ export const Printer = {
                                 <td class="border border-gray-300 px-2 py-1 text-right font-bold text-primary">${currency}${i.total.toFixed(2)}</td>
                             </tr>
                         `).join('')}
+                        <tr>
+                            <td colspan="3" class="border border-gray-300 px-2 py-1 text-right font-bold text-gray-700">Subtotal:</td>
+                            <td class="border border-gray-300 px-2 py-1 text-right font-bold text-gray-700">${currency}${subtotal.toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="border border-gray-300 px-2 py-1 text-right font-bold text-gray-700">Sales Tax (${taxPct}%):</td>
+                            <td class="border border-gray-300 px-2 py-1 text-right font-bold text-gray-700">${currency}${tax.toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="border border-gray-300 px-2 py-1 text-right font-bold text-black text-[10px]">TOTAL AMOUNT:</td>
+                            <td class="border border-gray-300 px-2 py-1 text-right font-bold text-black text-[10px]">${currency}${total.toFixed(2)}</td>
+                        </tr>
                     </tbody>
                 </table>
             `;
@@ -1014,15 +1281,6 @@ export const Printer = {
                 </div>
                 ${divLine}
                 ${itemsHtml}
-                ${divLine}
-                <div class="text-[9px] space-y-1 pl-8">
-                    <div class="flex justify-between"><span>Subtotal:</span><span>${currency}${subtotal.toFixed(2)}</span></div>
-                    <div class="flex justify-between"><span>Sales Tax (${taxPct}%):</span><span>${currency}${tax.toFixed(2)}</span></div>
-                    <div class="flex justify-between font-bold border-t border-dashed border-gray-300 pt-1 text-[10px]">
-                        <span>TOTAL AMOUNT:</span>
-                        <span>${currency}${total.toFixed(2)}</span>
-                    </div>
-                </div>
                 ${divLine}
                 <div class="flex flex-col items-center justify-center gap-1 py-1 text-center">
                     <div class="w-40 h-6 bg-[repeating-linear-gradient(90deg,#000,#000_1.5px,transparent_1.5px,transparent_4px)] opacity-80"></div>
@@ -1052,6 +1310,10 @@ export const Printer = {
                                 <td class="border border-gray-300 px-1 py-0.5 text-right">${currency}${i.total.toFixed(2)}</td>
                             </tr>
                         `).join('')}
+                        <tr>
+                            <td colspan="2" class="border border-gray-300 px-1 py-0.5 text-right font-bold">TOTAL:</td>
+                            <td class="border border-gray-300 px-1 py-0.5 text-right font-bold">${currency}${total.toFixed(2)}</td>
+                        </tr>
                     </tbody>
                 </table>
             `;
@@ -1074,11 +1336,6 @@ export const Printer = {
                 </div>
                 ${itemsHtml}
                 ${divLine}
-                <div class="text-[9px] font-bold flex justify-between">
-                    <span>TOTAL:</span>
-                    <span>${currency}${total.toFixed(2)}</span>
-                </div>
-                ${divLine}
                 <div class="text-center text-[8px] text-gray-500">
                     ${footerText}
                 </div>
@@ -1096,10 +1353,10 @@ export const Printer = {
                     </thead>
                     <tbody>
                         ${(data.items || []).map(i => {
-                            const itemQty = i.qty || 1;
-                            const itemTotal = typeof i.total === 'number' ? i.total : (i.price ? i.price * itemQty : 0);
-                            const rate = itemTotal / itemQty;
-                            return `
+                const itemQty = i.qty || 1;
+                const itemTotal = typeof i.total === 'number' ? i.total : (i.price ? i.price * itemQty : 0);
+                const rate = itemTotal / itemQty;
+                return `
                                 <tr>
                                     <td class="border border-gray-300 px-2 py-1 text-gray-600 font-mono">${itemQty}x</td>
                                     <td class="border border-gray-300 px-2 py-1">${i.name}</td>
@@ -1107,7 +1364,19 @@ export const Printer = {
                                     <td class="border border-gray-300 px-2 py-1 text-right font-bold text-primary font-mono">${currency}${itemTotal.toFixed(2)}</td>
                                 </tr>
                             `;
-                        }).join('')}
+            }).join('')}
+                        <tr>
+                            <td colspan="3" class="border border-gray-300 px-2 py-1 text-right font-bold text-gray-700">Subtotal (Excl. Tax):</td>
+                            <td class="border border-gray-300 px-2 py-1 text-right font-bold text-gray-700">${currency}${subtotal.toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="border border-gray-300 px-2 py-1 text-right font-bold text-gray-700">Sales Tax (${taxPct}%):</td>
+                            <td class="border border-gray-300 px-2 py-1 text-right font-bold text-gray-700">${currency}${tax.toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="border border-gray-300 px-2 py-1 text-right font-bold text-black text-[10px]">GRAND TOTAL:</td>
+                            <td class="border border-gray-300 px-2 py-1 text-right font-bold text-black text-[10px]">${currency}${total.toFixed(2)}</td>
+                        </tr>
                     </tbody>
                 </table>
             `;
@@ -1141,15 +1410,6 @@ export const Printer = {
                 </div>
                 ${divLine}
                 ${itemsHtml}
-                ${divLine}
-                <div class="text-[9px] space-y-1 pl-8 font-mono">
-                    <div class="flex justify-between"><span>Subtotal (Excl. Tax):</span><span>${currency}${subtotal.toFixed(2)}</span></div>
-                    <div class="flex justify-between"><span>Sales Tax (${taxPct}%):</span><span>${currency}${tax.toFixed(2)}</span></div>
-                    <div class="flex justify-between font-bold border-t border-dashed border-gray-300 pt-1 text-[10px]">
-                        <span>GRAND TOTAL:</span>
-                        <span>${currency}${total.toFixed(2)}</span>
-                    </div>
-                </div>
                 ${divLine}
                 <!-- FBR QR Verification Simulation -->
                 <div class="flex flex-col items-center justify-center gap-1 py-1.5 text-center bg-gray-50 rounded border border-dashed border-gray-300 my-2">

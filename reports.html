@@ -45,20 +45,30 @@
                 <div class="glass-card rounded-xl p-card-padding shadow-sm flex flex-col justify-between">
                     <h3 class="text-[14px] font-bold text-on-surface mb-4">Monthly Resource Consumption</h3>
                     <div class="flex items-end justify-between h-[180px] gap-2 px-4">
-                        <div class="w-full bg-primary/20 rounded-t-md h-[40%] hover:bg-primary transition-colors cursor-pointer group relative">
-                            <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">4.2k</span>
+                        <div
+                            class="w-full bg-primary/20 rounded-t-md h-[40%] hover:bg-primary transition-colors cursor-pointer group relative">
+                            <span
+                                class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">4.2k</span>
                         </div>
-                        <div class="w-full bg-primary/40 rounded-t-md h-[60%] hover:bg-primary transition-colors cursor-pointer group relative">
-                            <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">6.1k</span>
+                        <div
+                            class="w-full bg-primary/40 rounded-t-md h-[60%] hover:bg-primary transition-colors cursor-pointer group relative">
+                            <span
+                                class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">6.1k</span>
                         </div>
-                        <div class="w-full bg-primary/60 rounded-t-md h-[50%] hover:bg-primary transition-colors cursor-pointer group relative">
-                            <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">5.0k</span>
+                        <div
+                            class="w-full bg-primary/60 rounded-t-md h-[50%] hover:bg-primary transition-colors cursor-pointer group relative">
+                            <span
+                                class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">5.0k</span>
                         </div>
-                        <div class="w-full bg-primary/80 rounded-t-md h-[90%] hover:bg-primary transition-colors cursor-pointer group relative">
-                            <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">9.4k</span>
+                        <div
+                            class="w-full bg-primary/80 rounded-t-md h-[90%] hover:bg-primary transition-colors cursor-pointer group relative">
+                            <span
+                                class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">9.4k</span>
                         </div>
-                        <div class="w-full bg-primary rounded-t-md h-[75%] hover:bg-primary transition-colors cursor-pointer group relative">
-                            <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">7.5k</span>
+                        <div
+                            class="w-full bg-primary rounded-t-md h-[75%] hover:bg-primary transition-colors cursor-pointer group relative">
+                            <span
+                                class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">7.5k</span>
                         </div>
                     </div>
                     <div class="flex justify-between mt-2 px-4 text-[10px] text-on-surface-variant font-medium">
@@ -67,46 +77,59 @@
                 </div>
 
                 <!-- Right Side: Interactive Report Generator Wizard -->
-                <div class="glass-card rounded-xl p-card-padding shadow-sm flex flex-col border border-outline-variant/15">
+                <div
+                    class="glass-card rounded-xl p-card-padding shadow-sm flex flex-col border border-outline-variant/15">
                     <h3 class="text-[14px] font-bold text-on-surface mb-3 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-primary text-[18px]">summarize</span>
                         Report Generator Wizard
                     </h3>
-                    
+
                     <div class="flex flex-col gap-3 flex-1">
                         <!-- Select Report Type -->
                         <div class="flex flex-col gap-1">
-                            <label class="text-[10px] uppercase font-bold text-on-surface-variant/60 tracking-wider">Report Type</label>
-                            <select id="report-type" class="bg-white/50 border border-outline-variant/30 rounded-lg py-1.5 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none cursor-pointer">
+                            <label
+                                class="text-[10px] uppercase font-bold text-on-surface-variant/60 tracking-wider">Report
+                                Type</label>
+                            <select id="report-type"
+                                class="bg-white/50 border border-outline-variant/30 rounded-lg py-1.5 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none cursor-pointer">
                                 <option value="financial">Financial Performance Summary</option>
                                 <option value="inventory">Inventory & Stock Levels</option>
                                 <option value="clients">Active Clients Log</option>
                             </select>
                         </div>
-                        
+
                         <!-- Select Format -->
                         <div class="flex flex-col gap-1">
-                            <label class="text-[10px] uppercase font-bold text-on-surface-variant/60 tracking-wider">Output Format</label>
+                            <label
+                                class="text-[10px] uppercase font-bold text-on-surface-variant/60 tracking-wider">Output
+                                Format</label>
                             <div class="flex gap-4 text-[11px] font-bold mt-1">
                                 <label class="flex items-center gap-1.5 cursor-pointer">
-                                    <input type="radio" name="report-format" value="csv" checked class="text-primary focus:ring-0"> CSV Spreadsheet
+                                    <input type="radio" name="report-format" value="csv" checked
+                                        class="text-primary focus:ring-0"> CSV Spreadsheet
                                 </label>
                                 <label class="flex items-center gap-1.5 cursor-pointer">
-                                    <input type="radio" name="report-format" value="json" class="text-primary focus:ring-0"> JSON Object
+                                    <input type="radio" name="report-format" value="json"
+                                        class="text-primary focus:ring-0"> JSON Object
                                 </label>
                             </div>
                         </div>
-                        
+
                         <!-- Action -->
-                        <button id="btn-generate-report" class="bg-primary text-on-primary font-bold text-[12px] py-2 px-4 rounded-lg hover:shadow-md transition-all mt-2 w-full flex items-center justify-center gap-1.5">
+                        <button id="btn-generate-report"
+                            class="bg-primary text-on-primary font-bold text-[12px] py-2 px-4 rounded-lg hover:shadow-md transition-all mt-2 w-full flex items-center justify-center gap-1.5">
                             <span class="material-symbols-outlined text-[16px]">build</span>
                             Generate & Download Report
                         </button>
-                        
+
                         <!-- Preview Output -->
                         <div class="flex-1 flex flex-col gap-1.5 mt-3">
-                            <label class="text-[10px] uppercase font-bold text-on-surface-variant/60 tracking-wider">Data Preview</label>
-                            <textarea id="report-preview" readonly class="w-full flex-1 min-h-[90px] bg-surface-container-low/50 border border-outline-variant/20 rounded-lg p-2.5 font-mono text-[9px] text-on-surface-variant leading-relaxed resize-none outline-none" placeholder="Generated data preview will render here..."></textarea>
+                            <label
+                                class="text-[10px] uppercase font-bold text-on-surface-variant/60 tracking-wider">Data
+                                Preview</label>
+                            <textarea id="report-preview" readonly
+                                class="w-full flex-1 min-h-[90px] bg-surface-container-low/50 border border-outline-variant/20 rounded-lg p-2.5 font-mono text-[9px] text-on-surface-variant leading-relaxed resize-none outline-none"
+                                placeholder="Generated data preview will render here..."></textarea>
                         </div>
                     </div>
                 </div>

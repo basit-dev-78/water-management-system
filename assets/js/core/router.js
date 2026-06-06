@@ -26,6 +26,12 @@ export function initRouter() {
         if (page === 'settings.html') {
             titleText = 'Settings';
             activeTabId = 'panel-settings';
+        } else if (page === 'profile.html') {
+            titleText = 'My Profile';
+            activeTabId = 'panel-profile';
+        } else if (page === 'help.html') {
+            titleText = 'Help & Support';
+            activeTabId = 'panel-help';
         } else if (page === 'drivers.html') {
             titleText = 'Drivers';
         } else if (page === 'driver-add.html') {

@@ -37,7 +37,7 @@ export function initForms() {
         if (customers.length === 0) {
             orderCustomerSelect.innerHTML = '<option value="">No customers — add one first</option>';
         } else {
-            orderCustomerSelect.innerHTML = customers.map(c => 
+            orderCustomerSelect.innerHTML = customers.map(c =>
                 `<option value="${c.id}">${c.name} (${c.id})</option>`
             ).join('');
         }
@@ -52,7 +52,7 @@ export function initForms() {
         const inventory = window.DB.getInventory();
         const settings = window.DB.getSettings();
         const currency = settings.general.currency || 'Rs.';
-        orderProductSelect.innerHTML = inventory.map(item => 
+        orderProductSelect.innerHTML = inventory.map(item =>
             `<option value="${item.id}">${item.name} (${currency}${(PRODUCT_PRICES[item.id] || 10.00).toFixed(2)}) - Stock: ${item.stock}</option>`
         ).join('');
     }
@@ -62,7 +62,7 @@ export function initForms() {
         const txtSubtotal = document.getElementById('order-subtotal-disp');
         const txtPending = document.getElementById('customer-pending-disp');
         const txtTotal = document.getElementById('order-total-amount');
-        
+
         let subtotal = 0;
         addedItems.forEach(item => {
             subtotal += item.price * item.qty;
@@ -178,7 +178,7 @@ export function initForms() {
 
     // 2. Setup standard Cancel / Save handling
     const addPanels = ['panel-customer-add', 'panel-supplier-add', 'panel-inventory-add', 'panel-order-add'];
-    
+
     addPanels.forEach(panelId => {
         const panel = document.getElementById(panelId);
         if (!panel) return;
@@ -186,10 +186,10 @@ export function initForms() {
         const form = panel.querySelector('form');
         const btnCancel = panel.querySelector('.form-btn-cancel');
         const btnSave = panel.querySelector('.form-btn-save');
-        
+
         if (btnCancel && btnSave) {
             btnCancel.addEventListener('click', () => {
-                if(form) form.reset();
+                if (form) form.reset();
                 routeToParent(panelId);
             });
 
@@ -245,14 +245,14 @@ export function initForms() {
                 } else if (panelId.includes('order') && window.DB) {
                     data.total = parseFloat(inputHiddenTotal.value) || 0;
                     data.items = parseInt(inputHiddenItems.value) || 0;
-                    
+
                     // Attach detailed items list for receipt printing
                     data.itemsDetail = addedItems.map(item => ({
                         name: item.name,
                         qty: item.qty,
                         total: item.price * item.qty
                     }));
-                    
+
                     // Add order to DB
                     const savedOrder = window.DB.addOrder(data);
 
@@ -278,7 +278,7 @@ export function initForms() {
                             total: item.price * item.qty
                         }));
                         const customer = window.DB.getCustomers().find(c => c.id === data.customerId);
-                        
+
                         const receiptData = {
                             title: settings.printer.headerText || settings.general.companyName || 'AquaFlow Pro',
                             hideCompanyName: !!settings.printer.hideCompanyName,
@@ -357,7 +357,8 @@ export function initForms() {
                                         if (typeof window.showWhatsAppDispatchModal === 'function') {
                                             window.showWhatsAppDispatchModal({
                                                 customer: customer,
-                                                messageText: message
+                                                messageText: message,
+                                                receiptData: receiptData
                                             });
                                         }
                                     }
@@ -370,12 +371,12 @@ export function initForms() {
                 if (window.renderAll) window.renderAll();
 
                 showToast(successMessage, "success");
-                
+
                 setTimeout(() => {
-                    if(form) form.reset();
+                    if (form) form.reset();
                     addedItems = [];
                     routeToParent(panelId);
-                }, 600); 
+                }, 600);
             });
         }
     });
