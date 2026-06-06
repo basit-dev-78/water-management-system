@@ -96,6 +96,37 @@
         .faq-item.active .faq-icon {
             transform: rotate(45deg);
         }
+
+        /* Water Particles */
+        @keyframes float-particle {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 0.6;
+            }
+
+            80% {
+                opacity: 0.3;
+            }
+
+            100% {
+                transform: translateY(-120px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .water-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.2));
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+            animation: float-particle linear infinite;
+            pointer-events: none;
+            z-index: 5;
+        }
     </style>
 
     <script>
@@ -229,7 +260,8 @@
             </div>
 
             <!-- Right Visual Hero Image Mockup (3D Isometric Stack) -->
-            <div id="hero-stack-trigger" class="flex-1 relative w-full max-w-4xl xl:max-w-none z-10 mt-10 xl:mt-0 group [perspective:2500px] cursor-pointer"
+            <div id="hero-stack-trigger"
+                class="flex-1 relative w-full max-w-4xl xl:max-w-none z-10 mt-10 xl:mt-0 group [perspective:2500px] cursor-pointer"
                 data-aos="fade-left" data-aos-duration="1200">
                 <div
                     class="relative w-full aspect-video transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] [transform-style:preserve-3d] [transform:rotateX(0deg)_rotateZ(0deg)] group-hover:[transform:rotateX(55deg)_rotateZ(-40deg)_translateY(-30px)]">
@@ -321,6 +353,13 @@
         <!-- Dashboard Image Slider Showcase -->
         <section id="showcase" class="py-20 md:py-24 bg-navy relative overflow-hidden">
             <!-- Background Elements -->
+            <div class="water-particle w-8 h-8 left-[10%] bottom-[20%] animate-delay-100"></div>
+            <div class="water-particle w-4 h-4 left-[30%] bottom-[10%] animate-delay-300"
+                style="animation-duration: 5s;"></div>
+            <div class="water-particle w-10 h-10 left-[70%] bottom-[30%] animate-delay-500"
+                style="animation-duration: 6s;"></div>
+            <div class="water-particle w-6 h-6 left-[85%] bottom-[15%] animate-delay-200"
+                style="animation-duration: 4.5s;"></div>
             <div class="absolute top-0 right-0 w-full h-1/2 bg-gradient-to-b from-primary/20 to-transparent opacity-50">
             </div>
             <div
@@ -339,11 +378,11 @@
                 data-aos="fade-up" data-aos-delay="200">
                 <div class="swiper-wrapper mb-20">
                     <!-- Slide 1 -->
-                    <div class="swiper-slide transition-transform duration-500 hover:scale-[1.02]">
+                    <div class="swiper-slide transition-transform duration-500 hover:scale-[1.05]">
                         <div
                             class="rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-[10px] border-white/10 bg-navy relative group">
                             <img src="./assets/images/customerprofile.png" alt="Customer Profiles"
-                                class="w-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-700"
+                                class="w-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
                                 onerror="this.src='./assets/images/customerprofile.png'">
                             <div
                                 class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-10 pt-32 text-left translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
@@ -354,11 +393,11 @@
                         </div>
                     </div>
                     <!-- Slide 2 -->
-                    <div class="swiper-slide transition-transform duration-500 hover:scale-[1.02]">
+                    <div class="swiper-slide transition-transform duration-500 hover:scale-[1.05]">
                         <div
                             class="rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-[10px] border-white/10 bg-navy relative group">
                             <img src="./assets/images/order.png" alt="Order Management"
-                                class="w-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-700"
+                                class="w-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
                                 onerror="this.src='./assets/images/order.png'">
                             <div
                                 class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-10 pt-32 text-left translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
@@ -369,11 +408,11 @@
                         </div>
                     </div>
                     <!-- Slide 3 -->
-                    <div class="swiper-slide transition-transform duration-500 hover:scale-[1.02]">
+                    <div class="swiper-slide transition-transform duration-500 hover:scale-[1.05]">
                         <div
                             class="rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-[10px] border-white/10 bg-navy relative group">
                             <img src="./assets/images/route.png" alt="Route Optimization"
-                                class="w-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-700"
+                                class="w-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-transform duration-700"
                                 onerror="this.src='./assets/images/route.png'">
                             <div
                                 class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-10 pt-32 text-left translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
@@ -567,7 +606,8 @@
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 items-center">
                     <!-- Tier 1 -->
-                    <div class="glass-card rounded-[2.5rem] p-10 border border-white/10 bg-white/5"
+                    <div class="glass-card rounded-[2.5rem] p-10 border border-white/10 bg-white/5 transform-gpu"
+                        data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2"
                         data-aos="fade-right" data-aos-delay="200">
                         <h3 class="text-2xl font-bold text-white mb-3">Essential</h3>
                         <p class="text-lg text-white/60 mb-8">Perfect for growing local fleets.</p>
@@ -595,7 +635,8 @@
                     </div>
 
                     <!-- Tier 2 (Pro) -->
-                    <div class="glass-card rounded-[2.5rem] p-12 border-4 border-accent relative transform lg:-translate-y-6 shadow-[0_30px_60px_rgba(0,0,0,0.6)] bg-gradient-to-b from-white/10 to-white/5"
+                    <div class="glass-card rounded-[2.5rem] p-12 border-4 border-accent relative transform-gpu lg:-translate-y-6 shadow-[0_30px_60px_rgba(0,0,0,0.6)] bg-gradient-to-b from-white/10 to-white/5"
+                        data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.3"
                         data-aos="fade-up" data-aos-delay="100">
                         <div
                             class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-accent text-white px-6 py-2 rounded-full text-sm font-black uppercase tracking-[0.2em] shadow-lg">
@@ -630,8 +671,9 @@
                     </div>
 
                     <!-- Tier 3 -->
-                    <div class="glass-card rounded-[2.5rem] p-10 border border-white/10 bg-white/5" data-aos="fade-left"
-                        data-aos-delay="200">
+                    <div class="glass-card rounded-[2.5rem] p-10 border border-white/10 bg-white/5 transform-gpu"
+                        data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2"
+                        data-aos="fade-left" data-aos-delay="200">
                         <h3 class="text-2xl font-bold text-white mb-3">Enterprise</h3>
                         <p class="text-lg text-white/60 mb-8">Custom solutions for national fleets.</p>
                         <div class="mb-8">
@@ -854,9 +896,11 @@
     </footer>
 
     <!-- Full-Screen Hero Slider Modal -->
-    <div id="hero-modal" class="fixed inset-0 z-[100] bg-navy/95 hidden flex-col items-center justify-center backdrop-blur-xl transition-opacity duration-300 opacity-0">
+    <div id="hero-modal"
+        class="fixed inset-0 z-[100] bg-navy/95 hidden flex-col items-center justify-center backdrop-blur-xl transition-opacity duration-300 opacity-0">
         <!-- Close Button -->
-        <button id="close-hero-modal" class="absolute top-6 right-6 md:top-8 md:right-8 text-white/70 hover:text-white transition-colors z-50 p-2 bg-white/10 hover:bg-white/20 rounded-full cursor-pointer">
+        <button id="close-hero-modal"
+            class="absolute top-6 right-6 md:top-8 md:right-8 text-white/70 hover:text-white transition-colors z-50 p-2 bg-white/10 hover:bg-white/20 rounded-full cursor-pointer">
             <span class="material-symbols-outlined text-3xl">close</span>
         </button>
 
@@ -866,68 +910,96 @@
                 <div class="swiper-wrapper">
                     <!-- Slide 1 -->
                     <div class="swiper-slide w-[80%] md:w-[60%] lg:w-[50%] flex-col items-center justify-center">
-                        <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 group/mslide">
-                            <img src="./assets/images/command-center.png" alt="Dashboard" class="w-full h-auto object-cover">
-                            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy via-navy/90 to-transparent p-6 md:p-10 pt-24 opacity-100 transition-opacity">
+                        <div
+                            class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 group/mslide transform transition-transform duration-500 hover:scale-[1.05]">
+                            <img src="./assets/images/command-center.png" alt="Dashboard"
+                                class="w-full h-auto object-cover group-hover/mslide:scale-110 transition-transform duration-700">
+                            <div
+                                class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy via-navy/90 to-transparent p-6 md:p-10 pt-24 opacity-100 transition-opacity">
                                 <h3 class="text-3xl font-display font-black text-white mb-2">Command Center</h3>
-                                <p class="text-white/80 text-lg">Bird's eye view of your entire operation in real-time.</p>
+                                <p class="text-white/80 text-lg">Bird's eye view of your entire operation in real-time.
+                                </p>
                             </div>
                         </div>
                     </div>
                     <!-- Slide 2 -->
                     <div class="swiper-slide w-[80%] md:w-[60%] lg:w-[50%] flex-col items-center justify-center">
-                        <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 group/mslide">
-                            <img src="./assets/images/profile.png" alt="Profile" class="w-full h-auto object-cover">
-                            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy via-navy/90 to-transparent p-6 md:p-10 pt-24 opacity-100 transition-opacity">
+                        <div
+                            class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 group/mslide transform transition-transform duration-500 hover:scale-[1.05]">
+                            <img src="./assets/images/profile.png" alt="Profile"
+                                class="w-full h-auto object-cover group-hover/mslide:scale-110 transition-transform duration-700">
+                            <div
+                                class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy via-navy/90 to-transparent p-6 md:p-10 pt-24 opacity-100 transition-opacity">
                                 <h3 class="text-3xl font-display font-black text-white mb-2">Customer Profiles</h3>
-                                <p class="text-white/80 text-lg">Manage all client details, billing cycles, and delivery preferences.</p>
+                                <p class="text-white/80 text-lg">Manage all client details, billing cycles, and delivery
+                                    preferences.</p>
                             </div>
                         </div>
                     </div>
                     <!-- Slide 3 -->
                     <div class="swiper-slide w-[80%] md:w-[60%] lg:w-[50%] flex-col items-center justify-center">
-                        <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 group/mslide">
-                            <img src="./assets/images/AI.png" alt="AI Features" class="w-full h-auto object-cover">
-                            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy via-navy/90 to-transparent p-6 md:p-10 pt-24 opacity-100 transition-opacity">
+                        <div
+                            class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 group/mslide transform transition-transform duration-500 hover:scale-[1.05]">
+                            <img src="./assets/images/AI.png" alt="AI Features"
+                                class="w-full h-auto object-cover group-hover/mslide:scale-110 transition-transform duration-700">
+                            <div
+                                class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy via-navy/90 to-transparent p-6 md:p-10 pt-24 opacity-100 transition-opacity">
                                 <h3 class="text-3xl font-display font-black text-white mb-2">AI Optimization</h3>
-                                <p class="text-white/80 text-lg">Automated routing and predictive inventory intelligence.</p>
+                                <p class="text-white/80 text-lg">Automated routing and predictive inventory
+                                    intelligence.</p>
                             </div>
                         </div>
                     </div>
                     <!-- Slide 4 (Duplicate for smooth infinite loop) -->
                     <div class="swiper-slide w-[80%] md:w-[60%] lg:w-[50%] flex-col items-center justify-center">
-                        <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 group/mslide">
-                            <img src="./assets/images/command-center.png" alt="Dashboard" class="w-full h-auto object-cover">
-                            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy via-navy/90 to-transparent p-6 md:p-10 pt-24 opacity-100 transition-opacity">
+                        <div
+                            class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 group/mslide transform transition-transform duration-500 hover:scale-[1.05]">
+                            <img src="./assets/images/command-center.png" alt="Dashboard"
+                                class="w-full h-auto object-cover group-hover/mslide:scale-110 transition-transform duration-700">
+                            <div
+                                class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy via-navy/90 to-transparent p-6 md:p-10 pt-24 opacity-100 transition-opacity">
                                 <h3 class="text-3xl font-display font-black text-white mb-2">Command Center</h3>
-                                <p class="text-white/80 text-lg">Bird's eye view of your entire operation in real-time.</p>
+                                <p class="text-white/80 text-lg">Bird's eye view of your entire operation in real-time.
+                                </p>
                             </div>
                         </div>
                     </div>
                     <!-- Slide 5 (Duplicate) -->
                     <div class="swiper-slide w-[80%] md:w-[60%] lg:w-[50%] flex-col items-center justify-center">
-                        <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 group/mslide">
-                            <img src="./assets/images/profile.png" alt="Profile" class="w-full h-auto object-cover">
-                            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy via-navy/90 to-transparent p-6 md:p-10 pt-24 opacity-100 transition-opacity">
+                        <div
+                            class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 group/mslide transform transition-transform duration-500 hover:scale-[1.05]">
+                            <img src="./assets/images/profile.png" alt="Profile"
+                                class="w-full h-auto object-cover group-hover/mslide:scale-110 transition-transform duration-700">
+                            <div
+                                class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy via-navy/90 to-transparent p-6 md:p-10 pt-24 opacity-100 transition-opacity">
                                 <h3 class="text-3xl font-display font-black text-white mb-2">Customer Profiles</h3>
-                                <p class="text-white/80 text-lg">Manage all client details, billing cycles, and delivery preferences.</p>
+                                <p class="text-white/80 text-lg">Manage all client details, billing cycles, and delivery
+                                    preferences.</p>
                             </div>
                         </div>
                     </div>
                     <!-- Slide 6 (Duplicate) -->
                     <div class="swiper-slide w-[80%] md:w-[60%] lg:w-[50%] flex-col items-center justify-center">
-                        <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 group/mslide">
-                            <img src="./assets/images/AI.png" alt="AI Features" class="w-full h-auto object-cover">
-                            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy via-navy/90 to-transparent p-6 md:p-10 pt-24 opacity-100 transition-opacity">
+                        <div
+                            class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 group/mslide transform transition-transform duration-500 hover:scale-[1.05]">
+                            <img src="./assets/images/AI.png" alt="AI Features"
+                                class="w-full h-auto object-cover group-hover/mslide:scale-110 transition-transform duration-700">
+                            <div
+                                class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy via-navy/90 to-transparent p-6 md:p-10 pt-24 opacity-100 transition-opacity">
                                 <h3 class="text-3xl font-display font-black text-white mb-2">AI Optimization</h3>
-                                <p class="text-white/80 text-lg">Automated routing and predictive inventory intelligence.</p>
+                                <p class="text-white/80 text-lg">Automated routing and predictive inventory
+                                    intelligence.</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- Navigation -->
-                <div class="swiper-button-next !w-14 !h-14 bg-[#ffbd2e] rounded-full !text-navy after:!text-xl hover:scale-110 transition-transform shadow-[0_10px_20px_rgba(255,189,46,0.3)] !right-4 md:!right-12"></div>
-                <div class="swiper-button-prev !w-14 !h-14 bg-[#ffbd2e] rounded-full !text-navy after:!text-xl hover:scale-110 transition-transform shadow-[0_10px_20px_rgba(255,189,46,0.3)] !left-4 md:!left-12"></div>
+                <div
+                    class="swiper-button-next !w-14 !h-14 bg-[#ffbd2e] rounded-full !text-navy after:!text-xl hover:scale-110 transition-transform shadow-[0_10px_20px_rgba(255,189,46,0.3)] !right-4 md:!right-12">
+                </div>
+                <div
+                    class="swiper-button-prev !w-14 !h-14 bg-[#ffbd2e] rounded-full !text-navy after:!text-xl hover:scale-110 transition-transform shadow-[0_10px_20px_rgba(255,189,46,0.3)] !left-4 md:!left-12">
+                </div>
                 <div class="swiper-pagination !bottom-0"></div>
             </div>
         </div>
@@ -1015,14 +1087,17 @@
         });
 
         if (heroStack && heroModal && closeHeroModal) {
+            let slideChangeCount = 0;
+
             heroStack.addEventListener('click', () => {
+                slideChangeCount = 0; // Reset counter on open
                 heroModal.classList.remove('hidden');
                 heroModal.classList.add('flex');
                 setTimeout(() => {
                     heroModal.classList.remove('opacity-0');
                     heroModal.classList.add('opacity-100');
                     heroModalSwiper.update();
-                    
+
                     // Announce the first slide's heading
                     if ('speechSynthesis' in window) {
                         const activeSlide = heroModalSwiper.slides[heroModalSwiper.activeIndex];
@@ -1053,18 +1128,28 @@
                     window.speechSynthesis.cancel();
                 }
             });
-            
+
             // Announce heading when they change slides
             heroModalSwiper.on('slideChangeTransitionEnd', () => {
-                if ('speechSynthesis' in window && !heroModal.classList.contains('hidden')) {
-                    const activeSlide = heroModalSwiper.slides[heroModalSwiper.activeIndex];
-                    const headingElement = activeSlide.querySelector('h3');
-                    if (headingElement) {
-                        window.speechSynthesis.cancel();
-                        const msg = new SpeechSynthesisUtterance(headingElement.innerText);
-                        msg.rate = 0.95;
-                        msg.pitch = 1.0;
-                        window.speechSynthesis.speak(msg);
+                if (!heroModal.classList.contains('hidden')) {
+                    slideChangeCount++;
+
+                    // Auto-close after 6 transitions (2 full loops of the 3 unique slides)
+                    if (slideChangeCount >= 6) {
+                        closeHeroModal.click();
+                        return;
+                    }
+
+                    if ('speechSynthesis' in window) {
+                        const activeSlide = heroModalSwiper.slides[heroModalSwiper.activeIndex];
+                        const headingElement = activeSlide.querySelector('h3');
+                        if (headingElement) {
+                            window.speechSynthesis.cancel();
+                            const msg = new SpeechSynthesisUtterance(headingElement.innerText);
+                            msg.rate = 0.95;
+                            msg.pitch = 1.0;
+                            window.speechSynthesis.speak(msg);
+                        }
                     }
                 }
             });
@@ -1094,7 +1179,26 @@
                 }, 800); // Slight delay so page loads first
             }
         });
+        // Cursor Glow Logic
+        const cursorGlow = document.getElementById('cursor-glow');
+        if (cursorGlow) {
+            document.addEventListener('mousemove', (e) => {
+                cursorGlow.style.opacity = '1';
+                cursorGlow.style.left = e.clientX + 'px';
+                cursorGlow.style.top = e.clientY + 'px';
+            });
+            document.addEventListener('mouseleave', () => {
+                cursorGlow.style.opacity = '0';
+            });
+        }
     </script>
+    <!-- Vanilla Tilt for 3D Hover Effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+    <!-- Cursor Glow Element -->
+    <div id="cursor-glow"
+        class="fixed w-[400px] h-[400px] bg-primary/20 rounded-full blur-[80px] pointer-events-none z-[-1] opacity-0 transition-opacity duration-300 transform -translate-x-1/2 -translate-y-1/2 will-change-transform">
+    </div>
 </body>
 
 </html>
