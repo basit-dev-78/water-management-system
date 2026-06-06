@@ -3,14 +3,16 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover" name="viewport" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover"
+        name="viewport" />
     <title>AquaFlow Pro - My Profile</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script src="./assets/js/config.js"></script>
     <link href="./assets/css/style.css" rel="stylesheet" />
 </head>
 
-<body class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-clip relative min-h-screen">
+<body
+    class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-clip relative min-h-screen">
 
     <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
         <div class="blob blob-1"></div>
@@ -20,119 +22,152 @@
 
     <div id="sidebar-container" class="relative z-50"></div>
 
-    <main class="mx-0 px-3 md:px-0 md:ml-[270px] md:mr-4 mt-0 md:mt-4 mb-0 md:mb-4 pb-[100px] md:pb-4 min-h-[calc(100vh-32px)] flex flex-col z-10 relative transition-all duration-300">
+    <main
+        class="mx-0 px-3 md:px-0 md:ml-[270px] md:mr-4 mt-0 md:mt-4 mb-0 md:mb-4 pb-[100px] md:pb-4 min-h-[calc(100vh-32px)] flex flex-col z-10 relative transition-all duration-300">
         <div id="header-container" class="sticky top-0 z-40 md:-mx-4 md:px-4 pt-0 md:pt-4"></div>
 
         <div id="panel-profile" class="panel active">
             <div class="grid grid-cols-12 gap-gutter-md">
-                
+
                 <!-- Left Column: Profile Editor -->
                 <div class="col-span-12 lg:col-span-8 flex flex-col gap-gutter-md">
-                    <div class="glass-card rounded-3xl overflow-hidden border border-outline-variant/15 shadow-xl flex-1 flex flex-col bg-surface-container-lowest/80 backdrop-blur-2xl">
-                        
+                    <div
+                        class="glass-card rounded-3xl overflow-hidden border border-outline-variant/15 shadow-xl flex-1 flex flex-col bg-surface-container-lowest/80 backdrop-blur-2xl">
+
                         <!-- Premium Banner Area -->
-                        <div class="h-32 md:h-40 w-full bg-gradient-to-r from-[#0f5238] via-[#1a734e] to-[#0f5238] relative overflow-hidden">
-                            <div class="absolute inset-0 opacity-20 mix-blend-overlay bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDBMOCA4Wk04IDBMMCA4WiIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEiPjwvcGF0aD4KPC9zdmc+')]"></div>
-                            <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/40 to-transparent"></div>
+                        <div
+                            class="h-32 md:h-40 w-full bg-gradient-to-r from-[#0f5238] via-[#1a734e] to-[#0f5238] relative overflow-hidden">
+                            <div
+                                class="absolute inset-0 opacity-20 mix-blend-overlay bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDBMOCA4Wk04IDBMMCA4WiIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEiPjwvcGF0aD4KPC9zdmc+')]">
+                            </div>
+                            <div
+                                class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/40 to-transparent">
+                            </div>
                         </div>
 
                         <form id="form-profile" class="flex-1 flex flex-col px-6 md:px-10 pb-8 pt-0 relative">
-                            
+
                             <!-- Profile Picture & Quick Info -->
-                            <div class="flex flex-col md:flex-row items-center md:items-end justify-between gap-4 -mt-16 md:-mt-16 mb-8 z-10 text-center md:text-left">
-                                <div class="flex flex-col md:flex-row items-center md:items-end gap-3 md:gap-5 w-full md:w-auto">
-                                    <div class="relative group w-28 h-28 md:w-32 md:h-32 shrink-0 cursor-pointer rounded-full p-1 bg-surface-container-lowest shadow-2xl transition-transform hover:scale-105 duration-300 mx-auto md:mx-0">
+                            <div class="flex flex-col md:flex-row items-center md:items-end justify-between gap-4 -mt-16 md:-mt-16 mb-8 z-10">
+                                <div class="flex flex-col md:flex-row items-center md:items-end gap-4 md:gap-6 w-full md:w-auto flex-1 text-center md:text-left">
+                                    <div class="relative group w-28 h-28 md:w-32 md:h-32 shrink-0 cursor-pointer rounded-full p-1 bg-surface-container-lowest shadow-2xl transition-transform hover:scale-105 duration-300">
                                         <div class="w-full h-full rounded-full bg-gradient-to-br from-[#0f5238] to-[#95d4b3] p-0.5">
-                                            <img id="profile-img-preview" alt="User profile" class="w-full h-full rounded-full object-cover border-[3px] border-surface-container-lowest" src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />
+                                            <img id="profile-img-preview" alt="User profile"
+                                                class="w-full h-full rounded-full object-cover border-[3px] border-surface-container-lowest"
+                                                src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />
                                         </div>
-                                        <div class="absolute inset-1 bg-black/50 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 backdrop-blur-sm transition-all duration-300" title="Change profile picture">
+                                        <div class="absolute inset-1 bg-black/50 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 backdrop-blur-sm transition-all duration-300"
+                                            title="Change profile picture">
                                             <span class="material-symbols-outlined text-white text-[24px]">photo_camera</span>
                                             <span class="text-white text-[10px] font-bold absolute bottom-4 uppercase tracking-wider">Change</span>
                                         </div>
-                                        <input type="file" id="profile-img-upload" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-                                        
+                                        <input type="file" id="profile-img-upload" accept="image/*"
+                                            class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+
                                         <!-- Online Status Badge -->
-                                        <div class="absolute bottom-2 right-2 w-5 h-5 bg-success border-[3px] border-surface-container-lowest rounded-full shadow-sm"></div>
+                                        <div class="absolute bottom-2 right-2 w-5 h-5 bg-success border-[3px] border-surface-container-lowest rounded-full shadow-sm">
+                                        </div>
                                     </div>
-                                    
-                                    <div class="mb-0 md:mb-4 w-full">
-                                        <h3 class="text-[22px] md:text-[24px] font-display-lg font-bold text-on-surface leading-tight tracking-tight mt-1 md:mt-0">Personal Details</h3>
+
+                                    <div class="mb-0 md:mb-4 flex-1">
+                                        <h3 class="text-[22px] md:text-[24px] font-display-lg font-bold text-on-surface leading-tight tracking-tight mt-3 md:mt-0">
+                                            Personal Details</h3>
                                         <p class="text-[12px] md:text-[13px] text-on-surface-variant/80 mt-1 flex items-center justify-center md:justify-start gap-1.5">
-                                            <span class="material-symbols-outlined text-[14px]">manage_accounts</span> Manage your account preferences
+                                            <span class="material-symbols-outlined text-[14px]">manage_accounts</span>
+                                            Manage your account preferences
                                         </p>
-                                        
+
                                         <div class="flex md:hidden w-full justify-center mt-3">
                                             <span class="bg-primary/10 text-primary px-3 py-1 rounded-full border border-primary/20 flex items-center gap-1 text-[11px] font-medium">
-                                                <span class="material-symbols-outlined text-[14px]">verified</span> Verified Account
+                                                <span class="material-symbols-outlined text-[14px]">verified</span>
+                                                Verified Account
                                             </span>
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <div class="hidden md:flex flex-col items-end mb-4 text-[11px] text-on-surface-variant font-medium">
+
+                                <div class="hidden md:flex flex-col items-end mb-4 shrink-0 text-[11px] text-on-surface-variant font-medium">
                                     <span class="bg-primary/10 text-primary px-3 py-1 rounded-full border border-primary/20 flex items-center gap-1">
                                         <span class="material-symbols-outlined text-[14px]">verified</span> Verified Account
                                     </span>
                                 </div>
                             </div>
-                            
+
                             <!-- Form Fields Grid -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
                                 <div class="floating-label-group">
-                                    <input type="text" id="first-name" class="floating-input peer w-full" placeholder=" " required />
+                                    <input type="text" id="first-name" class="floating-input peer w-full"
+                                        placeholder=" " required />
                                     <label for="first-name" class="floating-label">First Name</label>
-                                    <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant/40 pointer-events-none">badge</span>
+                                    <span
+                                        class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant/40 pointer-events-none">badge</span>
                                 </div>
-                                
+
                                 <div class="floating-label-group">
-                                    <input type="text" id="last-name" class="floating-input peer w-full" placeholder=" " required />
+                                    <input type="text" id="last-name" class="floating-input peer w-full" placeholder=" "
+                                        required />
                                     <label for="last-name" class="floating-label">Last Name</label>
                                 </div>
-                                
+
                                 <div class="floating-label-group">
-                                    <input type="email" id="email" class="floating-input peer w-full" placeholder=" " required />
+                                    <input type="email" id="email" class="floating-input peer w-full" placeholder=" "
+                                        required />
                                     <label for="email" class="floating-label">Email Address</label>
-                                    <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant/40 pointer-events-none">mail</span>
+                                    <span
+                                        class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant/40 pointer-events-none">mail</span>
                                 </div>
-                                
+
                                 <div class="floating-label-group">
-                                    <input type="text" id="role" class="floating-input peer w-full bg-surface-container-low/20 text-on-surface-variant/70 cursor-not-allowed border-outline-variant/10 focus:border-outline-variant/10 focus:ring-0" disabled placeholder=" " />
+                                    <input type="text" id="role"
+                                        class="floating-input peer w-full bg-surface-container-low/20 text-on-surface-variant/70 cursor-not-allowed border-outline-variant/10 focus:border-outline-variant/10 focus:ring-0"
+                                        disabled placeholder=" " />
                                     <label for="role" class="floating-label">Job Role (Read-only)</label>
-                                    <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant/40 pointer-events-none">work</span>
+                                    <span
+                                        class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant/40 pointer-events-none">work</span>
                                 </div>
                             </div>
-                            
+
                             <!-- Security Section -->
                             <div class="mt-8 pt-6 border-t border-outline-variant/10">
                                 <div class="flex items-center gap-2 mb-5">
-                                    <div class="w-8 h-8 rounded-full bg-error/10 flex items-center justify-center text-error">
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-error/10 flex items-center justify-center text-error">
                                         <span class="material-symbols-outlined text-[16px]">lock</span>
                                     </div>
                                     <div>
                                         <h4 class="text-[14px] font-bold text-on-surface">Security Settings</h4>
-                                        <p class="text-[11px] text-on-surface-variant/70 mt-0.5">Update your password to keep your account secure</p>
+                                        <p class="text-[11px] text-on-surface-variant/70 mt-0.5">Update your password to
+                                            keep your account secure</p>
                                     </div>
                                 </div>
-                                
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5 bg-surface-variant/10 p-5 rounded-2xl border border-outline-variant/5">
+
+                                <div
+                                    class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5 bg-surface-variant/10 p-5 rounded-2xl border border-outline-variant/5">
                                     <div class="floating-label-group">
-                                        <input type="password" id="new-password" class="floating-input peer w-full bg-white/50" placeholder=" " />
+                                        <input type="password" id="new-password"
+                                            class="floating-input peer w-full bg-white/50" placeholder=" " />
                                         <label for="new-password" class="floating-label">New Password</label>
-                                        <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant/40 pointer-events-none">key</span>
+                                        <span
+                                            class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant/40 pointer-events-none">key</span>
                                     </div>
                                     <div class="floating-label-group">
-                                        <input type="password" id="confirm-password" class="floating-input peer w-full bg-white/50" placeholder=" " />
+                                        <input type="password" id="confirm-password"
+                                            class="floating-input peer w-full bg-white/50" placeholder=" " />
                                         <label for="confirm-password" class="floating-label">Confirm Password</label>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Footer Actions -->
-                            <div class="mt-auto pt-8 flex flex-col-reverse md:flex-row items-center justify-end gap-3 w-full">
-                                <button type="button" class="w-full md:w-auto px-6 py-3 md:py-2.5 border-2 border-outline-variant/20 rounded-xl text-on-surface-variant hover:bg-surface-variant hover:border-outline-variant/40 hover:text-on-surface text-[14px] md:text-[13px] font-bold transition-all duration-200" onclick="window.history.back()">
+                            <div
+                                class="mt-auto pt-8 flex flex-col-reverse md:flex-row items-center justify-end gap-3 w-full">
+                                <button type="button"
+                                    class="w-full md:w-auto px-6 py-3 md:py-2.5 border-2 border-outline-variant/20 rounded-xl text-on-surface-variant hover:bg-surface-variant hover:border-outline-variant/40 hover:text-on-surface text-[14px] md:text-[13px] font-bold transition-all duration-200"
+                                    onclick="window.history.back()">
                                     Cancel
                                 </button>
-                                <button type="button" id="btn-save-profile" class="w-full md:w-auto px-8 py-3 md:py-2.5 bg-gradient-to-r from-[#0f5238] to-[#1a734e] hover:shadow-[0_8px_20px_rgba(15,82,56,0.3)] hover:-translate-y-0.5 text-white rounded-xl text-[14px] md:text-[13px] font-bold transition-all duration-300 flex items-center justify-center gap-2">
+                                <button type="button" id="btn-save-profile"
+                                    class="w-full md:w-auto px-8 py-3 md:py-2.5 bg-gradient-to-r from-[#0f5238] to-[#1a734e] hover:shadow-[0_8px_20px_rgba(15,82,56,0.3)] hover:-translate-y-0.5 text-white rounded-xl text-[14px] md:text-[13px] font-bold transition-all duration-300 flex items-center justify-center gap-2">
                                     <span class="material-symbols-outlined text-[18px]">save</span>
                                     Save Profile
                                 </button>
@@ -143,85 +178,108 @@
 
                 <!-- Right Column: Recent Activity & Badges -->
                 <div class="col-span-12 lg:col-span-4 flex flex-col gap-gutter-md">
-                    
+
                     <!-- Quick Stats Widget -->
                     <div class="grid grid-cols-2 gap-3">
-                        <div class="glass-card rounded-2xl p-4 border border-outline-variant/15 flex flex-col justify-center items-center text-center shadow-md hover:-translate-y-1 transition-transform duration-300">
-                            <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-2">
+                        <div
+                            class="glass-card rounded-2xl p-4 border border-outline-variant/15 flex flex-col justify-center items-center text-center shadow-md hover:-translate-y-1 transition-transform duration-300">
+                            <div
+                                class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-2">
                                 <span class="material-symbols-outlined text-[20px]">task_alt</span>
                             </div>
                             <span class="text-[20px] font-bold text-on-surface leading-none">148</span>
-                            <span class="text-[10px] text-on-surface-variant font-medium mt-1 uppercase tracking-wider">Tasks Done</span>
+                            <span
+                                class="text-[10px] text-on-surface-variant font-medium mt-1 uppercase tracking-wider">Tasks
+                                Done</span>
                         </div>
-                        <div class="glass-card rounded-2xl p-4 border border-outline-variant/15 flex flex-col justify-center items-center text-center shadow-md hover:-translate-y-1 transition-transform duration-300">
-                            <div class="w-10 h-10 rounded-full bg-secondary/10 text-secondary flex items-center justify-center mb-2">
+                        <div
+                            class="glass-card rounded-2xl p-4 border border-outline-variant/15 flex flex-col justify-center items-center text-center shadow-md hover:-translate-y-1 transition-transform duration-300">
+                            <div
+                                class="w-10 h-10 rounded-full bg-secondary/10 text-secondary flex items-center justify-center mb-2">
                                 <span class="material-symbols-outlined text-[20px]">award_star</span>
                             </div>
                             <span class="text-[20px] font-bold text-on-surface leading-none">Top 5%</span>
-                            <span class="text-[10px] text-on-surface-variant font-medium mt-1 uppercase tracking-wider">Performance</span>
+                            <span
+                                class="text-[10px] text-on-surface-variant font-medium mt-1 uppercase tracking-wider">Performance</span>
                         </div>
                     </div>
 
                     <!-- Activity Card -->
-                    <div class="glass-card rounded-3xl p-6 border border-outline-variant/15 shadow-xl flex flex-col flex-1 relative overflow-hidden">
-                        
+                    <div
+                        class="glass-card rounded-3xl p-6 border border-outline-variant/15 shadow-xl flex flex-col flex-1 relative overflow-hidden">
+
                         <!-- Card background accent -->
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-                        
+                        <div
+                            class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2">
+                        </div>
+
                         <div class="mb-5 relative z-10 flex items-center justify-between">
                             <div>
                                 <h4 class="text-[15px] font-bold text-on-surface">Recent Activity</h4>
-                                <p class="text-[11px] text-on-surface-variant/70 mt-0.5">Your latest actions in the system</p>
+                                <p class="text-[11px] text-on-surface-variant/70 mt-0.5">Your latest actions in the
+                                    system</p>
                             </div>
-                            <button class="w-8 h-8 rounded-full bg-surface-variant/30 hover:bg-surface-variant/50 flex items-center justify-center text-on-surface-variant transition-colors">
+                            <button
+                                class="w-8 h-8 rounded-full bg-surface-variant/30 hover:bg-surface-variant/50 flex items-center justify-center text-on-surface-variant transition-colors">
                                 <span class="material-symbols-outlined text-[16px]">more_vert</span>
                             </button>
                         </div>
-                        
-                        <div class="flex-1 flex flex-col gap-0 relative z-10 before:absolute before:top-4 before:bottom-4 before:left-[19px] before:w-[2px] before:bg-outline-variant/20">
-                            
+
+                        <div
+                            class="flex-1 flex flex-col gap-0 relative z-10 before:absolute before:top-4 before:bottom-4 before:left-[19px] before:w-[2px] before:bg-outline-variant/20">
+
                             <!-- Activity Item 1 -->
-                            <div class="flex gap-4 p-3 hover:bg-surface-variant/20 rounded-xl transition-colors group relative">
-                                <div class="w-10 h-10 rounded-full bg-surface-container-lowest border-2 border-primary text-primary flex items-center justify-center shrink-0 z-10 shadow-sm group-hover:scale-110 transition-transform">
+                            <div
+                                class="flex gap-4 p-3 hover:bg-surface-variant/20 rounded-xl transition-colors group relative">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-surface-container-lowest border-2 border-primary text-primary flex items-center justify-center shrink-0 z-10 shadow-sm group-hover:scale-110 transition-transform">
                                     <span class="material-symbols-outlined text-[16px]">login</span>
                                 </div>
                                 <div class="flex-1 pt-1">
                                     <p class="text-[12px] font-bold text-on-surface">Logged in to Portal</p>
                                     <p class="text-[10px] text-on-surface-variant/70 mt-0.5 flex items-center gap-1">
-                                        <span class="material-symbols-outlined text-[10px]">schedule</span> Today, 08:30 AM
+                                        <span class="material-symbols-outlined text-[10px]">schedule</span> Today, 08:30
+                                        AM
                                     </p>
                                 </div>
                             </div>
-                            
+
                             <!-- Activity Item 2 -->
-                            <div class="flex gap-4 p-3 hover:bg-surface-variant/20 rounded-xl transition-colors group relative">
-                                <div class="w-10 h-10 rounded-full bg-surface-container-lowest border-2 border-secondary text-secondary flex items-center justify-center shrink-0 z-10 shadow-sm group-hover:scale-110 transition-transform">
+                            <div
+                                class="flex gap-4 p-3 hover:bg-surface-variant/20 rounded-xl transition-colors group relative">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-surface-container-lowest border-2 border-secondary text-secondary flex items-center justify-center shrink-0 z-10 shadow-sm group-hover:scale-110 transition-transform">
                                     <span class="material-symbols-outlined text-[16px]">settings</span>
                                 </div>
                                 <div class="flex-1 pt-1">
                                     <p class="text-[12px] font-bold text-on-surface">Updated Settings Config</p>
                                     <p class="text-[10px] text-on-surface-variant/70 mt-0.5 flex items-center gap-1">
-                                        <span class="material-symbols-outlined text-[10px]">schedule</span> Yesterday, 04:15 PM
+                                        <span class="material-symbols-outlined text-[10px]">schedule</span> Yesterday,
+                                        04:15 PM
                                     </p>
                                 </div>
                             </div>
-                            
+
                             <!-- Activity Item 3 -->
-                            <div class="flex gap-4 p-3 hover:bg-surface-variant/20 rounded-xl transition-colors group relative">
-                                <div class="w-10 h-10 rounded-full bg-surface-container-lowest border-2 border-[#0284c7] text-[#0284c7] flex items-center justify-center shrink-0 z-10 shadow-sm group-hover:scale-110 transition-transform">
+                            <div
+                                class="flex gap-4 p-3 hover:bg-surface-variant/20 rounded-xl transition-colors group relative">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-surface-container-lowest border-2 border-[#0284c7] text-[#0284c7] flex items-center justify-center shrink-0 z-10 shadow-sm group-hover:scale-110 transition-transform">
                                     <span class="material-symbols-outlined text-[16px]">receipt_long</span>
                                 </div>
                                 <div class="flex-1 pt-1">
                                     <p class="text-[12px] font-bold text-on-surface">Generated Receipt #INV-9408</p>
                                     <p class="text-[10px] text-on-surface-variant/70 mt-0.5 flex items-center gap-1">
-                                        <span class="material-symbols-outlined text-[10px]">schedule</span> Yesterday, 11:20 AM
+                                        <span class="material-symbols-outlined text-[10px]">schedule</span> Yesterday,
+                                        11:20 AM
                                     </p>
                                 </div>
                             </div>
 
                         </div>
-                        
-                        <button class="w-full mt-4 py-2 border border-outline-variant/20 rounded-xl text-[11px] font-bold text-primary hover:bg-primary/5 transition-colors">
+
+                        <button
+                            class="w-full mt-4 py-2 border border-outline-variant/20 rounded-xl text-[11px] font-bold text-primary hover:bg-primary/5 transition-colors">
                             View All Activity
                         </button>
                     </div>
@@ -234,7 +292,7 @@
     <!-- Scripts -->
     <script src="./assets/js/db.js"></script>
     <script type="module" src="./assets/js/main.js"></script>
-    
+
     <script type="module">
         import { showToast } from './assets/js/ui/components.js';
 
@@ -251,7 +309,7 @@
             document.getElementById('profile-img-preview').src = profile.avatarUrl || 'https://i.pravatar.cc/150';
 
             // Handle image upload visually
-            document.getElementById('profile-img-upload').addEventListener('change', function(e) {
+            document.getElementById('profile-img-upload').addEventListener('change', function (e) {
                 const file = e.target.files[0];
                 if (file) {
                     const reader = new FileReader();
@@ -259,11 +317,11 @@
                         const newImgSrc = e.target.result;
                         // Update preview
                         document.getElementById('profile-img-preview').src = newImgSrc;
-                        
+
                         // Update header instantly
                         const headerImg = document.getElementById('header-profile-img');
                         if (headerImg) headerImg.src = newImgSrc;
-                        
+
                         // Auto-save just the image to avoid losing it if they leave the page
                         profile.avatarUrl = newImgSrc;
                         db.saveUserProfile(profile);
@@ -280,16 +338,17 @@
                 profile.lastName = document.getElementById('last-name').value;
                 profile.email = document.getElementById('email').value;
                 profile.avatarUrl = document.getElementById('profile-img-preview').src;
-                
+
                 db.saveUserProfile(profile);
-                
+
                 if (window.syncHeaderProfile) {
                     window.syncHeaderProfile();
                 }
-                
+
                 showToast('Profile updated successfully!', 'success');
             });
         }, 150);
     </script>
 </body>
+
 </html>

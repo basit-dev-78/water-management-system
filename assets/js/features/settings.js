@@ -338,7 +338,7 @@ export function initSettings() {
     cancelBtn.addEventListener('click', () => {
         showToast("Changes discarded.");
         setTimeout(() => {
-            window.location.href = 'index.html';
+            window.location.href = 'dashboard.html';
         }, 500);
     });
 

@@ -6,7 +6,7 @@ export function initRouter() {
     function applyActiveState() {
         const path = window.location.pathname;
         let page = path.split('/').pop();
-        if (!page || page === '') page = 'index.html';
+        if (!page || page === '') page = 'dashboard.html';
         if (!page.includes('.')) page = page + '.html';
 
         let activeTabId = null;

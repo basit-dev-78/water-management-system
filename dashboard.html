@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover"
+        name="viewport" />
+    <title>AquaFlow Pro — Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- External config and styles -->
+    <script src="./assets/js/config.js"></script>
+    <link href="./assets/css/style.css" rel="stylesheet" />
+    
+    <!-- Print.js for A4 Printing -->
+    <script src="https://unpkg.com/print-js@1.6.0/dist/print.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/print-js@1.6.0/dist/print.css">
+</head>
+
+<body
+    class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-clip relative min-h-screen">
+
+    <!-- Animated Organic Background -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Sidebar Container -->
+    <div id="sidebar-container" class="relative z-50"></div>
+
+    <!-- Main Content Area -->
+    <main
+        class="mx-0 px-3 md:px-0 md:ml-[270px] md:mr-4 mt-0 md:mt-4 mb-0 md:mb-4 pb-[100px] md:pb-4 min-h-[calc(100vh-32px)] flex flex-col z-10 relative transition-all duration-300">
+        <!-- Header Container -->
+        <div id="header-container" class="sticky top-0 z-40 md:-mx-4 md:px-4 pt-0 md:pt-4"></div>
+        <!-- DASHBOARD PANEL -->
+        <div id="panel-dashboard" class="panel active">
+            <!-- KPI Cards Grid -->
+            <section class="grid grid-cols-2 gap-3 md:gap-gutter-md mb-gutter-md">
+                <!-- Card 1 -->
+                <div class="glass-card p-4 rounded-xl shadow-sm flex items-center gap-4">
+                    <div
+                        class="w-10 h-10 bg-secondary-container/30 text-primary rounded-full flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[20px]">group</span>
+                    </div>
+                    <div>
+                        <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold mb-0.5">
+                            Customers</p>
+                        <div class="flex items-center gap-2">
+                            <h3 id="dashboard-customers-count" class="text-[20px] font-bold text-primary leading-tight">
+                                0</h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div id="dashboard-settings-card"
+                    class="glass-card p-4 rounded-xl shadow-sm flex items-center gap-4 cursor-pointer hover:border-primary/30 transition-all hover:scale-[1.02] active:scale-[0.98] duration-300">
+                    <div
+                        class="w-10 h-10 bg-primary-container/10 text-primary rounded-full flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[20px]">print</span>
+                    </div>
+                    <div>
+                        <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold mb-0.5">
+                            Receipt Printer</p>
+                        <div class="flex items-center gap-2">
+                            <h3 id="dashboard-printer-status" class="text-[20px] font-bold text-primary leading-tight">
+                                80mm <span class="text-[12px] text-on-surface-variant font-normal">/ BROWSER</span></h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="glass-card p-4 rounded-xl shadow-sm flex items-center gap-4">
+                    <div
+                        class="w-10 h-10 bg-tertiary-container/10 text-tertiary rounded-full flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[20px]">recycling</span>
+                    </div>
+                    <div>
+                        <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold mb-0.5">Empty
+                            Bottles</p>
+                        <div class="flex items-center gap-2">
+                            <h3 id="dashboard-empty-bottles" class="text-[20px] font-bold text-primary leading-tight">0
+                            </h3>
+                            <span id="dashboard-empty-bottles-badge"
+                                class="text-error font-bold text-[9px] bg-error-container/40 px-1.5 py-0.5 rounded uppercase hidden">High</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="glass-card p-4 rounded-xl shadow-sm flex items-center gap-4">
+                    <div
+                        class="w-10 h-10 bg-secondary-container/30 text-secondary rounded-full flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[20px]">payments</span>
+                    </div>
+                    <div>
+                        <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold mb-0.5">Revenue
+                        </p>
+                        <div class="flex items-center gap-2">
+                            <h3 id="dashboard-revenue-amount" class="text-[20px] font-bold text-primary leading-tight">
+                                $0.00</h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 5 (Receivable) -->
+                <div class="glass-card p-4 rounded-xl shadow-sm border-l-[3px] border-primary flex items-center gap-4">
+                    <div
+                        class="w-10 h-10 bg-primary-container/30 text-primary rounded-full flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>
+                    </div>
+                    <div>
+                        <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold mb-0.5">
+                            Receivable</p>
+                        <div class="flex items-center gap-2">
+                            <h3 id="dashboard-receivable" class="text-[20px] font-bold text-primary leading-tight">$0.00
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 6 (Payable) -->
+                <div class="glass-card p-4 rounded-xl shadow-sm border-l-[3px] border-error flex items-center gap-4">
+                    <div
+                        class="w-10 h-10 bg-error-container/30 text-error rounded-full flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[20px]">credit_card</span>
+                    </div>
+                    <div>
+                        <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold mb-0.5">Payable
+                        </p>
+                        <div class="flex items-center gap-2">
+                            <h3 id="dashboard-payable" class="text-[20px] font-bold text-error leading-tight">$0.00</h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 7 (Expenses) -->
+                <div class="glass-card p-4 rounded-xl shadow-sm border-l-[3px] border-tertiary flex items-center gap-4">
+                    <div
+                        class="w-10 h-10 bg-tertiary-container/30 text-tertiary rounded-full flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[20px]">receipt_long</span>
+                    </div>
+                    <div>
+                        <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold mb-0.5">
+                            Expenses</p>
+                        <div class="flex items-center gap-2">
+                            <h3 id="dashboard-expenses" class="text-[20px] font-bold text-tertiary leading-tight">$0.00
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Main Content Bento Grid -->
+            <div class="grid grid-cols-12 gap-gutter-md">
+                <!-- Revenue Performance Chart -->
+                <div class="col-span-12 lg:col-span-8 glass-card p-card-padding rounded-xl shadow-sm flex flex-col">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h4 class="text-[15px] font-bold text-on-surface leading-tight">Revenue Performance</h4>
+                            <p class="text-[11px] text-on-surface-variant mt-0.5">Real-time revenue tracking
+                            </p>
+                        </div>
+                        <div class="flex gap-1.5">
+                            <select
+                                class="bg-surface-variant/30 border border-outline-variant/20 rounded-lg text-[11px] py-1 px-2 focus:ring-primary/20 outline-none">
+                                <option>Last 7 Days</option>
+                                <option>Last 30 Days</option>
+                            </select>
+                            <button
+                                class="w-7 h-7 flex items-center justify-center hover:bg-surface-variant/50 rounded-lg transition-colors border border-outline-variant/20">
+                                <span class="material-symbols-outlined text-[16px]">download</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="dashboard-revenue-chart"
+                        class="flex-1 flex items-end justify-between gap-3 h-[240px] mb-2 px-2"></div>
+                </div>
+                <!-- Critical Alerts Section -->
+                <div
+                    class="col-span-12 lg:col-span-4 glass-card p-card-padding rounded-xl shadow-sm flex flex-col overflow-hidden border border-outline-variant/10">
+                    <div class="flex justify-between items-center mb-4">
+                        <h4 class="text-[15px] font-bold text-on-surface">Critical Alerts</h4>
+                        <span id="dashboard-alerts-count"
+                            class="bg-error text-on-error px-1.5 py-0.5 rounded-full text-[9px] font-bold">0 NEW</span>
+                    </div>
+                    <div id="dashboard-alerts-list" class="flex-1 space-y-3 overflow-y-auto pr-1 custom-scrollbar">
+                    </div>
+                    <button
+                        class="mt-4 w-full py-2 rounded-lg border border-outline-variant/30 text-[11px] font-bold hover:bg-surface-variant/30 transition-colors">
+                        View All Activity Log
+                    </button>
+                </div>
+                <!-- Newest Feature Promotion -->
+                <div
+                    class="col-span-12 glass-card rounded-xl overflow-hidden shadow-sm flex flex-col md:flex-row min-h-[140px] border border-outline-variant/10">
+                    <div class="flex-1 p-card-padding flex flex-col justify-center">
+                        <h4 class="text-[20px] font-bold text-primary mb-1">Advanced Hydro-Analytics 2.0</h4>
+                        <p class="text-[12px] text-on-surface-variant/80 max-w-xl mb-4 leading-relaxed">Our new
+                            predictive leakage model is now live. Reduce water waste by up to 24% with AI-driven
+                            maintenance scheduling.</p>
+                        <div class="flex gap-3">
+                            <button
+                                class="bg-primary text-on-primary px-4 py-1.5 rounded-lg text-[11px] font-bold hover:shadow-md transition-all">Explore
+                                Feature</button>
+                            <button
+                                class="text-primary font-bold px-4 py-1.5 rounded-lg text-[11px] hover:bg-primary-container/10 transition-colors">Read
+                                Documentation</button>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/4 relative h-32 md:h-auto overflow-hidden bg-surface-container">
+                        <img alt="AquaFlow Analytics" class="w-full h-full object-cover grayscale-[10%] opacity-90"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPgIClVpxdARfO55Gp6xZwn8HNGDYngzfDjW9DwMpDYuh4m77MCjnkfIFwwgmsCbTxuIetBYADLSCYzYqUeZYnilrcADB-sZ3Q9eb2AxOViy_l2MlAh1YQNKvy7fPP6caKc_5t4LlJrDSG9q_e8iiz23JAAyF12Z5_QIkSvSN65iR_7xJVB7U7ae2Js0JkKW7aKqSsXX0LaGo-vHgLVmsRxhG5QTa0m2pEK9IWZ7UWEq4SHZrqzWSySv2xojQXNlXYGhlEtEYd85g" />
+                        <div class="absolute inset-0 bg-gradient-to-r from-surface/90 to-transparent md:block hidden">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END DASHBOARD PANEL -->
+    </main>
+
+
+
+    <!-- Scripts -->
+    <script src="./assets/js/db.js"></script>
+    <script type="module" src="./assets/js/main.js"></script>
+</body>
+
+</html>

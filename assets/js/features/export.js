@@ -27,7 +27,7 @@ function downloadCSV(filename, rows) {
 export function exportCurrentPage() {
     if (!window.DB) return;
 
-    const page = window.location.pathname.split('/').pop() || 'index.html';
+    const page = window.location.pathname.split('/').pop() || 'dashboard.html';
 
     if (page.includes('customer')) {
         downloadCSV('customers.csv', window.DB.getCustomers());
