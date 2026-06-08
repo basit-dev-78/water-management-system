@@ -155,8 +155,7 @@
 </head>
 
 <body
-    class="bg-background text-on-surface font-sans antialiased overflow-x-hidden selection:bg-primary-container selection:text-white"
-    style="zoom: 0.9;">
+    class="bg-background text-on-surface font-sans antialiased overflow-x-hidden selection:bg-primary-container selection:text-white">
 
     <!-- Navigation (Floating Pill Style) -->
     <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-4 md:pt-6 px-4 md:px-8">
@@ -548,45 +547,58 @@
                         every scale</h2>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    <div class="glass-card p-10 rounded-[2.5rem] border-2 border-white/80 hover:shadow-2xl hover:-translate-y-2 transition-all duration-400"
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+                    <div class="glass-card p-6 rounded-[2.5rem] border-2 border-white/80 hover:shadow-2xl hover:-translate-y-2 transition-all duration-400"
                         data-aos="fade-up" data-aos-delay="100">
                         <div
                             class="h-48 rounded-2xl bg-gradient-to-br from-primary/20 to-transparent mb-8 flex items-center justify-center">
                             <span class="material-symbols-outlined text-[80px] text-primary">storefront</span>
                         </div>
-                        <h3 class="text-3xl font-display font-black text-navy mb-4">Commercial Delivery</h3>
-                        <p class="text-lg text-navy/70 leading-relaxed mb-6">Manage high-volume daily deliveries to
+                        <h3 class="text-2xl font-display font-black text-navy mb-4">Commercial Delivery</h3>
+                        <p class="text-base text-navy/70 leading-relaxed mb-6">Manage high-volume daily deliveries to
                             offices and retail stores. Automate recurring billing and route optimization.</p>
                         <a href="#"
                             class="text-primary font-bold flex items-center gap-2 hover:gap-4 transition-all">Learn More
                             <span class="material-symbols-outlined">arrow_forward</span></a>
                     </div>
 
-                    <div class="glass-card p-10 rounded-[2.5rem] border-2 border-white/80 hover:shadow-2xl hover:-translate-y-2 transition-all duration-400"
+                    <div class="glass-card p-6 rounded-[2.5rem] border-2 border-white/80 hover:shadow-2xl hover:-translate-y-2 transition-all duration-400"
                         data-aos="fade-up" data-aos-delay="200">
                         <div
                             class="h-48 rounded-2xl bg-gradient-to-br from-accent/20 to-transparent mb-8 flex items-center justify-center">
                             <span class="material-symbols-outlined text-[80px] text-accent-dark">home</span>
                         </div>
-                        <h3 class="text-3xl font-display font-black text-navy mb-4">Residential Supply</h3>
-                        <p class="text-lg text-navy/70 leading-relaxed mb-6">Handle thousands of individual home
+                        <h3 class="text-2xl font-display font-black text-navy mb-4">Residential Supply</h3>
+                        <p class="text-base text-navy/70 leading-relaxed mb-6">Handle thousands of individual home
                             accounts. Provide self-service portals and SMS delivery notifications.</p>
                         <a href="#"
                             class="text-accent-dark font-bold flex items-center gap-2 hover:gap-4 transition-all">Learn
                             More <span class="material-symbols-outlined">arrow_forward</span></a>
                     </div>
 
-                    <div class="glass-card p-10 rounded-[2.5rem] border-2 border-white/80 hover:shadow-2xl hover:-translate-y-2 transition-all duration-400"
+                    <div class="glass-card p-6 rounded-[2.5rem] border-2 border-white/80 hover:shadow-2xl hover:-translate-y-2 transition-all duration-400"
                         data-aos="fade-up" data-aos-delay="300">
                         <div
                             class="h-48 rounded-2xl bg-gradient-to-br from-navy/10 to-transparent mb-8 flex items-center justify-center">
                             <span class="material-symbols-outlined text-[80px] text-navy">factory</span>
                         </div>
-                        <h3 class="text-3xl font-display font-black text-navy mb-4">Industrial Logistics</h3>
-                        <p class="text-lg text-navy/70 leading-relaxed mb-6">Coordinate massive tanker fleets. Track
+                        <h3 class="text-2xl font-display font-black text-navy mb-4">Industrial Logistics</h3>
+                        <p class="text-base text-navy/70 leading-relaxed mb-6">Coordinate massive tanker fleets. Track
                             water purity data, compliance documents, and multi-depot inventories.</p>
                         <a href="#" class="text-navy font-bold flex items-center gap-2 hover:gap-4 transition-all">Learn
+                            More <span class="material-symbols-outlined">arrow_forward</span></a>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-[2.5rem] border-2 border-white/80 hover:shadow-2xl hover:-translate-y-2 transition-all duration-400"
+                        data-aos="fade-up" data-aos-delay="400">
+                        <div
+                            class="h-48 rounded-2xl bg-gradient-to-br from-green-500/10 to-transparent mb-8 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-[80px] text-green-700">agriculture</span>
+                        </div>
+                        <h3 class="text-2xl font-display font-black text-navy mb-4">Agricultural Supply</h3>
+                        <p class="text-base text-navy/70 leading-relaxed mb-6">Support large-scale farming operations with
+                            consistent bulk water delivery and scheduling.</p>
+                        <a href="#" class="text-green-700 font-bold flex items-center gap-2 hover:gap-4 transition-all">Learn
                             More <span class="material-symbols-outlined">arrow_forward</span></a>
                     </div>
                 </div>
@@ -1199,6 +1211,26 @@
     <div id="cursor-glow"
         class="fixed w-[400px] h-[400px] bg-primary/20 rounded-full blur-[80px] pointer-events-none z-[-1] opacity-0 transition-opacity duration-300 transform -translate-x-1/2 -translate-y-1/2 will-change-transform">
     </div>
+    <!-- Scripts -->
+    <script>
+        let welcomeVoicePlayed = false;
+        function playWelcomeVoice() {
+            if (welcomeVoicePlayed) return;
+            // Check if speech synthesis is supported
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance("Welcome to Aqua Pro");
+                utterance.rate = 1.0;
+                utterance.pitch = 1.0;
+                window.speechSynthesis.speak(utterance);
+                welcomeVoicePlayed = true;
+            }
+        }
+
+        // Browsers usually block autoplaying audio, so we wait for the first user interaction
+        document.addEventListener('click', playWelcomeVoice, { once: true });
+        document.addEventListener('touchstart', playWelcomeVoice, { once: true });
+        document.addEventListener('keydown', playWelcomeVoice, { once: true });
+    </script>
 </body>
 
 </html>

@@ -65,9 +65,12 @@
                         
                         <input type="email" name="email" id="cust-email" required="" class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none" placeholder=" " title="john@example.com">
                     <label class="" for="cust-email">Email Address *</label></div>
-                    <div class="floating-label-group mb-2">
-                        
-                        <input type="text" name="phone" id="cust-phone" required="" class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none" placeholder=" " title="(555) 123-4567">
+                    <div class="flex flex-col mb-2">
+                        <div class="floating-label-group">
+                            
+                            <input type="text" name="phone" id="cust-phone" required="" class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none" placeholder=" " title="(555) 123-4567">
+                            <label class="" for="cust-phone">Phone Number *</label>
+                        </div>
                         <label class="flex items-center gap-2 mt-1 cursor-pointer w-fit group">
                             <input type="checkbox" name="whatsapp" id="cust-whatsapp" class="w-4 h-4 rounded border-outline-variant/40 text-[#25D366] focus:ring-[#25D366]/30 cursor-pointer accent-[#25D366]">
                             <span class="flex items-center gap-1.5 text-[11px] text-on-surface-variant group-hover:text-on-surface transition-colors select-none">
@@ -77,7 +80,7 @@
                                 Also available on WhatsApp
                             </span>
                         </label>
-                    <label class="" for="cust-phone">Phone Number *</label></div>
+                    </div>
                     <div class="col-span-1 md:col-span-2 floating-label-group mb-2">
                         
                         <input type="text" name="address" id="cust-address" class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none" placeholder=" " title="123 Main St, City, Zip">

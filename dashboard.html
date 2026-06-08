@@ -37,9 +37,9 @@
         <!-- DASHBOARD PANEL -->
         <div id="panel-dashboard" class="panel active">
             <!-- KPI Cards Grid -->
-            <section class="grid grid-cols-2 gap-3 md:gap-gutter-md mb-gutter-md">
+            <section class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-3 mb-gutter-md">
                 <!-- Card 1 -->
-                <div class="glass-card p-4 rounded-xl shadow-sm flex items-center gap-4">
+                <div class="glass-card p-3 rounded-xl shadow-sm flex items-center gap-3">
                     <div
                         class="w-10 h-10 bg-secondary-container/30 text-primary rounded-full flex items-center justify-center shrink-0">
                         <span class="material-symbols-outlined text-[20px]">group</span>
@@ -53,24 +53,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- Card 2 -->
-                <div id="dashboard-settings-card"
-                    class="glass-card p-4 rounded-xl shadow-sm flex items-center gap-4 cursor-pointer hover:border-primary/30 transition-all hover:scale-[1.02] active:scale-[0.98] duration-300">
-                    <div
-                        class="w-10 h-10 bg-primary-container/10 text-primary rounded-full flex items-center justify-center shrink-0">
-                        <span class="material-symbols-outlined text-[20px]">print</span>
-                    </div>
-                    <div>
-                        <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold mb-0.5">
-                            Receipt Printer</p>
-                        <div class="flex items-center gap-2">
-                            <h3 id="dashboard-printer-status" class="text-[20px] font-bold text-primary leading-tight">
-                                80mm <span class="text-[12px] text-on-surface-variant font-normal">/ BROWSER</span></h3>
-                        </div>
-                    </div>
-                </div>
                 <!-- Card 3 -->
-                <div class="glass-card p-4 rounded-xl shadow-sm flex items-center gap-4">
+                <div class="glass-card p-3 rounded-xl shadow-sm flex items-center gap-3">
                     <div
                         class="w-10 h-10 bg-tertiary-container/10 text-tertiary rounded-full flex items-center justify-center shrink-0">
                         <span class="material-symbols-outlined text-[20px]">recycling</span>
@@ -87,7 +71,7 @@
                     </div>
                 </div>
                 <!-- Card 4 -->
-                <div class="glass-card p-4 rounded-xl shadow-sm flex items-center gap-4">
+                <div class="glass-card p-3 rounded-xl shadow-sm flex items-center gap-3">
                     <div
                         class="w-10 h-10 bg-secondary-container/30 text-secondary rounded-full flex items-center justify-center shrink-0">
                         <span class="material-symbols-outlined text-[20px]">payments</span>
@@ -102,7 +86,7 @@
                     </div>
                 </div>
                 <!-- Card 5 (Receivable) -->
-                <div class="glass-card p-4 rounded-xl shadow-sm border-l-[3px] border-primary flex items-center gap-4">
+                <div class="glass-card p-3 rounded-xl shadow-sm border-l-[3px] border-primary flex items-center gap-3">
                     <div
                         class="w-10 h-10 bg-primary-container/30 text-primary rounded-full flex items-center justify-center shrink-0">
                         <span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>
@@ -117,7 +101,7 @@
                     </div>
                 </div>
                 <!-- Card 6 (Payable) -->
-                <div class="glass-card p-4 rounded-xl shadow-sm border-l-[3px] border-error flex items-center gap-4">
+                <div class="glass-card p-3 rounded-xl shadow-sm border-l-[3px] border-error flex items-center gap-3">
                     <div
                         class="w-10 h-10 bg-error-container/30 text-error rounded-full flex items-center justify-center shrink-0">
                         <span class="material-symbols-outlined text-[20px]">credit_card</span>
@@ -131,7 +115,7 @@
                     </div>
                 </div>
                 <!-- Card 7 (Expenses) -->
-                <div class="glass-card p-4 rounded-xl shadow-sm border-l-[3px] border-tertiary flex items-center gap-4">
+                <div class="glass-card p-3 rounded-xl shadow-sm border-l-[3px] border-tertiary flex items-center gap-3">
                     <div
                         class="w-10 h-10 bg-tertiary-container/30 text-tertiary rounded-full flex items-center justify-center shrink-0">
                         <span class="material-symbols-outlined text-[20px]">receipt_long</span>
@@ -141,6 +125,21 @@
                             Expenses</p>
                         <div class="flex items-center gap-2">
                             <h3 id="dashboard-expenses" class="text-[20px] font-bold text-tertiary leading-tight">$0.00
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 8 (Circulatory Bottles) -->
+                <div class="glass-card p-3 rounded-xl shadow-sm border-l-[3px] border-primary flex items-center gap-3">
+                    <div
+                        class="w-10 h-10 bg-primary-container/30 text-primary rounded-full flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[20px]">water_drop</span>
+                    </div>
+                    <div>
+                        <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold mb-0.5">
+                            Circulatory Bottles</p>
+                        <div class="flex items-center gap-2">
+                            <h3 id="dashboard-circulatory-bottles" class="text-[20px] font-bold text-primary leading-tight">0
                             </h3>
                         </div>
                     </div>
