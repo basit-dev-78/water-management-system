@@ -7,6 +7,12 @@ function routeToParent(currentPanelId) {
     if (currentPanelId === 'panel-supplier-add') targetPage = 'suppliers.html';
     if (currentPanelId === 'panel-inventory-add') targetPage = 'inventory.html';
     if (currentPanelId === 'panel-order-add') targetPage = 'orders.html';
+    if (currentPanelId === 'panel-payment-customer-add') targetPage = 'payment-customer-pending.html';
+    if (currentPanelId === 'panel-payment-customer-pending-add') targetPage = 'payment-customer-pending.html';
+    if (currentPanelId === 'panel-payment-customer-received-add') targetPage = 'payment-customer-received.html';
+    if (currentPanelId === 'panel-payment-supplier-add') targetPage = 'payment-supplier-pending.html';
+    if (currentPanelId === 'panel-payment-supplier-pending-add') targetPage = 'payment-supplier-pending.html';
+    if (currentPanelId === 'panel-payment-supplier-received-add') targetPage = 'payment-supplier-received.html';
 
     if (targetPage) {
         window.location.href = targetPage;
@@ -177,7 +183,7 @@ export function initForms() {
     }
 
     // 2. Setup standard Cancel / Save handling
-    const addPanels = ['panel-customer-add', 'panel-supplier-add', 'panel-inventory-add', 'panel-order-add'];
+    const addPanels = ['panel-customer-add', 'panel-supplier-add', 'panel-inventory-add', 'panel-order-add', 'panel-payment-customer-add', 'panel-payment-supplier-add', 'panel-payment-customer-pending-add', 'panel-payment-supplier-pending-add', 'panel-payment-customer-received-add', 'panel-payment-supplier-received-add'];
 
     addPanels.forEach(panelId => {
         const panel = document.getElementById(panelId);
@@ -233,7 +239,17 @@ export function initForms() {
                 const data = Object.fromEntries(formData.entries());
 
                 let successMessage = "Entry saved successfully!";
-                if (panelId.includes('customer') && window.DB) {
+                if (panelId.includes('payment') && window.DB) {
+                    if (panelId.includes('customer')) {
+                        data.entityType = 'customer';
+                        data.type = 'received';
+                    } else if (panelId.includes('supplier')) {
+                        data.entityType = 'supplier';
+                        data.type = 'paid';
+                    }
+                    window.DB.addPayment(data);
+                    successMessage = "Payment record saved successfully!";
+                } else if (panelId.includes('customer') && window.DB) {
                     window.DB.addCustomer(data);
                     successMessage = "Customer saved successfully!";
                 } else if (panelId.includes('supplier') && window.DB) {

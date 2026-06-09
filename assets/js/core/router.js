@@ -54,7 +54,8 @@ export function initRouter() {
             
             if (link.getAttribute('data-tab') === activeTabId) {
                 if (isSub) {
-                    link.className = "nav-link-sub relative text-[11px] text-primary bg-primary/10 font-bold py-2 px-3 rounded-lg transition-all duration-200 flex items-center gap-2 group";
+                    let isSmall = link.classList.contains("text-[9px]");
+                    link.className = `nav-link-sub relative ${isSmall ? "text-[9px] py-1 px-2" : "text-[11px] py-2 px-3"} text-primary bg-primary/10 font-bold rounded-lg transition-all duration-200 flex items-center gap-2 group`;
                     const dot = link.querySelector('.sub-dot');
                     if (dot) dot.className = "sub-dot w-1.5 h-1.5 rounded-full bg-primary transition-colors";
                     
@@ -76,7 +77,8 @@ export function initRouter() {
                 }
             } else {
                 if (isSub) {
-                    link.className = "nav-link-sub relative text-[11px] font-medium text-on-surface-variant hover:text-primary hover:bg-primary/5 py-2 px-3 rounded-lg transition-all duration-200 flex items-center gap-2 group";
+                    let isSmall = link.classList.contains("text-[9px]");
+                    link.className = `nav-link-sub relative ${isSmall ? "text-[9px] py-1 px-2" : "text-[11px] py-2 px-3"} font-medium text-on-surface-variant hover:text-primary hover:bg-primary/5 rounded-lg transition-all duration-200 flex items-center gap-2 group`;
                     const dot = link.querySelector('.sub-dot');
                     if (dot) dot.className = "sub-dot w-1.5 h-1.5 rounded-full bg-outline-variant/50 group-hover:bg-primary transition-colors";
                 } else {

@@ -9,12 +9,12 @@ export function initSettings() {
     const settings = window.DB.getSettings();
 
     // Fill General Form Fields
-    document.getElementById('company-name').value = settings.general.companyName || '';
-    document.getElementById('company-phone').value = settings.general.phone || '';
-    document.getElementById('company-email').value = settings.general.email || '';
-    document.getElementById('company-address').value = settings.general.address || '';
-    document.getElementById('currency-symbol').value = settings.general.currency || '';
-    document.getElementById('date-format').value = settings.general.dateFormat || 'YYYY-MM-DD';
+    safeWrite('company-name', settings.general.companyName || '');
+    safeWrite('company-phone', settings.general.phone || '');
+    safeWrite('company-email', settings.general.email || '');
+    safeWrite('company-address', settings.general.address || '');
+    safeWrite('currency-symbol', settings.general.currency || '');
+    safeWrite('date-format', settings.general.dateFormat || 'YYYY-MM-DD');
 
     // Fill Logo Preview from saved settings
     const logoPreviewImg = document.getElementById('logo-preview-img');
@@ -87,37 +87,37 @@ export function initSettings() {
     });
 
     // Fill Printer Form Fields
-    document.getElementById('printer-width').value = settings.printer.width || '80mm';
-    document.getElementById('printer-template').value = settings.printer.template || 'minimalist';
-    document.getElementById('printer-connection').value = settings.printer.connection || 'browser';
-    document.getElementById('printer-ip').value = settings.printer.ipAddress || '';
-    document.getElementById('printer-header').value = settings.printer.headerText || '';
-    document.getElementById('printer-hide-company-name').checked = !!settings.printer.hideCompanyName;
-    document.getElementById('printer-footer').value = settings.printer.footerText || '';
-    document.getElementById('printer-autoprint').checked = !!settings.printer.autoPrint;
+    safeWrite('printer-width', settings.printer.width || '80mm');
+    safeWrite('printer-template', settings.printer.template || 'minimalist');
+    safeWrite('printer-connection', settings.printer.connection || 'browser');
+    safeWrite('printer-ip', settings.printer.ipAddress || '');
+    safeWrite('printer-header', settings.printer.headerText || '');
+    safeWrite('printer-hide-company-name', settings.printer.hideCompanyName);
+    safeWrite('printer-footer', settings.printer.footerText || '');
+    safeWrite('printer-autoprint', settings.printer.autoPrint);
 
     // Fill FBR Form Fields
     const fbr = settings.printer.fbr || {};
-    document.getElementById('fbr-business-strn').value = fbr.businessStrn || '';
-    document.getElementById('fbr-business-ntn').value = fbr.businessNtn || '';
-    document.getElementById('fbr-pos-id').value = fbr.posId || '';
-    document.getElementById('fbr-sales-tax-pct').value = fbr.salesTaxPct !== undefined ? fbr.salesTaxPct : 18;
-    document.getElementById('fbr-client-name').value = fbr.clientName || '';
-    document.getElementById('fbr-client-address').value = fbr.clientAddress || '';
-    document.getElementById('fbr-client-ntn').value = fbr.clientNtn || '';
-    document.getElementById('fbr-client-cnic').value = fbr.clientCnic || '';
+    safeWrite('fbr-business-strn', fbr.businessStrn || '');
+    safeWrite('fbr-business-ntn', fbr.businessNtn || '');
+    safeWrite('fbr-pos-id', fbr.posId || '');
+    safeWrite('fbr-sales-tax-pct', fbr.salesTaxPct !== undefined ? fbr.salesTaxPct : 18);
+    safeWrite('fbr-client-name', fbr.clientName || '');
+    safeWrite('fbr-client-address', fbr.clientAddress || '');
+    safeWrite('fbr-client-ntn', fbr.clientNtn || '');
+    safeWrite('fbr-client-cnic', fbr.clientCnic || '');
 
     // Fill Delivery Form Fields
     const delivery = settings.printer.delivery || {};
-    document.getElementById('delivery-driver').value = delivery.driver || '';
-    document.getElementById('delivery-client').value = delivery.client || '';
-    document.getElementById('delivery-address').value = delivery.address || '';
+    safeWrite('delivery-driver', delivery.driver || '');
+    safeWrite('delivery-client', delivery.client || '');
+    safeWrite('delivery-address', delivery.address || '');
 
 
 
     // Fill Notifications Form Fields
-    document.getElementById('stock-threshold').value = settings.notifications.lowStockThreshold || 20;
-    document.getElementById('email-alerts').checked = !!settings.notifications.emailAlerts;
+    safeWrite('stock-threshold', settings.notifications.lowStockThreshold || 20);
+    safeWrite('email-alerts', settings.notifications.emailAlerts);
 
     // Setup initial view
     toggleIpContainer(settings.printer.connection);
@@ -260,58 +260,69 @@ export function initSettings() {
         e.preventDefault();
 
         // Gather dynamic items
-        const itemRows = document.querySelectorAll('.receipt-item-row');
-        const itemsList = [];
-        itemRows.forEach(row => {
-            const name = row.querySelector('.item-name').value.trim();
-            const qty = parseInt(row.querySelector('.item-qty').value) || 1;
-            const price = parseFloat(row.querySelector('.item-price').value) || 0;
-            if (name) {
-                itemsList.push({ name, qty, price });
-            }
-        });
+        
+        const currentSettings = window.DB.getSettings();
+        const updatedSettings = JSON.parse(JSON.stringify(currentSettings)); // deep copy
 
-        const updatedSettings = {
-            general: {
-                companyName: document.getElementById('company-name').value.trim(),
-                phone: document.getElementById('company-phone').value.trim(),
-                email: document.getElementById('company-email').value.trim(),
-                address: document.getElementById('company-address').value.trim(),
-                currency: document.getElementById('currency-symbol').value.trim() || 'Rs.',
-                dateFormat: document.getElementById('date-format').value,
-                logo: currentLogoData
-            },
-            printer: {
-                width: document.getElementById('printer-width').value,
-                template: document.getElementById('printer-template').value,
-                connection: document.getElementById('printer-connection').value,
-                ipAddress: document.getElementById('printer-ip').value.trim(),
-                headerText: document.getElementById('printer-header').value.trim(),
-                hideCompanyName: document.getElementById('printer-hide-company-name').checked,
-                footerText: document.getElementById('printer-footer').value.trim(),
-                autoPrint: document.getElementById('printer-autoprint').checked,
-                items: itemsList,
-                fbr: {
-                    businessStrn: document.getElementById('fbr-business-strn').value.trim(),
-                    businessNtn: document.getElementById('fbr-business-ntn').value.trim(),
-                    posId: document.getElementById('fbr-pos-id').value.trim(),
-                    salesTaxPct: parseFloat(document.getElementById('fbr-sales-tax-pct').value) || 18,
-                    clientName: document.getElementById('fbr-client-name').value.trim(),
-                    clientAddress: document.getElementById('fbr-client-address').value.trim(),
-                    clientNtn: document.getElementById('fbr-client-ntn').value.trim(),
-                    clientCnic: document.getElementById('fbr-client-cnic').value.trim()
-                },
-                delivery: {
-                    driver: document.getElementById('delivery-driver').value.trim(),
-                    client: document.getElementById('delivery-client').value.trim(),
-                    address: document.getElementById('delivery-address').value.trim()
-                }
-            },
-            notifications: {
-                lowStockThreshold: parseInt(document.getElementById('stock-threshold').value) || 20,
-                emailAlerts: document.getElementById('email-alerts').checked
-            }
+        // Helper to safely read a field if it exists on the page
+        const safeRead = (id, obj, key) => {
+            const el = document.getElementById(id);
+            if (el) obj[key] = el.type === 'checkbox' ? el.checked : el.value.trim();
         };
+
+        // Update General Settings if elements exist
+        safeRead('company-name', updatedSettings.general, 'companyName');
+        safeRead('company-phone', updatedSettings.general, 'phone');
+        safeRead('company-email', updatedSettings.general, 'email');
+        safeRead('company-address', updatedSettings.general, 'address');
+        safeRead('currency-symbol', updatedSettings.general, 'currency');
+        safeRead('date-format', updatedSettings.general, 'dateFormat');
+        if (currentLogoData) updatedSettings.general.logo = currentLogoData;
+
+        // Update Printer Settings
+        safeRead('printer-width', updatedSettings.printer, 'width');
+        safeRead('printer-template', updatedSettings.printer, 'template');
+        safeRead('printer-connection', updatedSettings.printer, 'connection');
+        safeRead('printer-ip', updatedSettings.printer, 'ipAddress');
+        safeRead('printer-header', updatedSettings.printer, 'headerText');
+        safeRead('printer-hide-company-name', updatedSettings.printer, 'hideCompanyName');
+        safeRead('printer-footer', updatedSettings.printer, 'footerText');
+        safeRead('printer-autoprint', updatedSettings.printer, 'autoPrint');
+
+        // Update Items list only if we are on the receipt page (itemRows exist)
+        const itemRows = document.querySelectorAll('.receipt-item-row');
+        if (itemRows.length > 0) {
+            const itemsList = [];
+            itemRows.forEach(row => {
+                const name = row.querySelector('.item-name').value.trim();
+                const qty = parseInt(row.querySelector('.item-qty').value) || 1;
+                const price = parseFloat(row.querySelector('.item-price').value) || 0;
+                if (name) {
+                    itemsList.push({ name, qty, price });
+                }
+            });
+            updatedSettings.printer.items = itemsList;
+        }
+
+        // FBR Settings
+        safeRead('fbr-business-strn', updatedSettings.printer.fbr, 'businessStrn');
+        safeRead('fbr-business-ntn', updatedSettings.printer.fbr, 'businessNtn');
+        safeRead('fbr-pos-id', updatedSettings.printer.fbr, 'posId');
+        safeRead('fbr-sales-tax-pct', updatedSettings.printer.fbr, 'salesTaxPct');
+        safeRead('fbr-client-name', updatedSettings.printer.fbr, 'clientName');
+        safeRead('fbr-client-address', updatedSettings.printer.fbr, 'clientAddress');
+        safeRead('fbr-client-ntn', updatedSettings.printer.fbr, 'clientNtn');
+        safeRead('fbr-client-cnic', updatedSettings.printer.fbr, 'clientCnic');
+
+        // Delivery Settings
+        safeRead('delivery-driver', updatedSettings.printer.delivery, 'driver');
+        safeRead('delivery-client', updatedSettings.printer.delivery, 'client');
+        safeRead('delivery-address', updatedSettings.printer.delivery, 'address');
+
+        // Notifications
+        safeRead('stock-threshold', updatedSettings.notifications, 'lowStockThreshold');
+        safeRead('email-alerts', updatedSettings.notifications, 'emailAlerts');
+    
 
         window.DB.saveSettings(updatedSettings);
         showToast("Configuration saved successfully!", "success");

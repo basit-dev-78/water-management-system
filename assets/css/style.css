@@ -630,7 +630,8 @@ select {
     position: relative;
 }
 .floating-label-group input, 
-.floating-label-group textarea {
+.floating-label-group textarea,
+.floating-label-group select {
     padding-top: 1.25rem !important;
     padding-bottom: 0.25rem !important;
 }
@@ -653,7 +654,8 @@ select {
 .floating-label-group input:focus ~ label,
 .floating-label-group input:not(:placeholder-shown) ~ label,
 .floating-label-group textarea:focus ~ label,
-.floating-label-group textarea:not(:placeholder-shown) ~ label {
+.floating-label-group textarea:not(:placeholder-shown) ~ label,
+.floating-label-group select ~ label {
     top: 8px;
     transform: translateY(0);
     font-size: 9px;

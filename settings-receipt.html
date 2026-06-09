@@ -49,36 +49,12 @@
                 <!-- Left Column: Settings Options -->
                 <div class="col-span-12 lg:col-span-8 flex flex-col gap-gutter-md">
                     
-                    <!-- Tabs Navigation Header -->
-                    <div class="glass-card rounded-xl p-1.5 flex flex-wrap gap-1 border border-outline-variant/10 shadow-sm">
-                        <button id="btn-tab-general"
-                            class="settings-tab-btn flex-1 md:flex-none text-center px-4 py-2 rounded-lg text-[11px] font-bold transition-all bg-primary text-on-primary shadow-sm"
-                            data-tab="settings-general">
-                            General
-                        </button>
-                        <button id="btn-tab-notifications"
-                            class="settings-tab-btn flex-1 md:flex-none text-center px-4 py-2 rounded-lg text-[11px] font-medium text-on-surface-variant hover:text-primary transition-all"
-                            data-tab="settings-notifications">
-                            Notifications
-                        </button>
-                        <button id="btn-tab-database"
-                            class="settings-tab-btn flex-1 md:flex-none text-center px-4 py-2 rounded-lg text-[11px] font-medium text-on-surface-variant hover:text-primary transition-all"
-                            data-tab="settings-database">
-                            Database Tools
-                        </button>
-                        <button id="btn-tab-items"
-                            class="settings-tab-btn flex-1 md:flex-none text-center px-4 py-2 rounded-lg text-[11px] font-medium text-on-surface-variant hover:text-primary transition-all"
-                            data-tab="settings-items">
-                            Receipt Items
-                        </button>
-                    </div>
-
                     <!-- Settings Form Card -->
                     <div class="glass-card rounded-2xl p-6 border border-outline-variant/15 shadow-md flex-1">
                         <form id="form-settings" class="space-y-6">
                             
                             <!-- TAB 1: GENERAL SETTINGS -->
-                            <div id="settings-general" class="settings-tab-content active space-y-4">
+                            <div id="settings-general" class="settings-tab-content space-y-4">
                                 <div class="border-b border-outline-variant/10 pb-3 mb-4">
                                     <h3 class="text-[15px] font-bold text-on-surface">General Settings</h3>
                                     <p class="text-[11px] text-on-surface-variant/80">Configure core business information and application preferences.</p>
@@ -237,7 +213,7 @@
                             </div>
 
                             <!-- TAB 5: RECEIPT ITEMS (UNIFIED RECEIPT SETTINGS) -->
-                            <div id="settings-items" class="settings-tab-content space-y-4">
+                            <div id="settings-items" class="settings-tab-content active space-y-4">
                                 <div class="border-b border-outline-variant/10 pb-3 mb-4">
                                     <h3 class="text-[15px] font-bold text-on-surface">Receipt Settings & Items</h3>
                                     <p class="text-[11px] text-on-surface-variant/80">Configure receipt templates, layouts, printer connections, and default items.</p>
@@ -307,6 +283,34 @@
                                         <label for="printer-footer" class="text-[11px] font-bold text-on-surface-variant">Receipt Footer Greeting</label>
                                         <input type="text" id="printer-footer" name="footerText"
                                             class="w-full bg-surface-container-low/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-primary/30 outline-none transition-all" />
+                                    </div>
+                                    <!-- Company Logo Upload -->
+                                    <div class="flex flex-col gap-1.5 md:col-span-2">
+                                        <label class="text-[11px] font-bold text-on-surface-variant">Company Logo (Receipt Branding)</label>
+                                        <div class="flex flex-col sm:flex-row gap-3 items-start">
+                                            <!-- Logo Preview -->
+                                            <div id="logo-preview-wrapper" class="w-20 h-20 rounded-xl border-2 border-dashed border-outline-variant/30 bg-surface-container-low/30 flex items-center justify-center overflow-hidden shrink-0 transition-all">
+                                                <div id="logo-placeholder" class="flex flex-col items-center justify-center text-on-surface-variant/40">
+                                                    <span class="material-symbols-outlined text-[28px]">image</span>
+                                                    <span class="text-[8px] mt-0.5">No Logo</span>
+                                                </div>
+                                                <img id="logo-preview-img" src="" alt="Logo Preview" class="w-full h-full object-contain hidden" />
+                                            </div>
+                                            <!-- Upload Controls -->
+                                            <div class="flex flex-col gap-2 flex-1">
+                                                <input type="file" id="logo-file-input" accept="image/png,image/jpeg,image/svg+xml,image/webp" class="hidden" />
+                                                <button type="button" id="btn-upload-logo"
+                                                    class="w-full sm:w-auto bg-surface-container-low/50 hover:bg-primary/10 border border-outline-variant/30 hover:border-primary/30 text-on-surface font-bold py-2 px-4 rounded-lg text-[11px] shadow-sm flex items-center justify-center gap-1.5 transition-all">
+                                                    <span class="material-symbols-outlined text-[16px]">upload</span> Upload Logo
+                                                </button>
+                                                <button type="button" id="btn-remove-logo"
+                                                    class="w-full sm:w-auto bg-red-50/20 hover:bg-red-100/30 border border-red-200/20 text-red-600 font-bold py-1.5 px-4 rounded-lg text-[10px] shadow-sm items-center justify-center gap-1 transition-all hidden"
+                                                    style="display:none;">
+                                                    <span class="material-symbols-outlined text-[14px]">delete</span> Remove Logo
+                                                </button>
+                                                <span class="text-[9px] text-on-surface-variant/60">PNG, JPEG, SVG, or WebP. Max 500KB. Shows on receipts.</span>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="flex items-center gap-2 mt-2 md:col-span-2">
                                         <input type="checkbox" id="printer-autoprint" name="autoPrint"
@@ -398,17 +402,7 @@
 
                             </div>
 
-                            <!-- Footer Save Button -->
-                            <div class="flex justify-end gap-3 border-t border-outline-variant/10 pt-4 mt-4">
-                                <button type="button" id="btn-settings-cancel" tabindex="-1"
-                                    class="px-4 py-2 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-container-low text-[12px] font-bold shadow-sm transition-all">
-                                    Cancel
-                                </button>
-                                <button type="submit" id="btn-settings-save"
-                                    class="px-6 py-2 bg-[#0f5238] hover:bg-[#1a734e] text-on-primary rounded-lg text-[12px] font-bold shadow-[0_4px_12px_rgba(15,82,56,0.3)] transition-all">
-                                    Save Config
-                                </button>
-                            </div>
+                            
                         </form>
                     </div>
                 </div>
@@ -462,18 +456,18 @@
                                     <div class="space-y-1">
                                         <div class="flex justify-between">
                                             <span>3x 10 Gallon Jug Refill</span>
-                                            <span id="preview-item-sub1">$75.00</span>
+                                            <span id="preview-item-sub1">Rs. 75.00</span>
                                         </div>
                                         <div class="flex justify-between text-gray-600 pl-2">
-                                            <span>@ $25.00 each</span>
+                                            <span>@ Rs. 25.00 each</span>
                                             <span></span>
                                         </div>
                                         <div class="flex justify-between">
                                             <span>3x Empty Jug Return Deposit</span>
-                                            <span id="preview-item-sub2">$15.00</span>
+                                            <span id="preview-item-sub2">Rs. 15.00</span>
                                         </div>
                                         <div class="flex justify-between text-gray-600 pl-2">
-                                            <span>@ $5.00 each</span>
+                                            <span>@ Rs. 5.00 each</span>
                                             <span></span>
                                         </div>
                                     </div>
@@ -483,15 +477,15 @@
                                 <div class="text-[10px] space-y-1.5 mb-5 pl-8">
                                     <div class="flex justify-between">
                                         <span>Subtotal:</span>
-                                        <span id="preview-financial-subtotal">$90.00</span>
+                                        <span id="preview-financial-subtotal">Rs. 90.00</span>
                                     </div>
                                     <div class="flex justify-between">
                                         <span>Tax (<span id="preview-financial-tax-pct">5</span>%):</span>
-                                        <span id="preview-financial-tax">$4.50</span>
+                                        <span id="preview-financial-tax">Rs. 4.50</span>
                                     </div>
                                     <div class="flex justify-between font-bold border-t border-dashed border-gray-400 pt-1.5 text-[11px]">
                                         <span>GRAND TOTAL:</span>
-                                        <span id="preview-financial-total">$94.50</span>
+                                        <span id="preview-financial-total">Rs. 94.50</span>
                                     </div>
                                 </div>
 
@@ -513,6 +507,12 @@
                     </div>
                 </div>
 
+            </div>
+
+<!-- Fixed Footer -->
+            <div class="fixed bottom-[calc(68px+env(safe-area-inset-bottom,0px))] md:bottom-0 right-0 left-0 md:left-[270px] bg-white/70 backdrop-blur-xl border-t border-white/60 px-4 md:px-8 py-3 md:py-4 flex justify-end gap-3 z-[40] shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
+                <a href="#" class="px-5 py-2 text-[12px] font-bold text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 rounded-lg transition-colors inline-block">Cancel</a>
+                <button type="submit" form="form-settings" id="btn-settings-save" class="px-5 py-2 text-[12px] font-bold text-white bg-gradient-to-r from-[#0f5238] to-[#1a734e] rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all">Save Settings</button>
             </div>
         </div>
         <!-- END SETTINGS PANEL -->

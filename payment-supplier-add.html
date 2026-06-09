@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover" name="viewport">
+    <title>AquaFlow Pro - Add Payment Record</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="./assets/js/config.js"></script>
+    <link href="./assets/css/style.css" rel="stylesheet">
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-clip relative min-h-screen">
+
+    <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div id="sidebar-container" class="relative z-50"></div>
+
+    <main class="mx-0 px-3 md:px-0 md:ml-[270px] md:mr-4 mt-0 md:mt-4 mb-0 md:mb-4 pb-[100px] md:pb-4 min-h-[calc(100vh-32px)] flex flex-col z-10 relative transition-all duration-300">
+        <div id="header-container" class="sticky top-0 z-40 md:-mx-4 md:px-4 pt-0 md:pt-4"></div>
+        
+        <div id="panel-payment-supplier-pending-add" class="panel active">
+            <a class="flex items-center gap-1.5 text-[12px] font-bold text-on-surface-variant hover:text-primary transition-colors mb-4 w-fit" href="payment-supplier-pending.html">
+                <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                Back to Pending Payments
+            </a>
+            
+            <div class="glass-card rounded-xl p-6 md:p-8 shadow-sm max-w-4xl mx-auto mb-8">
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="col-span-1 md:col-span-2">
+                        <h3 class="text-[14px] font-bold text-on-surface border-b border-outline-variant/20 pb-2 mb-4">
+                            Payment Details</h3>
+                    </div>
+                    
+                    <div class="floating-label-group mb-2">
+                        <input type="text" id="pay-entity" required class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none" placeholder=" ">
+                        <label for="pay-entity">Supplier Name *</label>
+                    </div>
+                    
+                    <div class="floating-label-group mb-2">
+                        <input type="number" id="pay-amount" required class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none" placeholder=" ">
+                        <label for="pay-amount">Amount (Rs.) *</label>
+                    </div>
+                    
+                    <div class="flex flex-col gap-1.5">
+                        <label class="text-[11px] font-bold text-on-surface-variant mb-1">Payment Method</label>
+                        <select class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none cursor-pointer">
+                            <option>Cash</option>
+                            <option>Bank Transfer</option>
+                            <option>Check</option>
+                            <option>Credit Card</option>
+                        </select>
+                    </div>
+                    
+                    <div class="floating-label-group mb-2 pt-6">
+                        <input type="date" id="pay-date" required class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none" placeholder=" ">
+                        <label for="pay-date" class="-top-5 text-[10px] text-primary">Payment Date *</label>
+                    </div>
+
+                    
+                    <div class="flex flex-col gap-1.5 pt-6">
+                        <label class="text-[11px] font-bold text-on-surface-variant mb-1">Payment Status</label>
+                        <select class="w-full bg-white/50 border border-outline-variant/30 rounded-lg py-2 px-3 text-[12px] focus:ring-2 focus:ring-[#0f5238]/30 outline-none cursor-pointer">
+                            <option>Pending</option>
+                            <option>Received</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-span-1 md:col-span-2 h-24 md:h-8"></div>
+                </form>
+            </div>
+
+            <div class="fixed bottom-[calc(68px+env(safe-area-inset-bottom,0px))] md:bottom-0 right-0 left-0 md:left-[270px] bg-white/70 backdrop-blur-xl border-t border-white/60 px-4 md:px-8 py-3 md:py-4 flex justify-end gap-3 z-[40] shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
+                <a href="payment-supplier-pending.html" class="px-5 py-2 text-[12px] font-bold text-on-surface-variant bg-surface-variant/30 hover:bg-surface-variant/50 rounded-lg transition-colors inline-block">Cancel</a>
+                <button type="button" class="px-5 py-2 text-[12px] font-bold text-white bg-gradient-to-r from-[#0f5238] to-[#1a734e] rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all form-btn-save">Save Payment</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="./assets/js/db.js"></script>
+    <script type="module" src="./assets/js/main.js"></script>
+</body>
+</html>

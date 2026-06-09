@@ -17,6 +17,7 @@ const defaultData = {
         { id: 'INV-003', name: 'Carbon Filter Pro', sku: 'FIL-CARB', category: 'Filtration', stock: 12, threshold: 20, status: 'Low Stock', lastRestock: '2024-04-20' },
         { id: 'INV-004', name: 'Replacement Spigot', sku: 'PRT-SPIG', category: 'Parts', stock: 0, threshold: 50, status: 'Out of Stock', lastRestock: '2024-01-10' }
     ],
+    payments: [],
     orders: [
         { id: 'ORD-1001', customerName: 'TechFlow Solutions', customerId: 'CUST-001', date: '2024-06-22', expectedDate: '2024-06-25', status: 'Processing', total: 450.00, items: 3 },
         { id: 'ORD-1002', customerName: 'Green Valley Farms', customerId: 'CUST-002', date: '2024-06-21', expectedDate: '2024-06-23', status: 'Shipped', total: 1200.50, items: 12 },
@@ -261,10 +262,8 @@ window.DB = {
             .filter(i => i.category === 'Containers')
             .reduce((sum, i) => sum + Math.max(0, i.threshold * 2 - i.stock), 0);
         const lowStock = inventory.filter(i => i.stock <= i.threshold).length;
-        const receivable = orders
-            .filter(o => o.status !== 'Delivered')
-            .reduce((sum, o) => sum + (parseFloat(o.total) || 0), 0);
-        const payable = (data.suppliers || []).length * 250;
+        const receivable = customers.reduce((sum, c) => sum + (parseFloat(c.pendingAmount) || 0), 0);
+        const payable = (data.suppliers || []).reduce((sum, s) => sum + (parseFloat(s.balance) || 0), 0);
         const expenses = Math.round(revenue * 0.28);
 
         return {
@@ -402,6 +401,45 @@ window.DB = {
         return false;
     },
 
+    
+    // PAYMENTS
+    getPayments: function() { 
+        const data = this.getData();
+        if (!data.payments) {
+            data.payments = [];
+            this.saveData(data);
+        }
+        return data.payments;
+    },
+    addPayment: function(payment) {
+        const data = this.getData();
+        if (!data.payments) data.payments = [];
+        
+        payment.id = 'PAY-' + Math.floor(1000 + Math.random() * 9000);
+        payment.date = payment.date || new Date().toISOString().split('T')[0];
+        payment.amount = parseFloat(payment.amount) || 0;
+        
+        // Update metrics based on entity
+        if (payment.entityType === 'customer') {
+            const cust = data.customers.find(c => c.name === payment.entityName || c.id === payment.entityId);
+            if (cust) {
+                payment.entityName = cust.name;
+                cust.pendingAmount = Math.max(0, (parseFloat(cust.pendingAmount) || 0) - payment.amount);
+            }
+        } else if (payment.entityType === 'supplier') {
+            const sup = data.suppliers.find(s => s.name === payment.entityName || s.id === payment.entityId);
+            if (sup) {
+                payment.entityName = sup.name;
+                // Currently suppliers don't have a balance field, but we could add one
+                sup.balance = Math.max(0, (parseFloat(sup.balance) || 0) - payment.amount);
+            }
+        }
+        
+        data.payments.push(payment);
+        this.saveData(data);
+        return payment;
+    },
+    
     // SETTINGS MANAGEMENT
     getSettings: function() {
         const data = this.getData();
