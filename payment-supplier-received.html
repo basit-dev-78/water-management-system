@@ -79,12 +79,24 @@
                     </div>
                 </div>
 
-                <div id="payment-supplier-received-list" class="p-4 grid grid-cols-1 gap-3">
-<div class="p-8 text-center text-on-surface-variant">
-                    <span class="material-symbols-outlined text-[48px] opacity-50 mb-2">inventory_2</span>
-                    <p class="text-[14px] font-medium">No records found for this view.</p>
+                <!-- Data Table Container -->
+                <div class="overflow-x-auto w-full p-0">
+                    <table class="w-full text-left border-collapse whitespace-nowrap">
+                        <thead>
+                            <tr class="bg-surface-variant/30 text-[10px] uppercase tracking-wider text-on-surface-variant border-b border-outline-variant/20">
+                                <th class="px-4 py-3 font-bold">Record ID</th>
+                                <th class="px-4 py-3 font-bold">Status</th>
+                                <th class="px-4 py-3 font-bold">Entity Name</th>
+                                <th class="px-4 py-3 font-bold">Amount</th>
+                                <th class="px-4 py-3 font-bold">Date</th>
+                                <th class="px-4 py-3 font-bold">Method</th>
+                                <th class="px-4 py-3 font-bold text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="payment-supplier-received-list" class="text-[12px] divide-y divide-outline-variant/10">
+                        </tbody>
+                    </table>
                 </div>
-</div>
             </div>
         </div>
         <!-- END PANEL CONTENT -->

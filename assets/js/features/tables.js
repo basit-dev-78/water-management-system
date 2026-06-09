@@ -246,38 +246,55 @@ window.showReceivableSlip = function (customerId) {
 
 
 // ─── Loading & Empty State Helpers ──────────────────────────────────────────
-function renderWithSkeleton(list, html) {
+function renderWithSkeleton(list, html, isTable = false) {
     if (!list) return;
-    const skeleton = Array(4).fill(
-        '<div class="glass-card rounded-xl p-4 flex flex-col gap-3">' +
-            '<div class="flex items-center gap-3">' +
-                '<div class="w-10 h-10 rounded-full skeleton-loader shrink-0"></div>' +
-                '<div class="flex-1 space-y-2">' +
-                    '<div class="h-3 w-1/2 skeleton-loader"></div>' +
-                    '<div class="h-2 w-1/3 skeleton-loader"></div>' +
+    
+    let skeleton = '';
+    if (isTable) {
+        skeleton = Array(4).fill(
+            '<tr class="animate-pulse border-b border-outline-variant/10">' +
+                '<td class="px-4 py-3"><div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-outline-variant/20"></div><div class="flex-1 space-y-2"><div class="h-3 bg-outline-variant/20 rounded w-3/4"></div><div class="h-2 bg-outline-variant/20 rounded w-1/2"></div></div></div></td>' +
+                '<td class="px-4 py-3"><div class="h-5 bg-outline-variant/20 rounded-full w-16"></div></td>' +
+                '<td class="px-4 py-3"><div class="h-3 bg-outline-variant/20 rounded w-24"></div></td>' +
+                '<td class="px-4 py-3"><div class="h-3 bg-outline-variant/20 rounded w-8"></div></td>' +
+                '<td class="px-4 py-3"><div class="h-4 bg-outline-variant/20 rounded w-16"></div></td>' +
+                '<td class="px-4 py-3"><div class="flex justify-end gap-1"><div class="w-8 h-8 bg-outline-variant/20 rounded-md"></div><div class="w-8 h-8 bg-outline-variant/20 rounded-md"></div></div></td>' +
+            '</tr>'
+        ).join('');
+    } else {
+        skeleton = Array(4).fill(
+            '<div class="glass-card rounded-xl p-4 flex flex-col gap-3">' +
+                '<div class="flex items-center gap-3">' +
+                    '<div class="w-10 h-10 rounded-full skeleton-loader shrink-0"></div>' +
+                    '<div class="flex-1 space-y-2">' +
+                        '<div class="h-3 w-1/2 skeleton-loader"></div>' +
+                        '<div class="h-2 w-1/3 skeleton-loader"></div>' +
+                    '</div>' +
                 '</div>' +
-            '</div>' +
-            '<div class="border-t border-outline-variant/10 pt-3 space-y-2 mt-1">' +
-                '<div class="h-2 w-full skeleton-loader"></div>' +
-                '<div class="h-2 w-4/5 skeleton-loader"></div>' +
-            '</div>' +
-        '</div>'
-    ).join('');
+                '<div class="border-t border-outline-variant/10 pt-3 space-y-2 mt-1">' +
+                    '<div class="h-2 w-full skeleton-loader"></div>' +
+                    '<div class="h-2 w-4/5 skeleton-loader"></div>' +
+                '</div>' +
+            '</div>'
+        ).join('');
+    }
 
     list.innerHTML = skeleton;
     
     setTimeout(() => {
         list.innerHTML = html;
-        const cards = list.querySelectorAll(':scope > div.glass-card');
-        cards.forEach((c, i) => {
-            const staggerClass = 'stagger-' + Math.min(i + 1, 6);
-            c.classList.add(staggerClass);
-        });
+        if (!isTable) {
+            const cards = list.querySelectorAll(':scope > div.glass-card');
+            cards.forEach((c, i) => {
+                const staggerClass = 'stagger-' + Math.min(i + 1, 6);
+                c.classList.add(staggerClass);
+            });
+        }
     }, 250);
 }
 
-function getEmptyStateHTML(icon, title, desc, linkUrl, linkText) {
-    return '<div class="col-span-full py-16 flex flex-col items-center justify-center text-center">' +
+function getEmptyStateHTML(icon, title, desc, linkUrl, linkText, isTable = false) {
+    const emptyContent = '<div class="' + (isTable ? 'py-8' : 'col-span-full py-16') + ' flex flex-col items-center justify-center text-center">' +
         '<div class="w-20 h-20 rounded-full bg-surface-variant/30 flex items-center justify-center mb-4 border border-outline-variant/10">' +
             '<span class="material-symbols-outlined text-[40px] text-on-surface-variant/40">' + icon + '</span>' +
         '</div>' +
@@ -285,6 +302,11 @@ function getEmptyStateHTML(icon, title, desc, linkUrl, linkText) {
         '<p class="text-[12px] text-on-surface-variant mb-4 max-w-xs">' + desc + '</p>' +
         '<a href="' + linkUrl + '" class="bg-primary text-on-primary px-5 py-2.5 rounded-lg text-[12px] font-bold shadow-md hover:shadow-lg transition-all ripple-btn">' + linkText + '</a>' +
     '</div>';
+    
+    if (isTable) {
+        return '<tr><td colspan="6">' + emptyContent + '</td></tr>';
+    }
+    return emptyContent;
 }
 
 // ─── Render: Customers ───────────────────────────────────────────────────────
@@ -308,15 +330,15 @@ function renderCustomers() {
     const items = getPage(all, 'customers');
 
     if (items.length === 0) {
-        const emptyHtml = getEmptyStateHTML('group_off', 'No Customers Found', 'You haven\'t added any customers yet. Add your first customer to start tracking.', 'customer-add.html', 'Add Customer');
-        renderWithSkeleton(list, emptyHtml);
+        const emptyHtml = getEmptyStateHTML('group_off', 'No Customers Found', 'You haven\'t added any customers yet. Add your first customer to start tracking.', 'customer-add.html', 'Add Customer', true);
+        renderWithSkeleton(list, emptyHtml, true);
         return;
     }
 
     const html = items.map(c => `
-        <div class="glass-card rounded-xl p-4 flex flex-col gap-2 group cursor-pointer">
-            <div class="flex items-center justify-between gap-2">
-                <div class="flex items-center gap-2 min-w-0">
+        <tr class="hover:bg-surface-variant/10 transition-colors group cursor-pointer">
+            <td class="px-4 py-3 border-b border-outline-variant/10">
+                <div class="flex items-center gap-3 min-w-0">
                     <div class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 font-bold text-[13px]">
                         ${c.name.charAt(0)}
                     </div>
@@ -325,39 +347,35 @@ function renderCustomers() {
                         <p class="text-[10px] text-on-surface-variant truncate">${c.email}</p>
                     </div>
                 </div>
+            </td>
+            <td class="px-4 py-3 border-b border-outline-variant/10 whitespace-nowrap">
                 ${statusBadge(c.status)}
-            </div>
-            <div class="border-t border-outline-variant/10 pt-2 grid grid-cols-3 gap-1">
-                <div>
-                    <p class="text-[9px] uppercase text-on-surface-variant/60 font-bold tracking-wider">Orders</p>
-                    <p class="text-[13px] font-bold text-on-surface">${c.totalOrders}</p>
-                </div>
-                <div>
-                    <p class="text-[9px] uppercase text-on-surface-variant/60 font-bold tracking-wider">Pending</p>
-                    <p class="text-[13px] font-bold text-error">${currency}${(c.pendingAmount || 0).toFixed(2)}</p>
-                </div>
-                <div>
-                    <p class="text-[9px] uppercase text-on-surface-variant/60 font-bold tracking-wider">Last Order</p>
-                    <p class="text-[11px] font-medium text-on-surface truncate">${c.lastOrder}</p>
-                </div>
-            </div>
-            <p class="text-[10px] text-on-surface-variant/70 flex items-center justify-between gap-1 mt-1">
-                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">call</span>${c.phone || 'N/A'}</span>
-                <span class="flex items-center gap-1.5 shrink-0">
+            </td>
+            <td class="px-4 py-3 border-b border-outline-variant/10 text-[11px] text-on-surface-variant whitespace-nowrap">
+                <div class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">call</span>${c.phone || 'N/A'}</div>
+            </td>
+            <td class="px-4 py-3 border-b border-outline-variant/10 text-[12px] font-medium text-on-surface whitespace-nowrap">
+                ${c.totalOrders}
+            </td>
+            <td class="px-4 py-3 border-b border-outline-variant/10 text-[12px] font-bold ${c.pendingAmount > 0 ? 'text-error' : 'text-on-surface'} whitespace-nowrap">
+                ${currency}${(c.pendingAmount || 0).toFixed(2)}
+            </td>
+            <td class="px-4 py-3 border-b border-outline-variant/10 text-right whitespace-nowrap">
+                <div class="flex items-center justify-end gap-1.5">
                     ${c.pendingAmount > 0 ? `
-                        <button onclick="event.stopPropagation(); window.showReceivableSlip('${c.id}');" class="text-primary hover:bg-primary/10 px-2 py-0.5 rounded-md transition-colors flex items-center gap-0.5 border border-primary/20" title="Receivable Slip">
+                        <button onclick="event.stopPropagation(); window.showReceivableSlip('${c.id}');" class="text-primary hover:bg-primary/10 px-2 py-1 rounded-md transition-colors flex items-center gap-1 border border-primary/20" title="Receivable Slip">
                             <span class="material-symbols-outlined text-[14px]">receipt_long</span>
-                            <span class="text-[9px] font-bold">Slip</span>
+                            <span class="text-[10px] font-bold">Slip</span>
                         </button>
                     ` : ''}
-                    <button onclick="event.stopPropagation(); if(confirm('Are you sure you want to delete ${c.name}?')) { window.DB.deleteRecord('customers', '${c.id}'); window.renderAll(); }" class="text-error hover:bg-error-container/20 p-1 rounded-md transition-colors font-bold" title="Delete Customer">
-                        <span class="material-symbols-outlined text-[15px]">delete</span>
+                    <button onclick="event.stopPropagation(); if(confirm('Are you sure you want to delete ${c.name}?')) { window.DB.deleteRecord('customers', '${c.id}'); window.renderAll(); }" class="text-error hover:bg-error-container/20 p-1.5 rounded-md transition-colors" title="Delete Customer">
+                        <span class="material-symbols-outlined text-[16px]">delete</span>
                     </button>
-                </span>
-            </p>
-        </div>
+                </div>
+            </td>
+        </tr>
     `).join('');
-    renderWithSkeleton(list, html);
+    renderWithSkeleton(list, html, true);
 }
 
 // ─── Render: Suppliers ───────────────────────────────────────────────────────
@@ -375,8 +393,8 @@ function renderSuppliers() {
     const items = getPage(all, 'suppliers');
 
     if (items.length === 0) {
-        const emptyHtml = getEmptyStateHTML('inventory_2', 'No Suppliers Found', 'Keep track of your vendors and suppliers by adding them to the system.', 'supplier-add.html', 'Add Supplier');
-        renderWithSkeleton(list, emptyHtml);
+        const emptyHtml = getEmptyStateHTML('inventory_2', 'No Suppliers Found', 'Keep track of your vendors and suppliers by adding them to the system.', 'supplier-add.html', 'Add Supplier', true);
+        renderWithSkeleton(list, emptyHtml, true);
         return;
     }
 
@@ -386,9 +404,9 @@ function renderSuppliers() {
     };
 
     const html = items.map(s => `
-        <div class="glass-card rounded-xl p-4 flex flex-col gap-2 group cursor-pointer">
-            <div class="flex items-center justify-between gap-2">
-                <div class="flex items-center gap-2 min-w-0">
+        <tr class="hover:bg-surface-variant/10 transition-colors group cursor-pointer">
+            <td class="px-4 py-3 border-b border-outline-variant/10">
+                <div class="flex items-center gap-3 min-w-0">
                     <div class="w-8 h-8 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center shrink-0 font-bold text-[13px]">
                         ${s.name.charAt(0)}
                     </div>
@@ -397,27 +415,24 @@ function renderSuppliers() {
                         <p class="text-[10px] text-on-surface-variant truncate">${s.category}</p>
                     </div>
                 </div>
+            </td>
+            <td class="px-4 py-3 border-b border-outline-variant/10 whitespace-nowrap">
                 ${statusBadge(s.status)}
-            </div>
-            <div class="border-t border-outline-variant/10 pt-2 grid grid-cols-2 gap-1">
-                <div>
-                    <p class="text-[9px] uppercase text-on-surface-variant/60 font-bold tracking-wider">Contact</p>
-                    <p class="text-[11px] font-medium text-on-surface">${s.contact}</p>
-                </div>
-                <div>
-                    <p class="text-[9px] uppercase text-on-surface-variant/60 font-bold tracking-wider">Rating</p>
-                    <p class="text-[13px] font-bold text-amber-500">${stars(s.rating)}</p>
-                </div>
-            </div>
-            <p class="text-[10px] text-on-surface-variant/70 flex items-center justify-between gap-1 mt-1">
-                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">call</span>${s.phone || 'N/A'}</span>
-                <button onclick="event.stopPropagation(); if(confirm('Are you sure you want to delete ${s.name}?')) { window.DB.deleteRecord('suppliers', '${s.id}'); window.renderAll(); }" class="text-error hover:bg-error-container/20 p-1 rounded-md transition-colors" title="Delete Supplier">
+            </td>
+            <td class="px-4 py-3 border-b border-outline-variant/10 text-[11px] text-on-surface-variant whitespace-nowrap">
+                <div class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">call</span>${s.phone || 'N/A'}</div>
+            </td>
+            <td class="px-4 py-3 border-b border-outline-variant/10 text-[13px] font-bold text-amber-500 whitespace-nowrap">
+                ${stars(s.rating)}
+            </td>
+            <td class="px-4 py-3 border-b border-outline-variant/10 text-right whitespace-nowrap">
+                <button onclick="event.stopPropagation(); if(confirm('Are you sure you want to delete ${s.name}?')) { window.DB.deleteRecord('suppliers', '${s.id}'); window.renderAll(); }" class="text-error hover:bg-error-container/20 p-1.5 rounded-md transition-colors" title="Delete Supplier">
                     <span class="material-symbols-outlined text-[16px]">delete</span>
                 </button>
-            </p>
-        </div>
+            </td>
+        </tr>
     `).join('');
-    renderWithSkeleton(list, html);
+    renderWithSkeleton(list, html, true);
 }
 
 // ─── Render: Inventory ───────────────────────────────────────────────────────
@@ -435,8 +450,8 @@ function renderInventory() {
     const items = getPage(all, 'inventory');
 
     if (items.length === 0) {
-        const emptyHtml = getEmptyStateHTML('water_bottle', 'Inventory is Empty', 'Add items to your inventory to keep track of stock levels and pricing.', 'inventory-add.html', 'Add Inventory Item');
-        renderWithSkeleton(list, emptyHtml);
+        const emptyHtml = getEmptyStateHTML('water_bottle', 'Inventory is Empty', 'Add items to your inventory to keep track of stock levels and pricing.', 'inventory-add.html', 'Add Inventory Item', true);
+        renderWithSkeleton(list, emptyHtml, true);
         return;
     }
 
@@ -444,41 +459,38 @@ function renderInventory() {
         const pct = item.threshold > 0 ? Math.min(100, Math.round((item.stock / (item.threshold * 2)) * 100)) : 100;
         const barColor = item.stock === 0 ? 'bg-error' : (item.stock <= item.threshold ? 'bg-amber-400' : 'bg-primary');
         return `
-        <div class="glass-card rounded-xl p-4 flex flex-col gap-2 group cursor-pointer">
-            <div class="flex items-center justify-between gap-2">
+        <tr class="hover:bg-surface-variant/10 transition-colors group cursor-pointer">
+            <td class="px-4 py-3 border-b border-outline-variant/10">
                 <div class="min-w-0">
                     <p class="text-[12px] font-bold text-on-surface truncate leading-tight">${item.name}</p>
                     <p class="text-[10px] text-on-surface-variant font-mono">${item.sku}</p>
                 </div>
-                <div class="flex items-center gap-1 shrink-0">
-                    ${statusBadge(item.status)}
-                    <button onclick="event.stopPropagation(); if(confirm('Are you sure you want to delete ${item.name}?')) { window.DB.deleteRecord('inventory', '${item.id}'); window.renderAll(); }" class="text-error hover:bg-error-container/20 p-1 rounded-md transition-colors" title="Delete Item">
-                        <span class="material-symbols-outlined text-[16px]">delete</span>
-                    </button>
-                </div>
-            </div>
-            <div class="border-t border-outline-variant/10 pt-2">
+            </td>
+            <td class="px-4 py-3 border-b border-outline-variant/10 whitespace-nowrap">
+                ${statusBadge(item.status)}
+            </td>
+            <td class="px-4 py-3 border-b border-outline-variant/10 min-w-[120px]">
                 <div class="flex justify-between items-center mb-1">
-                    <p class="text-[9px] uppercase text-on-surface-variant/60 font-bold tracking-wider">Stock Level</p>
                     <p class="text-[12px] font-bold text-on-surface">${item.stock} <span class="text-[9px] font-normal text-on-surface-variant">/ min ${item.threshold}</span></p>
                 </div>
                 <div class="w-full h-1.5 bg-outline-variant/20 rounded-full overflow-hidden">
                     <div class="h-full ${barColor} rounded-full transition-all" style="width:${pct}%"></div>
                 </div>
-            </div>
-            <div class="grid grid-cols-2 gap-1">
-                <div>
-                    <p class="text-[9px] uppercase text-on-surface-variant/60 font-bold tracking-wider">Category</p>
-                    <p class="text-[11px] font-medium text-on-surface">${item.category}</p>
-                </div>
-                <div>
-                    <p class="text-[9px] uppercase text-on-surface-variant/60 font-bold tracking-wider">Last Restock</p>
-                    <p class="text-[11px] font-medium text-on-surface">${item.lastRestock}</p>
-                </div>
-            </div>
-        </div>`;
+            </td>
+            <td class="px-4 py-3 border-b border-outline-variant/10 text-[11px] font-medium text-on-surface whitespace-nowrap">
+                ${item.category}
+            </td>
+            <td class="px-4 py-3 border-b border-outline-variant/10 text-[11px] font-medium text-on-surface whitespace-nowrap">
+                ${item.lastRestock}
+            </td>
+            <td class="px-4 py-3 border-b border-outline-variant/10 text-right whitespace-nowrap">
+                <button onclick="event.stopPropagation(); if(confirm('Are you sure you want to delete ${item.name}?')) { window.DB.deleteRecord('inventory', '${item.id}'); window.renderAll(); }" class="text-error hover:bg-error-container/20 p-1.5 rounded-md transition-colors" title="Delete Item">
+                    <span class="material-symbols-outlined text-[16px]">delete</span>
+                </button>
+            </td>
+        </tr>`;
     }).join('');
-    renderWithSkeleton(list, html);
+    renderWithSkeleton(list, html, true);
 }
 
 // ─── Order Status Flow ───────────────────────────────────────────────────────
@@ -518,53 +530,52 @@ function renderOrders() {
     const items = getPage(all, 'orders');
 
     if (items.length === 0) {
-        const emptyHtml = getEmptyStateHTML('shopping_cart_off', 'No Orders Yet', 'Ready to make a sale? Create your first order to get started.', 'order-add.html', 'Create Order');
-        renderWithSkeleton(list, emptyHtml);
+        const emptyHtml = getEmptyStateHTML('shopping_cart_off', 'No Orders Yet', 'Ready to make a sale? Create your first order to get started.', 'order-add.html', 'Create Order', true);
+        renderWithSkeleton(list, emptyHtml, true);
         return;
     }
 
     const html = items.map(o => `
-        <div class="glass-card rounded-xl p-4 flex flex-col gap-2 group cursor-pointer">
-            <div class="flex items-center justify-between gap-2">
-                <p class="text-[12px] font-bold text-on-surface font-mono">${o.id}</p>
-                <div class="flex items-center gap-1">
-                    ${statusBadge(o.status)}
-                    <button onclick="event.stopPropagation(); window.printOrder('${o.id}');" class="text-primary hover:bg-primary/10 p-1 rounded-md transition-colors" title="Print Receipt">
+        <tr class="hover:bg-surface-variant/10 transition-colors group cursor-pointer">
+            <td class="px-4 py-3 border-b border-outline-variant/10 whitespace-nowrap">
+                <div class="min-w-0">
+                    <p class="text-[12px] font-bold text-on-surface font-mono">${o.id}</p>
+                    <p class="text-[10px] text-on-surface-variant truncate">${o.customerName || '—'}</p>
+                </div>
+            </td>
+            <td class="px-4 py-3 border-b border-outline-variant/10 whitespace-nowrap">
+                ${statusBadge(o.status)}
+            </td>
+            <td class="px-4 py-3 border-b border-outline-variant/10 text-[12px] font-bold text-primary whitespace-nowrap">
+                ${currency}${Number(o.total).toFixed(2)}
+            </td>
+            <td class="px-4 py-3 border-b border-outline-variant/10 text-[12px] font-medium text-on-surface whitespace-nowrap">
+                ${o.items}
+            </td>
+            <td class="px-4 py-3 border-b border-outline-variant/10 text-[11px] font-medium text-on-surface whitespace-nowrap">
+                ${o.date}
+            </td>
+            <td class="px-4 py-3 border-b border-outline-variant/10 text-[11px] font-medium text-on-surface whitespace-nowrap">
+                ${o.expectedDate || '—'}
+            </td>
+            <td class="px-4 py-3 border-b border-outline-variant/10 text-right whitespace-nowrap">
+                <div class="flex items-center justify-end gap-1.5">
+                    ${o.status !== 'Delivered' ? `
+                    <button onclick="event.stopPropagation(); window.advanceOrderStatus('${o.id}')"
+                        class="px-2 py-1 rounded-md bg-primary/10 text-primary text-[10px] font-bold hover:bg-primary/20 transition-colors flex items-center justify-center gap-1 border border-primary/20" title="Advance Status">
+                        <span class="material-symbols-outlined text-[14px]">local_shipping</span>
+                    </button>` : ''}
+                    <button onclick="event.stopPropagation(); window.printOrder('${o.id}');" class="text-primary hover:bg-primary/10 p-1.5 rounded-md transition-colors" title="Print Receipt">
                         <span class="material-symbols-outlined text-[16px]">print</span>
                     </button>
-                    <button onclick="event.stopPropagation(); if(confirm('Are you sure you want to cancel and delete order ${o.id}?')) { window.DB.deleteRecord('orders', '${o.id}'); window.renderAll(); }" class="text-error hover:bg-error-container/20 p-1 rounded-md transition-colors" title="Delete Order">
+                    <button onclick="event.stopPropagation(); if(confirm('Are you sure you want to cancel and delete order ${o.id}?')) { window.DB.deleteRecord('orders', '${o.id}'); window.renderAll(); }" class="text-error hover:bg-error-container/20 p-1.5 rounded-md transition-colors" title="Delete Order">
                         <span class="material-symbols-outlined text-[16px]">delete</span>
                     </button>
                 </div>
-            </div>
-            <p class="text-[11px] text-on-surface-variant">${o.customerName || '—'}</p>
-            <div class="border-t border-outline-variant/10 pt-2 grid grid-cols-2 gap-1">
-                <div>
-                    <p class="text-[9px] uppercase text-on-surface-variant/60 font-bold tracking-wider">Total</p>
-                    <p class="text-[14px] font-bold text-primary">${currency}${Number(o.total).toFixed(2)}</p>
-                </div>
-                <div>
-                    <p class="text-[9px] uppercase text-on-surface-variant/60 font-bold tracking-wider">Items</p>
-                    <p class="text-[13px] font-bold text-on-surface">${o.items}</p>
-                </div>
-                <div>
-                    <p class="text-[9px] uppercase text-on-surface-variant/60 font-bold tracking-wider">Ordered</p>
-                    <p class="text-[11px] font-medium text-on-surface">${o.date}</p>
-                </div>
-                <div>
-                    <p class="text-[9px] uppercase text-on-surface-variant/60 font-bold tracking-wider">Expected</p>
-                    <p class="text-[11px] font-medium text-on-surface">${o.expectedDate || '—'}</p>
-                </div>
-            </div>
-            ${o.status !== 'Delivered' ? `
-            <button onclick="event.stopPropagation(); window.advanceOrderStatus('${o.id}')"
-                class="mt-1 w-full py-1.5 rounded-lg bg-primary/10 text-primary text-[10px] font-bold hover:bg-primary/20 transition-colors flex items-center justify-center gap-1">
-                <span class="material-symbols-outlined text-[14px]">local_shipping</span>
-                Advance to ${ORDER_FLOW[ORDER_FLOW.indexOf(o.status) + 1] || 'Delivered'}
-            </button>` : ''}
-        </div>
+            </td>
+        </tr>
     `).join('');
-    renderWithSkeleton(list, html);
+    renderWithSkeleton(list, html, true);
 }
 
 
@@ -580,42 +591,38 @@ function renderPayments() {
         if (!list) return;
 
         if (items.length === 0) {
-            list.innerHTML = getEmptyStateHTML(icon, emptyTitle, emptyDesc, '#', 'No Records Yet');
+            list.innerHTML = getEmptyStateHTML(icon, emptyTitle, emptyDesc, '#', 'No Records Yet', true);
             return;
         }
 
         const html = items.map(p => `
-            <div class="glass-card rounded-xl p-4 flex flex-col gap-2 group cursor-pointer hover:border-primary/30 transition-all">
-                <div class="flex items-center justify-between gap-2">
+            <tr class="hover:bg-surface-variant/10 transition-colors group cursor-pointer">
+                <td class="px-4 py-3 border-b border-outline-variant/10 whitespace-nowrap">
                     <p class="text-[12px] font-bold text-on-surface font-mono">${p.id || 'PAY-XXXX'}</p>
-                    <div class="flex items-center gap-1">
-                        ${statusBadge('Delivered')} <!-- Generic badge for completed payment -->
-                        <button onclick="event.stopPropagation(); if(confirm('Delete payment record?')) { window.DB.deleteRecord('payments', '${p.id}'); window.renderAll(); }" class="text-error hover:bg-error-container/20 p-1 rounded-md transition-colors">
-                            <span class="material-symbols-outlined text-[16px]">delete</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="border-t border-outline-variant/10 pt-2 grid grid-cols-2 md:grid-cols-4 gap-2">
-                    <div>
-                        <p class="text-[9px] uppercase text-on-surface-variant/60 font-bold tracking-wider">Entity Name</p>
-                        <p class="text-[11px] font-medium text-on-surface truncate">${p.entityName || '—'}</p>
-                    </div>
-                    <div>
-                        <p class="text-[9px] uppercase text-on-surface-variant/60 font-bold tracking-wider">Amount</p>
-                        <p class="text-[14px] font-bold ${p.type==='received' ? 'text-primary' : 'text-error'}">${currency}${Number(p.amount).toFixed(2)}</p>
-                    </div>
-                    <div>
-                        <p class="text-[9px] uppercase text-on-surface-variant/60 font-bold tracking-wider">Date</p>
-                        <p class="text-[11px] font-medium text-on-surface">${p.date || '—'}</p>
-                    </div>
-                    <div>
-                        <p class="text-[9px] uppercase text-on-surface-variant/60 font-bold tracking-wider">Method</p>
-                        <p class="text-[11px] font-medium text-on-surface">${p.method || 'Cash'}</p>
-                    </div>
-                </div>
-            </div>
+                </td>
+                <td class="px-4 py-3 border-b border-outline-variant/10 whitespace-nowrap">
+                    ${statusBadge('Delivered')}
+                </td>
+                <td class="px-4 py-3 border-b border-outline-variant/10 text-[11px] font-medium text-on-surface whitespace-nowrap">
+                    ${p.entityName || '—'}
+                </td>
+                <td class="px-4 py-3 border-b border-outline-variant/10 text-[12px] font-bold ${p.type==='received' ? 'text-primary' : 'text-error'} whitespace-nowrap">
+                    ${currency}${Number(p.amount).toFixed(2)}
+                </td>
+                <td class="px-4 py-3 border-b border-outline-variant/10 text-[11px] font-medium text-on-surface whitespace-nowrap">
+                    ${p.date || '—'}
+                </td>
+                <td class="px-4 py-3 border-b border-outline-variant/10 text-[11px] font-medium text-on-surface whitespace-nowrap">
+                    ${p.method || 'Cash'}
+                </td>
+                <td class="px-4 py-3 border-b border-outline-variant/10 text-right whitespace-nowrap">
+                    <button onclick="event.stopPropagation(); if(confirm('Delete payment record?')) { window.DB.deleteRecord('payments', '${p.id}'); window.renderAll(); }" class="text-error hover:bg-error-container/20 p-1.5 rounded-md transition-colors">
+                        <span class="material-symbols-outlined text-[16px]">delete</span>
+                    </button>
+                </td>
+            </tr>
         `).join('');
-        renderWithSkeleton(list, html);
+        renderWithSkeleton(list, html, true);
     };
 
     const allPayments = window.DB.getPayments ? window.DB.getPayments() : [];
